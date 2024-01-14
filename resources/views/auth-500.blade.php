@@ -1,4 +1,4 @@
-@extends('layouts.master-auth')
+@extends('components-layouts.master-auth')
 @section('title')
     500
 @endsection
