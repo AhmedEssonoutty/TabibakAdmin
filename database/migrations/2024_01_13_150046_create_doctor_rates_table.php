@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Doctor;
+use App\Models\Patient;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,10 +16,12 @@ return new class extends Migration
         Schema::create('doctor_rates', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Doctor::class);
+            $table->foreignIdFor(Patient::class);
             $table->integer('response_speed')->default(5);
             $table->integer('service_quality')->default(5);
             $table->integer('problem_solving')->default(5);
             $table->decimal('overall_rate')->default(5);
+            $table->longText('patient_notes');
             $table->timestamps();
         });
     }

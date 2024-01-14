@@ -18,7 +18,7 @@ return new class extends Migration
             $table->json('price')->default('{"consultation_price":0, "examination_price":0}');
             $table->json('speciality');
             $table->text('medical_id');
-            $table->text('certificates_file');
+            $table->json('certificates_file');
             $table->text('personal_note')->nullable();
             $table->timestamps();
         });
