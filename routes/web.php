@@ -8,6 +8,7 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\SlidersController;
 use App\Http\Controllers\SlidesController;
 use App\Http\Controllers\PostsController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -94,7 +95,7 @@ Route::middleware(['auth'])->group(function () {
 		Route::get("DeleteSlider/{id}", [SlidersController::class, "DeleteSlider"])->name("DeleteSlider");
 
 
-		
+
 		//Route::get("Slides", [SlidersController::class, "CreateSlide"])->name("CreateSlide");
 		Route::post("AddSlide", [SlidersController::class, "StoreSlide"])->name("StoreSlide");
 		Route::get("GetSlideData/{id}", [SlidersController::class, "GetSlideData"])->name("GetSlideData");
