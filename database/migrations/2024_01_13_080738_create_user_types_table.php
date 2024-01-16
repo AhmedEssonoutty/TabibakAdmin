@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('user_types', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->enum('user_of', ['app', 'dashboard']);
             $table->timestamps();
         });
     }
