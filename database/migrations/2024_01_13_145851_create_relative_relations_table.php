@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('national_id')->unique();
             $table->enum('gender', ['male', 'female']);
             $table->date('birth_date');
-            $table->foreignIdFor(Patient::class);
+            $table->foreignIdFor(Patient::class)->constrained()->references('id')->onUpdate('cascade')->onDelete('cascade');
             $table->enum('patient_level', ['0', '1']);
             $table->enum('relative_relation', ['wife', 'husband', 'son', 'daughter', 'mother', 'father']);
             $table->timestamps();

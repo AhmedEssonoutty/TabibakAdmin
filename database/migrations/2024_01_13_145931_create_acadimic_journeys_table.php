@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('academic_journeys', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Doctor::class);
+            $table->foreignIdFor(Doctor::class)->constrained()->references('id')->onUpdate('cascade')->onDelete('cascade');;
             $table->string('org_name');
             $table->string('type');
             $table->date('from_date');

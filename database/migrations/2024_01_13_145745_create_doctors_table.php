@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('doctors', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Patient::class);
+            $table->foreignIdFor(Patient::class)->constrained()->references('id')->onUpdate('cascade')->onDelete('cascade');;
             $table->json('price')->default('{"consultation_price":0, "examination_price":0}');
             $table->json('speciality');
             $table->text('medical_id');

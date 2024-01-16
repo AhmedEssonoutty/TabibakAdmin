@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('doctor_available_times', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Doctor::class);
+            $table->foreignIdFor(Doctor::class)->constrained()->references('id')->onUpdate('cascade')->onDelete('cascade');
             $table->string('day');
             $table->json('times');
             $table->string('consultation_time');

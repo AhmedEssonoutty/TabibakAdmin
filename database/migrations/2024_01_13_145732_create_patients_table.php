@@ -22,10 +22,10 @@ return new class extends Migration
             $table->enum('gender', ['male', 'female']);
             $table->string('image')->nullable();
             $table->enum('marital_status', ['single', 'engaged', 'married', 'divorced', 'widower']);
-            $table->foreignIdFor(UserType::class);
+            $table->foreignIdFor(UserType::class, 'user_type')->constrained()->references('id')->onUpdate('cascade')->onDelete('cascade');
             $table->json('map_location');
             $table->longText('address');
-            $table->foreignIdFor(City::class);
+            $table->foreignIdFor(City::class)->constrained()->references('id')->onUpdate('cascade')->onDelete('cascade');
             $table->json('facilities');
             $table->json('settings')->default('{"dark_mode":"on", "call_notifications":"off", "hide_personal_info":"on"}');
             $table->boolean('status')->default(1);

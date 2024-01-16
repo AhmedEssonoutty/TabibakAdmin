@@ -16,9 +16,9 @@ return new class extends Migration
     {
         Schema::create('consultations_follow_ups', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Patient::class);
-            $table->foreignIdFor(Doctor::class);
-            $table->foreignIdFor(Consultation::class);
+            $table->foreignIdFor(Patient::class)->constrained()->references('id')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignIdFor(Doctor::class)->constrained()->references('id')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignIdFor(Consultation::class)->constrained()->references('id')->onUpdate('cascade')->onDelete('cascade');
             $table->string('doctor_action');
             $table->string('rejection_reason');
             $table->longText('other_notes');

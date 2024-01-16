@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('doctor_rates', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Doctor::class);
-            $table->foreignIdFor(Patient::class);
+            $table->foreignIdFor(Doctor::class)->constrained()->references('id')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignIdFor(Patient::class)->constrained()->references('id')->onUpdate('cascade')->onDelete('cascade');
             $table->integer('response_speed')->default(5);
             $table->integer('service_quality')->default(5);
             $table->integer('problem_solving')->default(5);

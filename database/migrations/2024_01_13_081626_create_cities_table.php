@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('city_en_name');
             $table->string('city_ar_name');
-            $table->foreignIdFor(Country::class);
+            $table->foreignIdFor(Country::class)->constrained()->references('id')->onUpdate('cascade')->onDelete('cascade');
             $table->boolean('status')->default(1);
             $table->timestamps();
         });

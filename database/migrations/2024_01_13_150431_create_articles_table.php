@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Specialist::class);
-            $table->foreignIdFor(Doctor::class);
+            $table->foreignIdFor(Specialist::class)->constrained()->references('id')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignIdFor(Doctor::class)->constrained()->references('id')->onUpdate('cascade')->onDelete('cascade');
             $table->text('image');
             $table->text('article_en_title');
             $table->text('article_ar_title');
