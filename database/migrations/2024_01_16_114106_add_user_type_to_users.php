@@ -3,8 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\User;
-use App\Models\Roles;
 
 
 return new class extends Migration
@@ -15,7 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->unsignedBigInteger("user_type")->after("password");
+            $table->bigInteger("user_type")->unsigned()->after("password");
 
             $table->foreign('user_type')->references('id')->on('user_types')->constrained()->onUpdate('cascade')->onDelete('cascade');
         });
