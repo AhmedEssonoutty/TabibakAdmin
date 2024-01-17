@@ -1,0 +1,9 @@
+<?php
+
+namespace App\Constants;
+use App\Traits\ConstantsTrait;
+
+enum {{constantName}} : {{type}}
+{
+    use ConstantsTrait;
+}

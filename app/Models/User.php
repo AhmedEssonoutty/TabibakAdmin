@@ -3,70 +3,35 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Traits\ModelTrait;
+use App\Traits\SearchTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\Roles;
+use Spatie\Permission\Traits\HasPermissions;
+use Spatie\Permission\Traits\HasRoles;
+use Spatie\Translatable\HasTranslations;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasTranslations,
+        HasRoles, HasPermissions, ModelTrait, SearchTrait;
 
-
-
-
-	protected $table = "users";
-	protected $guarded = [];
-	public $timestamps = true;
-
-
-
-	public function role(){
-		/* return $this->belongsTo(Roles::class, 'user_role'); */
-		$user = auth()->user();
-		$perms = Roles::find($user->user_role);
-		return $perms;
-}
-
-
-	public function hasAbility($permissions){
-		$role = $this->role();
-		if(!$role){
-			return false;
-		}
-		foreach ($role->permissions as $permission){
-			if (is_array($permissions) && in_array($permission, $permissions)){
-				return true;
-			}else if(is_string($permissions) && strcmp($permissions, $permission) == 0){
-				return true;
-			}
-		}
-		return false;
-	}
-
-
-	
-	protected $fillable = [
-		'name',
-		'mobile',
-		'birth_date',
-		'username',
-		'email',
-		'password',
-		'avatar',
-		'job_title',
-	];
+	protected $fillable = ['name', 'username', 'email', 'password', 'phone', 'is_active'];
+    protected array $filters = ['keyword', 'role', 'roleName', 'email'];
+    public array $filterModels = ['Role'];
+    public array $filterCustom = [];
+    protected array $searchable = ['name', 'email'];
+    public array $translatable = ['name'];
 
     /**
      * The attributes that should be hidden for serialization.
      *
      * @var array<int, string>
      */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    protected $hidden = ['password', 'remember_token'];
 
     /**
      * The attributes that should be cast.
@@ -76,4 +41,31 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //---------------------relations-------------------------------------
+
+    // ----------------------- Scopes -----------------------
+    public function scopeOfRole($query, $value)
+    {
+        return $query->whereHas('roles', function ($query) use ($value) {
+            $query->where('id', $value);
+        });
+    }
+
+    public function scopeOfRoleName($query, $value)
+    {
+        $value = (array) $value;
+        return $query->whereHas('roles', function ($query) use ($value) {
+            $query->whereIn('name', $value);
+        });
+    }
+    // ----------------------- Scopes -----------------------
+
+    public function setPasswordAttribute($input): void
+    {
+        if ($input) {
+            $this->attributes['password'] = app('hash')->needsRehash($input) ? Hash::make($input) : $input;
+        }
+    }
+
 }

@@ -1,5 +1,7 @@
 <?php
 
+$base_dir = 'uploads';
+
 return [
 
     /*
@@ -56,6 +58,11 @@ return [
             'throw' => false,
         ],
 
+        'app' => [
+            'driver' => 'local',
+            'root' => app_path() . DIRECTORY_SEPARATOR,
+            'visibility' => 'public',
+        ],
     ],
 
     /*
@@ -71,6 +78,25 @@ return [
 
     'links' => [
         public_path('storage') => storage_path('app/public'),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | upload config
+    |--------------------------------------------------------------------------
+    |
+    | Here you may configure the upload config
+    |
+    */
+    'upload' => [
+        'max_size'  => 10240,   // kb
+        'max_width' => 1080,    // px
+        'max_height'=> 2160,    // px
+        'quality'   => 60,
+        'paths' => [
+            'default'  => $base_dir . DIRECTORY_SEPARATOR,
+            'user' => $base_dir . DIRECTORY_SEPARATOR . 'users' . DIRECTORY_SEPARATOR
+        ],
     ],
 
 ];

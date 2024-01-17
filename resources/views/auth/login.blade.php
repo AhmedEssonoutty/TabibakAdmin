@@ -1,4 +1,4 @@
-@extends('layouts.master-auth')
+@extends('dashboard.layouts.master-auth')
 @section('title') Login @endsection
 @section('content')
 

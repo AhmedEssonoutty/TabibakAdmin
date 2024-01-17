@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Repositories\SQL;
+
+use App\Models\{{modelName}};
+use App\Repositories\Contracts\{{modelName}}Contract;
+
+class {{modelName}}Repository extends BaseRepository implements {{modelName}}Contract
+{
+    /**
+     * {{modelName}}Repository constructor.
+     * @param {{modelName}} $model
+     */
+    public function __construct({{modelName}} $model)
+    {
+        parent::__construct($model);
+    }
+}
