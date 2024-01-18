@@ -43,19 +43,19 @@ class MakeRepositoryCommand extends Command
         $this->modelName = $this->argument('modelName');
         $this->modelObject = Str::camel($this->modelName);
         $this->modelName = ucfirst($this->modelObject);
-//        $this->info('Creating Repository for ' . $this->modelName);
-//        $this->info($this->createModel());
-//        $this->info($this->createRepository());
-//        $this->info($this->createContract());
+        $this->info('Creating Repository for ' . $this->modelName);
+        $this->info($this->createModel());
+        $this->info($this->createRepository());
+        $this->info($this->createContract());
         if ($this->web) {
             $this->info($this->createController('web'));
-//            $this->info($this->createRequest('web'));
+            $this->info($this->createRequest('web'));
         }
-//        if ($this->api) {
-//            $this->info($this->createController('api'));
-//            $this->info($this->createRequest('api'));
-//            $this->info($this->createResource());
-//        }
+        if ($this->api) {
+            $this->info($this->createController('api'));
+            $this->info($this->createRequest('api'));
+            $this->info($this->createResource());
+        }
         return CommandAlias::SUCCESS;
     }
     public function getNamespace(): string
