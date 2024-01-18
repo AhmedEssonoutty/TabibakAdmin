@@ -38,12 +38,26 @@
                     </a>
                 </li>
 
+                @if(auth()->user()->can('read-role') || auth()->user()->can('view-all-role'))
                 <li class="nav-item">
-                    <a href="{{route('roles.index')}}" @class(['nav-link', 'menu-link', 'active' => request()->routeIs('roles.index', 'roles.create', 'roles.edit')])>
+                    <a href="{{route('roles.index')}}" @class(['nav-link', 'menu-link',
+                    'active' => request()->routeIs('roles.index', 'roles.create', 'roles.edit')])>
                         <i class="bi bi-sign-stop"></i>
                         <span data-key="t-dashboard">{{ __('messages.roles') }}</span>
                     </a>
                 </li>
+                @endif
+
+                @if(auth()->user()->can('read-academic-degree') || auth()->user()->can('view-all-academic-degree'))
+                <li class="nav-item">
+                    <a href="{{route('academic-degrees.index')}}" @class(['nav-link', 'menu-link',
+                    'active' => request()->routeIs('academic-degrees.index', 'academic-degrees.create',
+                     'academic-degrees.edit')])>
+                        <i class="bi bi-book"></i>
+                        <span data-key="t-dashboard">{{ __('messages.academic_degrees') }}</span>
+                    </a>
+                </li>
+                @endif
 {{--                @can("GeneralSettings")--}}
 {{--                    <li class="nav-item">--}}
 {{--                        <a class="nav-link menu-link" href="#sidebarSiteOptions" data-bs-toggle="collapse" role="button"--}}

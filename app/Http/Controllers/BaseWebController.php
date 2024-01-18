@@ -14,7 +14,7 @@ class BaseWebController extends Controller
     {
         $modelName = $contract->getModelName();
         $this->contract = $contract;
-        $this->routeName = Str::plural($modelName);
+        $this->routeName = Str::kebab(Str::plural($modelName));
         $this->viewPath = $viewPath . '.' . $this->routeName;
         if ($applyPermissions) {
             $this->applyCrudPermissions($modelName);

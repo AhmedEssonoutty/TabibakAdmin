@@ -15,6 +15,8 @@ return [
     "add_new" => "Add New",
     "add_role" => "Add New Role",
     "edit_role" => "Edit Role",
+    "name_ar" => "Name (Arabic)",
+    "name_en" => "Name (English)",
     "placeholder" => [
         "name" => "Enter name",
         "email" => "Enter email",
@@ -25,5 +27,9 @@ return [
         'create_success' => 'created successfully',
         'update_success' => 'updated successfully',
         'delete_success' => 'deleted successfully',
-    ]
+    ],
+    "academic_degrees" => "Academic Degrees",
+    "manage_academic_degrees" => "Manage Academic Degrees",
+    "add_academic_degree" => "Add New Academic Degree",
+    "edit_academic_degree" => "Edit Academic Degree",
 ];

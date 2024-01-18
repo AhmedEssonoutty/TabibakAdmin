@@ -119,7 +119,7 @@ class RoleController extends BaseWebController
     public function destroy(Role $role): RedirectResponse
     {
        $this->contract->remove($role);
-       return $this->redirectBack();
+       return $this->redirectBack()->with('success', __('messages.actions_messages.delete_success'));
     }
 
     /**
@@ -130,6 +130,6 @@ class RoleController extends BaseWebController
     public function changeActivation(Role $role): RedirectResponse
     {
         $this->contract->toggleField($role, 'is_active');
-        return $this->redirectBack();
+        return $this->redirectBack()->with('success', __('messages.actions_messages.update_success'));
     }
 }

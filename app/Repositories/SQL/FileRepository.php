@@ -59,17 +59,4 @@ class FileRepository extends BaseRepository implements FileContract
         }
         return parent::remove($model);
     }
-
-    public function getFileUrl($file, $path)
-    {
-        if (auth()->user()->hasPermissionTo('read-file', 'sanctum') ||
-            auth()->user()->hasPermissionTo('view-all-file', 'sanctum')) {
-
-            $base64 = base64_encode(file_get_contents($path));
-            return response()->json(['data' => $base64, 'mime' => $file->mime, 'name' => $file->original_name]);
-        }
-
-        return response()->json(['date' => '']);
-        
-    }
 }

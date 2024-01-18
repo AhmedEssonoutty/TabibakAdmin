@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers{{namespace}};
+namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Requests\{{modelName}}Request;
-use App\Models\{{modelName}};
-use App\Repositories\Contracts\{{modelName}}Contract;
+use App\Http\Requests\AcademicDegreeRequest;
+use App\Models\AcademicDegree;
+use App\Repositories\Contracts\AcademicDegreeContract;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseWebController;
 use Illuminate\Contracts\Foundation\Application;
@@ -12,15 +12,15 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 
-class {{modelName}}Controller extends BaseWebController
+class AcademicDegreeController extends BaseWebController
 {
     /**
-     * {{modelName}}Controller constructor.
-     * @param {{modelName}}Contract $contract
+     * AcademicDegreeController constructor.
+     * @param AcademicDegreeContract $contract
      */
-    public function __construct({{modelName}}Contract $contract)
+    public function __construct(AcademicDegreeContract $contract)
     {
-        parent::__construct($contract, '{{modelName}}s', '{{modelName}}s', '{{modelName}}');
+        parent::__construct($contract, 'dashboard');
     }
 
     /**
@@ -48,11 +48,11 @@ class {{modelName}}Controller extends BaseWebController
     /**
      * Store a newly created resource in storage.
      *
-     * @param {{modelName}}Request $request
+     * @param AcademicDegreeRequest $request
      *
      * @return RedirectResponse
      */
-    public function store({{modelName}}Request $request): RedirectResponse
+    public function store(AcademicDegreeRequest $request): RedirectResponse
     {
         $this->contract->create($request->validated());
         return $this->redirectBack()->with('success', __('messages.actions_messages.create_success'));
@@ -61,62 +61,63 @@ class {{modelName}}Controller extends BaseWebController
     /**
      * Display the specified resource.
      *
-     * @param {{modelName}} ${{modelObject}}
+     * @param AcademicDegree $academicDegree
      *
      * @return View|Factory|Application
      */
-    public function show({{modelName}} ${{modelObject}}): View|Factory|Application
+    public function show(AcademicDegree $academicDegree): View|Factory|Application
     {
-        return $this->showBlade(['{{modelObject}}' => ${{modelObject}}]);
+        return $this->showBlade(['academicDegree' => $academicDegree]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param {{modelName}} ${{modelObject}}
+     * @param AcademicDegree $academicDegree
      *
      * @return View|Factory|Application
      */
-    public function edit({{modelName}} ${{modelObject}}): View|Factory|Application
+    public function edit(AcademicDegree $academicDegree): View|Factory|Application
     {
-        return $this->editBlade(['{{modelObject}}' => ${{modelObject}}]);
+        return $this->editBlade(['academicDegree' => $academicDegree]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param {{modelName}}Request $request
-     * @param {{modelName}} ${{modelObject}}
+     * @param AcademicDegreeRequest $request
+     * @param AcademicDegree $academicDegree
      *
      * @return RedirectResponse
      */
-    public function update({{modelName}}Request $request, {{modelName}} ${{modelObject}}): RedirectResponse
+    public function update(AcademicDegreeRequest $request, AcademicDegree $academicDegree): RedirectResponse
     {
-        $this->contract->update(${{modelObject}}, $request->validated());
+        $this->contract->update($academicDegree, $request->validated());
         return $this->redirectBack()->with('success', __('messages.actions_messages.update_success'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param {{modelName}} ${{modelObject}}
+     * @param AcademicDegree $academicDegree
      *
      * @return RedirectResponse
      */
-    public function destroy({{modelName}} ${{modelObject}}): RedirectResponse
+    public function destroy(AcademicDegree $academicDegree): RedirectResponse
     {
-       $this->contract->remove(${{modelObject}});
-       return $this->redirectBack()->with('success', __('messages.actions_messages.delete_success'));
+       $this->contract->remove($academicDegree);
+        return $this->redirectBack()->with('success', __('messages.actions_messages.delete_success'));
     }
 
     /**
      * active & inactive the specified resource from storage.
-     * @param Role $role
+     * @param AcademicDegree $academicDegree
      * @return RedirectResponse
      */
-    public function changeActivation({{modelName}} ${{modelObject}}): RedirectResponse
+    public function changeActivation(AcademicDegree $academicDegree): RedirectResponse
     {
-        $this->contract->toggleField(${{modelObject}}, 'is_active');
+        $this->contract->toggleField($academicDegree, 'is_active');
         return $this->redirectBack()->with('success', __('messages.actions_messages.update_success'));
     }
+
 }

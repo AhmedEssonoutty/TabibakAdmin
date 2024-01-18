@@ -1,11 +1,11 @@
 @extends('dashboard.layouts.master')
 @section('title')
-    {{__('messages.manage_roles')}}
+    {{__('messages.manage_academic_degrees')}}
 @endsection
 @section('content')
-    <x-breadcrumb title="{{__('messages.manage_roles')}}" pagetitle="{{__('messages.roles')}}" route="{{route('roles.index')}}"/>
+    <x-breadcrumb title="{{__('messages.manage_academic_degrees')}}" pagetitle="{{__('messages.academic_degrees')}}" route="{{route('academic-degrees.index')}}"/>
     <div class="d-flex justify-content-sm-end">
-        <a href="{{route('roles.create')}}">
+        <a href="{{route('academic-degrees.create')}}">
             <i class="bi bi-plus-circle"></i>
             {{__('messages.add_new')}}
         </a>
@@ -28,7 +28,7 @@
                         </th>
                         <td>{{$resource->name}}</td>
                         <td>
-                            @include('dashboard.partials.__table-actions', ['resource' => $resource, 'route' => 'roles'])
+                            @include('dashboard.partials.__table-actions', ['resource' => $resource, 'route' => 'academic-degrees'])
                         </td>
                     </tr>
                 @endforeach
