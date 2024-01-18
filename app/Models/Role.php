@@ -10,7 +10,7 @@ class Role extends \Spatie\Permission\Models\Role
 {
     use ModelTrait, SearchTrait, SoftDeletes;
     public const ADDITIONAL_PERMISSIONS = [];
-    protected $fillable = ['id', 'name', 'name_ar', 'type', 'guard_name'];
+    protected $fillable = ['id', 'name', 'name_ar', 'type', 'guard_name', 'is_active'];
     protected array $filters = ['keyword'];
     protected array $searchable = ['name'];
     public array $definedRelations = ['users'];

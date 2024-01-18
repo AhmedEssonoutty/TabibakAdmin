@@ -121,4 +121,15 @@ class RoleController extends BaseWebController
        $this->contract->remove($role);
        return $this->redirectBack();
     }
+
+    /**
+     * active & inactive the specified resource from storage.
+     * @param Role $role
+     * @return RedirectResponse
+     */
+    public function changeActivation(Role $role): RedirectResponse
+    {
+        $this->contract->toggleField($role, 'is_active');
+        return $this->redirectBack();
+    }
 }

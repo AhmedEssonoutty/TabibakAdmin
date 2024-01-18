@@ -11,6 +11,7 @@ return [
     "create" => "Create",
     "edit" => "Edit",
     "delete" => "Delete",
+    "activation" => "Activation",
     "add_new" => "Add New",
     "add_role" => "Add New Role",
     "edit_role" => "Edit Role",

@@ -33,5 +33,6 @@ Auth::routes();
 Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::get('/', HomeController::class)->name('dashboard');
     Route::resource('roles', RoleController::class);
+    Route::put('roles/{role}/change-activation', [RoleController::class, 'changeActivation'])->name('roles.active');
 });
 
