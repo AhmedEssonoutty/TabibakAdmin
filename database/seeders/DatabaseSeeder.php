@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             PermissionsTableSeeder::class,
             RoleTableSeeder::class,
             UsersTableSeeder::class,
+            VendorTypesTableSeeder::class,
         ]);
     }
 }

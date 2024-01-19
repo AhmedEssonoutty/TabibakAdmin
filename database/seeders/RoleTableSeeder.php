@@ -2,11 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Constants\RoleConstants as RoleCostant;
 use App\Constants\RoleNameConstants;
 use App\Models\Permission;
 use App\Models\Role;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class RoleTableSeeder extends Seeder
