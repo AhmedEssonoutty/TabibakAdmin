@@ -26,7 +26,12 @@ class FaqRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [];
+        return [
+            'question.en' => config('validations.string.req'),
+            'question.ar' => config('validations.string.req'),
+            'answer.en' => config('validations.string.req'),
+            'answer.ar' => config('validations.string.req'),
+        ];
     }
 
     /**
@@ -35,7 +40,12 @@ class FaqRequest extends FormRequest
      */
     public function attributes() : array
     {
-        return [];
+        return [
+            'question.en' => __('messages.question_en'),
+            'question.ar' => __('messages.question_ar'),
+            'answer.en' => __('messages.answer_en'),
+            'answer.ar' => __('messages.answer_ar')
+        ];
     }
 
     /**

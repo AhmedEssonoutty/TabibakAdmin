@@ -19,6 +19,13 @@ class ArticleRequest extends FormRequest
         return true;
     }
 
+    public function validated($key = null, $default = null): array
+    {
+        $validated = parent::validated();
+        $validated['author_id'] = auth()->id();
+        return $validated;
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -26,7 +33,12 @@ class ArticleRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [];
+        return [
+            'title.ar' => config('validations.string.req'),
+            'title.en' => config('validations.string.req'),
+            'content.ar' => config('validations.long_text.req'),
+            'content.en' => config('validations.long_text.req'),
+        ];
     }
 
     /**
@@ -35,7 +47,12 @@ class ArticleRequest extends FormRequest
      */
     public function attributes() : array
     {
-        return [];
+        return [
+            'title.ar' => __('messages.title_ar'),
+            'title.en' => __('messages.title_en'),
+            'content.ar' => __('messages.content_ar'),
+            'content.en' => __('messages.content_en'),
+        ];
     }
 
     /**

@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Constants\RoleNameConstants;
+use App\Repositories\Contracts\RoleContract;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Traits\JsonValidationTrait;
 
@@ -19,6 +21,12 @@ class DoctorRequest extends FormRequest
         return true;
     }
 
+    public function validated($key = null, $default = null)
+    {
+        $validated = parent::validated($key, $default);
+        return UserRequest::prepareUserForRoles($validated, RoleNameConstants::DOCTOR->value);
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -26,7 +34,17 @@ class DoctorRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [];
+        return [
+            'name' => config('validations.string.req'),
+            'email' => sprintf(config('validations.email.null'), 'users', 'email'),
+            'phone' => config('validations.phone.req'). '|unique:users,phone',
+            'password' => config('validations.password.req'),
+            'specialities' => config('validations.array.req'),
+            'specialities.*' => sprintf(config('validations.model.req'), 'academic_degrees'),
+            'academic_degree' => sprintf(config('validations.model.req'), 'academic_degrees'),
+            'national_id' => config('validations.string.null'),
+            'university' => config('validations.string.null'),
+        ];
     }
 
     /**

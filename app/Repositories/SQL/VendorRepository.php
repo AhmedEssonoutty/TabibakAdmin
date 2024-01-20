@@ -3,6 +3,7 @@
 namespace App\Repositories\SQL;
 
 use App\Models\Vendor;
+use App\Repositories\Contracts\UserContract;
 use App\Repositories\Contracts\VendorContract;
 
 class VendorRepository extends BaseRepository implements VendorContract
@@ -14,5 +15,10 @@ class VendorRepository extends BaseRepository implements VendorContract
     public function __construct(Vendor $model)
     {
         parent::__construct($model);
+    }
+
+    public function beforeCreate($attributes)
+    {
+        return resolve(UserContract::class)->prepareUserForRoleUsers($attributes);
     }
 }

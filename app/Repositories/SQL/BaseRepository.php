@@ -55,6 +55,9 @@ abstract class BaseRepository implements BaseContract
         if (!empty($attributes)) {
             // Clean the attributes from unnecessary inputs
             $filtered = $this->cleanUpAttributes($attributes);
+            if (method_exists($this, 'beforeCreate')) {
+                $attributes = $this->beforeCreate($filtered);
+            }
             $model = $this->query->create($filtered);
             if (method_exists($this, 'syncRelations')) {
                 $this->syncRelations($model, $attributes);

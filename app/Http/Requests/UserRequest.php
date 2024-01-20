@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Constants\RoleNameConstants;
+use App\Repositories\Contracts\RoleContract;
 use App\Traits\JsonValidationTrait;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -19,7 +21,18 @@ class UserRequest extends FormRequest
         return true;
     }
 
-    public function passedValidation()
+    public static function prepareUserForRoles($validated, $role): array
+    {
+        $validated['user']['name'] = $validated['name'];
+        $validated['user']['email'] = $validated['email'] ?? '';
+        $validated['user']['phone'] = $validated['phone'] ?? '';
+        $validated['user']['password'] = $validated['password'];
+        $validated['user']['role_id'] = resolve(RoleContract::class)->findBy('name', $role)?->id;
+        unset($validated['name'], $validated['email'], $validated['phone'], $validated['password']);
+        return $validated;
+    }
+
+    public function passedValidation(): void
     {
         $this->merge([
             'name' => [

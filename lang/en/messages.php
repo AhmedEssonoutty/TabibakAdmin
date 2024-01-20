@@ -34,4 +34,12 @@ return [
     "manage_academic_degrees" => "Manage Academic Degrees",
     "add_academic_degree" => "Add New Academic Degree",
     "edit_academic_degree" => "Edit Academic Degree",
+    'title_ar' => 'Title (Arabic)',
+    'title_en' => 'Title (English)',
+    'content_ar' => 'Content (Arabic)',
+    'content_en' => 'Content (English)',
+    'question_en' => 'Question (English)',
+    'question_ar' => 'Question (Arabic)',
+    'answer_en' => 'Answer (English)',
+    'answer_ar' => 'Answer (Arabic)',
 ];

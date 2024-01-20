@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Constants\RoleNameConstants;
+use App\Repositories\Contracts\RoleContract;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Traits\JsonValidationTrait;
 
@@ -19,6 +21,12 @@ class VendorRequest extends FormRequest
         return true;
     }
 
+    public function validated($key = null, $default = null)
+    {
+        $validated = parent::validated($key, $default);
+        return UserRequest::prepareUserForRoles($validated, RoleNameConstants::VENDOR->value);
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -26,7 +34,16 @@ class VendorRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [];
+        return [
+            'type' => sprintf(config('validations.model.req'), 'vendors'),
+            'name' => config('validations.string.req'),
+            'email' => sprintf(config('validations.email.null'), 'users', 'email'),
+            'phone' => config('validations.phone.req'). '|unique:users,phone',
+            'password' => config('validations.password.req'),
+            'address' => config('validations.string.null'),
+            'services' => config('validations.array.req'),
+            'services.*' => sprintf(config('validations.model.req'), 'vendor_services'),
+        ];
     }
 
     /**

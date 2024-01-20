@@ -4,6 +4,7 @@ namespace App\Repositories\SQL;
 
 use App\Models\Patient;
 use App\Repositories\Contracts\PatientContract;
+use App\Repositories\Contracts\UserContract;
 
 class PatientRepository extends BaseRepository implements PatientContract
 {
@@ -15,4 +16,10 @@ class PatientRepository extends BaseRepository implements PatientContract
     {
         parent::__construct($model);
     }
+
+    public function beforeCreate($attributes)
+    {
+        return resolve(UserContract::class)->prepareUserForRoleUsers($attributes);
+    }
+
 }

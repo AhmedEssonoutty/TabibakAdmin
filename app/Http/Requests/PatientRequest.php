@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Constants\RoleNameConstants;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Traits\JsonValidationTrait;
 
@@ -17,6 +18,12 @@ class PatientRequest extends FormRequest
     public function authorize(): bool
     {
         return true;
+    }
+
+    public function validated($key = null, $default = null)
+    {
+        $validated = parent::validated($key, $default);
+        return UserRequest::prepareUserForRoles($validated, RoleNameConstants::PATIENT->value);
     }
 
     /**
