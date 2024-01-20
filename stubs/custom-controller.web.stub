@@ -20,7 +20,7 @@ class {{modelName}}Controller extends BaseWebController
      */
     public function __construct({{modelName}}Contract $contract)
     {
-        parent::__construct($contract, '{{modelName}}s', '{{modelName}}s', '{{modelName}}');
+        parent::__construct($contract, 'dashboard');
     }
 
     /**
@@ -111,7 +111,7 @@ class {{modelName}}Controller extends BaseWebController
 
     /**
      * active & inactive the specified resource from storage.
-     * @param Role $role
+     * @param {{modelName}} ${{modelObject}}
      * @return RedirectResponse
      */
     public function changeActivation({{modelName}} ${{modelObject}}): RedirectResponse

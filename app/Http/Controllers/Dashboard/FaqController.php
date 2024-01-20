@@ -20,7 +20,7 @@ class FaqController extends BaseWebController
      */
     public function __construct(FaqContract $contract)
     {
-        parent::__construct($contract, 'Faqs', 'Faqs', 'Faq');
+        parent::__construct($contract, 'dashboard');
     }
 
     /**
@@ -111,7 +111,7 @@ class FaqController extends BaseWebController
 
     /**
      * active & inactive the specified resource from storage.
-     * @param Role $role
+     * @param Faq $faq
      * @return RedirectResponse
      */
     public function changeActivation(Faq $faq): RedirectResponse

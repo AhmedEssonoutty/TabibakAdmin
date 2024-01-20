@@ -20,7 +20,7 @@ class DoctorController extends BaseWebController
      */
     public function __construct(DoctorContract $contract)
     {
-        parent::__construct($contract, 'Doctors', 'Doctors', 'Doctor');
+        parent::__construct($contract, 'dashboard');
     }
 
     /**
@@ -111,7 +111,7 @@ class DoctorController extends BaseWebController
 
     /**
      * active & inactive the specified resource from storage.
-     * @param Role $role
+     * @param Doctor $doctor
      * @return RedirectResponse
      */
     public function changeActivation(Doctor $doctor): RedirectResponse

@@ -42,4 +42,13 @@ return [
     'question_ar' => 'Question (Arabic)',
     'answer_en' => 'Answer (English)',
     'answer_ar' => 'Answer (Arabic)',
+    'manage_faqs' => 'Manage FAQs',
+    'faqs' => 'FAQs',
+    'add_faq' => 'Add New FAQ',
+    'edit_faq' => 'Edit FAQ',
+    'manage_medical_specialties' => 'Manage Medical Specialties',
+    'medical_specialities' => 'Medical Specialities',
+    'add_medical_specialty' => 'Add New Medical Specialty',
+    'edit_medical_specialty' => 'Edit Medical Specialty',
+    'percentage' => 'Percentage',
 ];

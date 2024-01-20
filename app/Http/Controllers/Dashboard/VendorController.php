@@ -20,7 +20,7 @@ class VendorController extends BaseWebController
      */
     public function __construct(VendorContract $contract)
     {
-        parent::__construct($contract, 'Vendors', 'Vendors', 'Vendor');
+        parent::__construct($contract, 'dashboard');
     }
 
     /**
@@ -111,7 +111,7 @@ class VendorController extends BaseWebController
 
     /**
      * active & inactive the specified resource from storage.
-     * @param Role $role
+     * @param Vendor $vendor
      * @return RedirectResponse
      */
     public function changeActivation(Vendor $vendor): RedirectResponse

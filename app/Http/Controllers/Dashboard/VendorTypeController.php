@@ -20,7 +20,7 @@ class VendorTypeController extends BaseWebController
      */
     public function __construct(VendorTypeContract $contract)
     {
-        parent::__construct($contract, 'VendorTypes', 'VendorTypes', 'VendorType');
+        parent::__construct($contract, 'dashboard');
     }
 
     /**
@@ -111,7 +111,7 @@ class VendorTypeController extends BaseWebController
 
     /**
      * active & inactive the specified resource from storage.
-     * @param Role $role
+     * @param VendorType $vendorType
      * @return RedirectResponse
      */
     public function changeActivation(VendorType $vendorType): RedirectResponse

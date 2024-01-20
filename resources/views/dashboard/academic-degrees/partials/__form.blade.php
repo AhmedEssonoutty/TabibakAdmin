@@ -6,14 +6,14 @@
                 <div class="row g-3">
                     <div class="col-lg-6">
                         {{Form::label('name', __('messages.name_en'), ['class' => 'form-label'])}}
-                        {!! Form::text('name[en]' , $academicDegree->getTranslation('name', 'en') ?? '', ['class' => 'form-control']) !!}
+                        {!! Form::text('name[en]' , isset($academicDegree) ? $academicDegree->getTranslation('name', 'en') : '', ['class' => 'form-control']) !!}
                         @error("name.en")
                         <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
                     <div class="col-lg-6">
                         {{Form::label('name', __('messages.name_ar'), ['class' => 'form-label'])}}
-                        {!! Form::text('name[ar]' , $academicDegree->getTranslation('name', 'ar') ?? '', ['class' => 'form-control']) !!}
+                        {!! Form::text('name[ar]' , isset($academicDegree) ? $academicDegree->getTranslation('name', 'ar') : '', ['class' => 'form-control']) !!}
                         @error("name.ar")
                         <span class="text-danger">{{$message}}</span>
                         @enderror

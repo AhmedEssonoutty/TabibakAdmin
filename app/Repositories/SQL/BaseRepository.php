@@ -93,7 +93,6 @@ abstract class BaseRepository implements BaseContract
             $oldModel = $model->replicate();
             // Clean the attributes from unnecessary inputs
             $filtered = $this->cleanUpAttributes($attributes);
-//            $changes = $this->customLogOnUpdateFields($filtered, $model);
             $model = tap($model)->update($filtered)->fresh();
             $changes = $this->customLogOnUpdateFields($filtered, $oldModel, $model);
             if (method_exists($this, 'syncRelations')) {

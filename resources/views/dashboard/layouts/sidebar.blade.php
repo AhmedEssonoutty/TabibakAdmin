@@ -58,6 +58,17 @@
                     </a>
                 </li>
                 @endif
+
+                @if(auth()->user()->can('read-medical-speciality') || auth()->user()->can('view-all-medical-speciality'))
+                    <li class="nav-item">
+                        <a href="{{route('medical-specialities.index')}}" @class(['nav-link', 'menu-link',
+                    'active' => request()->routeIs('medical-specialities.index', 'medical-specialities.create',
+                     'medical-specialities.edit')])>
+                            <i class="bi bi-book"></i>
+                            <span data-key="t-dashboard">{{ __('messages.medical_specialities') }}</span>
+                        </a>
+                    </li>
+                @endif
 {{--                @can("GeneralSettings")--}}
 {{--                    <li class="nav-item">--}}
 {{--                        <a class="nav-link menu-link" href="#sidebarSiteOptions" data-bs-toggle="collapse" role="button"--}}

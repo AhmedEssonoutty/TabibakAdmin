@@ -20,7 +20,7 @@ class ArticleController extends BaseWebController
      */
     public function __construct(ArticleContract $contract)
     {
-        parent::__construct($contract, 'Articles', 'Articles', 'Article');
+        parent::__construct($contract, 'dashboard');
     }
 
     /**
@@ -111,7 +111,7 @@ class ArticleController extends BaseWebController
 
     /**
      * active & inactive the specified resource from storage.
-     * @param Role $role
+     * @param Article $article
      * @return RedirectResponse
      */
     public function changeActivation(Article $article): RedirectResponse

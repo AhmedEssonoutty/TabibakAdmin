@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Dashboard\AcademicDegreeController;
 use App\Http\Controllers\Dashboard\HomeController;
+use App\Http\Controllers\Dashboard\MedicalSpecialityController;
 use App\Http\Controllers\Dashboard\RoleController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -29,5 +30,7 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::put('roles/{role}/change-activation', [RoleController::class, 'changeActivation'])->name('roles.active');
     Route::resource('academic-degrees', AcademicDegreeController::class);
     Route::put('academic-degrees/{academicDegree}/change-activation', [AcademicDegreeController::class, 'changeActivation'])->name('academic-degrees.active');
+    Route::resource('medical-specialities', MedicalSpecialityController::class);
+    Route::put('medical-specialities/{medicalSpeciality}/change-activation', [MedicalSpecialityController::class, 'changeActivation'])->name('medical-specialities.active');
 });
 
