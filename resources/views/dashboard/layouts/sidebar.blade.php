@@ -64,8 +64,19 @@
                         <a href="{{route('medical-specialities.index')}}" @class(['nav-link', 'menu-link',
                     'active' => request()->routeIs('medical-specialities.index', 'medical-specialities.create',
                      'medical-specialities.edit')])>
-                            <i class="bi bi-book"></i>
+                            <i class="bi bi-journal-medical"></i>
                             <span data-key="t-dashboard">{{ __('messages.medical_specialities') }}</span>
+                        </a>
+                    </li>
+                @endif
+
+                @if(auth()->user()->can('read-vendor-service') || auth()->user()->can('view-all-vendor-service'))
+                    <li class="nav-item">
+                        <a href="{{route('vendor-services.index')}}" @class(['nav-link', 'menu-link',
+                    'active' => request()->routeIs('vendor-services.index', 'vendor-services.create',
+                     'vendor-services.edit')])>
+                            <i class="bi bi-box-seam-fill"></i>
+                            <span data-key="t-dashboard">{{ __('messages.vendor_services') }}</span>
                         </a>
                     </li>
                 @endif

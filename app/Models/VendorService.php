@@ -18,7 +18,7 @@ class VendorService extends Model
     protected array $dates = [];
     public array $filterModels = [];
     public array $filterCustom = [];
-    public array $translatable = [];
+    public array $translatable = ['name', 'description'];
 
     //---------------------relations-------------------------------------
 

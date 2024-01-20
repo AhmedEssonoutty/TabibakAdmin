@@ -51,4 +51,13 @@ return [
     'add_medical_specialty' => 'Add New Medical Specialty',
     'edit_medical_specialty' => 'Edit Medical Specialty',
     'percentage' => 'Percentage',
+    'vendor' => 'Vendor',
+    'manage_vendors' => 'Manage Vendors',
+    'vendors' => 'Vendors',
+    'add_vendor' => 'Add New Vendor',
+    'edit_vendor' => 'Edit Vendor',
+    'vendor_services' => 'Vendor Services',
+    'manage_vendor_services' => 'Manage Vendor Services',
+    'add_vendor_service' => 'Add New Vendor Service',
+    'edit_vendor_service' => 'Edit Vendor Service',
 ];
