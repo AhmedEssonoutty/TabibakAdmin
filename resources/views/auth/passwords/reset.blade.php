@@ -1,4 +1,4 @@
-@extends('layouts.master-auth')
+@extends('dashboard.layouts.master-auth')
 @section('title')
     Reset Password
 @endsection
@@ -10,38 +10,31 @@
                 <div class="col-lg-6">
                     <div class="auth-card mx-lg-3">
                         <div class="card border-0 mb-0">
-                            <div class="card-header bg-primary border-0">
-                                <div class="row">
-                                    <div class="col-lg-4 col-3">
-                                        <img src="{{ URL::asset('assets/images/auth/img-1.png') }}" alt=""
-                                            class="img-fluid">
-                                    </div>
-                                    <div class="col-lg-8 col-9">
-                                        <h1 class="text-white lh-base fw-lighter">Create New Password</h1>
-                                    </div>
-                                </div>
+                            <div class="card-header bg-primary border-0" style="padding: 0;">
+                                <img src="{{ URL::asset('assets/images/LoginBanner.png') }}" alt="" class="img-fluid">
                             </div>
                             <div class="card-body">
-                                <p class="text-muted fs-15">Your new password must be different from previous used password.
-                                </p>
+                                @if(session()->has('error'))
+                                    <div class="alert alert-borderless alert-danger text-center mb-2 mx-2" role="alert">
+                                        {{ session('error') }}
+                                    </div>
+                                @elseif(session()->has('success'))
+                                    <div class="alert alert-borderless alert-success text-center mb-2 mx-2" role="alert">
+                                        {{ session('success') }}
+                                    </div>
+                                @endif
+                                {{--<p class="text-muted fs-15">Your new password must be different from previous used password.
+                                </p>--}}
 
                                 <div class="p-2">
                                     <form method="POST" action="{{ route('password.update') }}">
                                         @csrf
 
                                         <div class="mb-3">
-                                            <label for="email" class="form-label">{{ __('Email Address') }}</label>
+                                            {{--<label for="email" class="form-label">{{ __('Email Address') }}</label>--}}
 
-                                            <input id="email" type="email"
-                                                class="form-control @error('email') is-invalid @enderror" name="email"
-                                                value="{{ $email ?? old('email') }}" required autocomplete="email"
-                                                autofocus>
-
-                                            @error('email')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
+                                            <input id="email" type="hidden" name="email" value="{{ $email ?? old('email') }}" required>
+                                            <input id="token" type="hidden" name="token" value="{{ $token ?? old('token') }}" required>
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label" for="password-input">Password</label>
@@ -50,7 +43,7 @@
                                                     class="form-control pe-5 password-input @error('password') is-invalid @enderror"
                                                     onpaste="return false" placeholder="Enter password" id="password-input"
                                                     name="password" aria-describedby="passwordInput"
-                                                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+                                                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required autofocus>
                                                 <button
                                                     class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon"
                                                     type="button" id="password-addon"><i
@@ -67,11 +60,10 @@
                                             <label class="form-label" for="confirm-password-input">Confirm Password</label>
                                             <div class="position-relative auth-pass-inputgroup mb-3">
                                                 <input type="password" class="form-control pe-5 password-input"
-                                                    onpaste="return false" 
+                                                    onpaste="return false"
                                                     name="password_confirmation"
                                                     placeholder="Confirm password"
-                                                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                                                    id="confirm-password-input" required>
+                                                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
                                                 <button
                                                     class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon"
                                                     type="button" id="confirm-password-input"><i

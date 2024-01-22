@@ -17,7 +17,7 @@ class Article extends Model
         'publisher_id', 'views', 'likes', 'dislikes', 'reports', 'is_active'];
     protected array $filters = ['keyword'];
     protected array $searchable = [];
-    protected array $dates = [];
+    protected array $dates = ['publish_date'];
     public array $filterModels = [];
     public array $filterCustom = [];
     public array $translatable = ['title', 'content'];
