@@ -54,10 +54,10 @@ abstract class BaseRepository implements BaseContract
     {
         if (!empty($attributes)) {
             // Clean the attributes from unnecessary inputs
-            $filtered = $this->cleanUpAttributes($attributes);
             if (method_exists($this, 'beforeCreate')) {
-                $filtered = $this->beforeCreate($filtered);
+                $attributes = $this->beforeCreate($attributes);
             }
+            $filtered = $this->cleanUpAttributes($attributes);
             $model = $this->query->create($filtered);
             if (method_exists($this, 'syncRelations')) {
                 $this->syncRelations($model, $attributes);
@@ -91,6 +91,9 @@ abstract class BaseRepository implements BaseContract
     {
         if (!empty($attributes)) {
             $oldModel = $model->replicate();
+            if (method_exists($this, 'beforeUpdate')) {
+                $attributes = $this->beforeUpdate($attributes);
+            }
             // Clean the attributes from unnecessary inputs
             $filtered = $this->cleanUpAttributes($attributes);
             $model = tap($model)->update($filtered)->fresh();

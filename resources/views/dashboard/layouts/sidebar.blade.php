@@ -80,6 +80,17 @@
                         </a>
                     </li>
                 @endif
+
+                @if(auth()->user()->can('read-patient') || auth()->user()->can('view-all-patient'))
+                    <li class="nav-item">
+                        <a href="{{route('patients.index')}}" @class(['nav-link', 'menu-link',
+                    'active' => request()->routeIs('patients.index', 'patients.create',
+                     'patients.edit')])>
+                            <i class="bi bi-person-circle"></i>
+                            <span data-key="t-dashboard">{{ __('messages.patients') }}</span>
+                        </a>
+                    </li>
+                @endif
 {{--                @can("GeneralSettings")--}}
 {{--                    <li class="nav-item">--}}
 {{--                        <a class="nav-link menu-link" href="#sidebarSiteOptions" data-bs-toggle="collapse" role="button"--}}

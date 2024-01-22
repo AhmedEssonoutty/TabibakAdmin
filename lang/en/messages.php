@@ -60,4 +60,13 @@ return [
     'manage_vendor_services' => 'Manage Vendor Services',
     'add_vendor_service' => 'Add New Vendor Service',
     'edit_vendor_service' => 'Edit Vendor Service',
+    'patient' => 'Patient',
+    'manage_patients' => 'Manage Patients',
+    'patients' => 'Patients',
+    'add_patient' => 'Add New Patient',
+    'edit_patient' => 'Edit Patient',
+    'date_of_birth' => 'Date Of Birth',
+    'national_id' => 'National ID',
+    'password' => 'Password',
+    'password_confirm' => 'Confirm Password'
 ];

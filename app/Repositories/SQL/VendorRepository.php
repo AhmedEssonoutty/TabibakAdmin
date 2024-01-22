@@ -21,4 +21,9 @@ class VendorRepository extends BaseRepository implements VendorContract
     {
         return resolve(UserContract::class)->prepareUserForRoleUsers($attributes);
     }
+
+    public function beforeUpdate($attributes)
+    {
+        return resolve(UserContract::class)->prepareUserForRoleUsers($attributes);
+    }
 }

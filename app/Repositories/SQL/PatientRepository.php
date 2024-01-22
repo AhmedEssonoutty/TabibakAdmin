@@ -22,4 +22,9 @@ class PatientRepository extends BaseRepository implements PatientContract
         return resolve(UserContract::class)->prepareUserForRoleUsers($attributes);
     }
 
+    public function beforeUpdate($attributes)
+    {
+        return resolve(UserContract::class)->prepareUserForRoleUsers($attributes);
+    }
+
 }

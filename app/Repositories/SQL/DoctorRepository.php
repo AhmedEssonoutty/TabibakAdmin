@@ -22,6 +22,11 @@ class DoctorRepository extends BaseRepository implements DoctorContract
         return resolve(UserContract::class)->prepareUserForRoleUsers($attributes);
     }
 
+    public function beforeUpdate($attributes)
+    {
+        return resolve(UserContract::class)->prepareUserForRoleUsers($attributes);
+    }
+
     public function syncRelations($model, $attributes)
     {
         if (isset($attributes['specialities'])) {
