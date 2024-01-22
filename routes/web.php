@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\Passwords\ForgetPasswordController;
 use App\Http\Controllers\Auth\Passwords\ResetPasswordController;
 use App\Http\Controllers\Dashboard\AcademicDegreeController;
 use App\Http\Controllers\Dashboard\ArticleController;
+use App\Http\Controllers\Dashboard\DoctorController;
 use App\Http\Controllers\Dashboard\FaqController;
 use App\Http\Controllers\Dashboard\HomeController;
 use App\Http\Controllers\Dashboard\MedicalSpecialityController;
@@ -57,5 +58,7 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::put('articles/{id}/publish', [ArticleController::class, 'publish'])->name('articles.publish');
     Route::resource('faqs', FaqController::class);
     Route::put('faqs/{faq}/change-activation', [FaqController::class, 'changeActivation'])->name('faqs.active');
+    Route::resource('doctors', DoctorController::class);
+    Route::put('doctors/{doctor}/change-activation', [DoctorController::class, 'changeActivation'])->name('doctors.active');
 });
 

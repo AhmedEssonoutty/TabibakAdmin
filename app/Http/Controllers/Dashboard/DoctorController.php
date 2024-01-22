@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Requests\DoctorRequest;
 use App\Models\Doctor;
+use App\Repositories\Contracts\AcademicDegreeContract;
 use App\Repositories\Contracts\DoctorContract;
+use App\Repositories\Contracts\MedicalSpecialityContract;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseWebController;
 use Illuminate\Contracts\Foundation\Application;
@@ -14,13 +16,21 @@ use Illuminate\Http\RedirectResponse;
 
 class DoctorController extends BaseWebController
 {
+
+    protected MedicalSpecialityContract $medicalSpecialityContract;
+    protected AcademicDegreeContract $academicDegreeContract;
+
     /**
      * DoctorController constructor.
      * @param DoctorContract $contract
+     * @param MedicalSpecialityContract $medicalSpecialityContract
+     * @param AcademicDegreeContract $academicDegreeContract
      */
-    public function __construct(DoctorContract $contract)
+    public function __construct(DoctorContract $contract, MedicalSpecialityContract $medicalSpecialityContract, AcademicDegreeContract $academicDegreeContract)
     {
         parent::__construct($contract, 'dashboard');
+        $this->medicalSpecialityContract = $medicalSpecialityContract;
+        $this->academicDegreeContract = $academicDegreeContract;
     }
 
     /**
@@ -42,7 +52,9 @@ class DoctorController extends BaseWebController
      */
     public function create(): View|Factory|Application
     {
-        return $this->createBlade();
+        $specialities = $this->medicalSpecialityContract->search([], [], ['limit' => 0, 'page' => 0]);
+        $academicDegrees = $this->academicDegreeContract->search([], [], ['limit' => 0, 'page' => 0]);
+        return $this->createBlade(['specialities' => $specialities, 'academicDegrees' => $academicDegrees]);
     }
 
     /**
@@ -79,7 +91,9 @@ class DoctorController extends BaseWebController
      */
     public function edit(Doctor $doctor): View|Factory|Application
     {
-        return $this->editBlade(['doctor' => $doctor]);
+        $specialities = $this->medicalSpecialityContract->search([], [], ['limit' => 0, 'page' => 0]);
+        $academicDegrees = $this->academicDegreeContract->search([], [], ['limit' => 0, 'page' => 0]);
+        return $this->editBlade(['doctor' => $doctor, 'specialities' => $specialities, 'academicDegrees' => $academicDegrees]);
     }
 
     /**

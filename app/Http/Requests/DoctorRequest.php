@@ -24,6 +24,9 @@ class DoctorRequest extends FormRequest
     public function validated($key = null, $default = null)
     {
         $validated = parent::validated($key, $default);
+        if ($this->route('patient')) {
+            $validated['user']['id'] = $this->route('patient')->user_id;
+        }
         return UserRequest::prepareUserForRoles($validated, RoleNameConstants::DOCTOR->value);
     }
 
@@ -34,17 +37,23 @@ class DoctorRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'name' => config('validations.string.req'),
+        $rules = [
             'email' => sprintf(config('validations.email.null'), 'users', 'email'),
-            'phone' => config('validations.phone.req'). '|unique:users,phone',
-            'password' => config('validations.password.req'),
             'specialities' => config('validations.array.req'),
             'specialities.*' => sprintf(config('validations.model.req'), 'academic_degrees'),
             'academic_degree' => sprintf(config('validations.model.req'), 'academic_degrees'),
-            'national_id' => config('validations.string.null'),
             'university' => config('validations.string.null'),
+            'name' => config('validations.string.req'),
+            'date_of_birth' => config('validations.date.req'),
+            'phone' => config('validations.phone.req').'|unique:users,phone,'.$this->route('patient')?->id,
+            'national_id' => config('validations.string.null'),
         ];
+        if ($this->getMethod() === 'POST') {
+            $rules['password'] = config('validations.password.req');
+        }else{
+            $rules['password'] = config('validations.password.null');
+        }
+        return $rules;
     }
 
     /**

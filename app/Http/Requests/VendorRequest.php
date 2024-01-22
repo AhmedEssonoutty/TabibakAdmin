@@ -24,6 +24,9 @@ class VendorRequest extends FormRequest
     public function validated($key = null, $default = null)
     {
         $validated = parent::validated($key, $default);
+        if ($this->route('patient')) {
+            $validated['user']['id'] = $this->route('patient')->user_id;
+        }
         return UserRequest::prepareUserForRoles($validated, RoleNameConstants::VENDOR->value);
     }
 

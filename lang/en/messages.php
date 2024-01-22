@@ -91,6 +91,14 @@ return [
     'edit_patient' => 'Edit Patient',
     'date_of_birth' => 'Date Of Birth',
     'national_id' => 'National ID',
-    'password' => 'Password',
-    'password_confirm' => 'Confirm Password'
+    'password_confirm' => 'Confirm Password',
+    "doctor" => "Doctor",
+    "manage_doctors" => "Manage Doctors",
+    "doctors" => "Doctors",
+    "add_doctor" => "Add New Doctor",
+    "edit_doctor" => "Edit Doctor",
+    "specialty" => "Specialty",
+    "medical_id" => "Medical ID",
+    "specialities" => "Specialities",
+    "speciality" => "Speciality",
 ];
