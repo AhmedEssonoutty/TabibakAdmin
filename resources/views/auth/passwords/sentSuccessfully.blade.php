@@ -1,9 +1,8 @@
 @extends('dashboard.layouts.master-auth')
 @section('title')
-    Forget Password
+    Email sent successfully
 @endsection
 @section('content')
-
     <div class="w-100">
         <div class="container">
             <div class="row justify-content-center">
@@ -14,7 +13,6 @@
                                 <img src="{{ URL::asset('assets/images/LoginBanner.png') }}" alt="" class="img-fluid">
                             </div>
                             <div class="card-body">
-
                                 @if(session()->has('error'))
                                     <div class="alert alert-borderless alert-danger text-center mb-2 mx-2" role="alert">
                                         {{ session('error') }}
@@ -24,39 +22,20 @@
                                         {{ session('success') }}
                                     </div>
                                 @endif
+                                {{--<p class="text-muted fs-15">Reset password with Toner.</p>--}}
 
-                                {{--<p class="text-muted fs-15">Reset password with Toner.</p>
-                                <div class="alert alert-borderless alert-warning text-center mb-2 mx-2" role="alert">
+                                @if($success)
+                                    <div class="py-3 fs-5">
+                                        <div class="alert alert-borderless alert-success text-center mb-2 mx-2" role="alert">
+                                            {{ $success }}
+                                        </div>
+                                    </div>
+                                @endif
+
+                                {{--<div class="alert alert-borderless alert-warning text-center mb-2 mx-2" role="alert">
                                     Enter your email and instructions will be sent to you!
                                 </div>--}}
 
-                                <div class="p-2">
-                                    <form method="POST" action="{{ route('password.email') }}">
-                                        @csrf
-                                        <div class="mb-4">
-                                            <label for="email" class="form-label">Email</label>
-                                            <input id="email" type="email"
-                                                   class="form-control @error('email') is-invalid @enderror"
-                                                   name="email"
-                                                   value="{{ old('email') }}" autocomplete="email" autofocus
-                                                   placeholder="Enter your email">
-                                            @error('email')
-                                            <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-
-                                        <div class="text-center mt-4">
-                                            <button class="btn btn-primary w-100" type="submit">Send Reset Link</button>
-                                        </div>
-                                    </form><!-- end form -->
-                                </div>
-                                <div class="mt-4 text-center">
-                                    <p class="mb-0">Wait, I remember my password... <a href="{{ route('login') }}"
-                                                                                       class="fw-semibold text-primary text-decoration-underline">
-                                            Click here </a></p>
-                                </div>
                             </div>
                         </div>
                     </div>

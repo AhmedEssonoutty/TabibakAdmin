@@ -38,12 +38,29 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a href="{{route('overview')}}" @class(['nav-link', 'menu-link', 'active' => request()->routeIs('overview')])>
+                        <i class="bi bi-book"></i>
+                        <span data-key="t-dashboard">{{ __('t-overview') }}</span>
+                    </a>
+                </li>
+
                 @if(auth()->user()->can('read-role') || auth()->user()->can('view-all-role'))
                 <li class="nav-item">
                     <a href="{{route('roles.index')}}" @class(['nav-link', 'menu-link',
                     'active' => request()->routeIs('roles.index', 'roles.create', 'roles.edit')])>
                         <i class="bi bi-sign-stop"></i>
                         <span data-key="t-dashboard">{{ __('messages.roles') }}</span>
+                    </a>
+                </li>
+                @endif
+
+                @if(auth()->user()->can('read-user') || auth()->user()->can('view-all-user'))
+                <li class="nav-item">
+                    <a href="{{route('users.index')}}" @class(['nav-link', 'menu-link',
+                    'active' => request()->routeIs('users.index', 'users.create', 'users.edit')])>
+                        <i class="bi bi-person"></i>
+                        <span data-key="t-dashboard">{{ __('messages.users') }}</span>
                     </a>
                 </li>
                 @endif
@@ -77,6 +94,28 @@
                      'vendor-services.edit')])>
                             <i class="bi bi-box-seam-fill"></i>
                             <span data-key="t-dashboard">{{ __('messages.vendor_services') }}</span>
+                        </a>
+                    </li>
+                @endif
+
+
+
+                @if(auth()->user()->can('read-article') || auth()->user()->can('view-all-article'))
+                    <li class="nav-item">
+                        <a href="{{route('articles.index')}}" @class(['nav-link', 'menu-link',
+                    'active' => request()->routeIs('articles.index', 'articles.create', 'articles.edit')])>
+                            <i class="bi bi-postcard"></i>
+                            <span data-key="t-dashboard">{{ __('messages.articles') }}</span>
+                        </a>
+                    </li>
+                @endif
+
+                @if(auth()->user()->can('read-faq') || auth()->user()->can('view-all-faq'))
+                    <li class="nav-item">
+                        <a href="{{route('faqs.index')}}" @class(['nav-link', 'menu-link',
+                    'active' => request()->routeIs('faqs.index', 'faqs.create', 'faqs.edit')])>
+                            <i class="bi bi-question-octagon"></i>
+                            <span data-key="t-dashboard">{{ __('messages.faqs') }}</span>
                         </a>
                     </li>
                 @endif

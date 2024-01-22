@@ -12,9 +12,18 @@
                                 <img src="{{ URL::asset('assets/images/LoginBanner.png') }}" alt="" class="img-fluid">
                             </div>
                             <div class="card-body">
-                                <p class="text-muted fs-15">Sign in...</p>
+                                @if(session()->has('error'))
+                                    <div class="alert alert-borderless alert-danger text-center mb-2 mx-2" role="alert">
+                                        {{ session('error') }}
+                                    </div>
+                                @elseif(session()->has('success'))
+                                    <div class="alert alert-borderless alert-success text-center mb-2 mx-2" role="alert">
+                                        {{ session('success') }}
+                                    </div>
+                                @endif
+                                {{--<p class="text-muted fs-15">Login</p>--}}
                                 <div class="p-2">
-                                    <form method="POST" action="{{ route('login') }}">
+                                    <form method="POST" action="{{ route('checkCredentials') }}">
                                         @csrf
 
                                         <div class="mb-3">
@@ -74,11 +83,11 @@
                                         </div> --}}
                                     </form>
 
-                                    {{-- <div class="text-center mt-5">
-                                        <p class="mb-0">Don't have an account ? <a href="{{ route('register') }}"
+                                    {{--<div class="text-center mt-5">
+                                        <p class="mb-0">Forget Password ? <a href="{{ route('register') }}"
                                                 class="fw-semibold text-secondary text-decoration-underline"> Sign Up</a>
                                         </p>
-                                    </div> --}}
+                                    </div>--}}
                                 </div>
                             </div>
                         </div>

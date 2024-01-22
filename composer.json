@@ -7,6 +7,7 @@
     "require": {
         "php": "^8.1",
         "ext-dom": "*",
+        "diglactic/laravel-breadcrumbs": "^8.1",
         "guzzlehttp/guzzle": "^7.2",
         "intervention/image": "^3.2",
         "laravel/framework": "^10.0",
@@ -15,6 +16,7 @@
         "laravel/tinker": "^2.8",
         "laravel/ui": "^4.2",
         "laravelcollective/html": "^6.4",
+        "mallardduck/blade-boxicons": "^2.4",
         "spatie/laravel-activitylog": "^4.7",
         "spatie/laravel-permission": "^6.3",
         "spatie/laravel-settings": "^3.2",

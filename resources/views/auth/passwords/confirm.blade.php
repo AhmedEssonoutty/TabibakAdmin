@@ -1,4 +1,4 @@
-@extends('layouts.master-auth')
+@extends('dashboard.layouts.master-auth')
 @section('title')
     Confirm Password
 @endsection
@@ -10,14 +10,19 @@
                 <div class="col-lg-6">
                     <div class="auth-card mx-lg-3">
                         <div class="card border-0 mb-0">
-                            <div class="card-header bg-primary border-0">
-                                <div class="row">
-                                    <div class="col-lg-4 col-3">
-                                        <img src="{{ URL::asset('assets/images/auth/img-1.png') }}" alt="" class="img-fluid">
-                                    </div>
-                                </div>
+                            <div class="card-header bg-primary border-0" style="padding: 0;">
+                                <img src="{{ URL::asset('assets/images/LoginBanner.png') }}" alt="" class="img-fluid">
                             </div>
                             <div class="card-body">
+                                @if(session()->has('error'))
+                                    <div class="alert alert-borderless alert-danger text-center mb-2 mx-2" role="alert">
+                                        {{ session('error') }}
+                                    </div>
+                                @elseif(session()->has('success'))
+                                    <div class="alert alert-borderless alert-success text-center mb-2 mx-2" role="alert">
+                                        {{ session('success') }}
+                                    </div>
+                                @endif
                                 <div class="alert alert-borderless alert-warning text-center mb-2 mx-2" role="alert">
                                     Enter your password!
                                 </div>
@@ -41,7 +46,7 @@
                                         </div>
                                     </form><!-- end form -->
                                 </div>
-                            
+
                             </div>
                         </div>
                     </div>

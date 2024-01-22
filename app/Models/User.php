@@ -6,6 +6,8 @@ namespace App\Models;
 use App\Traits\ModelTrait;
 use App\Traits\SearchTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
@@ -43,6 +45,10 @@ class User extends Authenticatable
     ];
 
     //---------------------relations-------------------------------------
+    public function roles(): BelongsToMany
+    {
+        return $this->belongsToMany(Role::class, 'model_has_roles', 'model_id', 'role_id');
+    }
 
     // ----------------------- Scopes -----------------------
     public function scopeOfRole($query, $value)

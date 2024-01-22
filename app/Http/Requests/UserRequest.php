@@ -50,15 +50,12 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name_en' => 'required|min:2|max:200',
-            'name_ar' => 'required|min:2|max:200',
+            'name' => 'required|min:2|max:200',
             'email' => "required|email|unique:users,email,{$this->id}",
             'phone' => "required|numeric|unique:users,phone,{$this->id}",
+            'password' => config('validations.password.req'),
             'role_id' => 'required|exists:roles,id',
-            'employment_start_date' => 'nullable|date',
-            'employment_end_date' => 'nullable|date|after:employment_start_date',
-            'home_number' => 'nullable',
-            'date_of_birth' => 'required|date'
+            'image' =>  'nullable|max:20480|image',
         ];
     }
 
