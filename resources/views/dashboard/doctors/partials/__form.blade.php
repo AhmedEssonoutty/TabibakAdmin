@@ -11,9 +11,9 @@
                         <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
-                    <div class="col-lg-6 offset-6">
-                        {{Form::label('academic_degree', __('messages.specialities'), ['class' => 'form-label'])}}
-                        {!! Form::select('academic_degree' ,$academicDegrees->pluck('name', 'id'),
+                    <div class="col-lg-6">
+                        {{Form::label('academic_degree', __('messages.academic_degree'), ['class' => 'form-label'])}}
+                        {!! Form::select('academic_degree_id', $academicDegrees->pluck('name', 'id')->prepend('' , ''),
                             $doctor->academic_degree_id ?? '',
                             ['class' => 'form-control']) !!}
                         @error("specialities")
@@ -23,9 +23,17 @@
                     <div class="col-lg-6">
                         {{Form::label('specialities', __('messages.specialities'), ['class' => 'form-label'])}}
                         {!! Form::select('specialities[]' ,$specialities->pluck('name', 'id'),
-                            isset($doctor) ? $doctor->specialities->pluck('id')->toArray() : [],
+                            isset($doctor) ? $doctor->medicalSpecialities->pluck('id') : [],
                             ['class' => 'form-control', 'multiple' => true]) !!}
                         @error("specialities")
+                        <span class="text-danger">{{$message}}</span>
+                        @enderror
+                    </div>
+                    <div class="offset-6"></div>
+                    <div class="col-lg-6">
+                        {{Form::label('email', __('messages.email'), ['class' => 'form-label'])}}
+                        {!! Form::email('email' , $doctor->user->email ?? '', ['class' => 'form-control']) !!}
+                        @error("email")
                         <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
@@ -40,6 +48,13 @@
                         {{Form::label('national_id', __('messages.national_id'), ['class' => 'form-label'])}}
                         {!! Form::number('national_id' , $doctor->national_id ?? '', ['class' => 'form-control']) !!}
                         @error("national_id")
+                        <span class="text-danger">{{$message}}</span>
+                        @enderror
+                    </div>
+                    <div class="col-lg-6">
+                        {{Form::label('medical_id', __('messages.medical_id'), ['class' => 'form-label'])}}
+                        {!! Form::number('medical_id' , $doctor->medical_id ?? '', ['class' => 'form-control']) !!}
+                        @error("medical_id")
                         <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>

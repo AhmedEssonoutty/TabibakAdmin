@@ -30,6 +30,7 @@ class Doctor extends Model
         'request_status' => DoctorRequestStatusConstants::class,
         'consultation_type' => DoctorConsultationTypeConstants::class
     ];
+    public $with = ['user'];
 
     //---------------------relations-------------------------------------
     public function user(): BelongsTo
@@ -40,7 +41,7 @@ class Doctor extends Model
     public function medicalSpecialities(): BelongsToMany
     {
         return $this->belongsToMany(MedicalSpeciality::class, 'doctor_medical_speciality')
-            ->withPivot('price');
+            ->withPivot('price')->withTimestamps();
     }
 
     public function academicDegree(): BelongsTo

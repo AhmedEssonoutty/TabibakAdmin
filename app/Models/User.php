@@ -45,10 +45,6 @@ class User extends Authenticatable
     ];
 
     //---------------------relations-------------------------------------
-    public function roles(): BelongsToMany
-    {
-        return $this->belongsToMany(Role::class, 'model_has_roles', 'model_id', 'role_id');
-    }
 
     // ----------------------- Scopes -----------------------
     public function scopeOfRole($query, $value)

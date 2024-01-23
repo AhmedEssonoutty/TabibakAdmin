@@ -101,4 +101,5 @@ return [
     "medical_id" => "Medical ID",
     "specialities" => "Specialities",
     "speciality" => "Speciality",
+    "academic_degree" => "Academic Degree",
 ];

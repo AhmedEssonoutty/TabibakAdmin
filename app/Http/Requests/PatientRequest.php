@@ -39,7 +39,7 @@ class PatientRequest extends FormRequest
         $rules = [
             'name' => config('validations.string.req'),
             'date_of_birth' => config('validations.date.req'),
-            'phone' => config('validations.phone.req').'|unique:users,phone,'.$this->route('patient')?->id,
+            'phone' => config('validations.phone.req').'|unique:users,phone,'.$this->route('patient')?->user_id,
             'national_id' => config('validations.string.null'),
         ];
         if ($this->getMethod() === 'POST') {
