@@ -28,11 +28,11 @@ class UserRepository extends BaseRepository implements UserContract
     {
         if (isset($attributes['user'])) {
             if (isset($attributes['user']['id'])) {
-                $user = resolve(UserContract::class)->find($attributes['user']['id']);
+                $user = $this->find($attributes['user']['id']);
                 unset($attributes['user']['id']);
                 $user->update($attributes['user']);
             } else {
-                $user = resolve(UserContract::class)->create($attributes['user']);
+                $user = $this->create($attributes['user']);
             }
             unset($attributes['user']);
             $attributes['user_id'] = $user->id;

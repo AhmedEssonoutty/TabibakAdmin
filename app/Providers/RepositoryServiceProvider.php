@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\Repositories\UserAuthService;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\ServiceProvider;
@@ -21,6 +22,11 @@ class RepositoryServiceProvider extends ServiceProvider
                 "App\Repositories\SQL\\{$model}Repository"
             );
         }
+        $this->app->bind(UserAuthService::class, function ($app) {
+            return new UserAuthService(
+                $app->make('App\Repositories\Contracts\UserContract')
+            );
+        });
     }
 
     protected function getModels(): Collection

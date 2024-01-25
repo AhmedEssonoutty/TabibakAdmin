@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1\Dashboard\Web;
 
-use App\Http\Controllers\Api\BaseApiController;
+use App\Http\Controllers\Api\V1\BaseApiController;
 use App\Http\Requests\VendorServiceRequest;
 use App\Http\Resources\VendorServiceResource;
 use App\Models\VendorService;

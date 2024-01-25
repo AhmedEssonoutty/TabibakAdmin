@@ -17,18 +17,24 @@ class UserResource extends BaseResource
     {
         $this->micro = [
             'id' => $this->id,
+            'name' => $this->name,
         ];
         $this->mini = [
+            'phone' => $this->phone,
+            'email' => $this->email,
+        ];
+        $this->full = [
+            $this->mergeWhen(isset($this->api_token), [
+                'token' => $this->api_token,
+            ]),
             'is_active' => $this->is_active,
-            'active_status' => $this->active_status,
-            'active_class' => $this->active_class,
             'created_at' => $this->created_at?->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at?->format('Y-m-d H:i:s'),
         ];
-        $this->full = [
-        ];
         //$this->relationLoaded()
         $this->relations = [
+            'patient' => $this->relationLoaded('patient') ? new PatientResource($this->patient) : null,
+            'doctor' => $this->relationLoaded('doctor') ? new DoctorResource($this->doctor) : null,
         ];
         return $this->getResource();
     }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1\Web\Dashboard;
 
-use App\Http\Controllers\Api\BaseApiController;
+use App\Http\Controllers\Api\V1\BaseApiController;
 use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;

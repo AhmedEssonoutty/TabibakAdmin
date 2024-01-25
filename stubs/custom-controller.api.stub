@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1{{namespace}}\Web;
 
-use App\Http\Controllers\Api\BaseApiController;
+use App\Http\Controllers\Api\V1\BaseApiController;
 use App\Http\Requests\{{modelName}}Request;
 use App\Http\Resources\{{modelName}}Resource;
 use App\Models\{{modelName}};

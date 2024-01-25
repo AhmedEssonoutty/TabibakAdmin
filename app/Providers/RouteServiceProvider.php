@@ -19,6 +19,10 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/dashboard';
 
+    protected $namespace    = 'App\\Http\\Controllers';
+    protected string $apiNamespace = 'App\\Http\\Controllers\\Api\\V1\\Web';
+    protected string $mobileNamespace = 'App\\Http\\Controllers\\Api\\V1\\Mobile';
+
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
      *
@@ -29,9 +33,15 @@ class RouteServiceProvider extends ServiceProvider
         $this->configureRateLimiting();
         $this->routes(function () {
             Route::middleware('api')
-                ->prefix('api')
+                ->prefix('api/v1/web')
+                ->namespace($this->apiNamespace)
                 ->group(base_path('routes/api.php'));
+            Route::middleware('mobile')
+                ->prefix('api/v1/mobile')
+                ->namespace($this->mobileNamespace)
+                ->group(base_path('routes/mobile-api.php'));
             Route::middleware('web')
+                ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
         });
     }

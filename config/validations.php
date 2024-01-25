@@ -8,6 +8,10 @@ return [
         'req' => 'required|string|min:3|max:250',
         'null' => 'nullable|string|min:3|max:250',
     ],
+    'verification_code' => [
+        'req' => 'required|string|min:4|max:4',
+        'null' => 'nullable|string|min:4|max:4',
+    ],
     'smallString' => [
         'req' => 'required|string|min:1|max:250',
         'null' => 'nullable|string|min:1|max:250',

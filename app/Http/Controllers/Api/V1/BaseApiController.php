@@ -11,20 +11,20 @@ class BaseApiController extends Controller
 {
     use BaseApiResponseTrait;
     protected bool $order = true;
-    protected BaseContract $repository;
+    protected BaseContract $contract;
     protected mixed $modelResource;
     protected array $relations = [];
 
     /**
      * BaseApiController constructor.
      *
-     * @param BaseContract $repository
+     * @param BaseContract $contract
      * @param mixed $modelResource
      * @param bool|string $applyPermissions
      */
-    public function __construct(BaseContract $repository, mixed $modelResource, bool|string $applyPermissions = '')
+    public function __construct(BaseContract $contract, mixed $modelResource, bool|string $applyPermissions = '')
     {
-        $this->repository = $repository;
+        $this->contract = $contract;
         $this->modelResource = $modelResource;
 
         // Include embedded data
@@ -59,7 +59,7 @@ class BaseApiController extends Controller
         }
 
         $data = array_merge(request()->all(), ['order' => $order, 'limit' => $limit, 'page' => $page]);
-        $models = $this->repository->search($filters, $this->relations, $data);
+        $models = $this->contract->search($filters, $this->relations, $data);
         $groupBy = request('groupBy');
         if ($groupBy)
             return $this->respondWithGroupByCollection($models, $groupBy);

@@ -21,7 +21,8 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable, HasTranslations,
         HasRoles, HasPermissions, ModelTrait, SearchTrait;
 
-	protected $fillable = ['name', 'username', 'email', 'password', 'phone', 'is_active'];
+	protected $fillable = ['name', 'username', 'email', 'password', 'phone',
+        'verification_code', 'phone_verified_at', 'is_active'];
     protected array $filters = ['keyword', 'role', 'roleName', 'email'];
     public array $filterModels = ['Role'];
     public array $filterCustom = [];
@@ -42,10 +43,19 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'phone_verified_at' => 'datetime',
     ];
 
     //---------------------relations-------------------------------------
-
+    public function patient(): BelongsTo
+    {
+        return $this->belongsTo(Patient::class);
+    }
+    public function doctor(): BelongsTo
+    {
+        return $this->belongsTo(Doctor::class);
+    }
+    //---------------------relations-------------------------------------
     // ----------------------- Scopes -----------------------
     public function scopeOfRole($query, $value)
     {
