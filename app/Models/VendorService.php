@@ -14,7 +14,7 @@ class VendorService extends Model
     public const ADDITIONAL_PERMISSIONS = [];
     protected $fillable = ['name', 'description', 'is_active'];
     protected array $filters = ['keyword'];
-    protected array $searchable = ['name'];
+    protected array $searchable = ['name','description'];
     protected array $dates = [];
     public array $filterModels = [];
     public array $filterCustom = [];

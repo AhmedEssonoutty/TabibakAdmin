@@ -3,13 +3,15 @@
     {{__('messages.manage_roles')}}
 @endsection
 @section('content')
-    <x-breadcrumb title="{{__('messages.manage_roles')}}" pagetitle="{{__('messages.roles')}}" route="{{route('roles.index')}}"/>
+    <x-breadcrumb title="{{__('messages.manage_roles')}}" pagetitle="{{__('messages.roles')}}"
+                  route="{{route('roles.index')}}"/>
     <div class="d-flex justify-content-sm-end">
         <a href="{{route('roles.create')}}">
             <i class="bi bi-plus-circle"></i>
             {{__('messages.add_new')}}
         </a>
     </div>
+    <x-filter/>
     <div class="row">
         <div class="col-md-8">
             <table class="table table-nowrap">

@@ -16,7 +16,7 @@ class Article extends Model
     protected $fillable = ['author_id','title', 'content', 'publish_date',
         'publisher_id', 'views', 'likes', 'dislikes', 'reports', 'is_active'];
     protected array $filters = ['keyword'];
-    protected array $searchable = [];
+    protected array $searchable = ['title', 'content'];
     protected array $dates = ['publish_date'];
     public array $filterModels = [];
     public array $filterCustom = [];

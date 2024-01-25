@@ -17,7 +17,7 @@ class Note extends Model
     public const ADDITIONAL_PERMISSIONS = [];
     protected $fillable = ['text', 'notable_id', 'notable_type', 'user_id', 'created_at', 'updated_at'];
     protected array $filters = ['keyword'];
-    protected array $searchable = [];
+    protected array $searchable = ['text'];
     protected array $dates = [];
     public array $filterModels = [];
     public array $filterCustom = [];

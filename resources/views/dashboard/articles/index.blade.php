@@ -10,6 +10,7 @@
             {{__('messages.add_new')}}
         </a>
     </div>
+    <x-filter/>
     <div class="row">
         <div class="col-md-8">
             <table class="table table-nowrap">

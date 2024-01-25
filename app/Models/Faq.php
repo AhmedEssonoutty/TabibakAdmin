@@ -14,7 +14,7 @@ class Faq extends Model
     public const ADDITIONAL_PERMISSIONS = [];
     protected $fillable = ['question', 'answer', 'is_active'];
     protected array $filters = ['keyword'];
-    protected array $searchable = [];
+    protected array $searchable = ['question', 'answer'];
     protected array $dates = [];
     public array $filterModels = [];
     public array $filterCustom = [];

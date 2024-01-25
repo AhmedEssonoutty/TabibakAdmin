@@ -106,4 +106,6 @@ return [
     "type" => "Type",
     "services" => "Services",
     "address" => "Address",
+    "keyword" => "Keyword",
+    "search" => "Search"
 ];
