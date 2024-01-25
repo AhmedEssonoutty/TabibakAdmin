@@ -120,6 +120,17 @@
                     </li>
                 @endif
 
+                @if(auth()->user()->can('read-vendor') || auth()->user()->can('view-all-vendor'))
+                    <li class="nav-item">
+                        <a href="{{route('vendors.index')}}" @class(['nav-link', 'menu-link',
+                    'active' => request()->routeIs('vendors.index', 'vendors.create',
+                     'vendors.edit')])>
+                            <i class="bi bi-shop"></i>
+                            <span data-key="t-dashboard">{{ __('messages.vendors') }}</span>
+                        </a>
+                    </li>
+                @endif
+
                 @if(auth()->user()->can('read-article') || auth()->user()->can('view-all-article'))
                     <li class="nav-item">
                         <a href="{{route('articles.index')}}" @class(['nav-link', 'menu-link',

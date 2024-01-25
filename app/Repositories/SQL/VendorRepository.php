@@ -26,4 +26,12 @@ class VendorRepository extends BaseRepository implements VendorContract
     {
         return resolve(UserContract::class)->prepareUserForRoleUsers($attributes);
     }
+
+    public function syncRelations($model, $attributes)
+    {
+        if (isset($attributes['services'])){
+            $model->vendorServices()->sync($attributes['services']);
+        }
+        return $model;
+    }
 }

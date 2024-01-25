@@ -102,4 +102,8 @@ return [
     "specialities" => "Specialities",
     "speciality" => "Speciality",
     "academic_degree" => "Academic Degree",
+    'no_of_referrals' => 'No. Of Referrals',
+    "type" => "Type",
+    "services" => "Services",
+    "address" => "Address",
 ];

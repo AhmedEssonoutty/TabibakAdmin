@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Requests\VendorRequest;
 use App\Models\Vendor;
 use App\Repositories\Contracts\VendorContract;
+use App\Repositories\Contracts\VendorServiceContract;
+use App\Repositories\Contracts\VendorTypeContract;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseWebController;
 use Illuminate\Contracts\Foundation\Application;
@@ -14,13 +16,17 @@ use Illuminate\Http\RedirectResponse;
 
 class VendorController extends BaseWebController
 {
+    private VendorTypeContract $vendorTypeContract;
+    private VendorServiceContract $vendorServiceContract;
     /**
      * VendorController constructor.
      * @param VendorContract $contract
      */
-    public function __construct(VendorContract $contract)
+    public function __construct(VendorContract $contract, VendorTypeContract $vendorTypeContract, VendorServiceContract $vendorServiceContract)
     {
         parent::__construct($contract, 'dashboard');
+        $this->vendorTypeContract = $vendorTypeContract;
+        $this->vendorServiceContract = $vendorServiceContract;
     }
 
     /**
@@ -42,7 +48,9 @@ class VendorController extends BaseWebController
      */
     public function create(): View|Factory|Application
     {
-        return $this->createBlade();
+        $types = $this->vendorTypeContract->search([], [], ['limit' => 0, 'page' => 0]);
+        $services = $this->vendorServiceContract->search([], [], ['limit' => 0, 'page' => 0]);
+        return $this->createBlade(['types' => $types, 'services' => $services]);
     }
 
     /**
@@ -79,7 +87,10 @@ class VendorController extends BaseWebController
      */
     public function edit(Vendor $vendor): View|Factory|Application
     {
-        return $this->editBlade(['vendor' => $vendor]);
+        $vendor->load('vendorServices');
+        $types = $this->vendorTypeContract->search([], [], ['limit' => 0, 'page' => 0]);
+        $services = $this->vendorServiceContract->search([], [], ['limit' => 0, 'page' => 0]);
+        return $this->editBlade(['vendor' => $vendor, 'types' => $types, 'services' => $services]);
     }
 
     /**

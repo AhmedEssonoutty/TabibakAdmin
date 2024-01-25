@@ -6,6 +6,7 @@ use App\Traits\ModelTrait;
 use App\Traits\SearchTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Translatable\HasTranslations;
 
@@ -20,6 +21,7 @@ class Vendor extends Model
     public array $filterModels = [];
     public array $filterCustom = [];
     public array $translatable = [];
+    public $with = ['user', 'vendorType'];
 
     //---------------------relations-------------------------------------
     public function user(): BelongsTo
@@ -29,6 +31,11 @@ class Vendor extends Model
     public function vendorType(): BelongsTo
     {
         return $this->belongsTo(VendorType::class);
+    }
+
+    public function vendorServices(): BelongsToMany
+    {
+        return $this->belongsToMany(VendorService::class, 'service_vendor');
     }
     //---------------------relations-------------------------------------
 

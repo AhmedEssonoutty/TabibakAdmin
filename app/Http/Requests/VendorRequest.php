@@ -24,8 +24,8 @@ class VendorRequest extends FormRequest
     public function validated($key = null, $default = null)
     {
         $validated = parent::validated($key, $default);
-        if ($this->route('patient')) {
-            $validated['user']['id'] = $this->route('patient')->user_id;
+        if ($this->route('vendor')) {
+            $validated['user']['id'] = $this->route('vendor')->user_id;
         }
         return UserRequest::prepareUserForRoles($validated, RoleNameConstants::VENDOR->value);
     }
@@ -37,16 +37,21 @@ class VendorRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'type' => sprintf(config('validations.model.req'), 'vendors'),
+        $rules =  [
+            'vendor_type_id' => sprintf(config('validations.model.req'), 'vendor_types'),
             'name' => config('validations.string.req'),
-            'email' => sprintf(config('validations.email.null'), 'users', 'email'),
-            'phone' => config('validations.phone.req'). '|unique:users,phone',
-            'password' => config('validations.password.req'),
+            'email' => sprintf(config('validations.email.req'), 'users', 'email').','.$this->route('vendor')?->user_id,
+            'phone' => config('validations.phone.req').'|unique:users,phone,'.$this->route('vendor')?->user_id,
             'address' => config('validations.string.null'),
             'services' => config('validations.array.req'),
             'services.*' => sprintf(config('validations.model.req'), 'vendor_services'),
         ];
+        if($this->method() === 'POST'){
+            $rules['password'] = config('validations.password.req');
+        }else{
+            $rules['password'] = config('validations.password.null');
+        }
+        return $rules;
     }
 
     /**

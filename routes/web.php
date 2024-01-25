@@ -12,6 +12,7 @@ use App\Http\Controllers\Dashboard\MedicalSpecialityController;
 use App\Http\Controllers\Dashboard\PatientController;
 use App\Http\Controllers\Dashboard\RoleController;
 use App\Http\Controllers\Dashboard\UserController;
+use App\Http\Controllers\Dashboard\VendorController;
 use App\Http\Controllers\Dashboard\VendorServiceController;
 use Illuminate\Support\Facades\Route;
 
@@ -60,5 +61,7 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::put('faqs/{faq}/change-activation', [FaqController::class, 'changeActivation'])->name('faqs.active');
     Route::resource('doctors', DoctorController::class);
     Route::put('doctors/{doctor}/change-activation', [DoctorController::class, 'changeActivation'])->name('doctors.active');
+    Route::resource('vendors', VendorController::class);
+    Route::put('vendors/{vendor}/change-activation', [VendorController::class, 'changeActivation'])->name('vendors.active');
 });
 
