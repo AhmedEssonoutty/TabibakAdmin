@@ -18,9 +18,12 @@ class VendorController extends BaseWebController
 {
     private VendorTypeContract $vendorTypeContract;
     private VendorServiceContract $vendorServiceContract;
+
     /**
      * VendorController constructor.
      * @param VendorContract $contract
+     * @param VendorTypeContract $vendorTypeContract
+     * @param VendorServiceContract $vendorServiceContract
      */
     public function __construct(VendorContract $contract, VendorTypeContract $vendorTypeContract, VendorServiceContract $vendorServiceContract)
     {
@@ -38,7 +41,8 @@ class VendorController extends BaseWebController
     public function index(Request $request): View|Factory|Application
     {
         $resources = $this->contract->search($request->all());
-        return $this->indexBlade(['resources' => $resources]);
+        $types = $this->vendorTypeContract->search([], [], ['limit' => 0, 'page' => 0]);
+        return $this->indexBlade(['resources' => $resources,'types' => $types]);
     }
 
      /**

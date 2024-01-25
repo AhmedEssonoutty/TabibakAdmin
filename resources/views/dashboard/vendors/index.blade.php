@@ -12,7 +12,17 @@
             {{__('messages.add_new')}}
         </a>
     </div>
-    <x-filter/>
+    <x-filter>
+        <div class="col-lg-4">
+            {{Form::label('type', __('messages.type'), ['class' => 'form-label'])}}
+            {!! Form::select('vendorType', $types->pluck('name', 'id')->prepend('Select' , ''),
+                request('vendorType') ?? '',
+                ['class' => 'form-control']) !!}
+            @error("vendor_type_id")
+            <span class="text-danger">{{$message}}</span>
+            @enderror
+        </div>
+    </x-filter>
     <div class="row">
         <div class="col-md-8">
             <table class="table table-nowrap">

@@ -15,8 +15,8 @@ class Vendor extends Model
     use SoftDeletes, ModelTrait, SearchTrait, SoftDeletes, HasTranslations;
     public const ADDITIONAL_PERMISSIONS = [];
     protected $fillable = ['user_id', 'vendor_type_id', 'address', 'is_active'];
-    protected array $filters = ['keyword'];
-    protected array $searchable = [];
+    protected array $filters = ['keyword', 'vendorType'];
+    protected array $searchable = ['user.name'];
     protected array $dates = [];
     public array $filterModels = [];
     public array $filterCustom = [];
@@ -40,7 +40,10 @@ class Vendor extends Model
     //---------------------relations-------------------------------------
 
     //---------------------Scopes-------------------------------------
-
+    public function scopeOfVendorType($query, $type)
+    {
+        return $query->whereIn('vendor_type_id', (array)$type);
+    }
     //---------------------Scopes-------------------------------------
 
 }
