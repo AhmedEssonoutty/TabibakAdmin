@@ -31,7 +31,6 @@ class UserResource extends BaseResource
             'created_at' => $this->created_at?->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at?->format('Y-m-d H:i:s'),
         ];
-        //$this->relationLoaded()
         $this->relations = [
             'patient' => $this->relationLoaded('patient') ? new PatientResource($this->patient) : null,
             'doctor' => $this->relationLoaded('doctor') ? new DoctorResource($this->doctor) : null,

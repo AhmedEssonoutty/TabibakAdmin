@@ -35,11 +35,12 @@ class AuthController extends BaseApiController
 
     public function login(LoginRequest $request)
     {
-        if (Auth::attempt(['phone' => $request->phone, 'verification_code' => $request->verification_code])) {
-            $user = Auth::user();
-            $user = $this->userAuthService->verifyUser($user);
-            $user->api_token = $this->userAuthService->createToken($user, $request->validated());
-            return $this->respondWithModel($user);
+        $loginUser = $this->contract->findByFields(['and' => ['phone' => $request->phone, 'verification_code' => $request->verification_code]]);
+        if ($loginUser) {
+            Auth::login($loginUser);
+            $this->userAuthService->verifyUser($loginUser);
+            $loginUser->api_token = $this->userAuthService->createToken($loginUser, $request->validated());
+            return $this->respondWithModel($loginUser);
         }else{
             return $this->respondWithError(__('auth.failed'), 401);
         }
