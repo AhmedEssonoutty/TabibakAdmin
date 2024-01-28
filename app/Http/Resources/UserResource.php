@@ -28,6 +28,7 @@ class UserResource extends BaseResource
                 'token' => $this->api_token,
             ]),
             'is_active' => $this->is_active,
+            'is_verified' => $this->is_verified,
             'created_at' => $this->created_at?->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at?->format('Y-m-d H:i:s'),
         ];

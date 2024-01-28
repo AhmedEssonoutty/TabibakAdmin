@@ -3,15 +3,21 @@
 namespace App\Services\Repositories;
 
 use App\Jobs\SendVerificationCodeToUser;
+use App\Repositories\Contracts\DoctorContract;
+use App\Repositories\Contracts\PatientContract;
 use App\Repositories\Contracts\UserContract;
 use Carbon\Carbon;
 
 class UserAuthService
 {
     private UserContract $contract;
-    public function __construct(UserContract $contract)
+    private PatientContract $patientContract;
+    private DoctorContract $doctorContract;
+    public function __construct(UserContract $contract, PatientContract $patientContract, DoctorContract $doctorContract)
     {
         $this->contract = $contract;
+        $this->patientContract = $patientContract;
+        $this->doctorContract = $doctorContract;
     }
 
     public function sendVerificationCode($user, $to = 'phone')
@@ -49,5 +55,12 @@ class UserAuthService
         $accessToken->fcm_token = $data['fcm_token'] ?? null;
         $apiToken->accessToken->save();
         return $apiToken->plainTextToken;
+    }
+
+    public function registerUserAsPatient($data)
+    {
+        $patient = $this->patientContract->create($data);
+        $this->sendVerificationCode($patient->user);
+        return $patient;
     }
 }

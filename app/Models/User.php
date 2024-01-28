@@ -5,9 +5,10 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Traits\ModelTrait;
 use App\Traits\SearchTrait;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
@@ -47,13 +48,13 @@ class User extends Authenticatable
     ];
 
     //---------------------relations-------------------------------------
-    public function patient(): BelongsTo
+    public function patient(): HasOne
     {
-        return $this->belongsTo(Patient::class);
+        return $this->hasOne(Patient::class);
     }
-    public function doctor(): BelongsTo
+    public function doctor(): HasOne
     {
-        return $this->belongsTo(Doctor::class);
+        return $this->hasOne(Doctor::class);
     }
     //---------------------relations-------------------------------------
     // ----------------------- Scopes -----------------------
@@ -78,6 +79,12 @@ class User extends Authenticatable
         if ($input) {
             $this->attributes['password'] = app('hash')->needsRehash($input) ? Hash::make($input) : $input;
         }
+    }
+
+    public function isVerified(): Attribute
+    {
+        return Attribute::make(fn($value) => !is_null($this->phone_verified_at)
+            || !is_null($this->email_verified_at));
     }
 
 }

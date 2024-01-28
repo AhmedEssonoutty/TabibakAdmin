@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1\Mobile;
 
 use App\Http\Controllers\Api\V1\BaseApiController;
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\PatientRegisterRequest;
 use App\Http\Resources\UserResource;
 use App\Repositories\Contracts\UserContract;
 use App\Services\Repositories\UserAuthService;
@@ -44,6 +45,14 @@ class AuthController extends BaseApiController
         }else{
             return $this->respondWithError(__('auth.failed'), 401);
         }
+    }
+
+    public function registerUserAsPatient(PatientRegisterRequest $request)
+    {
+        $patient = $this->userAuthService->registerUserAsPatient($request->validated());
+        $user = $patient->user;
+        $user->load('patient');
+        return $this->respondWithModel($user);
     }
 
     public function logout()

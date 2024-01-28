@@ -24,7 +24,9 @@ class RepositoryServiceProvider extends ServiceProvider
         }
         $this->app->bind(UserAuthService::class, function ($app) {
             return new UserAuthService(
-                $app->make('App\Repositories\Contracts\UserContract')
+                $app->make('App\Repositories\Contracts\UserContract'),
+                $app->make('App\Repositories\Contracts\PatientContract'),
+                $app->make('App\Repositories\Contracts\DoctorContract'),
             );
         });
     }

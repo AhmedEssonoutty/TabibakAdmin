@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\V1\Mobile\AuthController;
 
+Route::post('register-user-as-patient', [AuthController::class, 'registerUserAsPatient']);
 Route::post('send-verification-code', [AuthController::class, 'sendVerificationCode']);
 Route::post('login', [AuthController::class, 'login']);
 

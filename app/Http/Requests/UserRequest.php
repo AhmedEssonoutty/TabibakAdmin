@@ -24,9 +24,9 @@ class UserRequest extends FormRequest
     public static function prepareUserForRoles($validated, $role): array
     {
         $validated['user']['name'] = $validated['name'];
-        $validated['user']['email'] = $validated['email'] ?? '';
-        $validated['user']['phone'] = $validated['phone'] ?? '';
-        $validated['user']['password'] = $validated['password'];
+        $validated['user']['email'] = $validated['email'] ?? null;
+        $validated['user']['phone'] = $validated['phone'] ?? null;
+        $validated['user']['password'] = $validated['password'] ?? null;
         $validated['user']['role_id'] = resolve(RoleContract::class)->findBy('name', $role)?->id;
         unset($validated['name'], $validated['email'], $validated['phone'], $validated['password']);
         return $validated;
