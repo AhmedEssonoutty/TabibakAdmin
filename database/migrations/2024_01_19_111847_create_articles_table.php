@@ -18,7 +18,8 @@ return new class extends Migration
             $table->json('title');
             $table->json('content');
             $table->date('publish_date')->nullable();
-            $table->foreignIdFor(User::class, 'publisher_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignIdFor(User::class, 'publisher_id')
+                ->nullable()->constrained('users')->cascadeOnDelete();
             $table->integer('views')->default(0);
             $table->integer('likes')->default(0);
             $table->integer('dislikes')->default(0);

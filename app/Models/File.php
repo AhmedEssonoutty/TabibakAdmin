@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class File extends Model
 {
-    use SoftDeletes, ModelTrait;
+    use ModelTrait;
 
     public $timestamps = true;
     protected array $dates = ['deleted_at'];

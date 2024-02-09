@@ -41,6 +41,7 @@ class AuthController extends BaseApiController
             Auth::login($loginUser);
             $this->userAuthService->verifyUser($loginUser);
             $loginUser->api_token = $this->userAuthService->createToken($loginUser, $request->validated());
+            $loginUser->load('patient','doctor');
             return $this->respondWithModel($loginUser);
         }else{
             return $this->respondWithError(__('auth.failed'), 401);

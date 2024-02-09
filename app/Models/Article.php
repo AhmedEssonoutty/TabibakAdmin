@@ -2,10 +2,14 @@
 
 namespace App\Models;
 
+use App\Constants\FileConstants;
 use App\Traits\ModelTrait;
 use App\Traits\SearchTrait;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Translatable\HasTranslations;
 
@@ -31,10 +35,30 @@ class Article extends Model
     {
         return $this->belongsTo(User::class, 'publisher_id');
     }
+
+    public function mainImage(): MorphOne
+    {
+        return $this->morphOne(File::class, 'fileable')
+            ->where('type', FileConstants::FILE_TYPE_ARTICLE_MAIN_IMAGE);
+    }
+
+    public function likes(): MorphMany
+    {
+        return $this->morphMany(Like::class, 'likeable');
+    }
     //---------------------relations-------------------------------------
 
     //---------------------Scopes-------------------------------------
 
     //---------------------Scopes-------------------------------------
+
+    //---------------------Attributes-------------------------------------
+    public function authLikeStatus(): Attribute
+    {
+        return Attribute::get(function () {
+            return $this->likes->contains('user_id', auth()->id());
+        });
+    }
+    //---------------------Attributes-------------------------------------
 
 }

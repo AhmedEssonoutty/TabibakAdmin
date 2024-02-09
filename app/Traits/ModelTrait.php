@@ -92,4 +92,8 @@ trait ModelTrait
         return $this->is_active ? 'success' : 'danger';
     }
 
+    public function getModelName(): string
+    {
+        return str_replace('App\\Models\\', '', get_class($this));
+    }
 }

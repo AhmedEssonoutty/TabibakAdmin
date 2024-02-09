@@ -437,10 +437,10 @@ abstract class BaseRepository implements BaseContract
     /**
      * @param Model $model
      * @param $column
-     * @param $value
+     * @param int $value
      * @return void
      */
-    public function increment(Model $model, $column, $value): void
+    public function increment(Model $model, $column, int $value = 1): void
     {
         $model->increment($column, $value);
     }
