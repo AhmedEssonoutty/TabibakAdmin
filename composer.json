@@ -9,7 +9,7 @@
         "ext-dom": "*",
         "diglactic/laravel-breadcrumbs": "^8.1",
         "guzzlehttp/guzzle": "^7.2",
-        "intervention/image": "^3.2",
+        "intervention/image": "^2",
         "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.2",
         "laravel/telescope": "^4.17",

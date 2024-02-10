@@ -34,7 +34,6 @@ class FileResource extends BaseResource
             'height' => $this->when(Str::contains($this->mime, 'image'), $this->height),
             'created_at'   =>  $this->created_at->format(config('app.datetime_format')),
             'ext' => $this->ext,
-            'label' => $this->type->label()
         ];
 
         $this->relations = [

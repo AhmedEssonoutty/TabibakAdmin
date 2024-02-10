@@ -95,7 +95,8 @@ return [
         'quality'   => 60,
         'paths' => [
             'default'  => $base_dir . DIRECTORY_SEPARATOR,
-            'user' => $base_dir . DIRECTORY_SEPARATOR . 'users' . DIRECTORY_SEPARATOR
+            'user' => $base_dir . DIRECTORY_SEPARATOR . 'users' . DIRECTORY_SEPARATOR,
+            'article' => $base_dir . DIRECTORY_SEPARATOR . 'articles' . DIRECTORY_SEPARATOR
         ],
     ],
 

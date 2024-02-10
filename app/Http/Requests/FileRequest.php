@@ -17,6 +17,17 @@ class FileRequest extends FormRequest
         return true;
     }
 
+    public function validated($key = null, $default = null)
+    {
+        $validated = parent::validated();
+        $validated['fileable_type'] = match ($validated['type']){
+            FileConstants::FILE_USER_AVATAR->value => 'User',
+            FileConstants::FILE_TYPE_ARTICLE_MAIN_IMAGE->value => 'Article',
+            default => $validated['fileable_type']
+        };
+        return $validated;
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -25,10 +36,8 @@ class FileRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'file' => 'required|'.$this->getTypeValidation().'|max:'.$this->maxSize,
-            'type' => config('validations.string.req').'|in:'.implode(',', FileConstants::values()),
-            'fileable_id' => config('validations.integer.null'),
-            'fileable_type' => config('validations.string.req').'|in:'.implode(',', FileConstants::fileableTypes()),
+            'file' => 'required|'.$this->getTypeValidation().'|max:51200',
+            'type' => config('validations.string.req').'|in:'.implode(',', FileConstants::values())
         ];
     }
 
@@ -38,7 +47,8 @@ class FileRequest extends FormRequest
             config('validations.file.mixed').','.str_replace('.','',$this->accept)
             : config('validations.file.mixed');
         return match(request('type')){
-            FileConstants::FILE_USER_AVATAR->value => config('validations.file.image'),
+            FileConstants::FILE_USER_AVATAR->value, FileConstants::FILE_TYPE_ARTICLE_MAIN_IMAGE->value
+            => config('validations.file.image'),
             default => $mixed
         };
     }

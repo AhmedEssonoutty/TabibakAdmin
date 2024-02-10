@@ -30,7 +30,6 @@ trait FileUploadTrait
         $folder = $data['folder'] ?? null;
         $fileName = $data['file_name'] ?? null;
         $data["user_id"] = auth()->id();
-        $data['fileable'] = $file->getSize();
         // Get extension
         $data['ext'] = $file->extension();
         // Get mime type
@@ -54,14 +53,11 @@ trait FileUploadTrait
         // check if the file is image
         if (Str::contains($data['mime'], 'image')) {
             $image = $this->generateImage($file);
-            // Get width & height
             $data['width'] = $image->width();
             $data['height'] = $image->height();
             $data['url'] = $folder . $fileName;
-            // Save image to storage disk
             Storage::put($data['url'], $image->stream($data['ext'], config('filesystems.upload.quality')));
         } else {
-            // Save file to storage disk and get file URL
             $data['url'] = Storage::putFileAs(rtrim($folder, "/"), $file, $fileName);
         }
         // Save new file object to DB

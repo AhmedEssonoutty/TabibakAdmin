@@ -6,6 +6,7 @@ use App\Models\File;
 use App\Repositories\Contracts\FileContract;
 use App\Traits\FileUploadTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 
 class FileRepository extends BaseRepository implements FileContract
@@ -33,15 +34,9 @@ class FileRepository extends BaseRepository implements FileContract
 
     public function create(array $attributes = []): mixed
     {
-        if(!empty($attributes["current_id"])){
-            $file_obj = $this->find($attributes["current_id"]);
-            if($file_obj){
-                $file_obj->fill($attributes);
-                $file_obj->update();
-                return $file_obj;
-            }
-        }
-        $attributes = $this->upload($attributes["file"], $attributes);
+        $file = $attributes["file"];
+        $data = Arr::except($attributes, ['file']);
+        $attributes = $this->upload($file, $data);
         return parent::create($attributes);
     }
 
