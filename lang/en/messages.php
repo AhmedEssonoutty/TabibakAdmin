@@ -108,5 +108,12 @@ return [
     "address" => "Address",
     "keyword" => "Keyword",
     "search" => "Search",
-    "clear" => "Clear"
+    "clear" => "Clear",
+    'married' => 'Married',
+    'single' => 'Single',
+    'divorced' => 'Divorced',
+    'widowed' => 'Widowed',
+    'engaged' => 'Engaged',
+    'other' => 'Other',
+    'unknown' => 'Unknown',
 ];

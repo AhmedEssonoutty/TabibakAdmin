@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Constants\PatientSocialStatusConstants;
 use App\Traits\ModelTrait;
 use App\Traits\SearchTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -13,7 +14,7 @@ class Patient extends Model
 {
     use SoftDeletes, ModelTrait, SearchTrait, SoftDeletes, HasTranslations;
     public const ADDITIONAL_PERMISSIONS = [];
-    protected $fillable = ['user_id', 'date_of_birth', 'national_id', 'is_active'];
+    protected $fillable = ['user_id', 'date_of_birth', 'national_id', 'social_status', 'is_active'];
     protected array $filters = ['keyword'];
     protected array $searchable = ['user.name'];
     protected array $dates = ['date_of_birth'];
@@ -21,6 +22,9 @@ class Patient extends Model
     public array $filterCustom = [];
     public array $translatable = [];
     protected $with = ['user'];
+    protected $casts = [
+        'social_status' => PatientSocialStatusConstants::class
+    ];
 
     //---------------------relations-------------------------------------
     public function user(): BelongsTo

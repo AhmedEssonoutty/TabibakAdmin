@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->date('date_of_birth')->nullable();
             $table->string('national_id')->nullable();
+            $table->tinyInteger('social_status')->nullable();
             $table->boolean('is_active')->default(true);
             $table->softDeletes();
             $table->timestamps();

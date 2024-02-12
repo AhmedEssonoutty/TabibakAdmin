@@ -37,7 +37,8 @@ class FileRequest extends FormRequest
     {
         return [
             'file' => 'required|'.$this->getTypeValidation().'|max:51200',
-            'type' => config('validations.string.req').'|in:'.implode(',', FileConstants::values())
+            'type' => config('validations.string.req').'|in:'.implode(',', FileConstants::values()),
+            'fileable_id' => config('validations.integer.req'),
         ];
     }
 
