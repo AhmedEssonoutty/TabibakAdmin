@@ -50,6 +50,7 @@ return [
         'create_success' => 'created successfully',
         'update_success' => 'updated successfully',
         'delete_success' => 'deleted successfully',
+        'cannot_do_action' => 'You cannot do this action',
     ],
     "academic_degrees" => "Academic Degrees",
     "manage_academic_degrees" => "Manage Academic Degrees",

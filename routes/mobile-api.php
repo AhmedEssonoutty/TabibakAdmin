@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\V1\Mobile\ArticleController;
 use App\Http\Controllers\Api\V1\Mobile\AuthController;
 use App\Http\Controllers\Api\V1\Mobile\FileController;
 use App\Http\Controllers\Api\V1\Mobile\PatientProfileController;
+use App\Http\Controllers\Api\V1\Mobile\PatientRelativeController;
 
 Route::post('register-user-as-patient', [AuthController::class, 'registerUserAsPatient']);
 Route::post('send-verification-code', [AuthController::class, 'sendVerificationCode']);
@@ -19,6 +20,7 @@ Route::group(['middleware' => 'auth:sanctum'], static function () {
     Route::group(['prefix' => 'patient'], static function () {
         // Patient Profile
         Route::put('update-main-info', [PatientProfileController::class, 'updateMainInfo']);
+        Route::apiResource('relatives', PatientRelativeController::class);
     });
 
 });

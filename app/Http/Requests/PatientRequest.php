@@ -11,14 +11,15 @@ class PatientRequest extends FormRequest
 {
     use JsonValidationTrait;
 
-    private int $userId;
+    private int|null $userId;
 
     public function __construct()
     {
         parent::__construct();
+        $userId = null;
         if (auth()->user()->can('update-patient')){
             $userId = $this->route('patient')?->user_id;
-        }else{
+        }elseif(request()->method() !== 'POST'){
             $userId = auth()->id();
         }
         $this->userId = $userId;
@@ -40,6 +41,8 @@ class PatientRequest extends FormRequest
         if ($userId) {
             $validated['user']['id'] = $userId;
         }
+        if (auth()->user()->patient)
+            $validated['parent_id'] = auth()->user()->patient->id;
         return UserRequest::prepareUserForRoles($validated, RoleNameConstants::PATIENT->value);
     }
 
@@ -57,7 +60,7 @@ class PatientRequest extends FormRequest
             'national_id' => config('validations.string.null'),
             'social_status' => config('validations.integer.null'). '|in:'.implode(',', array_values(PatientSocialStatusConstants::values())),
         ];
-        if ($this->getMethod() === 'POST') {
+        if ($this->getMethod() === 'POST' && !auth()->user()->patient) {
             $rules['password'] = config('validations.password.req');
         }else{
             $rules['password'] = config('validations.password.null');

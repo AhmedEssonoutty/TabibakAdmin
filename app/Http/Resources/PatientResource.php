@@ -29,12 +29,12 @@ class PatientResource extends BaseResource
             'date_of_birth' => $this->date_of_birth?->format('Y-m-d'),
             'national_id' => $this->national_id,
             'social_status' => [
-                'value' => $this->social_status->value,
-                'label' => $this->social_status->label(),
+                'value' => $this->social_status?->value,
+                'label' => $this->social_status?->label(),
             ],
         ];
-        //$this->relationLoaded()
         $this->relations = [
+            'user' => $this->relationLoaded('user') ? new UserResource($this->user) : ''
         ];
         return $this->getResource();
     }
