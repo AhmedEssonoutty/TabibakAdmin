@@ -35,6 +35,7 @@ class UserResource extends BaseResource
         $this->relations = [
             'patient' => $this->relationLoaded('patient') ? new PatientResource($this->patient) : null,
             'doctor' => $this->relationLoaded('doctor') ? new DoctorResource($this->doctor) : null,
+            'avatar' => $this->relationLoaded('avatar') ? new FileResource($this->avatar) : null,
         ];
         return $this->getResource();
     }

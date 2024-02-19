@@ -63,4 +63,9 @@ class AuthController extends BaseApiController
         $this->userAuthService->setUserAsNotVerified($user);
         return $this->respondWithSuccess();
     }
+
+    public function profile()
+    {
+        return $this->respondWithModel(auth()->user());
+    }
 }
