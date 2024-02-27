@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Traits\JsonValidationTrait;
 
-class FaqRequest extends FormRequest
+class DiseaseRequest extends FormRequest
 {
     use JsonValidationTrait;
 
@@ -27,11 +27,10 @@ class FaqRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'question.en' => config('validations.string.req'),
-            'question.ar' => config('validations.string.req'),
-            'answer.en' => config('validations.string.req'),
-            'answer.ar' => config('validations.string.req'),
-            'faq_subject_id' => 'required|integer',
+            'name.ar' => config('validations.string.req'),
+            'name.en' => config('validations.string.req'),
+            'description.ar' => config('validations.string.null'),
+            'description.en' => config('validations.string.null'),
         ];
     }
 
@@ -42,10 +41,10 @@ class FaqRequest extends FormRequest
     public function attributes() : array
     {
         return [
-            'question.en' => __('messages.question_en'),
-            'question.ar' => __('messages.question_ar'),
-            'answer.en' => __('messages.answer_en'),
-            'answer.ar' => __('messages.answer_ar')
+            'name.ar' => __('messages.name_ar'),
+            'name.en' => __('messages.name_en'),
+            'description.ar' => __('messages.description_ar'),
+            'description.en' => __('messages.description_en')
         ];
     }
 

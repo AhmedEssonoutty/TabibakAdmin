@@ -27,16 +27,17 @@ class LoginController extends Controller
                 'password' => 'required|string',
             ]);
 
-            if ($validator->fails())
-                return back()->with(['error' => $validator->messages()->first()]);
+            if ($validator->fails()) {
+                return back()->withErrors($validator)->withInput();
+            }
 
             if (Auth::attempt($credentials)) {
                 return redirect()->route('dashboard');
             }
 
             return back()->with(['error' => 'Check your credentials and try again']);
-        } catch (Exception) {
-            return back()->with(['error' => 'Something went wrong!']);
+        } catch (Exception $e) {
+            return back()->with(['error' => $e->getMessage()]);
         }
     }
 

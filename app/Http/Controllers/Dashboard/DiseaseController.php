@@ -2,28 +2,24 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Requests\FaqRequest;
-use App\Models\Faq;
-use App\Repositories\Contracts\FaqContract;
-use App\Repositories\Contracts\FaqSubjectContract;
-use Illuminate\Http\Request;
 use App\Http\Controllers\BaseWebController;
+use App\Http\Requests\DiseaseRequest;
+use App\Models\Disease;
+use App\Repositories\Contracts\DiseaseContract;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
-class FaqController extends BaseWebController
+class DiseaseController extends BaseWebController
 {
-    private FaqSubjectContract $faqSubjectContract;
-
     /**
-     * FaqController constructor.
-     * @param FaqContract $contract
+     * DiseaseController constructor.
+     * @param DiseaseContract $contract
      */
-    public function __construct(FaqContract $contract, FaqSubjectContract $faqSubjectContract)
+    public function __construct(DiseaseContract $contract)
     {
-        $this->faqSubjectContract = $faqSubjectContract;
         parent::__construct($contract, 'dashboard');
     }
 
@@ -52,11 +48,11 @@ class FaqController extends BaseWebController
     /**
      * Store a newly created resource in storage.
      *
-     * @param FaqRequest $request
+     * @param DiseaseRequest $request
      *
      * @return RedirectResponse
      */
-    public function store(FaqRequest $request): RedirectResponse
+    public function store(DiseaseRequest $request): RedirectResponse
     {
         $this->contract->create($request->validated());
         return $this->redirectBack()->with('success', __('messages.actions_messages.create_success'));
@@ -65,64 +61,62 @@ class FaqController extends BaseWebController
     /**
      * Display the specified resource.
      *
-     * @param Faq $faq
+     * @param Disease $disease
      *
      * @return View|Factory|Application
      */
-    public function show(Faq $faq): View|Factory|Application
+    public function show(Disease $disease): View|Factory|Application
     {
-        return $this->showBlade(['faq' => $faq]);
+        return $this->showBlade(['disease' => $disease]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Faq $faq
+     * @param Disease $disease
      *
      * @return View|Factory|Application
      */
-    public function edit(Faq $faq): View|Factory|Application
+    public function edit(Disease $disease): View|Factory|Application
     {
-        $faq->load('faqSubjects');
-        $subjects = $this->faqSubjectContract->search([], [], ['limit' => 0, 'page' => 0]);
-        return $this->editBlade(['faq' => $faq, 'subjects' => $subjects]);
+        return $this->editBlade(['disease' => $disease]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param FaqRequest $request
-     * @param Faq $faq
+     * @param DiseaseRequest $request
+     * @param Disease $disease
      *
      * @return RedirectResponse
      */
-    public function update(FaqRequest $request, Faq $faq): RedirectResponse
+    public function update(DiseaseRequest $request, Disease $disease): RedirectResponse
     {
-        $this->contract->update($faq, $request->validated());
+        $this->contract->update($disease, $request->validated());
         return $this->redirectBack()->with('success', __('messages.actions_messages.update_success'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param Faq $faq
+     * @param Disease $disease
      *
      * @return RedirectResponse
      */
-    public function destroy(Faq $faq): RedirectResponse
+    public function destroy(Disease $disease): RedirectResponse
     {
-       $this->contract->remove($faq);
+       $this->contract->remove($disease);
        return $this->redirectBack()->with('success', __('messages.actions_messages.delete_success'));
     }
 
     /**
      * active & inactive the specified resource from storage.
-     * @param Faq $faq
+     * @param Disease $disease
      * @return RedirectResponse
      */
-    public function changeActivation(Faq $faq): RedirectResponse
+    public function changeActivation(Disease $disease): RedirectResponse
     {
-        $this->contract->toggleField($faq, 'is_active');
+        $this->contract->toggleField($disease, 'is_active');
         return $this->redirectBack()->with('success', __('messages.actions_messages.update_success'));
     }
 }

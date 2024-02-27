@@ -29,7 +29,7 @@ class User extends Authenticatable
     public array $filterCustom = [];
     protected array $searchable = ['name', 'email'];
     public array $translatable = ['name'];
-    protected $with = ['avatar'];
+    protected $with = [];
 
     /**
      * The attributes that should be hidden for serialization.

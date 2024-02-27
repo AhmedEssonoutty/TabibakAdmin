@@ -66,7 +66,10 @@ class DoctorController extends BaseWebController
      */
     public function store(DoctorRequest $request): RedirectResponse
     {
-        $this->contract->create($request->validated());
+        $consultationTypes = [];
+        if($request['scheduled_consultation']) $consultationTypes[] = 'scheduled';
+        if($request['urgent_consultation']) $consultationTypes[] = 'urgent';
+        $this->contract->create($request->validated() + ['consultation_types' => $consultationTypes]);
         return $this->redirectBack()->with('success', __('messages.actions_messages.create_success'));
     }
 
@@ -106,7 +109,10 @@ class DoctorController extends BaseWebController
      */
     public function update(DoctorRequest $request, Doctor $doctor): RedirectResponse
     {
-        $this->contract->update($doctor, $request->validated());
+        $consultationTypes = [];
+        if($request['scheduled_consultation']) $consultationTypes[] = 'scheduled';
+        if($request['urgent_consultation']) $consultationTypes[] = 'urgent';
+        $this->contract->update($doctor, $request->validated() + ['consultation_types' => $consultationTypes]);
         return $this->redirectBack()->with('success', __('messages.actions_messages.update_success'));
     }
 
