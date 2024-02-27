@@ -23,7 +23,7 @@ class Faq extends Model
 
     //---------------------relations-------------------------------------
 
-    public function faqSubjects(): BelongsTo
+    public function faqSubject(): BelongsTo
     {
         return $this->belongsTo(FaqSubject::class);
     }

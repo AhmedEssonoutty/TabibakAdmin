@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Requests\FaqRequest;
 use App\Models\Faq;
+use App\Models\FaqSubject;
 use App\Repositories\Contracts\FaqContract;
 use App\Repositories\Contracts\FaqSubjectContract;
 use Illuminate\Http\Request;
@@ -15,15 +16,12 @@ use Illuminate\Http\RedirectResponse;
 
 class FaqController extends BaseWebController
 {
-    private FaqSubjectContract $faqSubjectContract;
-
     /**
      * FaqController constructor.
      * @param FaqContract $contract
      */
-    public function __construct(FaqContract $contract, FaqSubjectContract $faqSubjectContract)
+    public function __construct(FaqContract $contract)
     {
-        $this->faqSubjectContract = $faqSubjectContract;
         parent::__construct($contract, 'dashboard');
     }
 
@@ -46,7 +44,8 @@ class FaqController extends BaseWebController
      */
     public function create(): View|Factory|Application
     {
-        return $this->createBlade();
+        $subjects = FaqSubject::query()->get();
+        return $this->createBlade()->with(['subjects' => $subjects]);
     }
 
     /**
@@ -83,8 +82,7 @@ class FaqController extends BaseWebController
      */
     public function edit(Faq $faq): View|Factory|Application
     {
-        $faq->load('faqSubjects');
-        $subjects = $this->faqSubjectContract->search([], [], ['limit' => 0, 'page' => 0]);
+        $subjects = FaqSubject::query()->get();
         return $this->editBlade(['faq' => $faq, 'subjects' => $subjects]);
     }
 

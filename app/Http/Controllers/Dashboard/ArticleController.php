@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
+use App\Models\MedicalSpeciality;
 use App\Repositories\Contracts\ArticleContract;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseWebController;
@@ -42,7 +43,8 @@ class ArticleController extends BaseWebController
      */
     public function create(): View|Factory|Application
     {
-        return $this->createBlade();
+        $specialities = MedicalSpeciality::query()->get();
+        return $this->createBlade()->with(['specialities' => $specialities]);
     }
 
     /**
@@ -79,7 +81,8 @@ class ArticleController extends BaseWebController
      */
     public function edit(Article $article): View|Factory|Application
     {
-        return $this->editBlade(['article' => $article]);
+        $specialities = MedicalSpeciality::query()->get();
+        return $this->editBlade(['article' => $article])->with(['specialities' => $specialities]);
     }
 
     /**
