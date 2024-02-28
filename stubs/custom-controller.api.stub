@@ -14,11 +14,11 @@ class {{modelName}}Controller extends BaseApiController
 {
     /**
      * {{modelName}}Controller constructor.
-     * @param {{modelName}}Contract $repository
+     * @param {{modelName}}Contract $contract
      */
-    public function __construct({{modelName}}Contract $repository)
+    public function __construct({{modelName}}Contract $contract)
     {
-        parent::__construct($repository, {{modelName}}Resource::class, '{{modelName}}');
+        parent::__construct($contract, {{modelName}}Resource::class, '{{modelName}}');
     }
     /**
      * Store a newly created resource in storage.
@@ -28,7 +28,7 @@ class {{modelName}}Controller extends BaseApiController
     public function store({{modelName}}Request $request): JsonResponse
     {
         try {
-            ${{modelObject}} = $this->repository->create($request->validated());
+            ${{modelObject}} = $this->contract->create($request->validated());
             return $this->respondWithModel(${{modelObject}}->load($this->relations));
         }catch (Exception $e) {
             return $this->respondWithError($e->getMessage());
@@ -57,7 +57,7 @@ class {{modelName}}Controller extends BaseApiController
     public function update({{modelName}}Request $request, {{modelName}} ${{modelObject}}) : JsonResponse
     {
         try {
-            ${{modelObject}} = $this->repository->update(${{modelObject}}, $request->validated());
+            ${{modelObject}} = $this->contract->update(${{modelObject}}, $request->validated());
             return $this->respondWithModel(${{modelObject}}->load($this->relations));
         }catch (Exception $e) {
             return $this->respondWithError($e->getMessage());
@@ -71,7 +71,7 @@ class {{modelName}}Controller extends BaseApiController
     public function destroy({{modelName}} ${{modelObject}}): JsonResponse
     {
         try {
-            $this->repository->remove(${{modelObject}});
+            $this->contract->remove(${{modelObject}});
             return $this->respondWithSuccess(__('messages.deleted'));
         }catch (Exception $e) {
             return $this->respondWithError($e->getMessage());
@@ -86,7 +86,7 @@ class {{modelName}}Controller extends BaseApiController
     public function changeActivation({{modelName}} ${{modelObject}}): JsonResponse
     {
         try {
-            $this->repository->toggleField(${{modelObject}}, 'is_active');
+            $this->contract->toggleField(${{modelObject}}, 'is_active');
             return $this->respondWithModel(${{modelObject}}->load($this->relations));
         }catch (Exception $e) {
             return $this->respondWithError($e->getMessage());

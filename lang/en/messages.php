@@ -117,4 +117,13 @@ return [
     'engaged' => 'Engaged',
     'other' => 'Other',
     'unknown' => 'Unknown',
+    'urgent' => 'Urgent',
+    'normal' => 'Normal',
+    'not_urgent' => 'Not Urgent',
+    'with_appointment' => 'With Appointment',
+    'audio' => 'Audio',
+    'video' => 'Video',
+    'chat' => 'Chat',
+    'amount' => 'Amount',
+    'pending' => 'Pending',
 ];
