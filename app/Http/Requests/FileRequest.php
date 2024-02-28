@@ -36,6 +36,7 @@ class FileRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'faq_subject_id' => 'required|exists:faq_subjects,id',
             'file' => 'required|'.$this->getTypeValidation().'|max:51200',
             'type' => config('validations.string.req').'|in:'.implode(',', FileConstants::values()),
             'fileable_id' => config('validations.integer.null'),

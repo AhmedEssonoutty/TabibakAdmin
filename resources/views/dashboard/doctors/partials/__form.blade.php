@@ -29,7 +29,32 @@
                         <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
-                    <div class="offset-6"></div>
+                    <div class="col-lg-6">
+                        {{Form::label('consultation_types', __('messages.consultation_types'), ['class' => 'form-label'])}}
+                        <div class="card">
+                            <div class="collapse show"
+                                 aria-labelledby="collapsibleCardHeading">
+                                <div class="card-body">
+                                    <div class="form-check">
+                                        <input name="scheduled_consultation"
+                                               @checked(in_array('scheduled', $doctor->consultation_types ?? []))
+                                               class="form-check-input" type="checkbox">
+                                        <label class="form-check-label" for="checkbox">
+                                            {{__('messages.scheduled')}}
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input name="urgent_consultation"
+                                               @checked(in_array('urgent', $doctor->consultation_types ?? []))
+                                               class="form-check-input" type="checkbox">
+                                        <label class="form-check-label" for="checkbox">
+                                            {{__('messages.urgent')}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-lg-6">
                         {{Form::label('email', __('messages.email'), ['class' => 'form-label'])}}
                         {!! Form::email('email' , $doctor->user->email ?? '', ['class' => 'form-control']) !!}
@@ -71,32 +96,6 @@
                         @error("password_confirmation")
                         <span class="text-danger">{{$message}}</span>
                         @enderror
-                    </div>
-                    <div class="col-lg-4">
-                        {{Form::label('consultation_types', __('messages.consultation_types'), ['class' => 'form-label'])}}
-                        <div class="card">
-                            <div class="collapse show"
-                                 aria-labelledby="collapsibleCardHeading">
-                                <div class="card-body">
-                                    <div class="form-check">
-                                        <input name="scheduled_consultation"
-                                               @checked(in_array('scheduled', $doctor->consultation_types ?? []))
-                                               class="form-check-input" type="checkbox">
-                                        <label class="form-check-label" for="checkbox">
-                                            {{__('messages.scheduled')}}
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input name="urgent_consultation"
-                                               @checked(in_array('urgent', $doctor->consultation_types ?? []))
-                                               class="form-check-input" type="checkbox">
-                                        <label class="form-check-label" for="checkbox">
-                                            {{__('messages.urgent')}}
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <div class="col-lg-12">
                         <div class="text-end">

@@ -49,14 +49,20 @@ class UserRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        $rules = [
             'name' => 'required|min:2|max:200',
             'email' => "required|email|unique:users,email,{$this->id}",
             'phone' => "required|numeric|unique:users,phone,{$this->id}",
-            'password' => config('validations.password.req'),
             'role_id' => 'required|exists:roles,id',
             'image' =>  'nullable|max:20480|image',
         ];
+
+        if ($this->getMethod() === 'POST') {
+            $rules['password'] = config('validations.password.req');
+        }else{
+            $rules['password'] = config('validations.password.null');
+        }
+        return $rules;
     }
 
     /**

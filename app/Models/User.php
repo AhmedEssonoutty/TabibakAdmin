@@ -57,6 +57,10 @@ class User extends Authenticatable
     {
         return $this->hasOne(Doctor::class);
     }
+    public function vendor(): HasOne
+    {
+        return $this->hasOne(Vendor::class);
+    }
     //---------------------relations-------------------------------------
     // ----------------------- Scopes -----------------------
     public function scopeOfRole($query, $value)

@@ -89,6 +89,7 @@ return [
     'manage_vendor_services' => 'Manage Vendor Services',
     'add_vendor_service' => 'Add New Vendor Service',
     'edit_vendor_service' => 'Edit Vendor Service',
+    'disease_list' => 'Disease List',
     'diseases' => 'Diseases',
     'manage_diseases' => 'Manage Diseases',
     'add_disease' => 'Add New Disease',

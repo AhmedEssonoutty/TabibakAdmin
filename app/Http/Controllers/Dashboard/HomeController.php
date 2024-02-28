@@ -19,7 +19,7 @@ class HomeController extends Controller
     {
         $patientsCount = User::query()->whereHas('patient')->count();
         $doctorsCount = User::query()->whereHas('doctor')->count();
-        $adminsCount = User::query()->whereDoesntHave('patient')->orWhereDoesntHave('doctor')->count();
+        $vendorsCount = Vendor::query()->count();
         $hospitalsCount = $this->getVendorCount(1);
         $clinicsCount = $this->getVendorCount(2);
         $pharmaciesCount = $this->getVendorCount(3);
@@ -30,7 +30,7 @@ class HomeController extends Controller
         return view('dashboard.home.overview', compact([
             'patientsCount',
             'doctorsCount',
-            'adminsCount',
+            'vendorsCount',
             'hospitalsCount',
             'clinicsCount',
             'pharmaciesCount',

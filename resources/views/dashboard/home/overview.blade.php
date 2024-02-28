@@ -21,8 +21,8 @@
             <span class="rounded fs-5">{{ $doctorsCount }}</span>
         </div>
         <div class="py-4 px-5 mb-3 mt-2 mx-lg-3 text-center rounded bg-light col-md-5 col-lg-3">
-            <h3 class="rounded text-center fs-6">Admins</h3>
-            <span class="rounded fs-5">{{ $adminsCount }}</span>
+            <h3 class="rounded text-center fs-6">Vendors</h3>
+            <span class="rounded fs-5">{{ $vendorsCount }}</span>
         </div>
         <div class="py-4 px-5 mb-3 mt-2 mx-lg-3 text-center rounded bg-light col-md-5 col-lg-3">
             <h3 class="rounded text-center fs-6">Hospitals</h3>

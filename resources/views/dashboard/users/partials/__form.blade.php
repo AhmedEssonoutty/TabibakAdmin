@@ -4,7 +4,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="row g-3">
-                    <div class="col-lg-6">
+                    <div class="col-12">
                         {{Form::label('name', __('messages.name'), ['class' => 'form-label'])}}
                         {!! Form::text('name' , isset($user) ? $user->name : '', ['class' => 'form-control']) !!}
                         @error("name")
@@ -25,17 +25,20 @@
                         <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
-                    @if(!isset($user))
-                        <div class="col-lg-6">
-                            {{Form::label('password', __('messages.password'), ['class' => 'form-label'])}}
-                            {!! Form::text('password' , '', ['class' => 'form-control']) !!}
-                            @error("password")
-                            <span class="text-danger">{{$message}}</span>
-                            @enderror
-                        </div>
-                    @else
-                        <div class="col-lg-6"></div>
-                    @endif
+                    <div class="col-lg-6">
+                        {{Form::label('password', __('messages.password'), ['class' => 'form-label'])}}
+                        {!! Form::password('password' , ['class' => 'form-control']) !!}
+                        @error("password")
+                        <span class="text-danger">{{$message}}</span>
+                        @enderror
+                    </div>
+                    <div class="col-lg-6">
+                        {{Form::label('password_confirmation', __('messages.password_confirm'), ['class' => 'form-label'])}}
+                        {!! Form::password('password_confirmation' , ['class' => 'form-control']) !!}
+                        @error("password_confirmation")
+                        <span class="text-danger">{{$message}}</span>
+                        @enderror
+                    </div>
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-header">

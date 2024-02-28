@@ -104,7 +104,7 @@
                     'active' => request()->routeIs('diseases.index', 'diseases.create',
                      'diseases.edit')])>
                             <i class="bi bi-activity"></i>
-                            <span data-key="t-dashboard">{{ __('messages.diseases') }}</span>
+                            <span data-key="t-dashboard">{{ __('messages.disease_list') }}</span>
                         </a>
                     </li>
                 @endif

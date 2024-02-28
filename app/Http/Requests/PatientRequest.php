@@ -58,7 +58,6 @@ class PatientRequest extends FormRequest
             'date_of_birth' => config('validations.date.req'),
             'phone' => config('validations.phone.req').'|unique:users,phone,'.$this->userId,
             'national_id' => config('validations.string.null'),
-            'social_status' => config('validations.integer.null'). '|in:'.implode(',', array_values(PatientSocialStatusConstants::values())),
         ];
         if ($this->getMethod() === 'POST' && !auth()->user()->patient) {
             $rules['password'] = config('validations.password.req');
