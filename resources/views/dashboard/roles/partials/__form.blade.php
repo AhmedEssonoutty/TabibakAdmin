@@ -33,7 +33,9 @@
                                         @foreach($permissions as $permission)
                                             <div class="form-check">
                                                 <input name="role_permissions[]" value="{{$permission->id}}"
-                                                       @checked(in_array($permission->id, $role->permissions->pluck('id')->toArray() ?? []))
+                                                       @if(request()->routeIs('roles.edit'))
+                                                           @checked(in_array($permission->id, $role->permissions->pluck('id')->toArray() ?? []))
+                                                       @endif
                                                        class="form-check-input" type="checkbox" id="checkbox{{$permission->id}}">
                                                 <label class="form-check-label" for="checkbox{{$permission->id}}">
                                                     {{$permission->action}}
