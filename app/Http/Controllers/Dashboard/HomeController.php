@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Doctor;
+use App\Models\Patient;
 use App\Models\User;
+use App\Models\Vendor;
 
 class HomeController extends Controller
 {
@@ -14,14 +17,14 @@ class HomeController extends Controller
 
     public function overview()
     {
-        $patientsCount = 0;
-        $doctorsCount = 0;
-        $adminsCount = User::query()/*->where('user_type', 1)*/ ->count();
-        $hospitalsCount = User::query()/*->where('user_type',2)*/ ->count();
-        $clinicsCount = User::query()/*->where('user_type',3)*/ ->count();
-        $pharmaciesCount = User::query()/*->where('user_type',4)*/ ->count();
-        $homeCaresCount = User::query()/*->where('user_type',5)*/ ->count();
-        $labsCount = User::query()/*->where('user_type',6)*/ ->count();
+        $patientsCount = User::query()->whereHas('patient')->count();
+        $doctorsCount = User::query()->whereHas('doctor')->count();
+        $adminsCount = User::query()->whereDoesntHave('patient')->orWhereDoesntHave('doctor')->count();
+        $hospitalsCount = $this->getVendorCount(1);
+        $clinicsCount = $this->getVendorCount(2);
+        $pharmaciesCount = $this->getVendorCount(3);
+        $homeCaresCount = $this->getVendorCount(4);
+        $labsCount = $this->getVendorCount(5);
         $totalTransactions = 0;
         $totalRevenues = 0;
         return view('dashboard.home.overview', compact([
@@ -36,5 +39,12 @@ class HomeController extends Controller
             'totalTransactions',
             'totalRevenues',
         ]));
+    }
+
+    public function getVendorCount ($typeId)
+    {
+        return Vendor::query()->whereHas('vendorType', function ($query) use ($typeId) {
+            $query->where('id', $typeId);
+        })->count();
     }
 }
