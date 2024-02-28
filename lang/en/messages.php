@@ -130,4 +130,12 @@ return [
     'consultation_types' => 'Consultation Types',
     'scheduled' => 'Scheduled',
     'urgent' => 'Urgent',
+    'normal' => 'Normal',
+    'not_urgent' => 'Not Urgent',
+    'with_appointment' => 'With Appointment',
+    'audio' => 'Audio',
+    'video' => 'Video',
+    'chat' => 'Chat',
+    'amount' => 'Amount',
+    'pending' => 'Pending',
 ];
