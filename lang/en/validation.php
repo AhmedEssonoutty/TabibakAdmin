@@ -167,6 +167,12 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'contact_type' => [
+            'required_if' => 'The contact type field is required when type is urgent.',
+        ],
+        'doctor_schedule_day_shift_id' => [
+            'required_if' => 'The doctor schedule day shift id field is required when type is with appointment.',
+        ],
     ],
 
     /*

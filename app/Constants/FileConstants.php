@@ -17,6 +17,7 @@ enum FileConstants: string
         return [
             'User',
             'Doctor',
+            'Consultation'
         ];
     }
 }

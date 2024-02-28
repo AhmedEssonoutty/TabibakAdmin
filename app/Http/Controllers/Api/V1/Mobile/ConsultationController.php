@@ -18,7 +18,7 @@ class ConsultationController extends BaseApiController
      */
     public function __construct(ConsultationContract $contract)
     {
-        parent::__construct($contract, ConsultationResource::class, 'Consultation');
+        parent::__construct($contract, ConsultationResource::class);
     }
     /**
      * Store a newly created resource in storage.

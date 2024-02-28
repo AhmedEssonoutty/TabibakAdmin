@@ -30,7 +30,7 @@ class Consultation extends Model
     protected array $searchable = [];
     protected array $dates = ['reminder_at'];
     public array $filterModels = [];
-    public array $filterCustom = [];
+    public array $filterCustom = ['types'];
     public array $translatable = [];
     protected $casts = [
         'status' => ConsultationStatusConstants::class,
@@ -80,5 +80,10 @@ class Consultation extends Model
     //---------------------Scopes-------------------------------------
 
     //---------------------Scopes-------------------------------------
+
+    public static function types(): array
+    {
+        return ConsultationTypeConstants::valuesCollection();
+    }
 
 }
