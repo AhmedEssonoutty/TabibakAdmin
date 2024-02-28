@@ -4,6 +4,15 @@
         <div class="card">
             <div class="card-body">
                 <div class="row g-3">
+                    <div class="col-lg-12">
+                        {{Form::label('subject', __('messages.subject'), ['class' => 'form-label'])}}
+                        {!! Form::select('faq_subject_id', $subjects->pluck('name', 'id')->prepend('Select' , ''),
+                            $faq->faq_subject_id ?? '',
+                            ['class' => 'form-control']) !!}
+                        @error("faq_subject_id")
+                        <span class="text-danger">{{$message}}</span>
+                        @enderror
+                    </div>
                     <div class="col-lg-6">
                         {{Form::label('question', __('messages.question_en'), ['class' => 'form-label'])}}
                         {!! Form::text('question[en]' , isset($faq) ? $faq->getTranslation('question', 'en') : '', ['class' => 'form-control']) !!}

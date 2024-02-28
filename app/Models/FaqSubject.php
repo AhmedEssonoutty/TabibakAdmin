@@ -5,27 +5,27 @@ namespace App\Models;
 use App\Traits\ModelTrait;
 use App\Traits\SearchTrait;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Translatable\HasTranslations;
 
-class Faq extends Model
+class FaqSubject extends Model
 {
     use SoftDeletes, ModelTrait, SearchTrait, SoftDeletes, HasTranslations;
     public const ADDITIONAL_PERMISSIONS = [];
-    protected $fillable = ['question', 'answer', 'faq_subject_id', 'is_active'];
+    protected $fillable = ['name', 'is_active'];
     protected array $filters = ['keyword'];
-    protected array $searchable = ['question', 'answer'];
+    protected array $searchable = ['name'];
     protected array $dates = [];
     public array $filterModels = [];
     public array $filterCustom = [];
-    public array $translatable = ['question', 'answer'];
+    public array $translatable = ['name'];
 
     //---------------------relations-------------------------------------
 
-    public function faqSubject(): BelongsTo
+    public function faqs(): HasMany
     {
-        return $this->belongsTo(FaqSubject::class);
+        return $this->hasMany(Faq::class);
     }
 
     //---------------------relations-------------------------------------

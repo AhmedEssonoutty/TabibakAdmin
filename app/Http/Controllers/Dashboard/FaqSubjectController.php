@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Requests\ArticleRequest;
-use App\Models\Article;
-use App\Models\MedicalSpeciality;
-use App\Repositories\Contracts\ArticleContract;
+use App\Http\Requests\FaqSubjectRequest;
+use App\Models\FaqSubject;
+use App\Repositories\Contracts\FaqSubjectContract;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseWebController;
 use Illuminate\Contracts\Foundation\Application;
@@ -13,13 +12,13 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 
-class ArticleController extends BaseWebController
+class FaqSubjectController extends BaseWebController
 {
     /**
-     * ArticleController constructor.
-     * @param ArticleContract $contract
+     * FaqSubjectController constructor.
+     * @param FaqSubjectContract $contract
      */
-    public function __construct(ArticleContract $contract)
+    public function __construct(FaqSubjectContract $contract)
     {
         parent::__construct($contract, 'dashboard');
     }
@@ -43,18 +42,17 @@ class ArticleController extends BaseWebController
      */
     public function create(): View|Factory|Application
     {
-        $specialities = MedicalSpeciality::query()->get();
-        return $this->createBlade()->with(['specialities' => $specialities]);
+        return $this->createBlade();
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param ArticleRequest $request
+     * @param FaqSubjectRequest $request
      *
      * @return RedirectResponse
      */
-    public function store(ArticleRequest $request): RedirectResponse
+    public function store(FaqSubjectRequest $request): RedirectResponse
     {
         $this->contract->create($request->validated());
         return $this->redirectBack()->with('success', __('messages.actions_messages.create_success'));
@@ -63,78 +61,62 @@ class ArticleController extends BaseWebController
     /**
      * Display the specified resource.
      *
-     * @param Article $article
+     * @param FaqSubject $faqSubject
      *
      * @return View|Factory|Application
      */
-    public function show(Article $article): View|Factory|Application
+    public function show(FaqSubject $faqSubject): View|Factory|Application
     {
-        return $this->showBlade(['article' => $article]);
+        return $this->showBlade(['faqSubject' => $faqSubject]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Article $article
+     * @param FaqSubject $faqSubject
      *
      * @return View|Factory|Application
      */
-    public function edit(Article $article): View|Factory|Application
+    public function edit(FaqSubject $faqSubject): View|Factory|Application
     {
-        $specialities = MedicalSpeciality::query()->get();
-        return $this->editBlade(['article' => $article])->with(['specialities' => $specialities]);
+        return $this->editBlade(['faqSubject' => $faqSubject]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param ArticleRequest $request
-     * @param Article $article
+     * @param FaqSubjectRequest $request
+     * @param FaqSubject $faqSubject
      *
      * @return RedirectResponse
      */
-    public function update(ArticleRequest $request, Article $article): RedirectResponse
+    public function update(FaqSubjectRequest $request, FaqSubject $faqSubject): RedirectResponse
     {
-        $this->contract->update($article, $request->validated());
+        $this->contract->update($faqSubject, $request->validated());
         return $this->redirectBack()->with('success', __('messages.actions_messages.update_success'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param Article $article
+     * @param FaqSubject $faqSubject
      *
      * @return RedirectResponse
      */
-    public function destroy(Article $article): RedirectResponse
+    public function destroy(FaqSubject $faqSubject): RedirectResponse
     {
-       $this->contract->remove($article);
+       $this->contract->remove($faqSubject);
        return $this->redirectBack()->with('success', __('messages.actions_messages.delete_success'));
     }
 
     /**
      * active & inactive the specified resource from storage.
-     * @param Article $article
+     * @param FaqSubject $faqSubject
      * @return RedirectResponse
      */
-    public function changeActivation(Article $article): RedirectResponse
+    public function changeActivation(FaqSubject $faqSubject): RedirectResponse
     {
-        $this->contract->toggleField($article, 'is_active');
-        return $this->redirectBack()->with('success', __('messages.actions_messages.update_success'));
-    }
-
-    public function publish($id): RedirectResponse
-    {
-        $article = Article::query()->find($id);
-
-        if ($article['publish_date'] == null) {
-            $article['publish_date'] = now();
-            $article['publisher_id'] = auth()->id();
-        } else {
-            $article['publish_date'] = null;
-        }
-        $article->save();
-
+        $this->contract->toggleField($faqSubject, 'is_active');
         return $this->redirectBack()->with('success', __('messages.actions_messages.update_success'));
     }
 }

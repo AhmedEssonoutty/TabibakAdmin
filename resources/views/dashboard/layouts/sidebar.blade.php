@@ -1,5 +1,5 @@
 <!-- ========== App Menu ========== -->
-<div class="app-menu navbar-menu">
+<div class="app-menu navbar-menu overflow-auto">
     <!-- LOGO -->
     <div class="navbar-brand-box">
         <a href="#" class="logo logo-dark">
@@ -98,6 +98,17 @@
                     </li>
                 @endif
 
+                @if(auth()->user()->can('read-disease') || auth()->user()->can('view-all-disease'))
+                    <li class="nav-item">
+                        <a href="{{route('diseases.index')}}" @class(['nav-link', 'menu-link',
+                    'active' => request()->routeIs('diseases.index', 'diseases.create',
+                     'diseases.edit')])>
+                            <i class="bi bi-activity"></i>
+                            <span data-key="t-dashboard">{{ __('messages.diseases') }}</span>
+                        </a>
+                    </li>
+                @endif
+
                 @if(auth()->user()->can('read-patient') || auth()->user()->can('view-all-patient'))
                     <li class="nav-item">
                         <a href="{{route('patients.index')}}" @class(['nav-link', 'menu-link',
@@ -137,6 +148,17 @@
                     'active' => request()->routeIs('articles.index', 'articles.create', 'articles.edit')])>
                             <i class="bi bi-postcard"></i>
                             <span data-key="t-dashboard">{{ __('messages.articles') }}</span>
+                        </a>
+                    </li>
+                @endif
+
+                @if(auth()->user()->can('read-faq-subject') || auth()->user()->can('view-all-faq-subject'))
+                    <li class="nav-item">
+                        <a href="{{route('faq-subjects.index')}}" @class(['nav-link', 'menu-link',
+                    'active' => request()->routeIs('faq-subjects.index', 'faq-subjects.create',
+                     'faq-subjects.edit')])>
+                            <i class="bi bi-patch-question-fill"></i>
+                            <span data-key="t-dashboard">{{ __('messages.faq_subjects') }}</span>
                         </a>
                     </li>
                 @endif

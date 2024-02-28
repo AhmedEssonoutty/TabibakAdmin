@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Requests\FaqRequest;
 use App\Models\Faq;
+use App\Models\FaqSubject;
 use App\Repositories\Contracts\FaqContract;
+use App\Repositories\Contracts\FaqSubjectContract;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseWebController;
 use Illuminate\Contracts\Foundation\Application;
@@ -42,7 +44,8 @@ class FaqController extends BaseWebController
      */
     public function create(): View|Factory|Application
     {
-        return $this->createBlade();
+        $subjects = FaqSubject::query()->get();
+        return $this->createBlade()->with(['subjects' => $subjects]);
     }
 
     /**
@@ -79,7 +82,8 @@ class FaqController extends BaseWebController
      */
     public function edit(Faq $faq): View|Factory|Application
     {
-        return $this->editBlade(['faq' => $faq]);
+        $subjects = FaqSubject::query()->get();
+        return $this->editBlade(['faq' => $faq, 'subjects' => $subjects]);
     }
 
     /**

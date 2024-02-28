@@ -17,7 +17,7 @@ class Article extends Model
 {
     use SoftDeletes, ModelTrait, SearchTrait, SoftDeletes, HasTranslations;
     public const ADDITIONAL_PERMISSIONS = [];
-    protected $fillable = ['author_id','title', 'content', 'publish_date',
+    protected $fillable = ['author_id','title', 'content', 'medical_speciality_id', 'publish_date',
         'publisher_id', 'views', 'likes', 'dislikes', 'reports', 'is_active'];
     protected array $filters = ['keyword'];
     protected array $searchable = ['title', 'content'];
@@ -46,6 +46,12 @@ class Article extends Model
     {
         return $this->morphMany(Like::class, 'likeable');
     }
+
+    public function medicalSpeciality(): BelongsTo
+    {
+        return $this->belongsTo(MedicalSpeciality::class);
+    }
+
     //---------------------relations-------------------------------------
 
     //---------------------Scopes-------------------------------------
