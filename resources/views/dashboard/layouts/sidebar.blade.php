@@ -172,6 +172,17 @@
                         </a>
                     </li>
                 @endif
+
+                @if(auth()->user()->can('read-coupon') || auth()->user()->can('view-all-coupon'))
+                    <li class="nav-item">
+                        <a href="{{route('coupons.index')}}" @class(['nav-link', 'menu-link',
+                    'active' => request()->routeIs('coupons.index', 'coupons.create',
+                     'coupons.edit')])>
+                            <i class="bi bi-card-text"></i>
+                            <span data-key="t-dashboard">{{ __('messages.coupons') }}</span>
+                        </a>
+                    </li>
+                @endif
             </ul>
         </div>
         <!-- Sidebar -->

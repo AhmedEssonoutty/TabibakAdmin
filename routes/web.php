@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\Passwords\ForgetPasswordController;
 use App\Http\Controllers\Auth\Passwords\ResetPasswordController;
 use App\Http\Controllers\Dashboard\AcademicDegreeController;
 use App\Http\Controllers\Dashboard\ArticleController;
+use App\Http\Controllers\Dashboard\CouponController;
 use App\Http\Controllers\Dashboard\DiseaseController;
 use App\Http\Controllers\Dashboard\DoctorController;
 use App\Http\Controllers\Dashboard\FaqController;
@@ -69,5 +70,7 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::put('doctors/{doctor}/change-activation', [DoctorController::class, 'changeActivation'])->name('doctors.active');
     Route::resource('vendors', VendorController::class);
     Route::put('vendors/{vendor}/change-activation', [VendorController::class, 'changeActivation'])->name('vendors.active');
+    Route::resource('coupons', CouponController::class);
+    Route::put('coupons/{coupon}/change-activation', [CouponController::class, 'changeActivation'])->name('coupons.active');
 });
 
