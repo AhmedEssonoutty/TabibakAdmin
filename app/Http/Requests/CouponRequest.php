@@ -31,7 +31,7 @@ class CouponRequest extends FormRequest
             'discount_type' => 'required|in:1,2',
             'discount_amount' => config('validations.double.req'),
             'valid_from' => config('validations.date.req'),
-            'valid_to' => config('validations.date.req'),
+            'valid_to' => config('validations.date.req') .'|after:valid_from',
             'description' => config('validations.string.null'),
             'specialities' => config('validations.array.req'),
             'specialities.*' => sprintf(config('validations.model.req'), 'academic_degrees'),

@@ -20,6 +20,7 @@ class CouponController extends BaseWebController
     /**
      * CouponController constructor.
      * @param CouponContract $contract
+     * @param MedicalSpecialityContract $medicalSpecialityContract
      */
     public function __construct(CouponContract $contract, MedicalSpecialityContract $medicalSpecialityContract)
     {

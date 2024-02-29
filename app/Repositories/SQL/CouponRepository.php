@@ -15,4 +15,12 @@ class CouponRepository extends BaseRepository implements CouponContract
     {
         parent::__construct($model);
     }
+
+    public function syncRelations($model, $attributes)
+    {
+        if (isset($attributes['specialities'])) {
+            $model->medicalSpecialities()->sync($attributes['specialities']);
+        }
+        return $model;
+    }
 }
