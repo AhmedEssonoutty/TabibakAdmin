@@ -19,7 +19,7 @@ class Doctor extends Model
     use SoftDeletes, ModelTrait, SearchTrait, SoftDeletes, HasTranslations;
     public const ADDITIONAL_PERMISSIONS = [];
     protected $fillable = ['user_id', 'academic_degree_id', 'national_id', 'university',
-        'experience_years', 'consultation_type', 'consultation_types', 'request_status', 'medical_id', 'is_active'];
+        'experience_years', 'consultation_types', 'request_status', 'medical_id', 'is_active'];
     protected array $filters = ['keyword'];
     protected array $searchable = ['user.name'];
     protected array $dates = [];
@@ -28,7 +28,6 @@ class Doctor extends Model
     public array $translatable = [];
     public $casts = [
         'request_status' => DoctorRequestStatusConstants::class,
-        'consultation_type' => DoctorConsultationTypeConstants::class,
         'consultation_types' => 'array'
     ];
     public $with = ['user'];

@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('medical_id')->nullable();
             $table->string('university')->nullable();
             $table->float('experience_years')->nullable();
-            $table->tinyInteger('consultation_type')->nullable();
             $table->tinyInteger('request_status')->default(DoctorRequestStatusConstants::PENDING->value);
             $table->boolean('is_active')->default(true);
             $table->softDeletes();

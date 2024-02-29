@@ -1222,9 +1222,6 @@
     <!-- Dashboard init -->
     <script src="{{ URL::asset('assets/js/pages/dashboard-ecommerce.init.js') }}"></script>
 
-    <!-- App js -->
-    <script src="{{ URL::asset('assets/js/app.js') }}"></script>
-
     <script>
         //  Line chart datalabel
         var linechartDatalabelColors = getChartColorsArray("line_chart_datalabel");
