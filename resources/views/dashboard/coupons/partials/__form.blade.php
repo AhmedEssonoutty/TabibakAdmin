@@ -51,7 +51,7 @@
                     <div class="col-lg-6">
                         {{Form::label('specialities', __('messages.specialities'), ['class' => 'form-label'])}}
                         {!! Form::select('specialities[]' ,$specialities->pluck('name', 'id'),
-                            isset($doctor) ? $coupon->medicalSpecialities->pluck('id') : [],
+                            isset($coupon) ? $coupon->medicalSpecialities->pluck('id') : [],
                             ['class' => 'form-control', 'multiple' => true]) !!}
                         @error("specialities")
                         <span class="text-danger">{{$message}}</span>

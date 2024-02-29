@@ -6,6 +6,7 @@ use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
 use App\Models\MedicalSpeciality;
 use App\Repositories\Contracts\ArticleContract;
+use App\Repositories\Contracts\MedicalSpecialityContract;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseWebController;
 use Illuminate\Contracts\Foundation\Application;
@@ -15,13 +16,16 @@ use Illuminate\Http\RedirectResponse;
 
 class ArticleController extends BaseWebController
 {
+    protected MedicalSpecialityContract $medicalSpecialityContract;
+
     /**
      * ArticleController constructor.
      * @param ArticleContract $contract
      */
-    public function __construct(ArticleContract $contract)
+    public function __construct(ArticleContract $contract, MedicalSpecialityContract $medicalSpecialityContract)
     {
         parent::__construct($contract, 'dashboard');
+        $this->medicalSpecialityContract = $medicalSpecialityContract;
     }
 
     /**
@@ -43,8 +47,8 @@ class ArticleController extends BaseWebController
      */
     public function create(): View|Factory|Application
     {
-        $specialities = MedicalSpeciality::query()->get();
-        return $this->createBlade()->with(['specialities' => $specialities]);
+        $specialities = $this->medicalSpecialityContract->search([], [], ['limit' => 0, 'page' => 0]);
+        return $this->createBlade(['specialities' => $specialities]);
     }
 
     /**
@@ -81,8 +85,8 @@ class ArticleController extends BaseWebController
      */
     public function edit(Article $article): View|Factory|Application
     {
-        $specialities = MedicalSpeciality::query()->get();
-        return $this->editBlade(['article' => $article])->with(['specialities' => $specialities]);
+        $specialities = $this->medicalSpecialityContract->search([], [], ['limit' => 0, 'page' => 0]);
+        return $this->editBlade(['article' => $article, 'specialities' => $specialities]);
     }
 
     /**

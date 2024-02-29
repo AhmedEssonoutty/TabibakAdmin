@@ -49,7 +49,7 @@ class CouponController extends BaseWebController
     {
         $types = [1 => 'percentage', 2 => 'amount'];
         $specialities = $this->medicalSpecialityContract->search([], [], ['limit' => 0, 'page' => 0]);
-        return $this->createBlade()->with(['types' => $types, 'specialities' => $specialities]);
+        return $this->createBlade(['types' => $types, 'specialities' => $specialities]);
     }
 
     /**
@@ -88,7 +88,7 @@ class CouponController extends BaseWebController
     {
         $types = [1 => 'percentage', 2 => 'amount'];
         $specialities = $this->medicalSpecialityContract->search([], [], ['limit' => 0, 'page' => 0]);
-        return $this->editBlade(['coupon' => $coupon])->with(['types' => $types, 'specialities' => $specialities]);
+        return $this->editBlade(['coupon' => $coupon, 'types' => $types, 'specialities' => $specialities]);
     }
 
     /**
