@@ -15,4 +15,12 @@ class ConsultationRepository extends BaseRepository implements ConsultationContr
     {
         parent::__construct($model);
     }
+
+    public function syncRelations($model, $relations): void
+    {
+        if (!empty($relations['diseases']))
+            $model->diseases()->sync($relations['diseases']);
+        if (!empty($relations['files']))
+            $model->files()->sync($relations['files']);
+    }
 }
