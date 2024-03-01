@@ -18,8 +18,9 @@ class Doctor extends Model
 {
     use SoftDeletes, ModelTrait, SearchTrait, SoftDeletes, HasTranslations;
     public const ADDITIONAL_PERMISSIONS = [];
-    protected $fillable = ['user_id', 'academic_degree_id', 'national_id', 'university',
-        'experience_years', 'consultation_types', 'request_status', 'medical_id', 'is_active'];
+    protected $fillable = ['user_id', 'academic_degree_id', 'national_id', 'university', 'bio',
+        'urgent_consultation_enabled', 'with_appointment_consultation_enabled', 'experience_years',
+        'request_status', 'medical_id', 'is_active'];
     protected array $filters = ['keyword'];
     protected array $searchable = ['user.name'];
     protected array $dates = [];

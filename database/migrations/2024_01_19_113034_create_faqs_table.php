@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\FaqSubject;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->json('question');
             $table->json('answer');
+            $table->foreignIdFor(FaqSubject::class)->constrained()->cascadeOnDelete();
             $table->boolean('is_active')->default(true);
             $table->softDeletes();
             $table->timestamps();

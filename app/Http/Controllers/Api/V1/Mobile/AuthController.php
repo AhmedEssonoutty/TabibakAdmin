@@ -56,6 +56,14 @@ class AuthController extends BaseApiController
         return $this->respondWithModel($user);
     }
 
+    public function registerUserAsDoctor(PatientRegisterRequest $request)
+    {
+        $doctor = $this->userAuthService->registerUserAsDoctor($request->validated());
+        $user = $doctor->user;
+        $user->load('doctor');
+        return $this->respondWithModel($user);
+    }
+
     public function logout()
     {
         $user = Auth::user();

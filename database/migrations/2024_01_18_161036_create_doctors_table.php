@@ -19,9 +19,12 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(AcademicDegree::class)->nullable()->constrained()->nullOnDelete();
+            $table->boolean('urgent_consultation_enabled')->default(false);
+            $table->boolean('with_appointment_consultation_enabled')->default(false);
             $table->string('national_id')->nullable();
             $table->string('medical_id')->nullable();
             $table->string('university')->nullable();
+            $table->text('bio')->nullable();
             $table->float('experience_years')->nullable();
             $table->tinyInteger('request_status')->default(DoctorRequestStatusConstants::PENDING->value);
             $table->boolean('is_active')->default(true);

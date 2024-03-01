@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\MedicalSpeciality;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -17,12 +18,11 @@ return new class extends Migration
             $table->foreignIdFor(User::class, 'author_id')->constrained('users')->cascadeOnDelete();
             $table->json('title');
             $table->json('content');
+            $table->foreignIdFor(MedicalSpeciality::class)->constrained()->cascadeOnDelete();
             $table->date('publish_date')->nullable();
             $table->foreignIdFor(User::class, 'publisher_id')
                 ->nullable()->constrained('users')->cascadeOnDelete();
             $table->integer('views')->default(0);
-            $table->integer('likes')->default(0);
-            $table->integer('dislikes')->default(0);
             $table->integer('reports')->default(0);
             $table->boolean('is_active')->default(true);
             $table->softDeletes();

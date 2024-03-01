@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('password')->nullable();
             $table->string('phone')->nullable()->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('verification_code')->nullable();
+            $table->datetime('phone_verified_at')->nullable();
             $table->rememberToken();
             $table->boolean('is_active')->default(true);
             $table->softDeletes();

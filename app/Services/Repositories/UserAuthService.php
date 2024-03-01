@@ -63,4 +63,10 @@ class UserAuthService
         $this->sendVerificationCode($patient->user);
         return $patient;
     }
+
+    public function registerUserAsDoctor($data)
+    {
+        return $this->doctorContract->create($data);
+    }
+
 }
