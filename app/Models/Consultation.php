@@ -24,8 +24,9 @@ class Consultation extends Model
     public const ADDITIONAL_PERMISSIONS = [];
     protected $fillable = ['doctor_id', 'patient_id', 'status', 'medical_speciality_id',
         'patient_description', 'doctor_description', 'medical_review', 'prescription', 'type',
-        'contact_type', 'doctor_schedule_day_shift_id', 'reminder_at', 'transfer_reason', 'transfer_notes',
-        'transfer_case_rate', 'payment_type', 'amount', 'coupon_id', 'is_active'];
+        'other_diseases' , 'latest_surgeries', 'doctor_schedule_day_shift_id', 'contact_type',
+        'reminder_at', 'transfer_reason', 'transfer_notes', 'transfer_case_rate',
+        'payment_type', 'amount', 'coupon_id', 'is_active'];
     protected array $filters = ['keyword', 'mineAsPatient'];
     protected array $searchable = [];
     protected array $dates = ['reminder_at'];

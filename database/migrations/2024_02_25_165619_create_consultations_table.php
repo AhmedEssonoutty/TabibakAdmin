@@ -27,6 +27,8 @@ return new class extends Migration
             $table->text('doctor_description')->nullable();
             $table->text('medical_review')->nullable();
             $table->json('prescription')->nullable();
+            $table->text('other_diseases')->nullable();
+            $table->text('latest_surgeries')->nullable();
             $table->tinyInteger('type');
             $table->tinyInteger('contact_type')->nullable();
             $table->foreignIdFor(DoctorScheduleDayShift::class)->nullable()->constrained();
