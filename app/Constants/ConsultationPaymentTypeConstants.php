@@ -15,7 +15,7 @@ enum ConsultationPaymentTypeConstants : int
         return match ($value) {
             self::TABBY => __('messages.tabby'),
             self::INSURANCE => __('messages.insurance'),
-            'default' => 'N/A',
+            'default' => '',
         };
     }
 

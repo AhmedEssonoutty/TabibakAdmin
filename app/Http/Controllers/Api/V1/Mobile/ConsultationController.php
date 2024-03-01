@@ -18,6 +18,7 @@ class ConsultationController extends BaseApiController
      */
     public function __construct(ConsultationContract $contract)
     {
+        $this->defaultScopes = ['mineAsPatient' => true];
         parent::__construct($contract, ConsultationResource::class);
     }
     /**

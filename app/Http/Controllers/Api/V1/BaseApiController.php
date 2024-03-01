@@ -14,6 +14,7 @@ class BaseApiController extends Controller
     protected BaseContract $contract;
     protected mixed $modelResource;
     protected array $relations = [];
+    protected array $defaultScopes = [];
 
     /**
      * BaseApiController constructor.
@@ -47,7 +48,7 @@ class BaseApiController extends Controller
         $page = 1;
         $limit = 10;
         $order = [];
-        $filters = request()->all();
+        $filters = array_merge(request()->all(), $this->defaultScopes);
         if (request()->has('page')) {
             $page = request('page');
         }

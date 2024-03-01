@@ -17,6 +17,14 @@ class ConsultationResource extends BaseResource
     {
         $this->micro = [
             'id' => $this->id,
+            'status' => [
+                'value' => $this->status->value,
+                'label' => $this->status->label(),
+            ],
+            'type' => [
+                'value' => $this->type->value,
+                'label' => $this->type->label(),
+            ],
         ];
         $this->mini = [
             'is_active' => $this->is_active,
@@ -26,9 +34,34 @@ class ConsultationResource extends BaseResource
             'updated_at' => $this->updated_at?->format('Y-m-d H:i:s'),
         ];
         $this->full = [
+            'patient_description' => $this->patient_description,
+            'doctor_description' => $this->doctor_description,
+            'medical_review' => $this->medical_review,
+            'prescription' => $this->prescription,
+            'amount' => $this->amount,
+            'contact_type' => [
+                'value' => $this->contact_type->value,
+                'label' => $this->contact_type->label(),
+            ],
+            'payment_type' => [
+                'value' => $this->payment_type?->value,
+                'label' => $this->payment_type?->label(),
+            ],
+            'transfer_case_rate' => [
+                'value' => $this->transfer_case_rate?->value,
+                'label' => $this->transfer_case_rate?->label(),
+            ],
+            'reminder_at' => $this->reminder_at?->format('Y-m-d H:i:s'),
+            'transfer_reason' => $this->transfer_reason,
+            'transfer_notes' => $this->transfer_notes,
         ];
-        //$this->relationLoaded()
         $this->relations = [
+            'attachments' => $this->relationLoaded('attachments') ? FileResource::collection($this->attachments) : '',
+            'patient' => $this->relationLoaded('patient') ? new PatientResource($this->patient) : '',
+            'doctor' => $this->relationLoaded('doctor') ? new DoctorResource($this->doctor) : '',
+            'vendors' => $this->relationLoaded('vendors') ? new VendorResource($this->vendors) : '',
+            'medicalSpeciality' => $this->relationLoaded('medicalSpeciality') ? new MedicalSpecialityResource($this->medicalSpeciality) : '',
+            'doctorScheduleDayShift' => $this->relationLoaded('doctorScheduleDayShift') ? new DoctorScheduleDayShiftResource($this->doctorScheduleDayShift) : '',
         ];
         return $this->getResource();
     }

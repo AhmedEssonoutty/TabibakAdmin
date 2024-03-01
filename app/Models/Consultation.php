@@ -26,11 +26,11 @@ class Consultation extends Model
         'patient_description', 'doctor_description', 'medical_review', 'prescription', 'type',
         'contact_type', 'doctor_schedule_day_shift_id', 'reminder_at', 'transfer_reason', 'transfer_notes',
         'transfer_case_rate', 'payment_type', 'amount', 'coupon_id', 'is_active'];
-    protected array $filters = ['keyword'];
+    protected array $filters = ['keyword', 'mineAsPatient'];
     protected array $searchable = [];
     protected array $dates = ['reminder_at'];
     public array $filterModels = [];
-    public array $filterCustom = ['types'];
+    public array $filterCustom = ['types', 'paymentMethods'];
     public array $translatable = [];
     protected $casts = [
         'status' => ConsultationStatusConstants::class,
@@ -79,6 +79,10 @@ class Consultation extends Model
 
     //---------------------Scopes-------------------------------------
 
+    public function scopeOfMineAsPatient($query)
+    {
+        return $query->where('patient_id', auth()->user()->patient?->id);
+    }
     //---------------------Scopes-------------------------------------
 
     public static function types(): array
@@ -86,4 +90,8 @@ class Consultation extends Model
         return ConsultationTypeConstants::valuesCollection();
     }
 
+    public static function  paymentMethods(): array
+    {
+        return ConsultationPaymentTypeConstants::valuesCollection();
+    }
 }
