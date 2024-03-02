@@ -32,7 +32,7 @@ class UserController extends BaseWebController
      */
     public function index(Request $request): View|Factory|Application
     {
-        $resources = $this->contract->search($request->all());
+        $resources = $this->contract->search($request->all(), ['roles']);
         return $this->indexBlade(['resources' => $resources]);
     }
 
