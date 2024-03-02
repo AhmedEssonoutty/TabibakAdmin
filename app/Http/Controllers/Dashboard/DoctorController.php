@@ -66,10 +66,9 @@ class DoctorController extends BaseWebController
      */
     public function store(DoctorRequest $request): RedirectResponse
     {
-        $consultationTypes = [];
-        if($request['scheduled_consultation']) $consultationTypes[] = 'scheduled';
-        if($request['urgent_consultation']) $consultationTypes[] = 'urgent';
-        $this->contract->create($request->validated() + ['consultation_types' => $consultationTypes]);
+        $urgent_consultation_enabled = $request['urgent_consultation_enabled'] ? 1 : 0;
+        $with_appointment_consultation_enabled = $request['with_appointment_consultation_enabled'] ? 1 : 0;
+        $this->contract->create($request->validated() + ['urgent_consultation_enabled' => $urgent_consultation_enabled, 'with_appointment_consultation_enabled' => $with_appointment_consultation_enabled]);
         return $this->redirectBack()->with('success', __('messages.actions_messages.create_success'));
     }
 
@@ -109,10 +108,9 @@ class DoctorController extends BaseWebController
      */
     public function update(DoctorRequest $request, Doctor $doctor): RedirectResponse
     {
-        $consultationTypes = [];
-        if($request['scheduled_consultation']) $consultationTypes[] = 'scheduled';
-        if($request['urgent_consultation']) $consultationTypes[] = 'urgent';
-        $this->contract->update($doctor, $request->validated() + ['consultation_types' => $consultationTypes]);
+        $urgent_consultation_enabled = $request['urgent_consultation_enabled'] ? 1 : 0;
+        $with_appointment_consultation_enabled = $request['with_appointment_consultation_enabled'] ? 1 : 0;
+        $this->contract->update($doctor, $request->validated() + ['urgent_consultation_enabled' => $urgent_consultation_enabled, 'with_appointment_consultation_enabled' => $with_appointment_consultation_enabled]);
         return $this->redirectBack()->with('success', __('messages.actions_messages.update_success'));
     }
 

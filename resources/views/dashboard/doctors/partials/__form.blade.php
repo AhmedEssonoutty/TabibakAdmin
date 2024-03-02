@@ -36,18 +36,18 @@
                                  aria-labelledby="collapsibleCardHeading">
                                 <div class="card-body">
                                     <div class="form-check">
-                                        <input name="scheduled_consultation"
-                                               @checked(in_array('scheduled', $doctor->consultation_types ?? []))
+                                        <input name="with_appointment_consultation_enabled"
+                                               @checked($doctor->with_appointment_consultation_enabled ?? false)
                                                class="form-check-input" type="checkbox">
-                                        <label class="form-check-label" for="checkbox">
+                                        <label class="form-check-label" for="with_appointment_consultation_enabled">
                                             {{__('messages.scheduled')}}
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input name="urgent_consultation"
-                                               @checked(in_array('urgent', $doctor->consultation_types ?? []))
+                                        <input name="urgent_consultation_enabled"
+                                               @checked($doctor->urgent_consultation_enabled ?? false)
                                                class="form-check-input" type="checkbox">
-                                        <label class="form-check-label" for="checkbox">
+                                        <label class="form-check-label" for="urgent_consultation_enabled">
                                             {{__('messages.urgent')}}
                                         </label>
                                     </div>
