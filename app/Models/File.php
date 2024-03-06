@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Constants\FileConstants;
 use App\Traits\ModelTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -29,5 +30,10 @@ class File extends Model
     public function fileable(): MorphTo
     {
         return $this->morphTo();
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }
