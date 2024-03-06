@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1\Mobile;
 
 use App\Http\Controllers\Api\V1\BaseApiController;
+use App\Http\Requests\DoctorRegisterRequest;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\PatientRegisterRequest;
 use App\Http\Resources\UserResource;
@@ -56,7 +57,7 @@ class AuthController extends BaseApiController
         return $this->respondWithModel($user);
     }
 
-    public function registerUserAsDoctor(PatientRegisterRequest $request)
+    public function registerUserAsDoctor(DoctorRegisterRequest $request)
     {
         $doctor = $this->userAuthService->registerUserAsDoctor($request->validated());
         $user = $doctor->user;
