@@ -15,14 +15,14 @@
                         {{Form::label('type', __('messages.discount_type'), ['class' => 'form-label'])}}
                         {!! Form::select('discount_type', $types,
                             '',
-                            ['class' => 'form-control']) !!}
+                            ['id' => 'discount_type', 'class' => 'form-control', 'onchange' => 'setDiscountValueAttributes()']) !!}
                         @error("discount_type")
                         <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
                     <div class="col-lg-6">
                         {{Form::label('discount_amount', __('messages.discount_amount'), ['class' => 'form-label'])}}
-                        {!! Form::number('discount_amount' , $coupon->discount_amount ?? '', ['class' => 'form-control']) !!}
+                        {!! Form::number('discount_amount' , $coupon->discount_amount ?? '', ['class' => 'form-control', 'min' => '1', 'max' => '100', 'pattern' => '[0-9]', 'onkeypress' => 'return isNumberKey(event)']) !!}
                         @error("discount_amount")
                         <span class="text-danger">{{$message}}</span>
                         @enderror
@@ -59,14 +59,14 @@
                     </div>
                     <div class="col-lg-6">
                         {{Form::label('user_limit', __('messages.user_limit'), ['class' => 'form-label'])}}
-                        {!! Form::number('user_limit' , $coupon->user_limit ?? '', ['class' => 'form-control']) !!}
+                        {!! Form::number('user_limit' , $coupon->user_limit ?? '', ['class' => 'form-control', 'pattern' => '[0-9]', 'onkeypress' => 'return isNumberKey(event)']) !!}
                         @error("user_limit")
                         <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
                     <div class="col-lg-6">
                         {{Form::label('total_limit', __('messages.total_limit'), ['class' => 'form-label'])}}
-                        {!! Form::number('total_limit' , $coupon->total_limit ?? '', ['class' => 'form-control']) !!}
+                        {!! Form::number('total_limit' , $coupon->total_limit ?? '', ['class' => 'form-control', 'pattern' => '[0-9]', 'onkeypress' => 'return isNumberKey(event)']) !!}
                         @error("total_limit")
                         <span class="text-danger">{{$message}}</span>
                         @enderror

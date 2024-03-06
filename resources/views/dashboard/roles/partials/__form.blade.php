@@ -18,7 +18,7 @@
                     @foreach($permissionsModules as $module => $permissions)
                         <div class="col-lg-4">
                             <div class="card">
-                                <div class="card-header" id="collapsibleCardHeading">
+                                <div class="card-header" id="collapsibleCardHeading{{$module}}">
                                     <h5 class="mb-0">
                                         <a href="#" class="btn btn-link" data-bs-toggle="collapse"
                                            data-bs-target="#{{$module}}" aria-expanded="true"
@@ -28,15 +28,20 @@
                                     </h5>
                                 </div>
                                 <div id="{{$module}}" class="collapse show"
-                                     aria-labelledby="collapsibleCardHeading">
+                                     aria-labelledby="collapsibleCardHeading{{$module}}">
                                     <div class="card-body">
+                                        <div class="form-check">
+                                            <input type="checkbox" id="selectAll{{$module}}"
+                                                   class="form-check-input select-all-checkbox">
+                                            <label for="selectAll{{$module}}" class="form-check-label">Select All</label>
+                                        </div>
                                         @foreach($permissions as $permission)
                                             <div class="form-check">
                                                 <input name="role_permissions[]" value="{{$permission->id}}"
                                                        @if(request()->routeIs('roles.edit'))
                                                            @checked(in_array($permission->id, $role->permissions->pluck('id')->toArray() ?? []))
                                                        @endif
-                                                       class="form-check-input" type="checkbox" id="checkbox{{$permission->id}}">
+                                                       class="form-check-input permission-checkbox" type="checkbox" id="checkbox{{$permission->id}}">
                                                 <label class="form-check-label" for="checkbox{{$permission->id}}">
                                                     {{$permission->action}}
                                                 </label>

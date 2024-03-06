@@ -34,7 +34,7 @@
                     </div>
                     <div class="col-lg-6">
                         {{Form::label('percentage', __('messages.percentage'), ['class' => 'form-label'])}}
-                        {!! Form::number('percentage' , $medicalSpeciality->percentage ?? '', ['class' => 'form-control']) !!}
+                        {!! Form::number('percentage' , $medicalSpeciality->percentage ?? '', ['class' => 'form-control', 'min' => '1', 'max' => '100', 'pattern' => '[0-9]', 'onkeypress' => 'return isNumberKey(event)']) !!}
                         @error("percentage")
                         <span class="text-danger">{{$message}}</span>
                         @enderror

@@ -50,11 +50,10 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'name' => 'required|min:2|max:200',
-            'email' => "required|email|unique:users,email,{$this->id}",
-            'phone' => "required|numeric|unique:users,phone,{$this->id}",
-            'role_id' => 'required|exists:roles,id',
-            'image' =>  'nullable|max:20480|image',
+            'name' => config('validations.string.req'),
+            'email' => sprintf(config('validations.email.req'), 'users', 'email').','.$this->route('user')?->id,
+            'phone' => config('validations.phone.req').'|unique:users,phone,'.$this->route('user')?->id,
+            'image' =>  'nullable|image|mimetypes:image/jpeg,image/png',
         ];
 
         if ($this->getMethod() === 'POST') {

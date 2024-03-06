@@ -32,6 +32,7 @@
     @yield('content')
 </section>
 @include('dashboard.layouts.scripts')
+@yield('scripts')
 </body>
 
 </html>

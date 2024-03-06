@@ -47,8 +47,7 @@
                                                     name="password" required autocomplete="current-password" placeholder="Enter your password">
                                                 <button
                                                     class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon"
-                                                    type="button" id="password-addon"><i
-                                                        class="ri-eye-fill align-middle"></i></button>
+                                                    type="button" id="password-addon" onclick="togglePasswordVisibility()"><i id="eyeIcon" class="bi bi-eye"></i></button>
                                                 @error('password')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>

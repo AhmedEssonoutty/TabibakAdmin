@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use App\Constants\RoleNameConstants;
-use App\Repositories\Contracts\RoleContract;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Traits\JsonValidationTrait;
 
@@ -45,8 +44,8 @@ class DoctorRequest extends FormRequest
             'university' => config('validations.string.null'),
             'name' => config('validations.string.req'),
             'phone' => config('validations.phone.req').'|unique:users,phone,'.$this->route('doctor')?->user_id,
-            'national_id' => config('validations.string.null'),
-            'medical_id' => config('validations.string.null'),
+            'national_id' => config('validations.string.null').'|unique:doctors,national_id,'.$this->route('doctor')?->user_id,
+            'medical_id' => config('validations.string.null').'|unique:doctors,medical_id,'.$this->route('doctor')?->user_id,
         ];
         if ($this->getMethod() === 'POST') {
             $rules['password'] = config('validations.password.req');

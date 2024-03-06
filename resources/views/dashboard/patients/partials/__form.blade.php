@@ -20,28 +20,30 @@
                     </div>
                     <div class="col-lg-6">
                         {{Form::label('phone', __('messages.phone'), ['class' => 'form-label'])}}
-                        {!! Form::number('phone' , $patient->user->phone ?? '', ['class' => 'form-control']) !!}
+                        {!! Form::number('phone' , $patient->user->phone ?? '', ['class' => 'form-control', 'pattern' => '[0-9]', 'onkeypress' => 'return isNumberKey(event)']) !!}
                         @error("phone")
                         <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
                     <div class="col-lg-6">
                         {{Form::label('national_id', __('messages.national_id'), ['class' => 'form-label'])}}
-                        {!! Form::number('national_id' , $patient->national_id ?? '', ['class' => 'form-control']) !!}
+                        {!! Form::number('national_id' , $patient->national_id ?? '', ['class' => 'form-control', 'pattern' => '[0-9]', 'onkeypress' => 'return isNumberKey(event)']) !!}
                         @error("national_id")
                         <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
                     <div class="col-lg-6">
                         {{Form::label('password', __('messages.password'), ['class' => 'form-label'])}}
-                        {!! Form::password('password' , ['class' => 'form-control']) !!}
+                        {!! Form::password('password' , ['class' => 'form-control', 'placeholder' => 'enter strong password']) !!}
+                        <button class="btn btn-link position-absolute end-0 text-muted password-addon" style="top:42%"
+                                type="button" onclick="togglePasswordVisibility()"><i id="eyeIcon" class="bi bi-eye"></i></button>
                         @error("password")
                         <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
                     <div class="col-lg-6">
                         {{Form::label('password_confirmation', __('messages.password_confirm'), ['class' => 'form-label'])}}
-                        {!! Form::password('password_confirmation' , ['class' => 'form-control']) !!}
+                        {!! Form::password('password_confirmation' , ['class' => 'form-control', 'placeholder' => 'enter strong password']) !!}
                         @error("password_confirmation")
                         <span class="text-danger">{{$message}}</span>
                         @enderror
