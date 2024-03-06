@@ -15,7 +15,6 @@ class RegionsTableSeeder extends Seeder
     {
         $regionsJson = file_get_contents(public_path('json/regions.json'));
         $regionsData = json_decode($regionsJson, true);
-
         foreach ($regionsData as $regionData) {
             $region = new Region();
             $region->name = json_encode([

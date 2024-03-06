@@ -15,7 +15,6 @@ class CitiesTableSeeder extends Seeder
     {
         $citiesJson = file_get_contents(public_path('json/cities.json'));
         $citiesData = json_decode($citiesJson, true);
-
         foreach ($citiesData as $cityData) {
             $city = new City();
             $city->region_id = $cityData['region_id'];

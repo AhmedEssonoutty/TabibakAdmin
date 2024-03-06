@@ -3,6 +3,7 @@
 namespace App\Repositories\SQL;
 
 use App\Models\User;
+use App\Repositories\Contracts\RoleContract;
 use App\Repositories\Contracts\UserContract;
 
 class UserRepository extends BaseRepository implements UserContract
@@ -19,7 +20,8 @@ class UserRepository extends BaseRepository implements UserContract
     public function syncRelations($model, $attributes)
     {
         if (isset($attributes['role_id'])) {
-            $model->syncRoles($attributes['role_id']);
+            $role = resolve(RoleContract::class)->find($attributes['role_id']);
+            $model->syncRoles($role->name);
         }
         return $model;
     }
