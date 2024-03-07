@@ -41,6 +41,7 @@ class FileController extends BaseApiController
     {
         try {
             $file = $this->contract->create($request->validated());
+            $file->load('user');
             return $this->respondWithModel($file);
         }catch (Exception $e) {
             return $this->respondWithError($e->getMessage());

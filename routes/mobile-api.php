@@ -30,7 +30,8 @@ Route::group(['middleware' => 'auth:sanctum'], static function () {
 
     Route::post('register-user-as-doctor', [AuthController::class, 'registerUserAsDoctor']);
     Route::group(['prefix' => 'doctor'], static function () {
-
+        Route::apiResource('articles', ArticleController::class)->only('store', 'update', 'destroy');
+        Route::put('articles/{article}/change-activation', [ArticleController::class, 'changeActivation'])->name('articles.active');
     });
 
 });

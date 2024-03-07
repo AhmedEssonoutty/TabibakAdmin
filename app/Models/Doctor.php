@@ -18,13 +18,13 @@ class Doctor extends Model
 {
     use SoftDeletes, ModelTrait, SearchTrait, SoftDeletes, HasTranslations;
     public const ADDITIONAL_PERMISSIONS = [];
-    protected $fillable = ['user_id', 'academic_degree_id', 'national_id', 'university', 'bio',
+    protected $fillable = ['user_id', 'academic_degree_id', 'national_id', 'city_id', 'university', 'bio',
         'urgent_consultation_enabled', 'with_appointment_consultation_enabled', 'experience_years',
         'request_status', 'medical_id', 'is_active'];
     protected array $filters = ['keyword'];
     protected array $searchable = ['user.name'];
     protected array $dates = [];
-    public array $filterModels = [];
+    public array $filterModels = ['City', 'MedicalSpeciality', 'AcademicDegree'];
     public array $filterCustom = [];
     public array $translatable = [];
     public $casts = [
@@ -54,6 +54,11 @@ class Doctor extends Model
     {
         return $this->morphMany(File::class, 'fileable')
             ->where('type', FileConstants::FILE_DOCTOR_ATTACHMENTS);
+    }
+
+    public function city(): BelongsTo
+    {
+        return $this->belongsTo(City::class);
     }
     //---------------------relations-------------------------------------
 
