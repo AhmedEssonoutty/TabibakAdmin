@@ -32,6 +32,11 @@ class LoginController extends Controller
             }
 
             if (Auth::attempt($credentials)) {
+                if (! auth()->user()->is_active || auth()->user()->patient || auth()->user()->doctor) {
+                    Session::flush();
+                    Auth::logout();
+                    return back()->with(['error' => '403 - Not Authorized to login']);
+                }
                 return redirect()->route('dashboard');
             }
 
