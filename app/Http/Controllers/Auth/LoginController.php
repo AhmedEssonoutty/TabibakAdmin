@@ -35,7 +35,7 @@ class LoginController extends Controller
                 if (! auth()->user()->is_active || auth()->user()->patient || auth()->user()->doctor) {
                     Session::flush();
                     Auth::logout();
-                    return back()->with(['error' => '403 - Not Authorized to login']);
+                    return back()->with(['error' => 'You can\'t login because you are deactivated']);
                 }
                 return redirect()->route('dashboard');
             }
