@@ -25,7 +25,7 @@ class PatientAPIRequest extends FormRequest
         $validated = parent::validated($key, $default);
         $validated['user']['id'] = auth()->id();
         if (auth()->user()->patient)
-            $validated['parent_id'] = auth()->user()->patient->id;
+            $validated['patient_id'] = auth()->user()->patient->id;
         return UserRequest::prepareUserForRoles($validated, RoleNameConstants::PATIENT->value);
     }
 
