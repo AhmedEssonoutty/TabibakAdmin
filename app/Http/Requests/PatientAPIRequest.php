@@ -6,7 +6,7 @@ use App\Constants\RoleNameConstants;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Traits\JsonValidationTrait;
 
-class PatientRequest extends FormRequest
+class PatientAPIRequest extends FormRequest
 {
     use JsonValidationTrait;
 
@@ -23,9 +23,9 @@ class PatientRequest extends FormRequest
     public function validated($key = null, $default = null)
     {
         $validated = parent::validated($key, $default);
-        if ($this->route('patient')) {
-            $validated['user']['id'] = $this->route('patient')->user_id;
-        }
+        $validated['user']['id'] = auth()->id();
+        if (auth()->user()->patient)
+            $validated['parent_id'] = auth()->user()->patient->id;
         return UserRequest::prepareUserForRoles($validated, RoleNameConstants::PATIENT->value);
     }
 
@@ -36,18 +36,13 @@ class PatientRequest extends FormRequest
      */
     public function rules(): array
     {
-        $rules = [
+        return [
             'name' => config('validations.string.req'),
-            'date_of_birth' => config('validations.date.req').'|before_or_equal:today',
-            'phone' => config('validations.phone.req').'|unique:users,phone,'.$this->route('patient')?->user_id,
-            'national_id' => config('validations.string.null').'|unique:patients,national_id,'.$this->route('patient')?->id,
+            'date_of_birth' => config('validations.date.req'),
+            'phone' => config('validations.phone.req').'|unique:users,phone,'.auth()->id(),
+            'national_id' => config('validations.string.null').'|unique:patients,national_id,'.auth()->user()->patient?->id,
+            'password' => config('validations.password.null')
         ];
-        if ($this->getMethod() === 'POST' && !auth()->user()->patient) {
-            $rules['password'] = config('validations.password.req');
-        }else{
-            $rules['password'] = config('validations.password.null');
-        }
-        return $rules;
     }
 
     /**

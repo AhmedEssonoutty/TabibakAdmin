@@ -85,8 +85,8 @@
                     </div>
                     <div class="col-lg-6">
                         {{Form::label('password', __('messages.password'), ['class' => 'form-label'])}}
-                        {!! Form::password('password' , ['class' => 'form-control', 'placeholder' => 'enter strong password']) !!}
-                        <button class="btn btn-link position-absolute end-0 text-muted password-addon" style="top:42%"
+                        {!! Form::password('password' , ['class' => 'form-control', 'placeholder' => 'Enter strong password']) !!}
+                        <button class="btn btn-link position-absolute end-0 text-muted password-addon" style="top:30px"
                                 type="button" onclick="togglePasswordVisibility()"><i id="eyeIcon" class="bi bi-eye"></i></button>
                         @error("password")
                         <span class="text-danger">{{$message}}</span>
@@ -94,7 +94,9 @@
                     </div>
                     <div class="col-lg-6">
                         {{Form::label('password_confirmation', __('messages.password_confirm'), ['class' => 'form-label'])}}
-                        {!! Form::password('password_confirmation' , ['class' => 'form-control', 'placeholder' => 'enter strong password']) !!}
+                        {!! Form::password('password_confirmation' , ['class' => 'form-control', 'placeholder' => 'Enter strong password']) !!}
+                        <button class="btn btn-link position-absolute end-0 text-muted password-addon" style="top:30px"
+                                type="button" onclick="togglePasswordVisibility()"><i id="eyeConfirmIcon" class="bi bi-eye"></i></button>
                         @error("password_confirmation")
                         <span class="text-danger">{{$message}}</span>
                         @enderror
