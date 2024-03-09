@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Constants\DoctorRequestStatusConstants;
 use App\Http\Requests\DoctorRequest;
 use App\Models\Doctor;
 use App\Repositories\Contracts\AcademicDegreeContract;
@@ -133,4 +134,37 @@ class DoctorController extends BaseWebController
         $this->contract->toggleField($doctor, 'is_active');
         return $this->redirectBack()->with('success', __('messages.actions_messages.update_success'));
     }
+
+    /**
+     * approve the specified resource from storage.
+     * @param Doctor $doctor
+     * @return RedirectResponse
+     */
+    public function approve(Doctor $doctor): RedirectResponse
+    {
+        if ($doctor->request_status?->is(DoctorRequestStatusConstants::PENDING))
+        {
+            $this->contract->update($doctor, ['request_status' => DoctorRequestStatusConstants::APPROVED->value]);
+        }else{
+            return $this->redirectBack()->with('error', __('messages.errors.doctor_request_pending'));
+        }
+        return $this->redirectBack()->with('success', __('messages.actions_messages.update_success'));
+    }
+
+    /**
+     * reject the specified resource from storage.
+     * @param Doctor $doctor
+     * @return RedirectResponse
+     */
+    public function reject(Doctor $doctor): RedirectResponse
+    {
+        if ($doctor->request_status?->is(DoctorRequestStatusConstants::PENDING))
+        {
+            $this->contract->update($doctor, ['request_status' => DoctorRequestStatusConstants::REJECTED->value]);
+        }else{
+            return $this->redirectBack()->with('error', __('messages.errors.doctor_request_pending'));
+        }
+        return $this->redirectBack()->with('success', __('messages.actions_messages.update_success'));
+    }
+
 }

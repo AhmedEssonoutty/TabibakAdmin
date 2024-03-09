@@ -2,17 +2,17 @@
     <input class="form-check-input active-resource" type="checkbox" data-id="{{$resource->id}}"
     @checked($resource->is_active)>
 </div>
-<a href="{{route("$route.edit", $resource->id)}}" class="link-success">
+<a href="{{route("$route.edit", $resource->id)}}" class="link-info">
     {{__('messages.edit')}} <i class="bi bi-pencil-fill"></i>
 </a>
 <a class="link-danger delete-resource cursor-pointer" data-id="{{$resource->id}}">
     {{__('messages.delete')}} <i class="bi bi-trash-fill"></i>
 </a>
-<form action="{{route("$route.destroy", $resource->id)}}" method="POST" id="deleteResourceForm-{{$resource->id}}">
+<form action="{{route("$route.destroy", $resource->id)}}" class="d-inline" method="POST" id="deleteResourceForm-{{$resource->id}}">
     @csrf
     @method('DELETE')
 </form>
-<form action="{{route("$route.active", $resource->id)}}" method="POST" id="activeResourceForm-{{$resource->id}}">
+<form action="{{route("$route.active", $resource->id)}}" class="d-inline" method="POST" id="activeResourceForm-{{$resource->id}}">
     @csrf
     @method('PUT')
 </form>

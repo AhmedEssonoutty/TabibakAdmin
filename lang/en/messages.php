@@ -111,6 +111,8 @@ return [
     "doctor" => "Doctor",
     "manage_doctors" => "Manage Doctors",
     "doctors" => "Doctors",
+    "doctors_requests" => "Doctors Requests",
+    "all_doctors" => "All Doctors",
     "add_doctor" => "Add New Doctor",
     "edit_doctor" => "Edit Doctor",
     "specialty" => "Specialty",
@@ -154,5 +156,14 @@ return [
     "tabby" => "Tabby",
     "insurance" => "Insurance",
     "approved" => "Approved",
-    "rejected" => "Rejected"
+    "rejected" => "Rejected",
+    "approve" => "Approve",
+    "reject" => "Reject",
+    "errors" => [
+        "doctor_request_pending" => "Doctor Request Is Not Pending"
+    ],
+    "confirm" => [
+        "doctor_approve" => "Do you want to approve this doctor request?",
+        "doctor_reject" => "Do you want to reject this doctor request?"
+    ]
 ];

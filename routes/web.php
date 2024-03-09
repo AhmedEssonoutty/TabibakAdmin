@@ -68,6 +68,8 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::put('faqs/{faq}/change-activation', [FaqController::class, 'changeActivation'])->name('faqs.active');
     Route::resource('doctors', DoctorController::class);
     Route::put('doctors/{doctor}/change-activation', [DoctorController::class, 'changeActivation'])->name('doctors.active');
+    Route::put('doctors/{doctor}/approve', [DoctorController::class, 'approve'])->name('doctors.approve');
+    Route::put('doctors/{doctor}/reject', [DoctorController::class, 'reject'])->name('doctors.reject');
     Route::resource('vendors', VendorController::class);
     Route::put('vendors/{vendor}/change-activation', [VendorController::class, 'changeActivation'])->name('vendors.active');
     Route::resource('coupons', CouponController::class);
