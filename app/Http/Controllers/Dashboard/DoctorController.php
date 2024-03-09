@@ -66,9 +66,7 @@ class DoctorController extends BaseWebController
      */
     public function store(DoctorRequest $request): RedirectResponse
     {
-        $urgent_consultation_enabled = $request['urgent_consultation_enabled'] ? 1 : 0;
-        $with_appointment_consultation_enabled = $request['with_appointment_consultation_enabled'] ? 1 : 0;
-        $this->contract->create($request->validated() + ['urgent_consultation_enabled' => $urgent_consultation_enabled, 'with_appointment_consultation_enabled' => $with_appointment_consultation_enabled]);
+        $this->contract->create($request->validated());
         return $this->redirectBack()->with('success', __('messages.actions_messages.create_success'));
     }
 
@@ -108,9 +106,7 @@ class DoctorController extends BaseWebController
      */
     public function update(DoctorRequest $request, Doctor $doctor): RedirectResponse
     {
-        $urgent_consultation_enabled = $request['urgent_consultation_enabled'] ? 1 : 0;
-        $with_appointment_consultation_enabled = $request['with_appointment_consultation_enabled'] ? 1 : 0;
-        $this->contract->update($doctor, $request->validated() + ['urgent_consultation_enabled' => $urgent_consultation_enabled, 'with_appointment_consultation_enabled' => $with_appointment_consultation_enabled]);
+        $this->contract->update($doctor, $request->validated());
         return $this->redirectBack()->with('success', __('messages.actions_messages.update_success'));
     }
 

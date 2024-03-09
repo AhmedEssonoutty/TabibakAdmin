@@ -21,15 +21,14 @@ class Doctor extends Model
     protected $fillable = ['user_id', 'academic_degree_id', 'national_id', 'city_id', 'university', 'bio',
         'urgent_consultation_enabled', 'with_appointment_consultation_enabled', 'experience_years',
         'request_status', 'medical_id', 'is_active'];
-    protected array $filters = ['keyword'];
+    protected array $filters = ['keyword', 'requestStatus'];
     protected array $searchable = ['user.name'];
     protected array $dates = [];
     public array $filterModels = ['City', 'MedicalSpeciality', 'AcademicDegree'];
     public array $filterCustom = [];
     public array $translatable = [];
     public $casts = [
-        'request_status' => DoctorRequestStatusConstants::class,
-        'consultation_types' => 'array'
+        'request_status' => DoctorRequestStatusConstants::class
     ];
     public $with = ['user'];
 
@@ -63,7 +62,10 @@ class Doctor extends Model
     //---------------------relations-------------------------------------
 
     //---------------------Scopes-------------------------------------
-
+    public function scopeOfRequestStatus($query, $value): void
+    {
+        $query->where('request_status', $value);
+    }
     //---------------------Scopes-------------------------------------
 
 }

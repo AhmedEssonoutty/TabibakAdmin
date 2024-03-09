@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\V1\FilterController;
 use App\Http\Controllers\Api\V1\Mobile\ArticleController;
 use App\Http\Controllers\Api\V1\Mobile\AuthController;
 use App\Http\Controllers\Api\V1\Mobile\ConsultationController;
+use App\Http\Controllers\Api\V1\Mobile\DoctorController;
 use App\Http\Controllers\Api\V1\Mobile\FileController;
 use App\Http\Controllers\Api\V1\Mobile\PatientProfileController;
 use App\Http\Controllers\Api\V1\Mobile\PatientRelativeController;
@@ -12,6 +13,11 @@ Route::post('register-user-as-patient', [AuthController::class, 'registerUserAsP
 Route::post('send-verification-code', [AuthController::class, 'sendVerificationCode']);
 Route::post('login', [AuthController::class, 'login']);
 Route::get('filters/{model}', FilterController::class);
+
+// visitors apis (not authenticated)
+Route::group(['prefix' => 'patient'], static function () {
+    Route::apiResource('doctors', DoctorController::class)->only('index', 'show');
+});
 
 Route::group(['middleware' => 'auth:sanctum'], static function () {
     Route::post('logout', [AuthController::class, 'logout']);

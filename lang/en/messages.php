@@ -153,4 +153,6 @@ return [
     'total_limit' => 'Usage Per Coupon',
     "tabby" => "Tabby",
     "insurance" => "Insurance",
+    "approved" => "Approved",
+    "rejected" => "Rejected"
 ];
