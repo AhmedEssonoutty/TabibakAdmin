@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\V1\Mobile\DoctorController;
 use App\Http\Controllers\Api\V1\Mobile\FileController;
 use App\Http\Controllers\Api\V1\Mobile\PatientProfileController;
 use App\Http\Controllers\Api\V1\Mobile\PatientRelativeController;
+use App\Http\Controllers\Api\V1\Mobile\RateController;
 
 Route::post('register-user-as-patient', [AuthController::class, 'registerUserAsPatient']);
 Route::post('send-verification-code', [AuthController::class, 'sendVerificationCode']);
@@ -32,6 +33,7 @@ Route::group(['middleware' => 'auth:sanctum'], static function () {
         Route::put('update-main-info', [PatientProfileController::class, 'updateMainInfo']);
         Route::apiResource('relatives', PatientRelativeController::class);
         Route::apiResource('consultations', ConsultationController::class);
+        Route::apiResource('rates', RateController::class)->only('store', 'update', 'destroy');
     });
 
     Route::post('register-user-as-doctor', [AuthController::class, 'registerUserAsDoctor']);

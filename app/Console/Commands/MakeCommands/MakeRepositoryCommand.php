@@ -44,17 +44,17 @@ class MakeRepositoryCommand extends Command
         $this->modelObject = Str::camel($this->modelName);
         $this->modelName = ucfirst($this->modelObject);
         $this->info('Creating Repository for ' . $this->modelName);
-//        $this->info($this->createModel());
-//        $this->info($this->createRepository());
-//        $this->info($this->createContract());
-//        if ($this->web) {
-//            $this->info($this->createController('web'));
-//            $this->info($this->createRequest('web'));
-//        }
+        $this->info($this->createModel());
+        $this->info($this->createRepository());
+        $this->info($this->createContract());
+        if ($this->web) {
+            $this->info($this->createController('web'));
+            $this->info($this->createRequest('web'));
+        }
         if ($this->api) {
             $this->info($this->createController('api'));
-//            $this->info($this->createRequest('api'));
-//            $this->info($this->createResource());
+            $this->info($this->createRequest('api'));
+            $this->info($this->createResource());
         }
         return CommandAlias::SUCCESS;
     }
@@ -115,7 +115,7 @@ class MakeRepositoryCommand extends Command
         $ds = $this->ds;
         $controllerNamespace = 'Http' . $ds . 'Controllers' . $ds . $this->getNamespace();
         if ($type === 'api') {
-            $controllerNamespace = 'Http' . $ds . 'Controllers' . $ds . 'Api' . $ds . 'V1' . $ds. 'Web'. $ds . $this->getNamespace();
+            $controllerNamespace = 'Http' . $ds . 'Controllers' . $ds . 'Api' . $ds . 'V1' . $ds . $this->getNamespace();
         }
         return app_path() . $ds . $controllerNamespace;
     }

@@ -22,12 +22,12 @@ class RoleTableSeeder extends Seeder
                 $role->syncPermissions($permissions);
             }
             if ($role->name == RoleNameConstants::DOCTOR->value){
-                $doctorPermissions = ['create-article', 'edit-article', 'delete-article'];
+                $doctorPermissions = ['create-article', 'update-article', 'delete-article'];
                 $permissions = Permission::whereIn('name', $doctorPermissions)->get();
                 $role->syncPermissions($permissions);
             }
             if ($role->name == RoleNameConstants::PATIENT->value){
-                $patientPermissions = ['read-article'];
+                $patientPermissions = ['read-article', 'create-rate', 'edit-rate', 'delete-rate'];
                 $permissions = Permission::whereIn('name', $patientPermissions)->get();
                 $role->syncPermissions($permissions);
             }
