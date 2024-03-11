@@ -31,8 +31,8 @@
     </div>
     @yield('content')
 </section>
-@include('dashboard.layouts.scripts')
 @yield('scripts')
+@include('dashboard.layouts.scripts')
 </body>
 
 </html>

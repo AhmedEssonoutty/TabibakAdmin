@@ -6,20 +6,31 @@
 <script src="{{ URL::asset('assets/js/app.js') }}"></script>
 <script>
     function togglePasswordVisibility() {
-        const passwordInput = document.getElementById('password');
-        const passwordConfirmInput = document.getElementById('password_confirmation');
-        const eyeIcon = document.getElementById('eyeIcon');
+        let passwordInput = document.getElementById('password');
+        let eyeIcon = document.getElementById('eyeIcon');
 
         if (passwordInput.type === 'password') {
             passwordInput.type = 'text';
-            passwordConfirmInput.type = 'text';
             eyeIcon.classList.remove('bi-eye');
             eyeIcon.classList.add('bi-eye-slash');
         } else {
             passwordInput.type = 'password';
-            passwordConfirmInput.type = 'password';
             eyeIcon.classList.remove('bi-eye-slash');
             eyeIcon.classList.add('bi-eye');
+        }
+    }
+    function toggleConfirmPasswordVisibility() {
+        let passwordConfirmInput = document.getElementById('password_confirmation');
+        let eyeConfirmIcon = document.getElementById('eyeConfirmIcon');
+
+        if (passwordConfirmInput.type === 'password') {
+            passwordConfirmInput.type = 'text';
+            eyeConfirmIcon.classList.remove('bi-eye');
+            eyeConfirmIcon.classList.add('bi-eye-slash');
+        } else {
+            passwordConfirmInput.type = 'password';
+            eyeConfirmIcon.classList.remove('bi-eye-slash');
+            eyeConfirmIcon.classList.add('bi-eye');
         }
     }
 
