@@ -64,6 +64,11 @@ class Doctor extends Model
     {
         return $this->morphMany(Rate::class, 'rateable');
     }
+
+    public function complaints(): MorphMany
+    {
+        return $this->morphMany(Complaint::class, 'complaintable');
+    }
     //---------------------relations-------------------------------------
 
     //---------------------Scopes-------------------------------------

@@ -27,7 +27,8 @@ class RoleTableSeeder extends Seeder
                 $role->syncPermissions($permissions);
             }
             if ($role->name == RoleNameConstants::PATIENT->value){
-                $patientPermissions = ['read-article', 'create-rate', 'edit-rate', 'delete-rate'];
+                $patientPermissions = ['read-article', 'create-rate', 'edit-rate', 'delete-rate',
+                    'read-rate', 'create-complaint', 'edit-complaint', 'delete-complaint', 'read-complaint'];
                 $permissions = Permission::whereIn('name', $patientPermissions)->get();
                 $role->syncPermissions($permissions);
             }
