@@ -48,7 +48,7 @@
                 @if(auth()->user()->can('read-role') || auth()->user()->can('view-all-role'))
                 <li class="nav-item">
                     <a href="{{route('roles.index')}}" @class(['nav-link', 'menu-link',
-                    'active' => request()->routeIs('roles.index', 'roles.create', 'roles.edit')])>
+                    'active' => request()->routeIs('roles.index', 'roles.show', 'roles.create', 'roles.edit')])>
                         <i class="bi bi-sign-stop"></i>
                         <span data-key="t-dashboard">{{ __('messages.roles') }}</span>
                     </a>
@@ -58,7 +58,7 @@
                 @if(auth()->user()->can('read-user') || auth()->user()->can('view-all-user'))
                 <li class="nav-item">
                     <a href="{{route('users.index')}}" @class(['nav-link', 'menu-link',
-                    'active' => request()->routeIs('users.index', 'users.create', 'users.edit')])>
+                    'active' => request()->routeIs('users.index', 'users.show', 'users.create', 'users.edit')])>
                         <i class="bi bi-person"></i>
                         <span data-key="t-dashboard">{{ __('messages.users') }}</span>
                     </a>
@@ -68,7 +68,7 @@
                 @if(auth()->user()->can('read-academic-degree') || auth()->user()->can('view-all-academic-degree'))
                 <li class="nav-item">
                     <a href="{{route('academic-degrees.index')}}" @class(['nav-link', 'menu-link',
-                    'active' => request()->routeIs('academic-degrees.index', 'academic-degrees.create',
+                    'active' => request()->routeIs('academic-degrees.index', 'academic-degrees.show', 'academic-degrees.create',
                      'academic-degrees.edit')])>
                         <i class="bi bi-book"></i>
                         <span data-key="t-dashboard">{{ __('messages.academic_degrees') }}</span>
@@ -79,7 +79,7 @@
                 @if(auth()->user()->can('read-medical-speciality') || auth()->user()->can('view-all-medical-speciality'))
                     <li class="nav-item">
                         <a href="{{route('medical-specialities.index')}}" @class(['nav-link', 'menu-link',
-                    'active' => request()->routeIs('medical-specialities.index', 'medical-specialities.create',
+                    'active' => request()->routeIs('medical-specialities.index', 'medical-specialities.show', 'medical-specialities.create',
                      'medical-specialities.edit')])>
                             <i class="bi bi-journal-medical"></i>
                             <span data-key="t-dashboard">{{ __('messages.medical_specialities') }}</span>
@@ -90,7 +90,7 @@
                 @if(auth()->user()->can('read-vendor-service') || auth()->user()->can('view-all-vendor-service'))
                     <li class="nav-item">
                         <a href="{{route('vendor-services.index')}}" @class(['nav-link', 'menu-link',
-                    'active' => request()->routeIs('vendor-services.index', 'vendor-services.create',
+                    'active' => request()->routeIs('vendor-services.index', 'vendor-services.show', 'vendor-services.create',
                      'vendor-services.edit')])>
                             <i class="bi bi-box-seam-fill"></i>
                             <span data-key="t-dashboard">{{ __('messages.vendor_services') }}</span>
@@ -101,7 +101,7 @@
                 @if(auth()->user()->can('read-disease') || auth()->user()->can('view-all-disease'))
                     <li class="nav-item">
                         <a href="{{route('diseases.index')}}" @class(['nav-link', 'menu-link',
-                    'active' => request()->routeIs('diseases.index', 'diseases.create',
+                    'active' => request()->routeIs('diseases.index', 'diseases.show', 'diseases.create',
                      'diseases.edit')])>
                             <i class="bi bi-activity"></i>
                             <span data-key="t-dashboard">{{ __('messages.disease_list') }}</span>
@@ -112,7 +112,7 @@
                 @if(auth()->user()->can('read-patient') || auth()->user()->can('view-all-patient'))
                     <li class="nav-item">
                         <a href="{{route('patients.index')}}" @class(['nav-link', 'menu-link',
-                    'active' => request()->routeIs('patients.index', 'patients.create',
+                    'active' => request()->routeIs('patients.index', 'patients.show', 'patients.create',
                      'patients.edit')])>
                             <i class="bi bi-person-circle"></i>
                             <span data-key="t-dashboard">{{ __('messages.patients') }}</span>
@@ -123,7 +123,7 @@
                 @if(auth()->user()->can('read-doctor') || auth()->user()->can('view-all-doctor'))
                     <li class="nav-item">
                         <a href="{{route('doctors.index')}}" @class(['nav-link', 'menu-link',
-                    'active' => request()->routeIs('doctors.index', 'doctors.create',
+                    'active' => request()->routeIs('doctors.index', 'doctors.show', 'doctors.create',
                      'doctors.edit')])>
                             <i class="bi bi-journal-plus"></i>
                             <span data-key="t-dashboard">{{ __('messages.doctors') }}</span>
@@ -134,7 +134,7 @@
                 @if(auth()->user()->can('read-vendor') || auth()->user()->can('view-all-vendor'))
                     <li class="nav-item">
                         <a href="{{route('vendors.index')}}" @class(['nav-link', 'menu-link',
-                    'active' => request()->routeIs('vendors.index', 'vendors.create',
+                    'active' => request()->routeIs('vendors.index', 'vendors.show', 'vendors.create',
                      'vendors.edit')])>
                             <i class="bi bi-shop"></i>
                             <span data-key="t-dashboard">{{ __('messages.vendors') }}</span>
@@ -145,7 +145,7 @@
                 @if(auth()->user()->can('read-article') || auth()->user()->can('view-all-article'))
                     <li class="nav-item">
                         <a href="{{route('articles.index')}}" @class(['nav-link', 'menu-link',
-                    'active' => request()->routeIs('articles.index', 'articles.create', 'articles.edit')])>
+                    'active' => request()->routeIs('articles.index', 'articles.show', 'articles.create', 'articles.edit')])>
                             <i class="bi bi-postcard"></i>
                             <span data-key="t-dashboard">{{ __('messages.articles') }}</span>
                         </a>
@@ -155,7 +155,7 @@
                 @if(auth()->user()->can('read-faq-subject') || auth()->user()->can('view-all-faq-subject'))
                     <li class="nav-item">
                         <a href="{{route('faq-subjects.index')}}" @class(['nav-link', 'menu-link',
-                    'active' => request()->routeIs('faq-subjects.index', 'faq-subjects.create',
+                    'active' => request()->routeIs('faq-subjects.index', 'faq-subjects.show', 'faq-subjects.create',
                      'faq-subjects.edit')])>
                             <i class="bi bi-patch-question-fill"></i>
                             <span data-key="t-dashboard">{{ __('messages.faq_subjects') }}</span>
@@ -166,7 +166,7 @@
                 @if(auth()->user()->can('read-faq') || auth()->user()->can('view-all-faq'))
                     <li class="nav-item">
                         <a href="{{route('faqs.index')}}" @class(['nav-link', 'menu-link',
-                    'active' => request()->routeIs('faqs.index', 'faqs.create', 'faqs.edit')])>
+                    'active' => request()->routeIs('faqs.index', 'faqs.show', 'faqs.create', 'faqs.edit')])>
                             <i class="bi bi-question-octagon"></i>
                             <span data-key="t-dashboard">{{ __('messages.faqs') }}</span>
                         </a>
@@ -176,7 +176,7 @@
                 @if(auth()->user()->can('read-coupon') || auth()->user()->can('view-all-coupon'))
                     <li class="nav-item">
                         <a href="{{route('coupons.index')}}" @class(['nav-link', 'menu-link',
-                    'active' => request()->routeIs('coupons.index', 'coupons.create',
+                    'active' => request()->routeIs('coupons.index', 'coupons.show', 'coupons.create',
                      'coupons.edit')])>
                             <i class="bi bi-card-text"></i>
                             <span data-key="t-dashboard">{{ __('messages.coupons') }}</span>

@@ -2,6 +2,9 @@
     <input class="form-check-input active-resource" type="checkbox" data-id="{{$resource->id}}"
     @checked($resource->is_active)>
 </div>
+<a href="{{route("$route.show", $resource->id)}}" class="link-success">
+    {{__('messages.show')}} <i class="bi bi-eye"></i>
+</a>
 <a href="{{route("$route.edit", $resource->id)}}" class="link-info">
     {{__('messages.edit')}} <i class="bi bi-pencil-fill"></i>
 </a>
