@@ -167,6 +167,8 @@ return [
     "rejected" => "Rejected",
     "approve" => "Approve",
     "reject" => "Reject",
+    "profile" => "Profile",
+    "logout" => "Logout",
     "errors" => [
         "doctor_request_pending" => "Doctor Request Is Not Pending"
     ],

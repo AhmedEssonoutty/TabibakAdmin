@@ -25,7 +25,9 @@
                     <div class="dropdown topbar-head-dropdown topbar-tag-dropdown justify-content-end">
                         <button type="button" class="btn btn-icon btn-topbar text-reset rounded-circle fs-14 fw-medium"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            @switch(Session::get('lang'))
+                            {{--
+                            @switch(app()->getLocale())
+
                                 @case('ru')
                                     <img src="{{ URL::asset('/assets/images/flags/russia.svg') }}" class="rounded-circle me-2"
                                         alt="Header Language" height="16">
@@ -68,19 +70,57 @@
                                     <span id="lang-name">عربى</span>
                                 @break
 
+                                @case('sa')
+                                    <img src="{{ URL::asset('/assets/images/flags/sa.svg') }}" class="rounded-circle me-2"
+                                        alt="Header Language" height="16">
+                                    <span id="lang-name">عربى</span>
+                                @break
+
                                 @default
                                     <img src="{{ URL::asset('/assets/images/flags/us.svg') }}" class="rounded-circle me-2"
                                         alt="Header Language" height="16">
                                     <span id="lang-name">English</span>
                             @endswitch
+                            --}}
+
+                            @switch(app()->getLocale())
+                                @case('ar')
+                                    @php($lang = 'العربية')
+                                    @break
+                                @default
+                                    @php($lang = 'English')
+                                    @break
+                            @endswitch
+
+                            <img src="{{ URL::asset('assets/images/flags/' . app()->getLocale() .'.svg') }}" class="rounded-circle me-2"
+                                 alt="Header Language" height="18">
+                            <span id="lang-name">{{ $lang }}</span>
                         </button>
                         <div class="dropdown-menu dropdown-menu-end">
+                            @foreach(\Mcamara\LaravelLocalization\Facades\LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                                <!-- item-->
+                                <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}" class="dropdown-item notify-item language py-2" title="{{ $properties['native'] }}">
+                                    <img src="{{ URL::asset('assets/images/flags/' . $localeCode .'.svg') }}" alt="{{ $properties['native'] . '-image' }}"
+                                         class="me-2 rounded-circle" height="18">
+                                    <span class="align-middle">{{ $properties['native'] }}</span>
+                                </a>
+                            @endforeach
+
+                            {{--
                             <!-- item-->
                             <a href="{{ url('index/en') }}" class="dropdown-item notify-item language py-2"
                                 data-lang="en" title="English">
                                 <img src="{{ URL::asset('assets/images/flags/us.svg') }}" alt="user-image"
                                     class="me-2 rounded-circle" height="18">
                                 <span class="align-middle">English</span>
+                            </a>
+
+                            <!-- item-->
+                            <a href="{{ url('index/sa') }}" class="dropdown-item notify-item language"
+                               data-lang="ae" title="Arabic">
+                                <img src="{{ URL::asset('assets/images/flags/sa.svg') }}" alt="user-image"
+                                     class="me-2 rounded-circle" height="18">
+                                <span class="align-middle">عربى</span>
                             </a>
 
                             <!-- item-->
@@ -130,12 +170,26 @@
                                     class="me-2 rounded-circle" height="18">
                                 <span class="align-middle">français</span>
                             </a>
-                            <!-- item-->
-                            <a href="{{ url('index/sa') }}" class="dropdown-item notify-item language"
-                                data-lang="ae" title="Arabic">
-                                <img src="{{ URL::asset('assets/images/flags/sa.svg') }}" alt="user-image"
-                                    class="me-2 rounded-circle" height="18">
-                                <span class="align-middle">عربى</span>
+                            --}}
+                        </div>
+                    </div>
+                    <hr class="vr d-none d-lg-block">
+                    <div class="dropdown topbar-head-dropdown topbar-tag-dropdown justify-content-end">
+                        <button type="button" class="btn btn-icon btn-topbar text-reset rounded-circle fs-14 fw-medium"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="{{ asset(auth()->user()->avatar ? 'storage/images/users/' . auth()->user()->avatar : 'storage/images/users/default.jpg') }}" class="rounded-circle me-2"
+                                 alt="Header Language" height="22">
+                            <span id="lang-name">{{ ucfirst(auth()->user()->name) }}</span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            {{--item--}}
+                            <a class="dropdown-item" href="">
+                                <i class="bi bi-gear me-2"></i>
+                                <span class="align-middle">@lang('messages.profile')</span>
+                            </a>
+                            <a class="dropdown-item" href="{{ route('logout') }}">
+                                <i class="bi bi-box-arrow-right me-2"></i>
+                                <span class="align-middle">@lang('messages.logout')</span>
                             </a>
                         </div>
                     </div>
