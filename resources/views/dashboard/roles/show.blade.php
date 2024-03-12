@@ -1,9 +1,9 @@
 @extends('dashboard.layouts.master')
 @section('title')
-    {{__('messages.user')}}
+    {{__('messages.role')}}
 @endsection
 @section('content')
-    <x-breadcrumb title="{{__('messages.user_details')}}" pagetitle="{{__('messages.users')}}" route="{{route('users.index')}}"/>
+    <x-breadcrumb title="{{__('messages.role_details')}}" pagetitle="{{__('messages.roles')}}" route="{{route('roles.index')}}"/>
     <div class="row">
         <div class="col-12">
             <div class="card p-2">

@@ -26,6 +26,7 @@ return [
     "add_new" => "Add New",
     "add_role" => "Add New Role",
     "edit_role" => "Edit Role",
+    "role_details" => "Role Details",
     "add_user" => "Add New User",
     "edit_user" => "Edit User",
     "user_details" => "User Details",
