@@ -57,6 +57,10 @@ return [
         'req' => 'required|date',
         'null' => 'nullable|date',
     ],
+    'day' => [
+        'req' => 'required|in:saturday,sunday,monday,tuesday,wednesday,thursday,friday',
+        'null' => 'nullable|in:saturday,sunday,monday,tuesday,wednesday,thursday,friday',
+    ],
     'time' => [
         'req' => 'required|date_format:H:i',
         'null' => 'nullable|date_format:H:i'

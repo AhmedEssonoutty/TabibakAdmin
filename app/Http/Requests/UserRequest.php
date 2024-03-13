@@ -23,7 +23,7 @@ class UserRequest extends FormRequest
 
     public static function prepareUserForRoles($validated, $role): array
     {
-        $validated['user']['name'] = $validated['name'];
+        $validated['user']['name'] = $validated['name'] ?? null;
         $validated['user']['email'] = $validated['email'] ?? null;
         $validated['user']['phone'] = $validated['phone'] ?? null;
         $validated['user']['password'] = $validated['password'] ?? null;

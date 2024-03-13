@@ -32,6 +32,15 @@ class DoctorRepository extends BaseRepository implements DoctorContract
         if (isset($attributes['specialities'])) {
             $model->medicalSpecialities()->sync($attributes['specialities']);
         }
+        if (isset($attributes['files'])) {
+            $model->attachments()->sync($attributes['files']);
+        }
+        if (isset($attributes['schedule_days'])) {
+            foreach ($attributes['schedule_days'] as $day) {
+                $day['doctor_id'] = $model->id;
+                resolve(DoctorScheduleDayRepository::class)->create($day);
+            }
+        }
         return $model;
     }
 }

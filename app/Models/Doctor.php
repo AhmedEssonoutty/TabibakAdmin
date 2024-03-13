@@ -10,6 +10,8 @@ use App\Traits\SearchTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Translatable\HasTranslations;
@@ -19,7 +21,8 @@ class Doctor extends Model
     use SoftDeletes, ModelTrait, SearchTrait, SoftDeletes, HasTranslations;
     public const ADDITIONAL_PERMISSIONS = [];
     protected $fillable = ['user_id', 'academic_degree_id', 'national_id', 'city_id', 'university', 'bio',
-        'urgent_consultation_enabled', 'with_appointment_consultation_enabled', 'experience_years',
+        'urgent_consultation_enabled', 'with_appointment_consultation_enabled', 'experience_years', 'consultation_period',
+        'reminder_before_consultation'. 'urgent_consultation_price', 'with_appointment_consultation_price',
         'request_status', 'medical_id', 'is_active'];
     protected array $filters = ['keyword', 'requestStatus'];
     protected array $searchable = ['user.name'];
@@ -68,6 +71,16 @@ class Doctor extends Model
     public function complaints(): MorphMany
     {
         return $this->morphMany(Complaint::class, 'complaintable');
+    }
+
+    public function scheduleDays(): HasMany
+    {
+        return $this->hasMany(DoctorScheduleDay::class);
+    }
+
+    public function scheduleDaysShifts(): HasManyThrough
+    {
+        return $this->hasManyThrough(DoctorScheduleDayShift::class, DoctorScheduleDay::class);
     }
     //---------------------relations-------------------------------------
 
