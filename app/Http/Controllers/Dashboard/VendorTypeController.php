@@ -55,7 +55,7 @@ class VendorTypeController extends BaseWebController
     public function store(VendorTypeRequest $request): RedirectResponse
     {
         $this->contract->create($request->validated());
-        return $this->redirectBack()->with('success', __('messages.actions_messages.create_success'));
+        return $this->redirectToIndex()->with('success', __('messages.actions_messages.create_success'));
     }
 
     /**
@@ -93,7 +93,7 @@ class VendorTypeController extends BaseWebController
     public function update(VendorTypeRequest $request, VendorType $vendorType): RedirectResponse
     {
         $this->contract->update($vendorType, $request->validated());
-        return $this->redirectBack()->with('success', __('messages.actions_messages.update_success'));
+        return $this->redirectToIndex()->with('success', __('messages.actions_messages.update_success'));
     }
 
     /**

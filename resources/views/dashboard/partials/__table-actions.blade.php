@@ -1,5 +1,5 @@
 <div class="form-check form-switch d-inline">
-    <input class="form-check-input active-resource" type="checkbox" data-id="{{$resource->id}}"
+    <input class="form-check-input active-resource" type="checkbox" data-activation="{{$resource->is_active}}" data-id="{{$resource->id}}"
     @checked($resource->is_active)>
 </div>
 <a href="{{route("$route.show", $resource->id)}}" class="link-success">
@@ -43,6 +43,7 @@
             $('.active-resource').on('change', function(e) {
                 e.preventDefault();
                 let id = $(this).data('id');
+                let activation = $(this).data('activation');
                 Swal.fire({
                     title: 'Are you sure?',
                     text: "You want to change this resource activation!",
@@ -55,7 +56,11 @@
                     if (result.isConfirmed && result.value) {
                         $('#activeResourceForm-' + id).submit();
                     } else {
-                        $(this).prop('checked', true);
+                        if (activation === 1) {
+                            $(this).prop('checked', true);
+                        } else {
+                            $(this).prop('checked', false);
+                        }
                     }
                 })
             })

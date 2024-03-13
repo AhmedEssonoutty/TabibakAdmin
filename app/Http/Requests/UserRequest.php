@@ -32,6 +32,16 @@ class UserRequest extends FormRequest
         return $validated;
     }
 
+    public function validated($key = null, $default = null)
+    {
+        $validated = parent::validated($key, $default);
+        $role = resolve(RoleContract::class)->findBy('name', $validated['role_id'])->name;
+        if ($this->route('user')) {
+            $this->route('user')->removeRole($role);
+        }
+        return self::prepareUserForRoles($validated, $role);
+    }
+
     public function passedValidation(): void
     {
         $this->merge([
@@ -54,6 +64,7 @@ class UserRequest extends FormRequest
             'email' => sprintf(config('validations.email.req'), 'users', 'email').','.$this->route('user')?->id,
             'phone' => config('validations.phone.req').'|unique:users,phone,'.$this->route('user')?->id,
             'image' =>  'nullable|image|mimetypes:image/jpeg,image/png',
+            'role_id' =>  'required|exists:roles,id,is_active,1',
         ];
 
         if ($this->getMethod() === 'POST') {

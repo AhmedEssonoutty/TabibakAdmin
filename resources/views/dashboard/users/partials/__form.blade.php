@@ -61,7 +61,7 @@
                                 </div>
                             </div>
                             <div class="card-body pt-2 pb-3">
-                                {!! Form::file('image', ['class' => 'form-control', 'accept' => 'image/jpeg, image/png']) !!}
+                                {!! Form::file('image', ['class' => 'form-control', 'accept' => 'image/jpeg, image/png', 'value' => old('image')]) !!}
                                 @error("avatar")
                                 <span class="text-danger">{{$message}}</span>
                                 @enderror
@@ -92,13 +92,13 @@
                                         <div class="col-lg-6">
                                             <!-- Inline Switches -->
                                             <div class="form-check form-switch form-check-inline" dir="ltr">
-                                                <input type="radio" name="role_id" class="form-check-input" value="{{$role->id}}" id="Per{{$role->id}}">
+                                                <input type="radio" name="role_id" class="form-check-input" value="{{$role->id}}" id="Per{{$role->id}}" {{ old('role_id') == $role->id ? 'checked' : ''}}>
                                                 <label class="form-check-label" for="Per{{$role->id}}">{{$role->name}}</label>
                                             </div>
                                         </div>
                                         <!--end col-->
                                     @endforeach
-                                    @error("role")
+                                    @error("role_id")
                                     <span class="text-danger">{{$message}}</span>
                                     @enderror
                                 </div>

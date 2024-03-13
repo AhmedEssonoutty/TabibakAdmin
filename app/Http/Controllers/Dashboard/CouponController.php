@@ -62,7 +62,7 @@ class CouponController extends BaseWebController
     public function store(CouponRequest $request): RedirectResponse
     {
         $this->contract->create($request->validated());
-        return $this->redirectBack()->with('success', __('messages.actions_messages.create_success'));
+        return $this->redirectToIndex()->with('success', __('messages.actions_messages.create_success'));
     }
 
     /**
@@ -102,7 +102,7 @@ class CouponController extends BaseWebController
     public function update(CouponRequest $request, Coupon $coupon): RedirectResponse
     {
         $this->contract->update($coupon, $request->validated());
-        return $this->redirectBack()->with('success', __('messages.actions_messages.update_success'));
+        return $this->redirectToIndex()->with('success', __('messages.actions_messages.update_success'));
     }
 
     /**

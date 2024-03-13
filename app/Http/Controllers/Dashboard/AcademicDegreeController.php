@@ -55,7 +55,7 @@ class AcademicDegreeController extends BaseWebController
     public function store(AcademicDegreeRequest $request): RedirectResponse
     {
         $this->contract->create($request->validated());
-        return $this->redirectBack()->with('success', __('messages.actions_messages.create_success'));
+        return $this->redirectToIndex()->with('success', __('messages.actions_messages.create_success'));
     }
 
     /**
@@ -93,7 +93,7 @@ class AcademicDegreeController extends BaseWebController
     public function update(AcademicDegreeRequest $request, AcademicDegree $academicDegree): RedirectResponse
     {
         $this->contract->update($academicDegree, $request->validated());
-        return $this->redirectBack()->with('success', __('messages.actions_messages.update_success'));
+        return $this->redirectToIndex()->with('success', __('messages.actions_messages.update_success'));
     }
 
     /**

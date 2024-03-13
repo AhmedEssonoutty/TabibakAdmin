@@ -57,7 +57,7 @@ class UserController extends BaseWebController
     public function store(UserRequest $request): RedirectResponse
     {
         $this->contract->create($request->validated());
-        return $this->redirectBack()->with('success', __('messages.actions_messages.create_success'));
+        return $this->redirectToIndex()->with('success', __('messages.actions_messages.create_success'));
     }
 
     /**
@@ -96,7 +96,7 @@ class UserController extends BaseWebController
     public function update(UserRequest $request, User $user): RedirectResponse
     {
         $this->contract->update($user, $request->validated());
-        return $this->redirectBack()->with('success', __('messages.actions_messages.update_success'));
+        return $this->redirectToIndex()->with('success', __('messages.actions_messages.update_success'));
     }
 
     /**

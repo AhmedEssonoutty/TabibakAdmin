@@ -61,7 +61,7 @@ class ArticleController extends BaseWebController
     public function store(ArticleRequest $request): RedirectResponse
     {
         $this->contract->create($request->validated());
-        return $this->redirectBack()->with('success', __('messages.actions_messages.create_success'));
+        return $this->redirectToIndex()->with('success', __('messages.actions_messages.create_success'));
     }
 
     /**
@@ -100,7 +100,7 @@ class ArticleController extends BaseWebController
     public function update(ArticleRequest $request, Article $article): RedirectResponse
     {
         $this->contract->update($article, $request->validated());
-        return $this->redirectBack()->with('success', __('messages.actions_messages.update_success'));
+        return $this->redirectToIndex()->with('success', __('messages.actions_messages.update_success'));
     }
 
     /**

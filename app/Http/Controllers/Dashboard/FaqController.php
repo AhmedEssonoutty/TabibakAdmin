@@ -59,7 +59,7 @@ class FaqController extends BaseWebController
     public function store(FaqRequest $request): RedirectResponse
     {
         $this->contract->create($request->validated());
-        return $this->redirectBack()->with('success', __('messages.actions_messages.create_success'));
+        return $this->redirectToIndex()->with('success', __('messages.actions_messages.create_success'));
     }
 
     /**
@@ -98,7 +98,7 @@ class FaqController extends BaseWebController
     public function update(FaqRequest $request, Faq $faq): RedirectResponse
     {
         $this->contract->update($faq, $request->validated());
-        return $this->redirectBack()->with('success', __('messages.actions_messages.update_success'));
+        return $this->redirectToIndex()->with('success', __('messages.actions_messages.update_success'));
     }
 
     /**

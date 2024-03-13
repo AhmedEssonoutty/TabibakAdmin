@@ -62,7 +62,7 @@ class RoleController extends BaseWebController
     public function store(RoleRequest $request): RedirectResponse
     {
         $this->contract->create($request->validated());
-        return $this->redirectBack()->with('success', __('messages.actions_messages.create_success'));
+        return $this->redirectToIndex()->with('success', __('messages.actions_messages.create_success'));
     }
 
     /**
@@ -106,7 +106,7 @@ class RoleController extends BaseWebController
     public function update(RoleRequest $request, Role $role): RedirectResponse
     {
         $this->contract->update($role, $request->validated());
-        return $this->redirectBack()->with('success', __('messages.actions_messages.update_success'));
+        return $this->redirectToIndex()->with('success', __('messages.actions_messages.update_success'));
     }
 
     /**

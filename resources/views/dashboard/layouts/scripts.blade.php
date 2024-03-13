@@ -64,6 +64,21 @@
                 });
             });
         });
+
+        const permissionCheckboxes = document.querySelectorAll('.permission-checkbox');
+        permissionCheckboxes.forEach(function (permissionCheckbox) {
+            permissionCheckbox.addEventListener('click', function () {
+                const allPermissionCheckboxes = this.closest('.collapse').querySelectorAll('.permission-checkbox');
+                const selectAllCheckbox = this.closest('.collapse').querySelector('.select-all-checkbox');
+                let allChecked = true;
+                allPermissionCheckboxes.forEach(function (checkbox) {
+                    if (!checkbox.checked) {
+                        allChecked = false;
+                    }
+                });
+                selectAllCheckbox.checked = allChecked;
+            });
+        });
     });
 </script>
 @stack('scripts')
