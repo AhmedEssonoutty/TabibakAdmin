@@ -83,6 +83,7 @@ Route::group([
         Route::resource('coupons', CouponController::class);
         Route::put('coupons/{coupon}/change-activation', [CouponController::class, 'changeActivation'])->name('coupons.active');
 
+        Route::get('profile', [HomeController::class, 'profile'])->name('profile');
         Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     });
 });

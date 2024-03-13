@@ -183,7 +183,7 @@
                         </button>
                         <div class="dropdown-menu dropdown-menu-end">
                             {{--item--}}
-                            <a class="dropdown-item" href="">
+                            <a class="dropdown-item" href="{{ route('profile') }}">
                                 <i class="bi bi-gear me-2"></i>
                                 <span class="align-middle">@lang('messages.profile')</span>
                             </a>

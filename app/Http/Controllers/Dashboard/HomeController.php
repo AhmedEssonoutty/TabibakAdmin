@@ -41,7 +41,13 @@ class HomeController extends Controller
         ]));
     }
 
-    public function getVendorCount ($typeId)
+    public function profile()
+    {
+        $user = auth()->user();
+        return view('dashboard.home.profile', compact(['user']));
+    }
+
+    private function getVendorCount ($typeId)
     {
         return Vendor::query()->whereHas('vendorType', function ($query) use ($typeId) {
             $query->where('id', $typeId);
