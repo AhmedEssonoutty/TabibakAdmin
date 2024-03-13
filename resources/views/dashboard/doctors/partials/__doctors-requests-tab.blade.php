@@ -10,7 +10,9 @@
                 <th scope="col">{{__('messages.medical_id')}}</th>
                 <th scope="col">{{__('messages.national_id')}}</th>
                 <th scope="col">{{__('messages.phone')}}</th>
+                <th scope="col">{{__('messages.activation')}}</th>
                 <th scope="col">{{__('messages.actions')}}</th>
+                <th scope="col">{{__('messages.request_actions')}}</th>
             </tr>
             </thead>
             <tbody>
@@ -24,16 +26,16 @@
                     <td>{{$resource->medical_id}}</td>
                     <td>{{$resource->national_id}}</td>
                     <td>{{$resource->user->phone}}</td>
+                    @include('dashboard.partials.__table-actions', ['resource' => $resource, 'route' => 'doctors'])
                     <td>
-                        @include('dashboard.partials.__table-actions', ['resource' => $resource, 'route' => 'doctors'])
-                        <a class="link-success approve-doctor cursor-pointer" data-id="{{$resource->id}}">
+                        <a class="link-success approve-doctor cursor-pointer px-2" data-id="{{$resource->id}}">
                             {{__('messages.approve')}} <i class="bi bi-check"></i>
                         </a>
                         <form action="{{route("doctors.approve", $resource->id)}}" class="d-inline" method="POST" id="approveResourceForm-{{$resource->id}}">
                             @csrf
                             @method('PUT')
                         </form>
-                        <a class="link-warning reject-doctor cursor-pointer" data-id="{{$resource->id}}">
+                        <a class="link-warning reject-doctor cursor-pointer px-2" data-id="{{$resource->id}}">
                             {{__('messages.reject')}} <i class="bi bi-sign-stop"></i>
                         </a>
                         <form action="{{route("doctors.reject", $resource->id)}}" class="d-inline" method="POST" id="rejectResourceForm-{{$resource->id}}">

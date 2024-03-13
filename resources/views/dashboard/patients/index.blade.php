@@ -22,6 +22,7 @@
                     <th scope="col">{{__('messages.name')}}</th>
                     <th scope="col">{{__('messages.national_id')}}</th>
                     <th scope="col">{{__('messages.phone')}}</th>
+                    <th scope="col">{{__('messages.activation')}}</th>
                     <th scope="col">{{__('messages.actions')}}</th>
                 </tr>
                 </thead>
@@ -34,9 +35,7 @@
                         <td>{{$resource->user->name}}</td>
                         <td>{{$resource->national_id}}</td>
                         <td>{{$resource->user->phone}}</td>
-                        <td>
-                            @include('dashboard.partials.__table-actions', ['resource' => $resource, 'route' => 'patients'])
-                        </td>
+                        @include('dashboard.partials.__table-actions', ['resource' => $resource, 'route' => 'patients'])
                     </tr>
                 @endforeach
                 </tbody>

@@ -19,6 +19,7 @@
                     <th scope="col">#</th>
                     <th scope="col">{{__('messages.question')}}</th>
                     <th scope="col">{{__('messages.creation_date')}}</th>
+                    <th scope="col">{{__('messages.activation')}}</th>
                     <th scope="col">{{__('messages.actions')}}</th>
                 </tr>
                 </thead>
@@ -30,9 +31,7 @@
                         </th>
                         <td>{{$resource->question}}</td>
                         <td>{{date_format($resource->created_at, 'd/m/Y')}}</td>
-                        <td>
-                            @include('dashboard.partials.__table-actions', ['resource' => $resource, 'route' => 'faqs'])
-                        </td>
+                        @include('dashboard.partials.__table-actions', ['resource' => $resource, 'route' => 'faqs'])
                     </tr>
                 @endforeach
                 </tbody>

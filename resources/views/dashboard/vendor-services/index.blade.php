@@ -20,6 +20,7 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">{{__('messages.name')}}</th>
+                    <th scope="col">{{__('messages.activation')}}</th>
                     <th scope="col">{{__('messages.actions')}}</th>
                 </tr>
                 </thead>
@@ -30,9 +31,7 @@
                             <a href="#" class="fw-semibold">#{{$loop->iteration}}</a>
                         </th>
                         <td>{{$resource->name}}</td>
-                        <td>
-                            @include('dashboard.partials.__table-actions', ['resource' => $resource, 'route' => 'vendor-services'])
-                        </td>
+                        @include('dashboard.partials.__table-actions', ['resource' => $resource, 'route' => 'vendor-services'])
                     </tr>
                 @endforeach
                 </tbody>

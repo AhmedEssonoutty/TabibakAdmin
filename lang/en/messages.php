@@ -18,6 +18,7 @@ return [
     "select" => "Select",
     "active" => "Active",
     "actions" => "Actions",
+    "request_actions" => "Request Actions",
     "create" => "Create",
     "show" => "Show",
     "edit" => "Edit",

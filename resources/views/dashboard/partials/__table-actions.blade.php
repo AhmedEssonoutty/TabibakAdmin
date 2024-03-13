@@ -1,24 +1,28 @@
-<div class="form-check form-switch d-inline">
-    <input class="form-check-input active-resource" type="checkbox" data-activation="{{$resource->is_active}}" data-id="{{$resource->id}}"
-    @checked($resource->is_active)>
-</div>
-<a href="{{route("$route.show", $resource->id)}}" class="link-success">
-    {{__('messages.show')}} <i class="bi bi-eye"></i>
-</a>
-<a href="{{route("$route.edit", $resource->id)}}" class="link-info">
-    {{__('messages.edit')}} <i class="bi bi-pencil-fill"></i>
-</a>
-<a class="link-danger delete-resource cursor-pointer" data-id="{{$resource->id}}">
-    {{__('messages.delete')}} <i class="bi bi-trash-fill"></i>
-</a>
-<form action="{{route("$route.destroy", $resource->id)}}" class="d-inline" method="POST" id="deleteResourceForm-{{$resource->id}}">
-    @csrf
-    @method('DELETE')
-</form>
-<form action="{{route("$route.active", $resource->id)}}" class="d-inline" method="POST" id="activeResourceForm-{{$resource->id}}">
-    @csrf
-    @method('PUT')
-</form>
+<td>
+    <div class="form-check form-switch d-inline">
+        <input class="form-check-input active-resource" type="checkbox" data-activation="{{$resource->is_active}}" data-id="{{$resource->id}}"
+            @checked($resource->is_active)>
+    </div>
+</td>
+<td>
+    <a href="{{route("$route.show", $resource->id)}}" class="link-success px-2">
+        {{__('messages.show')}} <i class="bi bi-eye"></i>
+    </a>
+    <a href="{{route("$route.edit", $resource->id)}}" class="link-info px-2">
+        {{__('messages.edit')}} <i class="bi bi-pencil-fill"></i>
+    </a>
+    <a class="link-danger delete-resource cursor-pointer px-2" data-id="{{$resource->id}}">
+        {{__('messages.delete')}} <i class="bi bi-trash-fill"></i>
+    </a>
+    <form action="{{route("$route.destroy", $resource->id)}}" class="d-inline" method="POST" id="deleteResourceForm-{{$resource->id}}">
+        @csrf
+        @method('DELETE')
+    </form>
+    <form action="{{route("$route.active", $resource->id)}}" class="d-inline" method="POST" id="activeResourceForm-{{$resource->id}}">
+        @csrf
+        @method('PUT')
+    </form>
+</td>
 
 @push('scripts')
     <script>

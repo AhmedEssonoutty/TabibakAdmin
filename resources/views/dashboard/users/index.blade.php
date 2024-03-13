@@ -21,6 +21,7 @@
                     <th scope="col">{{__('messages.email')}}</th>
                     <th scope="col">{{__('messages.phone')}}</th>
                     <th scope="col">{{__('messages.role')}}</th>
+                    <th scope="col">{{__('messages.activation')}}</th>
                     <th scope="col">{{__('messages.actions')}}</th>
                 </tr>
                 </thead>
@@ -38,9 +39,7 @@
                                 {{$role->name}}
                             @endforeach
                         </td>
-                        <td>
-                            @include('dashboard.partials.__table-actions', ['resource' => $resource, 'route' => 'users'])
-                        </td>
+                        @include('dashboard.partials.__table-actions', ['resource' => $resource, 'route' => 'users'])
                     </tr>
                 @endforeach
                 </tbody>

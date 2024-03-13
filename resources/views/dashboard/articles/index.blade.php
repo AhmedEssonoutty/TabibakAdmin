@@ -24,6 +24,7 @@
                     <th scope="col">{{__('messages.views')}}</th>
                     <th scope="col">{{__('messages.reports')}}</th>
                     <th scope="col">{{__('messages.publish')}}</th>
+                    <th scope="col">{{__('messages.activation')}}</th>
                     <th scope="col">{{__('messages.actions')}}</th>
                 </tr>
                 </thead>
@@ -49,9 +50,7 @@
                                 @method('PUT')
                             </form>
                         </td>
-                        <td>
-                            @include('dashboard.partials.__table-actions', ['resource' => $resource, 'route' => 'articles'])
-                        </td>
+                        @include('dashboard.partials.__table-actions', ['resource' => $resource, 'route' => 'articles'])
                     </tr>
                 @endforeach
                 </tbody>

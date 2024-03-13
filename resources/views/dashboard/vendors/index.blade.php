@@ -32,6 +32,7 @@
                     <th scope="col">{{__('messages.name')}}</th>
                     <th scope="col">{{__('messages.type')}}</th>
                     <th scope="col">{{__('messages.no_of_referrals')}}</th>
+                    <th scope="col">{{__('messages.activation')}}</th>
                     <th scope="col">{{__('messages.actions')}}</th>
                 </tr>
                 </thead>
@@ -44,9 +45,7 @@
                         <td>{{$resource->user->name}}</td>
                         <td>{{$resource->vendorType->name}}</td>
                         <td>{{$resource->no_of_referrals}}</td>
-                        <td>
-                            @include('dashboard.partials.__table-actions', ['resource' => $resource, 'route' => 'vendors'])
-                        </td>
+                        @include('dashboard.partials.__table-actions', ['resource' => $resource, 'route' => 'vendors'])
                     </tr>
                 @endforeach
                 </tbody>

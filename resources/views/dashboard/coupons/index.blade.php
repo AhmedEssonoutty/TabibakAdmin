@@ -24,6 +24,7 @@
                     <th scope="col">{{__('messages.discount_amount')}}</th>
                     <th scope="col">{{__('messages.valid_from')}}</th>
                     <th scope="col">{{__('messages.valid_to')}}</th>
+                    <th scope="col">{{__('messages.activation')}}</th>
                     <th scope="col">{{__('messages.actions')}}</th>
                 </tr>
                 </thead>
@@ -38,9 +39,7 @@
                         <td>{{$resource->discount_amount}}</td>
                         <td>{{date_format($resource->valid_from, 'd-m-Y')}}</td>
                         <td>{{date_format($resource->valid_to, 'd-m-Y')}}</td>
-                        <td>
-                            @include('dashboard.partials.__table-actions', ['resource' => $resource, 'route' => 'coupons'])
-                        </td>
+                        @include('dashboard.partials.__table-actions', ['resource' => $resource, 'route' => 'coupons'])
                     </tr>
                 @endforeach
                 </tbody>
