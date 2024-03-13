@@ -6,6 +6,7 @@
                 <div class="row g-3">
                     <div class="col-lg-6">
                         {{Form::label('name', __('messages.name'), ['class' => 'form-label'])}}
+                        <span class="text-danger fw-bold">*</span>
                         {!! Form::text('name' , $patient->user->name ?? '', ['class' => 'form-control']) !!}
                         @error("name")
                         <span class="text-danger">{{$message}}</span>
@@ -13,6 +14,7 @@
                     </div>
                     <div class="col-lg-6">
                         {{Form::label('date', __('messages.date_of_birth'), ['class' => 'form-label'])}}
+                        <span class="text-danger fw-bold">*</span>
                         {!! Form::date('date_of_birth' , $patient->date_of_birth ?? '', ['class' => 'form-control']) !!}
                         @error("date_of_birth")
                         <span class="text-danger">{{$message}}</span>
@@ -20,6 +22,7 @@
                     </div>
                     <div class="col-lg-6">
                         {{Form::label('phone', __('messages.phone'), ['class' => 'form-label'])}}
+                        <span class="text-danger fw-bold">*</span>
                         {!! Form::number('phone' , $patient->user->phone ?? '', ['class' => 'form-control', 'pattern' => '[0-9]', 'onkeypress' => 'return isNumberKey(event)']) !!}
                         @error("phone")
                         <span class="text-danger">{{$message}}</span>
@@ -34,6 +37,9 @@
                     </div>
                     <div class="col-lg-6">
                         {{Form::label('password', __('messages.password'), ['class' => 'form-label'])}}
+                        @if(request()->routeIs('patients.create'))
+                            <span class="text-danger fw-bold">*</span>
+                        @endif
                         {!! Form::password('password' , ['class' => 'form-control', 'placeholder' => 'Enter strong password']) !!}
                         <button class="btn btn-link position-absolute end-0 text-muted password-addon" style="top:30px"
                                 type="button" onclick="togglePasswordVisibility()"><i id="eyeIcon" class="bi bi-eye"></i></button>
@@ -43,6 +49,9 @@
                     </div>
                     <div class="col-lg-6">
                         {{Form::label('password_confirmation', __('messages.password_confirm'), ['class' => 'form-label'])}}
+                        @if(request()->routeIs('patients.create'))
+                            <span class="text-danger fw-bold">*</span>
+                        @endif
                         {!! Form::password('password_confirmation' , ['class' => 'form-control', 'placeholder' => 'Enter strong password']) !!}
                         <button class="btn btn-link position-absolute end-0 text-muted password-addon" style="top:30px"
                                 type="button" onclick="toggleConfirmPasswordVisibility()"><i id="eyeConfirmIcon" class="bi bi-eye"></i></button>

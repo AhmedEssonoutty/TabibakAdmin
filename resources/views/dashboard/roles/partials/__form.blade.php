@@ -6,15 +6,20 @@
                 <div class="row g-3">
                     <div class="col-lg-6">
                         {{Form::label('name', __('messages.name'), ['class' => 'form-label'])}}
+                        <span class="text-danger fw-bold">*</span>
                         {!! Form::text('name' , $role->name ?? '', ['class' => 'form-control']) !!}
                         @error("name")
                         <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
                     <div class="offset-6"></div>
+                    <div class="col-12">
+                        {{Form::label('name', __('messages.permissions'), ['class' => 'form-label'])}}
+                        <span class="text-danger fw-bold">*</span>
+                    </div>
                     @error("role_permissions")
                         <span class="text-danger">{{$message}}</span>
-                        @enderror
+                    @enderror
                     @foreach($permissionsModules as $module => $permissions)
                         <div class="col-lg-4">
                             <div class="card">

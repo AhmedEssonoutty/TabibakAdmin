@@ -6,6 +6,7 @@
                 <div class="row g-3">
                     <div class="col-lg-6">
                         {{Form::label('name', __('messages.name'), ['class' => 'form-label'])}}
+                        <span class="text-danger fw-bold">*</span>
                         {!! Form::text('name' , $doctor->user->name ?? '', ['class' => 'form-control']) !!}
                         @error("name")
                         <span class="text-danger">{{$message}}</span>
@@ -13,6 +14,7 @@
                     </div>
                     <div class="col-lg-6">
                         {{Form::label('academic_degree', __('messages.academic_degree'), ['class' => 'form-label'])}}
+                        <span class="text-danger fw-bold">*</span>
                         {!! Form::select('academic_degree_id', $academicDegrees->pluck('name', 'id')->prepend('' , ''),
                             $doctor->academic_degree_id ?? '',
                             ['class' => 'form-control']) !!}
@@ -22,6 +24,7 @@
                     </div>
                     <div class="col-lg-6">
                         {{Form::label('specialities', __('messages.specialities'), ['class' => 'form-label'])}}
+                        <span class="text-danger fw-bold">*</span>
                         {!! Form::select('specialities[]' ,$specialities->pluck('name', 'id'),
                             isset($doctor) ? $doctor->medicalSpecialities->pluck('id') : [],
                             ['class' => 'form-control', 'multiple' => true]) !!}
@@ -64,6 +67,7 @@
                     </div>
                     <div class="col-lg-6">
                         {{Form::label('phone', __('messages.phone'), ['class' => 'form-label'])}}
+                        <span class="text-danger fw-bold">*</span>
                         {!! Form::number('phone' , $doctor->user->phone ?? '', ['class' => 'form-control', 'pattern' => '[0-9]', 'onkeypress' => 'return isNumberKey(event)']) !!}
                         @error("phone")
                         <span class="text-danger">{{$message}}</span>
@@ -85,6 +89,9 @@
                     </div>
                     <div class="col-lg-6">
                         {{Form::label('password', __('messages.password'), ['class' => 'form-label'])}}
+                        @if(request()->routeIs('doctors.create'))
+                            <span class="text-danger fw-bold">*</span>
+                        @endif
                         {!! Form::password('password' , ['class' => 'form-control', 'placeholder' => 'Enter strong password']) !!}
                         <button class="btn btn-link position-absolute end-0 text-muted password-addon" style="top:30px"
                                 type="button" onclick="togglePasswordVisibility()"><i id="eyeIcon" class="bi bi-eye"></i></button>
@@ -94,6 +101,9 @@
                     </div>
                     <div class="col-lg-6">
                         {{Form::label('password_confirmation', __('messages.password_confirm'), ['class' => 'form-label'])}}
+                        @if(request()->routeIs('doctors.create'))
+                            <span class="text-danger fw-bold">*</span>
+                        @endif
                         {!! Form::password('password_confirmation' , ['class' => 'form-control', 'placeholder' => 'Enter strong password']) !!}
                         <button class="btn btn-link position-absolute end-0 text-muted password-addon" style="top:30px"
                                 type="button" onclick="toggleConfirmPasswordVisibility()"><i id="eyeConfirmIcon" class="bi bi-eye"></i></button>
