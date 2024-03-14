@@ -9,19 +9,19 @@
                 <div class="card p-2">
                     <div class="card-body">
                         <div class="row py-2">
-                            <div class="fw-bold col-6">{{__('messages.subject')}}</div>
+                            <div class="col-6">{{__('messages.subject')}}</div>
                             <div class="col-6">{{$resource->faqSubject->name}}</div>
                         </div>
                         <div class="row py-2">
-                            <div class="fw-bold col-6">{{__('messages.question')}}</div>
+                            <div class="col-6">{{__('messages.question')}}</div>
                             <div class="col-6">{{$resource->question}}</div>
                         </div>
                         <div class="row py-2">
-                            <div class="fw-bold col-6">{{__('messages.answer')}}</div>
+                            <div class="col-6">{{__('messages.answer')}}</div>
                             <div class="col-6">{{$resource->answer}}</div>
                         </div>
                         <div class="row py-2">
-                            <div class="fw-bold col-6">{{__('messages.created')}}</div>
+                            <div class="col-6">{{__('messages.created')}}</div>
                             <div class="col-6">{{date_format($resource->created_at, 'd-m-Y')}}</div>
                         </div>
                     </div>
