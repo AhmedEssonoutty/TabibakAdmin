@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Constants\ComplaintTypeConstants;
 use App\Traits\ModelTrait;
 use App\Traits\SearchTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -14,13 +15,17 @@ class Complaint extends Model
 {
     use SoftDeletes, ModelTrait, SearchTrait, SoftDeletes, HasTranslations;
     public const ADDITIONAL_PERMISSIONS = [];
-    protected $fillable = ['user_id', 'complaintable_id', 'complaintable_type', 'title', 'description', 'status', 'is_active'];
+    protected $fillable = ['user_id', 'type', 'complaintable_id', 'complaintable_type',
+        'title', 'description', 'status', 'is_active'];
     protected array $filters = ['keyword'];
     protected array $searchable = [];
     protected array $dates = [];
     public array $filterModels = [];
     public array $filterCustom = [];
     public array $translatable = [];
+    public $casts = [
+        'type' => ComplaintTypeConstants::class
+    ];
 
     //---------------------relations-------------------------------------
     public function user(): BelongsTo

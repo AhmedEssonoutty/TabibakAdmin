@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Constants\ComplaintTypeConstants;
 use App\Constants\FileConstants;
 use App\Traits\ModelTrait;
 use App\Traits\SearchTrait;
@@ -19,11 +20,11 @@ class Article extends Model
     public const ADDITIONAL_PERMISSIONS = [];
     protected $fillable = ['author_id','title', 'content', 'medical_speciality_id', 'publish_date',
         'publisher_id', 'views', 'likes', 'dislikes', 'reports', 'is_active'];
-    protected array $filters = ['keyword'];
+    protected array $filters = ['keyword', 'medicalSpeciality', 'isPublished'];
     protected array $searchable = ['title', 'content'];
     protected array $dates = ['publish_date'];
-    public array $filterModels = [];
-    public array $filterCustom = [];
+    public array $filterModels = ['MedicalSpeciality'];
+    public array $filterCustom = ['complaintsTypes'];
     public array $translatable = ['title', 'content'];
 
     //---------------------relations-------------------------------------
@@ -55,7 +56,15 @@ class Article extends Model
     //---------------------relations-------------------------------------
 
     //---------------------Scopes-------------------------------------
+    public function scopeOfMedicalSpeciality($query, $medicalSpecialityId)
+    {
+        return $query->whereIn('medical_speciality_id', (array)$medicalSpecialityId);
+    }
 
+    public function scopeIsPublished($query)
+    {
+        return $query->whereNotNull('publish_date');
+    }
     //---------------------Scopes-------------------------------------
 
     //---------------------Attributes-------------------------------------
@@ -67,4 +76,8 @@ class Article extends Model
     }
     //---------------------Attributes-------------------------------------
 
+    public static function complaintsTypes(): array
+    {
+        return ComplaintTypeConstants::valuesCollection();
+    }
 }

@@ -25,6 +25,10 @@ class ComplaintResource extends BaseResource
             'updated_at' => $this->updated_at?->format('Y-m-d H:i:s'),
         ];
         $this->full = [
+            'type' => [
+                'value' => $this->type?->value,
+                'label' => $this->type?->label(),
+            ]
         ];
         $this->relations = [
             'user' => $this->relationLoaded('user') ? new UserResource($this->user) : null,

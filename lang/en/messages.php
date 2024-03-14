@@ -178,5 +178,8 @@ return [
     "confirm" => [
         "doctor_approve" => "Do you want to approve this doctor request?",
         "doctor_reject" => "Do you want to reject this doctor request?"
-    ]
+    ],
+    "offensive" => "Offensive",
+    "wrong_information" => "Wrong Information",
+    "spam" => "Spam",
 ];

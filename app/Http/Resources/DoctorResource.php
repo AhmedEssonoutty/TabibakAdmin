@@ -36,7 +36,8 @@ class DoctorResource extends BaseResource
             'bio' => $this->bio,
             'urgent_consultation_enabled' => $this->urgent_consultation_enabled,
             'with_appointment_consultation_enabled' => $this->with_appointment_consultation_enabled,
-            'experience_years' => $this->experience_years
+            'experience_years' => $this->experience_years,
+            'price' => $this->urgent_consultation_price
         ];
         $this->relations = [
             'user' => $this->relationLoaded('user') ? new UserResource($this->user) : null,
