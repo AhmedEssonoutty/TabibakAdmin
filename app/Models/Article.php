@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Constants\ComplaintTypeConstants;
 use App\Constants\FileConstants;
 use App\Traits\ModelTrait;
 use App\Traits\SearchTrait;
@@ -23,7 +24,7 @@ class Article extends Model
     protected array $searchable = ['title', 'content'];
     protected array $dates = ['publish_date'];
     public array $filterModels = ['MedicalSpeciality'];
-    public array $filterCustom = [];
+    public array $filterCustom = ['complaintsTypes'];
     public array $translatable = ['title', 'content'];
 
     //---------------------relations-------------------------------------
@@ -75,4 +76,8 @@ class Article extends Model
     }
     //---------------------Attributes-------------------------------------
 
+    public static function complaintsTypes(): array
+    {
+        return ComplaintTypeConstants::valuesCollection();
+    }
 }
