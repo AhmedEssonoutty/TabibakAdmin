@@ -8,18 +8,34 @@
         <div class="col-12">
             <div class="card p-2">
                 <div class="card-body">
-                    <h5 class="card-title">{{ucfirst($role->name)}}</h5>
-                    <p class="card-text">{{__('messages.created')}}: {{date_format($role->created_at, 'd-m-Y')}}</p>
-
-                    <h5 class="card-title">{{__('messages.permissions')}}</h5>
+                    <div class="py-2">
+                        <h5 class="card-title">{{ucfirst($role->name)}}</h5>
+                        <p class="card-text">{{__('messages.created')}}: {{date_format($role->created_at, 'd-m-Y')}}</p>
+                    </div>
+                    <div class="py-2">
+                        <h5 class="card-title">{{__('messages.permissions')}}</h5>
+                    </div>
                     <div class="row">
-                        @foreach($permissionsModules as $model)
-                            <div class="col-md-4 p-2">
-                                <span class="">{{$model[0]['model']}}</span>
-                                <div class="border rounded px-3 py-4">
-                                    @foreach($model as $permission)
-                                        <span class="card-text d-block">{{explode('-', $permission->name)[0]}}</span>
-                                    @endforeach
+                        @foreach($role->permissions->groupBy('model') as $module)
+                            <div class="col-lg-4">
+                                <div class="card">
+                                    <div class="card-header" id="collapsibleCardHeading{{$module['0']['model']}}">
+                                        <h5 class="mb-0">
+                                            <a href="#" class="btn btn-link" data-bs-toggle="collapse"
+                                               data-bs-target="#{{$module['0']['model']}}" aria-expanded="true"
+                                               aria-controls="{{$module['0']['model']}}">
+                                                {{$module[0]['model']}}
+                                            </a>
+                                        </h5>
+                                    </div>
+                                    <div id="{{$module['0']['model']}}" class="collapse show"
+                                         aria-labelledby="collapsibleCardHeading{{$module['0']['model']}}"  @style(['min-height:143px;'])>
+                                        <div class="card-body">
+                                            @foreach($module as $permission)
+                                                <span class="card-text d-block">{{explode('-', $permission->name)[0]}}</span>
+                                            @endforeach
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         @endforeach

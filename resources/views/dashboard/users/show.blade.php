@@ -16,11 +16,11 @@
                     <h5 class="card-title py-2">{{ucfirst($user->name)}}</h5>
                     <p class="card-text">{{__('messages.joined')}}: {{date_format($user->created_at, 'd-m-Y')}}</p>
                     <h5 class="card-title py-2">{{__('messages.details')}}</h5>
-                    <div class="row p-2">
+                    <div class="row py-2">
                         <div class="col-6">{{__('messages.email')}}</div>
                         <div class="col-6">{{$user->email}}</div>
                     </div>
-                    <div class="row p-2">
+                    <div class="row py-2">
                         <div class="col-6">{{__('messages.phone')}}</div>
                         <div class="col-6">{{$user->phone}}</div>
                     </div>

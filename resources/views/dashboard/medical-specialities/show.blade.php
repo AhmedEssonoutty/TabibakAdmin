@@ -8,19 +8,19 @@
             <div class="modal-body">
                 <div class="card p-2">
                     <div class="card-body">
-                        <div class="row p-2">
+                        <div class="row py-2">
                             <div class="fw-bold col-6">{{__('messages.name')}}</div>
                             <div class="col-6">{{$resource->name}}</div>
                         </div>
-                        <div class="row p-2">
+                        <div class="row py-2">
                             <div class="fw-bold col-6">{{__('messages.description')}}</div>
                             <div class="col-6">{{$resource->description ?  : __('messages.no_description')}}</div>
                         </div>
-                        <div class="row p-2">
+                        <div class="row py-2">
                             <div class="fw-bold col-6">{{__('messages.percentage')}}</div>
                             <div class="col-6">{{$resource->percentage}}</div>
                         </div>
-                        <div class="row p-2">
+                        <div class="row py-2">
                             <div class="fw-bold col-6">{{__('messages.created')}}</div>
                             <div class="col-6">{{date_format($resource->created_at, 'd-m-Y')}}</div>
                         </div>
