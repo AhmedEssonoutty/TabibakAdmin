@@ -22,11 +22,12 @@
                         <a href="#" class="fw-semibold">#{{$loop->iteration}}</a>
                     </th>
                     <td>{{$resource->user->name}}</td>
-                    <td>{{$resource->user->name}}</td>
+                    <td>{{$resource->speciality}}</td>
                     <td>{{$resource->medical_id}}</td>
                     <td>{{$resource->national_id}}</td>
                     <td>{{$resource->user->phone}}</td>
-                    @include('dashboard.partials.__table-actions', ['resource' => $resource, 'route' => 'doctors'])
+                    @include('dashboard.partials.__table-actions', ['resource' => $resource, 'route' => 'doctors', 'showModel' => true])
+                    @include('dashboard.doctors.requests-show', ['resource' => $resource])
                     <td>
                         <a class="link-success approve-doctor cursor-pointer px-2" data-id="{{$resource->id}}">
                             {{__('messages.approve')}} <i class="bi bi-check"></i>

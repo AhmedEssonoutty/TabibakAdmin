@@ -177,8 +177,8 @@
                     <div class="dropdown topbar-head-dropdown topbar-tag-dropdown justify-content-end">
                         <button type="button" class="btn btn-icon btn-topbar text-reset rounded-circle fs-14 fw-medium"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="{{ asset(auth()->user()->avatar ? 'storage/images/users/' . auth()->user()->avatar : 'storage/images/users/default.jpg') }}" class="rounded-circle me-2"
-                                 alt="Header Language" height="22">
+                            <img src="{{ asset(auth()->user()->avatar ? 'storage/images/users/' . auth()->user()->avatar : 'assets/images/users/user-dummy-img.jpg') }}" class="rounded-circle me-2"
+                                 alt="Profile image" height="22">
                             <span id="lang-name">{{ ucfirst(auth()->user()->name) }}</span>
                         </button>
                         <div class="dropdown-menu dropdown-menu-end">

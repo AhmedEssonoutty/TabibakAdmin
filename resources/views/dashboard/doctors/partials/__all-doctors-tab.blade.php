@@ -25,7 +25,7 @@
                     <td>{{$resource->medical_id}}</td>
                     <td>{{$resource->national_id}}</td>
                     <td>{{$resource->user->phone}}</td>
-                    @include('dashboard.partials.__table-actions', ['resource' => $resource, 'route' => 'doctors'])
+                    @include('dashboard.partials.__table-actions', ['resource' => $resource, 'route' => 'doctors', 'showModel' => false])
                 </tr>
             @endforeach
             </tbody>

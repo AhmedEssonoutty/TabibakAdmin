@@ -39,7 +39,7 @@
                                 {{$role->name}}
                             @endforeach
                         </td>
-                        @include('dashboard.partials.__table-actions', ['resource' => $resource, 'route' => 'users'])
+                        @include('dashboard.partials.__table-actions', ['resource' => $resource, 'route' => 'users', 'showModel' => false])
                     </tr>
                 @endforeach
                 </tbody>

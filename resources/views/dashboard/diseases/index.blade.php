@@ -31,7 +31,8 @@
                             <a href="#" class="fw-semibold">#{{$loop->iteration}}</a>
                         </th>
                         <td>{{$resource->name}}</td>
-                        @include('dashboard.partials.__table-actions', ['resource' => $resource, 'route' => 'diseases'])
+                        @include('dashboard.partials.__table-actions', ['resource' => $resource, 'route' => 'diseases', 'showModel' => true])
+                        @include('dashboard.diseases.show', ['resource' => $resource])
                     </tr>
                 @endforeach
                 </tbody>

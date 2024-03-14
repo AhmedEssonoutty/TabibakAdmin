@@ -29,7 +29,8 @@
                             <a href="#" class="fw-semibold">#{{$loop->iteration}}</a>
                         </th>
                         <td>{{$resource->name}}</td>
-                        @include('dashboard.partials.__table-actions', ['resource' => $resource, 'route' => 'academic-degrees'])
+                        @include('dashboard.partials.__table-actions', ['resource' => $resource, 'route' => 'academic-degrees', 'showModel' => true])
+                        @include('dashboard.academic-degrees.show', ['resource' => $resource])
                     </tr>
                 @endforeach
                 </tbody>

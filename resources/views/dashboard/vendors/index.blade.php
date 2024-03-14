@@ -45,7 +45,7 @@
                         <td>{{$resource->user->name}}</td>
                         <td>{{$resource->vendorType->name}}</td>
                         <td>{{$resource->no_of_referrals}}</td>
-                        @include('dashboard.partials.__table-actions', ['resource' => $resource, 'route' => 'vendors'])
+                        @include('dashboard.partials.__table-actions', ['resource' => $resource, 'route' => 'vendors', 'showModel' => false])
                     </tr>
                 @endforeach
                 </tbody>
