@@ -8,6 +8,7 @@ use App\Constants\ConsultationStatusConstants;
 use App\Constants\ConsultationTransferCaseRateConstants;
 use App\Constants\ConsultationTypeConstants;
 use App\Constants\FileConstants;
+use App\Constants\ReminderConstants;
 use App\Traits\ModelTrait;
 use App\Traits\SearchTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -31,7 +32,7 @@ class Consultation extends Model
     protected array $searchable = [];
     protected array $dates = ['reminder_at'];
     public array $filterModels = [];
-    public array $filterCustom = ['types', 'paymentMethods'];
+    public array $filterCustom = ['types', 'paymentMethods', 'reminders'];
     public array $translatable = [];
     protected $casts = [
         'status' => ConsultationStatusConstants::class,
@@ -94,5 +95,10 @@ class Consultation extends Model
     public static function  paymentMethods(): array
     {
         return ConsultationPaymentTypeConstants::valuesCollection();
+    }
+
+    public static function reminders(): array
+    {
+        return ReminderConstants::valuesCollection();
     }
 }

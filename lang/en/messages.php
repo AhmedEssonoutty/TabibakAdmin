@@ -180,4 +180,9 @@ return [
     "offensive" => "Offensive",
     "wrong_information" => "Wrong Information",
     "spam" => "Spam",
+    "10_minutes" => "10 Minutes",
+    "15_minutes" => "15 Minutes",
+    "30_minutes" => "30 Minutes",
+    "45_minutes" => "45 Minutes",
+    "1_hour" => "1 Hour",
 ];

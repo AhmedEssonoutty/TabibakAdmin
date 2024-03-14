@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\V1\Mobile\AuthController;
 use App\Http\Controllers\Api\V1\Mobile\ComplaintController;
 use App\Http\Controllers\Api\V1\Mobile\ConsultationController;
 use App\Http\Controllers\Api\V1\Mobile\DoctorController;
+use App\Http\Controllers\Api\V1\Mobile\DoctorScheduleDayController;
 use App\Http\Controllers\Api\V1\Mobile\FileController;
 use App\Http\Controllers\Api\V1\Mobile\PatientProfileController;
 use App\Http\Controllers\Api\V1\Mobile\PatientRelativeController;
@@ -37,6 +38,7 @@ Route::group(['middleware' => 'auth:sanctum'], static function () {
         Route::apiResource('consultations', ConsultationController::class);
         Route::apiResource('rates', RateController::class)->only('store', 'update', 'destroy');
         Route::apiResource('complaints', ComplaintController::class)->only('store', 'show', 'update', 'destroy');
+        Route::apiResource('doctor-schedule-days', DoctorScheduleDayController::class)->only('index');
     });
 
     Route::post('register-user-as-doctor', [AuthController::class, 'registerUserAsDoctor']);
