@@ -22,11 +22,15 @@ class ArticleController extends BaseApiController
      */
     public function __construct(ArticleContract $contract, LikeContract $likeContract)
     {
-        parent::__construct($contract, ArticleResource::class, 'Article');
+        parent::__construct($contract, ArticleResource::class);
         $this->likeContract = $likeContract;
         $this->relations = ['mainImage', 'author', 'likes'];
+        $this->defaultScopes = ['isPublished'];
+        $this->middleware('permission:create-article')->only(['store']);
+        $this->middleware('permission:update-article')->only(['update']);
+        $this->middleware('permission:delete-article')->only(['destroy']);
     }
-    
+
     /**
      * Store a newly created resource in storage.
      * @param ArticleRequest $request
@@ -41,7 +45,7 @@ class ArticleController extends BaseApiController
             return $this->respondWithError($e->getMessage());
         }
     }
-    
+
     /**
      * Display the specified resource.
      * @param Article $article
@@ -56,7 +60,7 @@ class ArticleController extends BaseApiController
             return $this->respondWithError($e->getMessage());
         }
     }
-    
+
     /**
      * Update the specified resource in storage.
      *
@@ -73,7 +77,7 @@ class ArticleController extends BaseApiController
             return $this->respondWithError($e->getMessage());
         }
     }
-    
+
     /**
      * Remove the specified resource from storage.
      * @param Article $article

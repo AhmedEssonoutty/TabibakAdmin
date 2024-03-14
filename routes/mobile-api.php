@@ -14,20 +14,21 @@ use App\Http\Controllers\Api\V1\Mobile\RateController;
 Route::post('register-user-as-patient', [AuthController::class, 'registerUserAsPatient']);
 Route::post('send-verification-code', [AuthController::class, 'sendVerificationCode']);
 Route::post('login', [AuthController::class, 'login']);
-Route::get('filters/{model}', FilterController::class);
 
 // visitors apis (not authenticated)
+Route::get('filters/{model}', FilterController::class);
+Route::apiResource('articles', ArticleController::class)->only('index', 'show');
 Route::group(['prefix' => 'patient'], static function () {
     Route::apiResource('doctors', DoctorController::class)->only('index', 'show');
 });
 
 Route::group(['middleware' => 'auth:sanctum'], static function () {
+
     Route::post('logout', [AuthController::class, 'logout']);
     Route::get('profile', [AuthController::class, 'profile']);
 
     Route::apiResource('files', FileController::class)->only('store', 'destroy');
 
-    Route::apiResource('articles', ArticleController::class)->only('index', 'show');
     Route::post('articles/{article}/toggle-like', [ArticleController::class, 'toggleLike']);
 
     Route::group(['prefix' => 'patient'], static function () {
