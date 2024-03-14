@@ -35,6 +35,9 @@ class DoctorRegisterRequest extends FormRequest
             return null;
         })->whereNotNull()->values()->toArray();
         $validated['user_id'] = auth()->id();
+        $validated['urgent_consultation_price'] = $validated['price'];
+        $validated['with_appointment_consultation_price'] = $validated['price'];
+        unset($validated['price']);
         return $validated;
     }
 
@@ -46,6 +49,7 @@ class DoctorRegisterRequest extends FormRequest
             'academic_degree_id' => sprintf(config('validations.model.req'), 'academic_degrees'),
             'national_id' => config('validations.string.req'),
             'medical_id' => config('validations.string.req'),
+            'city_id' => sprintf(config('validations.model.req'), 'cities'),
             'experience_years' => config('validations.integer.req'),
             'bio' => config('validations.string.req'),
             'files' => config('validations.array.null'),
@@ -60,7 +64,8 @@ class DoctorRegisterRequest extends FormRequest
             'schedule_days.*.shifts.*.to_time' => config('validations.time.req'),
             'schedule_repeat_from' => config('validations.date.req').'|after_or_equal:today',
             'schedule_repeat_to' => config('validations.date.req').'|after:schedule_repeat_from',
-            'reminder_before_consultation' => config('validations.integer.req')
+            'reminder_before_consultation' => config('validations.integer.req'),
+            'price' => config('validations.integer.req'),
         ];
     }
 

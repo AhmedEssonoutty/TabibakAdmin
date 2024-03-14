@@ -745,45 +745,34 @@ abstract class BaseRepository implements BaseContract
          * ]
          */
         $orderIgnoreNull = $data['orderIgnoreNull'] ?? [];
-
         if (!empty($orderIgnoreNull)) {
-
             $query = $query->orderByRaw("CASE WHEN ".$orderIgnoreNull['nullable_column']." IS NULL THEN 1 ELSE 0 END")
                 ->orderBy($orderIgnoreNull['order_column'], $orderIgnoreNull['dir']);
-
         }
-
         if (!empty($order)) {
-
             foreach ($order as $orderBy => $orderDir) {
                 $query = $query->orderBy($orderBy, $orderDir);
             }
         }else{
             $query = $query->latest();
         }
-
         if (config('app.query_debug')) {
             info($query->toSql());
         }
-
         $groupBy = $data['groupBy'] ?? null;
         if (!empty($groupBy)) {
             return $query->get()->groupBy($groupBy);
         }
-
         if ($customizePaginationURI) {
             $query = $query->paginate($limit);
             return $query->withPath($paginationURI);
         }
-
         if ($page) {
             return $query->paginate($limit);
         }
-
         if ($limit) {
             return $query->take($limit)->get();
         }
-
         return $query->get();
     }
 
