@@ -4,9 +4,11 @@ namespace App\Models;
 
 use App\Traits\ModelTrait;
 use App\Traits\SearchTrait;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Translatable\HasTranslations;
 
@@ -25,12 +27,27 @@ class DoctorScheduleDayShift extends Model
     //---------------------relations-------------------------------------
     public function day(): BelongsTo
     {
-        return $this->belongsTo(DoctorScheduleDay::class);
+        return $this->belongsTo(DoctorScheduleDay::class, 'doctor_schedule_day_id');
+    }
+
+    public function parent(): BelongsTo
+    {
+        return $this->belongsTo(self::class, 'parent_id', 'id');
     }
 
     public function slots(): HasMany
     {
         return $this->hasMany(self::class, 'parent_id', 'id');
+    }
+
+    public function consultation(): HasOne
+    {
+        return $this->hasOne(Consultation::class);
+    }
+
+    public function availableSlots(): HasMany
+    {
+        return $this->slots()->whereDoesntHave('consultation');
     }
     //---------------------relations-------------------------------------
 

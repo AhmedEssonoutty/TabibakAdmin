@@ -17,18 +17,18 @@ class DoctorScheduleDayShiftResource extends BaseResource
     {
         $this->micro = [
             'id' => $this->id,
+            'from_time' => $this->from_time->format('H:i'),
+            'to_time' => $this->to_time->format('H:i')
         ];
         $this->mini = [
             'is_active' => $this->is_active,
-            'active_status' => $this->active_status,
-            'active_class' => $this->active_class,
             'created_at' => $this->created_at?->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at?->format('Y-m-d H:i:s'),
         ];
         $this->full = [
         ];
-        //$this->relationLoaded()
         $this->relations = [
+            'available_slots' => $this->relationLoaded('availableSlots') ? DoctorScheduleDayShiftResource::collection($this->availableSlots) : null
         ];
         return $this->getResource();
     }

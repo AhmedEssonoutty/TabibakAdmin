@@ -28,12 +28,12 @@ class ConsultationController extends BaseApiController
      */
     public function store(ConsultationRequest $request): JsonResponse
     {
-        try {
+//        try {
             $consultation = $this->contract->create($request->validated());
             return $this->respondWithModel($consultation->load($this->relations));
-        }catch (Exception $e) {
-            return $this->respondWithError($e->getMessage());
-        }
+//        }catch (Exception $e) {
+//            return $this->respondWithError($e->getMessage());
+//        }
     }
    /**
     * Display the specified resource.

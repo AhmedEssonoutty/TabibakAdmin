@@ -5,6 +5,9 @@ namespace App\Http\Requests;
 use App\Constants\ConsultationContactTypeConstants;
 use App\Constants\ConsultationPaymentTypeConstants;
 use App\Constants\ConsultationTypeConstants;
+use App\Constants\ReminderConstants;
+use App\Repositories\Contracts\DoctorScheduleDayShiftContract;
+use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Traits\JsonValidationTrait;
 
@@ -26,6 +29,15 @@ class ConsultationRequest extends FormRequest
     {
         $validated = parent::validated($key, $default);
         $validated['patient_id'] = $validated['patient_id'] ?? $this->user()->patient?->id;
+        if ($validated['type'] == ConsultationTypeConstants::WITH_APPOINTMENT->value) {
+            $scheduleSlot = resolve(DoctorScheduleDayShiftContract::class)
+                ->find($validated['doctor_schedule_day_shift_id']);
+            $scheduleDay = $scheduleSlot->day;
+            $scheduleTime = $scheduleDay->date->format('Y-m-d') . ' ' . $scheduleSlot->from_time->format('H:i:s');
+            $scheduleTime = Carbon::parse($scheduleTime);
+            $validated['reminder_at'] = $scheduleTime->subMinutes($validated['reminder_before']);
+            unset($validated['reminder_before']);
+        }
         return $validated;
     }
 
@@ -51,8 +63,8 @@ class ConsultationRequest extends FormRequest
                 sprintf(config('validations.model.null'), 'doctor_schedule_day_shifts', 'id'),
             'contact_type' => config('validations.integer.null').'|required_if:type,==,'.ConsultationTypeConstants::URGENT->value
                 .'|in:'. implode(',', ConsultationContactTypeConstants::values()),
-            'reminder_at' => 'required_if:type,==,'.ConsultationTypeConstants::WITH_APPOINTMENT->value.'|'.
-                config('validations.time.null').'|after:now',
+            'reminder_before' => 'required_if:type,==,'.ConsultationTypeConstants::WITH_APPOINTMENT->value.'|'.
+                config('validations.integer.null').'|in:'. implode(',', ReminderConstants::values()),
             'payment_type' => config('validations.integer.null').'|in:'. implode(',', ConsultationPaymentTypeConstants::values()),
         ];
     }

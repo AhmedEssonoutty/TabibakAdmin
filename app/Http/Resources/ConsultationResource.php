@@ -42,8 +42,8 @@ class ConsultationResource extends BaseResource
             'latest_surgeries' => $this->latest_surgeries,
             'amount' => $this->amount,
             'contact_type' => [
-                'value' => $this->contact_type->value,
-                'label' => $this->contact_type->label(),
+                'value' => $this->contact_type?->value,
+                'label' => $this->contact_type?->label(),
             ],
             'payment_type' => [
                 'value' => $this->payment_type?->value,

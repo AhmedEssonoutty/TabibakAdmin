@@ -41,6 +41,15 @@ class DoctorScheduleDay extends Model
 
     //---------------------Scopes-------------------------------------
 
+    public function scopeOfDoctor($query, $value)
+    {
+        return $query->whereIn('doctor_id', (array)$value);
+    }
+
+    public function scopeOfMine($query)
+    {
+        return $query->ofDoctor(auth()->user()->doctor?->id);
+    }
     //---------------------Scopes-------------------------------------
 
 }
