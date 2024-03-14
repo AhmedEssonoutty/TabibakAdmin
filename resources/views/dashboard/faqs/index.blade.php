@@ -31,7 +31,8 @@
                         </th>
                         <td>{{$resource->question}}</td>
                         <td>{{date_format($resource->created_at, 'd/m/Y')}}</td>
-                        @include('dashboard.partials.__table-actions', ['resource' => $resource, 'route' => 'faqs'])
+                        @include('dashboard.partials.__table-actions', ['resource' => $resource, 'route' => 'faqs', 'showModel' => true])
+                        @include('dashboard.faqs.show', ['resource' => $resource])
                     </tr>
                 @endforeach
                 </tbody>

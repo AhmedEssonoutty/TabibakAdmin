@@ -9,16 +9,36 @@
                 <div class="card p-2">
                     <div class="card-body">
                         <div class="row p-2">
-                            <div class="fw-bold col-6">{{__('messages.subject')}}</div>
-                            <div class="col-6">{{$resource->faq_subject_id}}</div>
+                            <div class="fw-bold col-6">{{__('messages.code')}}</div>
+                            <div class="col-6">{{$resource->code}}</div>
                         </div>
                         <div class="row p-2">
-                            <div class="fw-bold col-6">{{__('messages.question')}}</div>
-                            <div class="col-6">{{$resource->question}}</div>
+                            <div class="fw-bold col-6">{{__('messages.discount_type')}}</div>
+                            <div class="col-6">{{$resource->discount_type}}</div>
                         </div>
                         <div class="row p-2">
-                            <div class="fw-bold col-6">{{__('messages.answer')}}</div>
-                            <div class="col-6">{{$resource->answer}}</div>
+                            <div class="fw-bold col-6">{{__('messages.discount_amount')}}</div>
+                            <div class="col-6">{{$resource->discount_amount}}</div>
+                        </div>
+                        <div class="row p-2">
+                            <div class="fw-bold col-6">{{__('messages.valid_from')}}</div>
+                            <div class="col-6">{{date_format($resource->valid_from, 'd-m-Y')}}</div>
+                        </div>
+                        <div class="row p-2">
+                            <div class="fw-bold col-6">{{__('messages.valid_to')}}</div>
+                            <div class="col-6">{{date_format($resource->valid_to, 'd-m-Y')}}</div>
+                        </div>
+                        <div class="row p-2">
+                            <div class="fw-bold col-6">{{__('messages.description')}}</div>
+                            <div class="col-6">{{$resource->description ?  : __('messages.no_description')}}</div>
+                        </div>
+                        <div class="row p-2">
+                            <div class="fw-bold col-6">{{__('messages.user_limit')}}</div>
+                            <div class="col-6">{{$resource->user_limit}}</div>
+                        </div>
+                        <div class="row p-2">
+                            <div class="fw-bold col-6">{{__('messages.total_limit')}}</div>
+                            <div class="col-6">{{$resource->total_limit}}</div>
                         </div>
                         <div class="row p-2">
                             <div class="fw-bold col-6">{{__('messages.created')}}</div>

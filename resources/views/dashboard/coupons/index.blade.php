@@ -39,7 +39,8 @@
                         <td>{{$resource->discount_amount}}</td>
                         <td>{{date_format($resource->valid_from, 'd-m-Y')}}</td>
                         <td>{{date_format($resource->valid_to, 'd-m-Y')}}</td>
-                        @include('dashboard.partials.__table-actions', ['resource' => $resource, 'route' => 'coupons'])
+                        @include('dashboard.partials.__table-actions', ['resource' => $resource, 'route' => 'coupons', 'showModel' => true])
+                        @include('dashboard.coupons.show', ['resource' => $resource])
                     </tr>
                 @endforeach
                 </tbody>

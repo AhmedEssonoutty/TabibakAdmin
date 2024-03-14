@@ -50,7 +50,7 @@
                                 @method('PUT')
                             </form>
                         </td>
-                        @include('dashboard.partials.__table-actions', ['resource' => $resource, 'route' => 'articles'])
+                        @include('dashboard.partials.__table-actions', ['resource' => $resource, 'route' => 'articles', 'showModel' => false])
                     </tr>
                 @endforeach
                 </tbody>

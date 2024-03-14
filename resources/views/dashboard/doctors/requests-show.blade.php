@@ -10,7 +10,23 @@
                     <div class="card-body">
                         <div class="row p-2">
                             <div class="fw-bold col-6">{{__('messages.name')}}</div>
-                            <div class="col-6">{{$resource->name}}</div>
+                            <div class="col-6">{{$resource->user->name}}</div>
+                        </div>
+                        <div class="row p-2">
+                            <div class="fw-bold col-6">{{__('messages.speciality')}}</div>
+                            <div class="col-6">{{$resource->speciality}}</div>
+                        </div>
+                        <div class="row p-2">
+                            <div class="fw-bold col-6">{{__('messages.medical_id')}}</div>
+                            <div class="col-6">{{$resource->medical_id}}</div>
+                        </div>
+                        <div class="row p-2">
+                            <div class="fw-bold col-6">{{__('messages.national_id')}}</div>
+                            <div class="col-6">{{$resource->national_id}}</div>
+                        </div>
+                        <div class="row p-2">
+                            <div class="fw-bold col-6">{{__('messages.phone')}}</div>
+                            <div class="col-6">{{$resource->user->phone}}</div>
                         </div>
                         <div class="row p-2">
                             <div class="fw-bold col-6">{{__('messages.created')}}</div>

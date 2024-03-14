@@ -5,9 +5,15 @@
     </div>
 </td>
 <td>
-    <a href="{{route("$route.show", $resource->id)}}" class="link-success px-2">
-        {{__('messages.show')}} <i class="bi bi-eye"></i>
-    </a>
+    @if($showModel)
+        <a class="link-success cursor-pointer px-2" id="resource-details{{$resource->id}}">
+            {{__('messages.show')}} <i class="bi bi-eye"></i>
+        </a>
+    @else
+        <a href="{{route("$route.show", $resource->id)}}" class="link-success px-2">
+            {{__('messages.show')}} <i class="bi bi-eye"></i>
+        </a>
+    @endif
     <a href="{{route("$route.edit", $resource->id)}}" class="link-info px-2">
         {{__('messages.edit')}} <i class="bi bi-pencil-fill"></i>
     </a>
@@ -68,6 +74,12 @@
                     }
                 })
             })
+        });
+        $(document).ready(function() {
+            $('#resource-details{{$resource->id}}').on('click', function(e) {
+                e.preventDefault();
+                $('#detailsModal{{$resource->id}}').modal('show');
+            });
         });
     </script>
 @endpush

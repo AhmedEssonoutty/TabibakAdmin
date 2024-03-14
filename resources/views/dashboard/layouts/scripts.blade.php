@@ -54,6 +54,9 @@
         return true;
     }
 
+    function hideModal() {
+        $('.detailsModal').modal('hide');
+    }
     document.addEventListener('DOMContentLoaded', function () {
         const selectAllCheckboxes = document.querySelectorAll('.select-all-checkbox');
         selectAllCheckboxes.forEach(function (checkbox) {
@@ -80,5 +83,6 @@
             });
         });
     });
+</script>
 </script>
 @stack('scripts')
