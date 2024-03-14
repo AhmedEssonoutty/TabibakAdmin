@@ -36,7 +36,7 @@
                         <div class="col-6">{{__('messages.services')}}</div>
                         <div class="col-6">
                             @foreach($vendor->vendorServices as $service)
-                                <span class="d-block">{{$loop->iteration . '- ' . $service->name}}</span>
+                                <span class="d-block">{{$service->name}}</span>
                             @endforeach
                         </div>
                     </div>

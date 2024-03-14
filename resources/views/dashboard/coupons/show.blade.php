@@ -33,6 +33,14 @@
                             <div class="col-6">{{$resource->description ?  : __('messages.no_description')}}</div>
                         </div>
                         <div class="row py-2">
+                            <div class="fw-bold col-6">{{__('messages.specialities')}}</div>
+                            <div class="col-6">
+                                @foreach($resource->medicalSpecialities as $speciality)
+                                    <span class="d-block">{{$speciality->name}}</span>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="row py-2">
                             <div class="fw-bold col-6">{{__('messages.user_limit')}}</div>
                             <div class="col-6">{{$resource->user_limit}}</div>
                         </div>

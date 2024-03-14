@@ -9,6 +9,10 @@
                 <div class="card p-2">
                     <div class="card-body">
                         <div class="row py-2">
+                            <div class="fw-bold col-6">{{__('messages.subject')}}</div>
+                            <div class="col-6">{{$resource->faqSubject->name}}</div>
+                        </div>
+                        <div class="row py-2">
                             <div class="fw-bold col-6">{{__('messages.question')}}</div>
                             <div class="col-6">{{$resource->question}}</div>
                         </div>

@@ -24,6 +24,14 @@
                         <div class="col-6">{{__('messages.phone')}}</div>
                         <div class="col-6">{{$user->phone}}</div>
                     </div>
+                    <div class="row py-2">
+                        <div class="col-6">{{__('messages.role')}}</div>
+                        <div class="col-6">
+                            @foreach($user->roles as $role)
+                                {{$role->name}}
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
