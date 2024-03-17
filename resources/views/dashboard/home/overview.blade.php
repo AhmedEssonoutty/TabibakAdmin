@@ -1,55 +1,49 @@
 @extends('dashboard.layouts.master')
 @section('title')
-    Overview
+    {{__('messages.overview')}}
 @endsection
 @section('content')
-    <x-breadcrumb title="Overview" pagetitle="Tabibak" />
-
-    <div class="row">
-        <div class="col-lg-4">
-            <h5 class="fs-16">Overview</h5>
-            <p class="text-muted mb-lg-0">Tabibak Overview.</p>
-        </div>
-    </div>
+    <x-breadcrumb title="{{__('messages.overview')}}"
+                  pagetitle="{{config('app.name')}}" route="{{route('overview')}}"/>
     <div class="row justify-content-between py-2">
         <div class="py-4 px-5 mb-3 mt-2 mx-lg-3 text-center rounded bg-light col-md-5 col-lg-3">
-            <h3 class="rounded text-center fs-6">Patients</h3>
+            <h3 class="rounded text-center fs-6">{{__('messages.patients')}}</h3>
             <span class="rounded fs-5">{{ $patientsCount }}</span>
         </div>
         <div class="py-4 px-5 mb-3 mt-2 mx-lg-3 text-center rounded bg-light col-md-5 col-lg-3">
-            <h3 class="rounded text-center fs-6">Doctors</h3>
+            <h3 class="rounded text-center fs-6">{{__('messages.doctors')}}</h3>
             <span class="rounded fs-5">{{ $doctorsCount }}</span>
         </div>
         <div class="py-4 px-5 mb-3 mt-2 mx-lg-3 text-center rounded bg-light col-md-5 col-lg-3">
-            <h3 class="rounded text-center fs-6">Vendors</h3>
+            <h3 class="rounded text-center fs-6">{{__('messages.vendors')}}</h3>
             <span class="rounded fs-5">{{ $vendorsCount }}</span>
         </div>
         <div class="py-4 px-5 mb-3 mt-2 mx-lg-3 text-center rounded bg-light col-md-5 col-lg-3">
-            <h3 class="rounded text-center fs-6">Hospitals</h3>
+            <h3 class="rounded text-center fs-6">{{__('messages.hospitals')}}</h3>
             <span class="rounded fs-5">{{ $hospitalsCount }}</span>
         </div>
         <div class="py-4 px-5 mb-3 mt-2 mx-lg-3 text-center rounded bg-light col-md-5 col-lg-3">
-            <h3 class="rounded text-center fs-6">Clinics</h3>
+            <h3 class="rounded text-center fs-6">{{__('messages.clinics')}}</h3>
             <span class="rounded fs-5">{{ $clinicsCount }}</span>
         </div>
         <div class="py-4 px-5 mb-3 mt-2 mx-lg-3 text-center rounded bg-light col-md-5 col-lg-3">
-            <h3 class="rounded text-center fs-6">Pharmacies</h3>
+            <h3 class="rounded text-center fs-6">{{__('messages.pharmacies')}}</h3>
             <span class="rounded fs-5">{{ $pharmaciesCount }}</span>
         </div>
         <div class="py-4 px-5 mb-3 mt-2 mx-lg-3 text-center rounded bg-light col-md-5 col-lg-3">
-            <h3 class="rounded text-center fs-6">HomeCares</h3>
+            <h3 class="rounded text-center fs-6">{{__('messages.Home_cares')}}</h3>
             <span class="rounded fs-5">{{ $homeCaresCount }}</span>
         </div>
         <div class="py-4 px-5 mb-3 mt-2 mx-lg-3 text-center rounded bg-light col-md-5 col-lg-3">
-            <h3 class="rounded text-center fs-6">Labs</h3>
+            <h3 class="rounded text-center fs-6">{{__('messages.labs')}}</h3>
             <span class="rounded fs-5">{{ $labsCount }}</span>
         </div>
         <div class="py-4 px-5 mb-3 mt-2 mx-lg-3 text-center rounded bg-light col-md-5 col-lg-3">
-            <h3 class="rounded text-center fs-6">Total Transactions</h3>
+            <h3 class="rounded text-center fs-6">{{__('messages.total_transactions')}}</h3>
             <span class="rounded fs-5">{{ $totalTransactions }}</span>
         </div>
         <div class="py-4 px-5 mb-3 mt-2 mx-lg-3 text-center rounded bg-light col-md-5 col-lg-3">
-            <h3 class="rounded text-center fs-6">Total Revenues</h3>
+            <h3 class="rounded text-center fs-6">{{__('messages.total_revenues')}}</h3>
             <span class="rounded fs-5">{{ $totalRevenues }}</span>
         </div>
     </div>

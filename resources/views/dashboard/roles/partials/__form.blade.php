@@ -38,7 +38,7 @@
                                         <div class="form-check pb-2">
                                             <input type="checkbox" id="selectAll{{$module}}"
                                                    class="form-check-input select-all-checkbox">
-                                            <label for="selectAll{{$module}}" class="form-check-label text-primary">Select all</label>
+                                            <label for="selectAll{{$module}}" class="form-check-label text-primary">{{__('messages.select_all')}}</label>
                                         </div>
                                         @foreach($permissions as $permission)
                                             <div class="form-check">
