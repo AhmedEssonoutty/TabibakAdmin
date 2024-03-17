@@ -24,16 +24,16 @@
                                     </div>
                                 @endif
                                 <div class="alert alert-borderless alert-warning text-center mb-2 mx-2" role="alert">
-                                    Enter your password!
+                                    {{__('auth.enter_pass')}}
                                 </div>
                                 <div class="p-2">
                                     <form action="{{ route('password.confirm') }}">
                                         @csrf
                                         <div class="mb-4">
-                                            <label for="password" class="form-label">{{ __('Password') }} <span class="text-danger">*</span></label>
+                                            <label for="password" class="form-label">{{__('Password')}} <span class="text-danger">*</span></label>
                                             <input id="password" type="password"
                                                 class="form-control @error('password') is-invalid @enderror" name="password"
-                                                required autocomplete="current-password" placeholder="Enter your password">
+                                                required autocomplete="current-password" placeholder="{{__('auth.enter_pass')}}">
                                             @error('password')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -42,9 +42,9 @@
                                         </div>
 
                                         <div class="text-center mt-4">
-                                            <button class="btn btn-primary w-100" type="submit">Confirm Password</button>
+                                            <button class="btn btn-primary w-100" type="submit">{{__('auth.confirm_pass')}}</button>
                                         </div>
-                                    </form><!-- end form -->
+                                    </form>
                                 </div>
 
                             </div>

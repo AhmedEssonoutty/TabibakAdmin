@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.master-auth')
 @section('title')
-    Email sent successfully
+    {{__('auth.email_sent')}}
 @endsection
 @section('content')
     <div class="w-100">

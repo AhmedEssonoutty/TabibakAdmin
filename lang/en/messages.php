@@ -192,7 +192,12 @@ return [
     "social_status" => "Social Status",
     "logout" => "Logout",
     "errors" => [
-        "doctor_request_pending" => "Doctor Request Is Pending"
+        "doctor_request_pending" => "Doctor Request Is Pending",
+        "cannot_login" => "You can't login because your account has deactivated",
+        "check_credentials" => "Check your credentials and try again",
+        "reset_link_not_sent" => "Reset link not sent",
+        "token_expired" => "Password reset token has expired, please request another one",
+        'something_wrong' => 'Something went wrong!'
     ],
     "confirm" => [
         "doctor_approve" => "Do you want to approve this doctor request?",
@@ -201,6 +206,13 @@ return [
     "offensive" => "Offensive",
     "wrong_information" => "Wrong Information",
     "spam" => "Spam",
+    "min" => "Minimum",
+    "at_least" => "At least",
+    "number" => "number",
+    "uppercase" => "uppercase",
+    "lowercase" => "lowercase",
+    "letter" => "letter",
+    "8_chars" => "8 characters",
     "10_minutes" => "10 Minutes",
     "15_minutes" => "15 Minutes",
     "30_minutes" => "30 Minutes",

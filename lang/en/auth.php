@@ -16,10 +16,17 @@ return [
     'failed' => 'These credentials do not match our records.',
     'password' => 'The provided password is incorrect.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'pass_remembered' => 'Wait, I remember my password...',
+    'pass_must_contain' => 'Password must contain:',
+    'email_sent' => 'Email sent successfully',
 
     'enter_email' => 'Enter Email',
     'enter_pass' => 'Enter Password',
-    'forget_pass' => 'Forget Password?',
+    'forget_pass' => 'Forget Password',
+    'confirm_pass' => 'Confirm Password',
+    'reset_pass' => 'Reset Password',
     'remember_me' => 'Remember Me',
+    'click_here' => 'Click Here',
     'sign_in' => 'Sign In',
+    'send_reset' => 'Send Reset Link',
 ];

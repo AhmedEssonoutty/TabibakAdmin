@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.master-auth')
 @section('title')
-    Forget Password
+    {{__('auth.forget_pass')}}
 @endsection
 @section('content')
 
@@ -34,12 +34,12 @@
                                     <form method="POST" action="{{ route('password.email') }}">
                                         @csrf
                                         <div class="mb-4">
-                                            <label for="email" class="form-label">Email</label>
+                                            <label for="email" class="form-label">{{__('messages.email')}}</label>
                                             <input id="email" type="email"
                                                    class="form-control @error('email') is-invalid @enderror"
                                                    name="email"
                                                    value="{{ old('email') }}" autocomplete="email" autofocus
-                                                   placeholder="Enter your email">
+                                                   placeholder="{{__('auth.forget_pass')}}">
                                             @error('email')
                                             <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -48,14 +48,12 @@
                                         </div>
 
                                         <div class="text-center mt-4">
-                                            <button class="btn btn-primary w-100" type="submit">Send Reset Link</button>
+                                            <button class="btn btn-primary w-100" type="submit">{{__('auth.send_reset')}}</button>
                                         </div>
                                     </form><!-- end form -->
                                 </div>
                                 <div class="mt-4 text-center">
-                                    <p class="mb-0">Wait, I remember my password... <a href="{{ route('login') }}"
-                                                                                       class="fw-semibold text-primary text-decoration-underline">
-                                            Click here </a></p>
+                                    <p class="mb-0">{{__('auth.pass_remembered')}} <a href="{{ route('login') }}" class="fw-semibold text-primary text-decoration-underline">{{__('auth.click_here')}} </a></p>
                                 </div>
                             </div>
                         </div>

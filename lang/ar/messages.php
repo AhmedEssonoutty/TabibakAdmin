@@ -193,7 +193,12 @@ return [
     'social_status' => 'الحالة الاجتماعية',
     'logout' => 'تسجيل الخروج',
     'errors' => [
-        'doctor_request_pending' => 'طلب الطبيب معلقا'
+        'doctor_request_pending' => 'طلب الطبيب معلقا',
+        'cannot_login' => 'لا يمكنك تسجيل الدخول لأن حسابك غير فعال',
+        'check_credentials' => 'تحقق من بيانات الاعتماد الخاصة بك وحاول مرة أخرى',
+        'reset_link_not_sent' => 'لم يتم إرسال رابط إعادة التعيين',
+        'token_expired' => 'لقد انتهت صلاحية الرمز المميز لإعادة تعيين كلمة المرور، يرجى طلب رمز آخر',
+        'something_wrong' => 'حدث خطأ ما!'
     ],
     'confirm' => [
         'doctor_approve' => 'هل تريد الموافقة على طلب هذا الطبيب؟',
@@ -202,6 +207,13 @@ return [
     'offensive' => 'عدواني',
     'wrong_information' => 'معلومات خاطئة',
     'spam' => 'رسائل مزعجة',
+    'min' => 'على الأقل',
+    'at_least' => 'على الأقل',
+    'number' => 'رقم',
+    'uppercase' => 'حروف كبيرة',
+    'lowercase' => 'حروف صغيرة',
+    'letter' => 'حرف',
+    '8_chars' => '8 حروف',
     '10_minutes' => '10 دقائق',
     '15_minutes' => '15 دقيقة',
     '30_minutes' => '30 دقيقة',

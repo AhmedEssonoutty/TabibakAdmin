@@ -31,13 +31,13 @@ class ForgetPasswordController extends Controller
             $status = Password::sendResetLink($email);
 
             if (!$status == Password::RESET_LINK_SENT)
-                return back()->with(['error' => 'Reset link not sent']);
+                return back()->with(['error' => __('messages.errors.reset_link_not_sent')]);
 
             return redirect()->route('resetEmailSentSuccessfully', [
                 'email' => $email
             ]);
         } catch (Exception) {
-            return back()->with(['error' => 'Something went wrong!']);
+            return back()->with(['error' => __('messages.errors.something_wrong')]);
         }
     }
 
@@ -47,10 +47,10 @@ class ForgetPasswordController extends Controller
         $storedToken = DB::table('password_resets')->where('email', $email)->first();
 
         if (! $storedToken || $storedToken->created_at < now()->subHour())
-            return back()->with(['error' => 'Something went wrong!']);
+            return back()->with(['error' => __('messages.errors.something_wrong')]);
 
         return view('auth.passwords.sentSuccessfully', with([
-            'success' => 'Reset email has sent successfully.'
+            'success' => __('auth.email_sent')
         ]));
     }
 }

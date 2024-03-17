@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.master-auth')
 @section('title')
-    Reset Password
+    {{__('auth.reset_pass')}}
 @endsection
 @section('content')
 
@@ -37,11 +37,11 @@
                                             <input id="token" type="hidden" name="token" value="{{ $token ?? old('token') }}" required>
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label" for="password-input">Password</label>
+                                            <label class="form-label" for="password-input">{{__('messages.password')}}</label>
                                             <div class="position-relative auth-pass-inputgroup">
                                                 <input type="password"
                                                     class="form-control pe-5 password-input @error('password') is-invalid @enderror"
-                                                    onpaste="return false" placeholder="Enter password" id="password-input"
+                                                    onpaste="return false" placeholder="{{__('auth.enter_pass')}}" id="password-input"
                                                     name="password" aria-describedby="passwordInput"
                                                     pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required autofocus>
                                                 <button
@@ -57,12 +57,12 @@
                                         </div>
 
                                         <div class="mb-3">
-                                            <label class="form-label" for="confirm-password-input">Confirm Password</label>
+                                            <label class="form-label" for="confirm-password-input">{{__('auth.confirm_pass')}}</label>
                                             <div class="position-relative auth-pass-inputgroup mb-3">
                                                 <input type="password" class="form-control pe-5 password-input"
                                                     onpaste="return false"
                                                     name="password_confirmation"
-                                                    placeholder="Confirm password"
+                                                    placeholder="{{__('auth.confirm_pass')}}"
                                                     pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
                                                 <button
                                                     class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon"
@@ -72,24 +72,21 @@
                                         </div>
 
                                         <div id="password-contain" class="p-3 bg-light mb-2 rounded">
-                                            <h5 class="fs-13">Password must contain:</h5>
-                                            <p id="pass-length" class="invalid fs-12 mb-2">Minimum <b>8 characters</b></p>
-                                            <p id="pass-lower" class="invalid fs-12 mb-2">At <b>lowercase</b> letter (a-z)
-                                            </p>
-                                            <p id="pass-upper" class="invalid fs-12 mb-2">At least <b>uppercase</b> letter
-                                                (A-Z)</p>
-                                            <p id="pass-number" class="invalid fs-12 mb-0">A least <b>number</b> (0-9)</p>
+                                            <h5 class="fs-13">{{__('auth.pass_must_contain')}}</h5>
+                                            <p id="pass-length" class="invalid fs-12 mb-2">{{__('messages.min')}} <b>{{__('messages.8_chars')}}</b></p>
+                                            <p id="pass-lower" class="invalid fs-12 mb-2">{{__('messages.at_least')}} <b>{{__('messages.lowercase')}}</b> {{__('messages.letter')}} (a-z)</p>
+                                            <p id="pass-upper" class="invalid fs-12 mb-2">{{__('messages.at_least')}} <b>{{__('messages.uppercase')}}</b> {{__('messages.letter')}} (A-Z)</p>
+                                            <p id="pass-number" class="invalid fs-12 mb-0">{{__('messages.at_least')}} <b>{{__('messages.number')}}</b> (0-9)</p>
                                         </div>
 
                                         <div class="mt-4">
-                                            <button class="btn btn-primary w-100" type="submit">Reset Password</button>
+                                            <button class="btn btn-primary w-100" type="submit">{{__('auth.reset_pass')}}</button>
                                         </div>
 
                                     </form>
                                 </div>
                                 <div class="mt-4 text-center">
-                                    <p class="mb-0">Wait, I remember my password... <a href="{{ route('login') }}"
-                                            class="fw-semibold text-primary text-decoration-underline"> Click here </a> </p>
+                                    <p class="mb-0">{{__('auth.pass_remembered')}} <a href="{{ route('login') }}" class="fw-semibold text-primary text-decoration-underline">{{__('auth.click_here')}} </a></p>
                                 </div>
                             </div>
                         </div>

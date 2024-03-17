@@ -21,7 +21,7 @@ class ResetPasswordController extends Controller
         $storedToken = DB::table('password_resets')->where('email', $email)->first();
 
         if (! $storedToken || $storedToken->created_at < now()->subHour())
-            return redirect()->route('login')->with(['error' => 'Something went wrong!']);
+            return redirect()->route('login')->with(['error' => __('messages.errors.something_wrong')]);
 
         return view('auth.passwords.reset')->with([
             'email' => $email,
@@ -51,7 +51,7 @@ class ResetPasswordController extends Controller
             $user = User::where('email', $data['email'])->first();
 
             if (! Password::broker()->tokenExists($user, $data['token'])) {
-                return back()->with([ 'error' => 'Password reset token has expired, please request another one.' ]);
+                return back()->with([ 'error' => __('messages.errors.token_expired')]);
             }
 
             User::query()->where('email', $data['email'])->update([
@@ -65,7 +65,7 @@ class ResetPasswordController extends Controller
                 'success' => 'Password updated successfully'
             ]);
         } catch (Exception) {
-            return back()->with(['error' => 'Something went wrong!']);
+            return back()->with(['error' => __('messages.errors.something_wrong')]);
         }
     }
 }

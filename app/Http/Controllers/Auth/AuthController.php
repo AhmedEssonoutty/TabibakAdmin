@@ -35,12 +35,12 @@ class AuthController extends Controller
                 if (! auth()->user()->is_active || auth()->user()->patient || auth()->user()->doctor) {
                     Session::flush();
                     Auth::logout();
-                    return back()->with(['error' => 'You can\'t login because you are deactivated']);
+                    return back()->with(['error' => __('messages.errors.cannot_login')]);
                 }
                 return redirect()->route('dashboard');
             }
 
-            return back()->with(['error' => 'Check your credentials and try again']);
+            return back()->with(['error' => __('messages.errors.check_credentials')]);
         } catch (Exception $e) {
             return back()->with(['error' => $e->getMessage()]);
         }
