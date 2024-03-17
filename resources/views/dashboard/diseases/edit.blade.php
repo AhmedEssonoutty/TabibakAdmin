@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.master')
 @section('title')
-    {{__('messages.edit_diseases')}}
+    {{__('messages.edit_disease')}}
 @endsection
 @section('content')
     <x-breadcrumb title="{{__('messages.edit_disease')}}"

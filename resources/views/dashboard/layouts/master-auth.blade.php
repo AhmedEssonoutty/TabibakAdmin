@@ -21,7 +21,7 @@
                         <img src="{{ URL::asset('assets/images/logo-dark.png') }}" class="card-logo card-logo-dark"
                              alt="logo dark" height="22">
                         <img src="{{ URL::asset('assets/images/logo-light.png') }}"
-                             class="card-logo card-logo-light" alt="logo light" height="22">
+                             class="card-logo card-logo-light" alt="" height="22">
                     </a>
                 </div>
                 <div class="col-auto">

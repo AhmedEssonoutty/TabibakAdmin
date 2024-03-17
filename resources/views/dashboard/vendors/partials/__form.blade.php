@@ -60,8 +60,8 @@
                         @if(request()->routeIs('vendors.create'))
                             <span class="text-danger fw-bold">*</span>
                         @endif
-                        {!! Form::password('password' , ['class' => 'form-control', 'placeholder' => 'Enter strong password']) !!}
-                        <button class="btn btn-link position-absolute end-0 text-muted password-addon" style="top:30px"
+                        {!! Form::password('password' , ['class' => 'form-control', 'placeholder' => __('messages.enter_strong_pass')]) !!}
+                        <button class="btn btn-link position-absolute {{app()->getLocale() == 'ar' ? 'start-0' : 'end-0'}} text-muted password-addon" style="top:30px"
                                 type="button" onclick="togglePasswordVisibility()"><i id="eyeIcon" class="bi bi-eye"></i></button>
                         @error("password")
                         <span class="text-danger">{{$message}}</span>
@@ -72,15 +72,15 @@
                         @if(request()->routeIs('vendors.create'))
                             <span class="text-danger fw-bold">*</span>
                         @endif
-                        {!! Form::password('password_confirmation' , ['class' => 'form-control', 'placeholder' => 'Enter strong password']) !!}
-                        <button class="btn btn-link position-absolute end-0 text-muted password-addon" style="top:30px"
+                        {!! Form::password('password_confirmation' , ['class' => 'form-control', 'placeholder' => __('messages.enter_strong_pass')]) !!}
+                        <button class="btn btn-link position-absolute {{app()->getLocale() == 'ar' ? 'start-0' : 'end-0'}} text-muted password-addon" style="top:30px"
                                 type="button" onclick="toggleConfirmPasswordVisibility()"><i id="eyeConfirmIcon" class="bi bi-eye"></i></button>
                         @error("password_confirmation")
                         <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
                     <div class="col-lg-12">
-                        <div class="text-end">
+                        <div class="{{app()->getLocale() == 'ar' ? 'text-start' : 'text-end'}}">
                             <button type="submit" class="btn btn-primary">{{__('messages.save')}}</button>
                         </div>
                     </div>

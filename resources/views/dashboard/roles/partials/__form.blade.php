@@ -58,7 +58,7 @@
                         </div>
                     @endforeach
                     <div class="col-lg-12">
-                        <div class="text-end">
+                        <div class="{{app()->getLocale() == 'ar' ? 'text-start' : 'text-end'}}">
                             <button type="submit" class="btn btn-primary">{{__('messages.save')}}</button>
                         </div>
                     </div>

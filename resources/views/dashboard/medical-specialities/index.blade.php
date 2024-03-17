@@ -1,10 +1,10 @@
 @extends('dashboard.layouts.master')
 @section('title')
-    {{__('messages.manage_medical_specialties')}}
+    {{__('messages.manage_medical_specialities')}}
 @endsection
 @section('content')
-    <x-breadcrumb title="{{__('messages.manage_medical_specialties')}}"
-                  pagetitle="{{__('messages.medical_specialties')}}"
+    <x-breadcrumb title="{{__('messages.manage_medical_specialities')}}"
+                  pagetitle="{{__('messages.medical_specialities')}}"
                   route="{{route('medical-specialities.index')}}"/>
     <div class="d-flex justify-content-sm-end">
         <a href="{{route('medical-specialities.create')}}">

@@ -33,8 +33,8 @@
                         @if(request()->routeIs('users.create'))
                             <span class="text-danger fw-bold">*</span>
                         @endif
-                        {!! Form::password('password' , ['class' => 'form-control', 'placeholder' => 'Enter strong password']) !!}
-                        <button class="btn btn-link position-absolute end-0 text-muted password-addon" style="top:30px"
+                        {!! Form::password('password' , ['class' => 'form-control', 'placeholder' => __('messages.enter_strong_pass')]) !!}
+                        <button class="btn btn-link position-absolute {{app()->getLocale() == 'ar' ? 'start-0' : 'end-0'}} text-muted password-addon" style="top:30px"
                             type="button" onclick="togglePasswordVisibility()"><i id="eyeIcon" class="bi bi-eye"></i></button>
                         @error("password")
                         <span class="text-danger">{{$message}}</span>
@@ -45,8 +45,8 @@
                         @if(request()->routeIs('users.create'))
                             <span class="text-danger fw-bold">*</span>
                         @endif
-                        {!! Form::password('password_confirmation' , ['class' => 'form-control', 'placeholder' => 'Enter strong password']) !!}
-                        <button class="btn btn-link position-absolute end-0 text-muted password-addon" style="top:30px"
+                        {!! Form::password('password_confirmation' , ['class' => 'form-control', 'placeholder' => __('messages.enter_strong_pass')]) !!}
+                        <button class="btn btn-link position-absolute {{app()->getLocale() == 'ar' ? 'start-0' : 'end-0'}} text-muted password-addon" style="top:30px"
                                 type="button" onclick="toggleConfirmPasswordVisibility()"><i id="eyeConfirmIcon" class="bi bi-eye"></i></button>
                         @error("password_confirmation")
                         <span class="text-danger">{{$message}}</span>
@@ -56,7 +56,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="d-flex">
-                                    <div class="flex-shrink-0 me-3">
+                                    <div class="flex-shrink-0 {{app()->getLocale() == 'ar' ? 'ms-3' : 'me-3'}}">
                                         <div class="avatar-sm">
                                             <div class="avatar-title rounded-circle bg-light text-primary fs-20">
                                                 <i class="bi bi-images"></i>
@@ -82,7 +82,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="d-flex">
-                                    <div class="flex-shrink-0 me-3">
+                                    <div class="flex-shrink-0 {{app()->getLocale() == 'ar' ? 'ms-3' : 'me-3'}}">
                                         <div class="avatar-sm">
                                             <div class="avatar-title rounded-circle bg-light text-primary fs-20">
                                                 <i class="bi bi-key"></i>
@@ -99,11 +99,11 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <div class="row g-3">
+                                <div class="row g-3" dir="ltr">
                                     @foreach ($roles as $role)
                                         <div class="col-lg-6">
                                             <!-- Inline Switches -->
-                                            <div class="form-check form-switch form-check-inline" dir="ltr">
+                                            <div class="form-check form-switch form-check-inline">
                                                 <input type="radio" name="role_id" class="form-check-input" value="{{$role->id}}" id="Per{{$role->id}}" {{ old('role_id') == $role->id || (isset($user) && $user->role_id == $role->id)  ? 'checked' : ''}}>
                                                 <label class="form-check-label" for="Per{{$role->id}}">{{$role->name}}</label>
                                             </div>
@@ -117,7 +117,7 @@
                             </div>
                         </div>
                     <div class="col-lg-12">
-                        <div class="text-end">
+                        <div class="{{app()->getLocale() == 'ar' ? 'text-start' : 'text-end'}}">
                             <button type="submit" class="btn btn-primary">{{__('messages.save')}}</button>
                         </div>
                     </div>

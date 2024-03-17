@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}"
+      dir="{{ app()->getLocale() == 'ar' ? 'rtl' : 'ltr' }}"
       data-layout="vertical" data-topbar="brand"
       data-sidebar="gradient"
       data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable" data-body-image="none"

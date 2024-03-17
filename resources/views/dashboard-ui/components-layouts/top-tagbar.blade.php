@@ -28,49 +28,49 @@
                             @switch(Session::get('lang'))
                                 @case('ru')
                                     <img src="{{ URL::asset('/assets/images/flags/russia.svg') }}" class="rounded-circle me-2"
-                                        alt="Header Language" height="16">
+                                        alt="" height="16">
                                     <span id="lang-name">русский</span>
                                 @break
 
                                 @case('it')
                                     <img src="{{ URL::asset('/assets/images/flags/italy.svg') }}" class="rounded-circle me-2"
-                                        alt="Header Language" height="16">
+                                        alt="" height="16">
                                     <span id="lang-name">Italiana</span>
                                 @break
 
                                 @case('sp')
                                     <img src="{{ URL::asset('/assets/images/flags/spain.svg') }}" class="rounded-circle me-2"
-                                        alt="Header Language" height="16">
+                                        alt="" height="16">
                                     <span id="lang-name">Española</span>
                                 @break
 
                                 @case('ch')
                                     <img src="{{ URL::asset('/assets/images/flags/china.svg') }}" class="rounded-circle me-2"
-                                        alt="Header Language" height="16">
+                                        alt="" height="16">
                                     <span id="lang-name">中国人</span>
                                 @break
 
                                 @case('fr')
                                     <img src="{{ URL::asset('/assets/images/flags/french.svg') }}" class="rounded-circle me-2"
-                                        alt="Header Language" height="16">
+                                        alt="" height="16">
                                     <span id="lang-name">français</span>
                                 @break
 
                                 @case('gr')
                                     <img src="{{ URL::asset('/assets/images/flags/germany.svg') }}" class="rounded-circle me-2"
-                                        alt="Header Language" height="16">
+                                        alt="" height="16">
                                     <span id="lang-name">Deutsche</span>
                                 @break
 
                                 @case('sa')
                                     <img src="{{ URL::asset('/assets/images/flags/sa.svg') }}" class="rounded-circle me-2"
-                                        alt="Header Language" height="16">
+                                        alt="" height="16">
                                     <span id="lang-name">عربى</span>
                                 @break
 
                                 @default
                                     <img src="{{ URL::asset('/assets/images/flags/us.svg') }}" class="rounded-circle me-2"
-                                        alt="Header Language" height="16">
+                                        alt="" height="16">
                                     <span id="lang-name">English</span>
                             @endswitch
                         </button>

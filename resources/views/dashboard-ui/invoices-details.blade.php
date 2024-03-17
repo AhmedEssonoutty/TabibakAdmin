@@ -16,9 +16,9 @@
                             <div class="d-sm-flex">
                                 <div class="flex-grow-1">
                                     <img src="{{ URL::asset('assets/images/logo-dark.png') }}" class="card-logo card-logo-dark"
-                                        alt="logo dark" height="26">
+                                        alt="" height="26">
                                     <img src="{{ URL::asset('assets/images/logo-light.png') }}" class="card-logo card-logo-light"
-                                        alt="logo light" height="26">
+                                        alt="" height="26">
                                     <div class="mt-sm-5 mt-4">
                                         <h6 class="text-muted text-uppercase fw-semibold fs-14">Address</h6>
                                         <p class="text-muted mb-1" id="address-details">California, United States</p>

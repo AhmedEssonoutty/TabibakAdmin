@@ -46,7 +46,7 @@
                                                     class="form-control text-start @error('password') is-invalid @enderror"
                                                     name="password" required autocomplete="current-password" placeholder="{{__('auth.enter_pass')}}">
                                                 <button
-                                                    class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon"
+                                                    class="btn btn-link position-absolute {{app()->getLocale() == 'ar' ? 'start-0' : 'end-0'}} top-0 text-decoration-none text-muted password-addon"
                                                     type="button" id="password-addon" onclick="togglePasswordVisibility()"><i id="eyeIcon" class="bi bi-eye"></i></button>
                                                 @error('password')
                                                     <span class="invalid-feedback" role="alert">

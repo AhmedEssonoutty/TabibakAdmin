@@ -44,13 +44,14 @@
                 e.preventDefault();
                 let id = $(this).data('id');
                 Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You want to delete this resource!",
+                    title: '{{__('messages.confirm.are_you_sure')}}',
+                    text: '{{__('messages.confirm.delete_resource')}}',
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#2a4fd7',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
+                    confirmButtonText: '{{__('messages.confirm.yes_delete')}}',
+                    cancelButtonText: '{{__('messages.confirm.cancel')}}',
                 }).then((result) => {
                     if (result.isConfirmed && result.value) {
                         $('#deleteResourceForm-'+id).submit();
@@ -62,16 +63,17 @@
                 let id = $(this).data('id');
                 let activation = $(this).data('activation');
                 Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You want to change this resource activation!",
+                    title: '{{__('messages.confirm.are_you_sure')}}',
+                    text: '{{__('messages.confirm.change_resource_activation')}}',
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#2a4fd7',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, change it!'
+                    confirmButtonText: '{{__('messages.confirm.yes_change')}}',
+                    cancelButtonText: '{{__('messages.confirm.cancel')}}',
                 }).then((result) => {
                     if (result.isConfirmed && result.value) {
-                        $('#activeResourceForm-' + id).submit();
+                        $('#activeResourceForm-'+id).submit();
                     } else {
                         if (activation === 1) {
                             $(this).prop('checked', true);
