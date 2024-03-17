@@ -104,7 +104,7 @@
                                         <div class="col-lg-6">
                                             <!-- Inline Switches -->
                                             <div class="form-check form-switch form-check-inline">
-                                                <input type="radio" name="role_id" class="form-check-input" value="{{$role->id}}" id="Per{{$role->id}}" {{ old('role_id') == $role->id || (isset($user) && $user->role_id == $role->id)  ? 'checked' : ''}}>
+                                                <input type="radio" name="role_id" class="form-check-input" value="{{$role->id}}" id="Per{{$role->id}}" {{ old('role_id') == $role->id || (isset($user) && $user->getRoleId() == $role->id)  ? 'checked' : ''}}>
                                                 <label class="form-check-label" for="Per{{$role->id}}">{{$role->name}}</label>
                                             </div>
                                         </div>

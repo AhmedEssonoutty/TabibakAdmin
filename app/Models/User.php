@@ -70,6 +70,12 @@ class User extends Authenticatable
     }
     //---------------------relations-------------------------------------
     // ----------------------- Scopes -----------------------
+    public function getRoleId()
+    {
+        $role = $this->roles()->first();
+        return $role ? $role->id : null;
+    }
+
     public function scopeOfRole($query, $value)
     {
         return $query->whereHas('roles', function ($query) use ($value) {
