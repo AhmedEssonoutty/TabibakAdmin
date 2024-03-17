@@ -31,7 +31,7 @@ class MedicalSpecialityRequest extends FormRequest
             'name.en' => config('validations.string.req'),
             'description.ar' => config('validations.string.null'),
             'description.en' => config('validations.string.null'),
-            'percentage' => config('validations.double.req'),
+            'percentage' => config('validations.double.req') . '|min:1|max:100',
         ];
     }
 
