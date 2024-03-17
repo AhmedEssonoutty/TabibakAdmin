@@ -1,16 +1,18 @@
-<td>
-    <div class="form-check form-switch d-inline">
-        <input class="form-check-input active-resource" type="checkbox" @disabled(isset($disableActive) && $disableActive)
-               data-activation="{{$resource->is_active}}" data-id="{{$resource->id}}"
-            @checked($resource->is_active)>
-        @if(isset($disableActive) && $disableActive)
-            <form action="{{route("$route.active", $resource->id)}}" class="d-inline" method="POST" id="activeResourceForm-{{$resource->id}}">
-                @csrf
-                @method('PUT')
-            </form>
-        @endif
-    </div>
-</td>
+@if(!isset($hideActive) || !$hideActive)
+    <td>
+        <div class="form-check form-switch d-inline">
+            <input class="form-check-input active-resource" type="checkbox" @disabled(isset($disableActive) && $disableActive)
+            data-activation="{{$resource->is_active}}" data-id="{{$resource->id}}"
+                @checked($resource->is_active)>
+            @if(isset($disableActive) && $disableActive)
+                <form action="{{route("$route.active", $resource->id)}}" class="d-inline" method="POST" id="activeResourceForm-{{$resource->id}}">
+                    @csrf
+                    @method('PUT')
+                </form>
+            @endif
+        </div>
+    </td>
+@endif
 <td>
     @if($showModel)
         <a class="link-success cursor-pointer px-2" id="resource-details{{$resource->id}}">
