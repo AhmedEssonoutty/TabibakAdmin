@@ -35,7 +35,7 @@
                 @endforeach
                 </tbody>
             </table>
-            {{$resources->onEachSide(2)->withQueryString()->links()}}
+            @include('dashboard.layouts.paginate')
         </div>
         <div class="col-md-4"></div>
     </div>
