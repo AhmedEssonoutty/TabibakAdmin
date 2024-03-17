@@ -71,7 +71,7 @@
                             </div>
                             <div class="card-body pt-2 pb-3">
                                 {!! Form::file('image', ['class' => 'form-control', 'accept' => 'image/jpeg, image/png', 'value' => old('image')]) !!}
-                                @error("avatar")
+                                @error("image")
                                 <span class="text-danger">{{$message}}</span>
                                 @enderror
                             </div>
