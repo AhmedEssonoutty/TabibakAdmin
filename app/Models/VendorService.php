@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\ModelTrait;
 use App\Traits\SearchTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Translatable\HasTranslations;
 
@@ -19,9 +20,13 @@ class VendorService extends Model
     public array $filterModels = [];
     public array $filterCustom = [];
     public array $translatable = ['name', 'description'];
+    protected array $definedRelations = ['vendors'];
 
     //---------------------relations-------------------------------------
-
+    public function vendors(): BelongsToMany
+    {
+        return $this->belongsToMany(Vendor::class, 'service_vendor');
+    }
     //---------------------relations-------------------------------------
 
     //---------------------Scopes-------------------------------------
