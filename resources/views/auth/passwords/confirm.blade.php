@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.master-auth')
 @section('title')
-    Confirm Password
+    {{__('auth.confirm_pass')}}
 @endsection
 @section('content')
 

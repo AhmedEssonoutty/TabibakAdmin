@@ -1,5 +1,5 @@
 @extends('dashboard.layouts.master-auth')
-@section('title') Login @endsection
+@section('title') {{__('auth.sign_in')}} @endsection
 @section('content')
 
     <div class="w-100">
@@ -27,8 +27,8 @@
                                         @csrf
 
                                         <div class="mb-3">
-                                            <label for="email" class="form-label">Email</label>
-                                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" required autocomplete="email" autofocus placeholder="Enter your email">
+                                            <label for="email" class="form-label">{{__('messages.email')}}</label>
+                                            <input id="email" type="email" class="form-control text-start @error('email') is-invalid @enderror" name="email" required autocomplete="email" autofocus placeholder="{{__('auth.enter_email')}}">
                                             @error('email')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -38,13 +38,13 @@
 
                                         <div class="mb-3">
                                             <div class="float-end">
-                                                <a href="{{ route('password.request') }}" class="text-muted">Forgot password?</a>
+                                                <a href="{{ route('password.request') }}" class="text-muted">{{__('auth.forget_pass')}}</a>
                                             </div>
-                                            <label class="form-label" for="password-input">Password</label>
+                                            <label class="form-label" for="password-input">{{__('messages.password')}}</label>
                                             <div class="position-relative auth-pass-inputgroup mb-3">
                                                 <input id="password" type="password"
-                                                    class="form-control @error('password') is-invalid @enderror"
-                                                    name="password" required autocomplete="current-password" placeholder="Enter your password">
+                                                    class="form-control text-start @error('password') is-invalid @enderror"
+                                                    name="password" required autocomplete="current-password" placeholder="{{__('auth.enter_pass')}}">
                                                 <button
                                                     class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon"
                                                     type="button" id="password-addon" onclick="togglePasswordVisibility()"><i id="eyeIcon" class="bi bi-eye"></i></button>
@@ -58,11 +58,11 @@
 
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                            <label class="form-check-label" for="auth-remember-check">Remember me</label>
+                                            <label class="form-check-label" for="auth-remember-check">{{__('auth.remember_me')}}</label>
                                         </div>
 
                                         <div class="mt-4">
-                                            <button class="btn btn-primary w-100" type="submit">Sign In</button>
+                                            <button class="btn btn-primary w-100" type="submit">{{__('auth.sign_in')}}</button>
                                         </div>
 
                                         {{-- <div class="mt-4 pt-2 text-center">

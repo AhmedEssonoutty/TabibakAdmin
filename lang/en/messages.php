@@ -6,6 +6,7 @@ return [
     "users" => "Users",
     "user" => "User",
     "articles" => "Articles",
+    "article" => "Article",
     "manage_roles" => "Manage Roles",
     "manage_users" => "Manage Users",
     "manage_articles" => "Manage Articles",
@@ -191,7 +192,7 @@ return [
     "social_status" => "Social Status",
     "logout" => "Logout",
     "errors" => [
-        "doctor_request_pending" => "Doctor Request Is Not Pending"
+        "doctor_request_pending" => "Doctor Request Is Pending"
     ],
     "confirm" => [
         "doctor_approve" => "Do you want to approve this doctor request?",
