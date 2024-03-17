@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Requests\VendorServiceRequest;
 use App\Models\VendorService;
 use App\Repositories\Contracts\VendorServiceContract;
+use Exception;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseWebController;
 use Illuminate\Contracts\Foundation\Application;
@@ -105,8 +106,12 @@ class VendorServiceController extends BaseWebController
      */
     public function destroy(VendorService $vendorService): RedirectResponse
     {
-       $this->contract->remove($vendorService);
-       return $this->redirectBack()->with('success', __('messages.actions_messages.delete_success'));
+        try {
+            $this->contract->remove($vendorService);
+            return $this->redirectBack()->with('success', __('messages.actions_messages.delete_success'));
+        }catch (Exception $e) {
+            return $this->redirectBack()->with('error', $e->getMessage());
+        }
     }
 
     /**

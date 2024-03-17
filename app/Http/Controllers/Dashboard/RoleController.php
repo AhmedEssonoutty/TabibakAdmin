@@ -6,6 +6,7 @@ use App\Http\Requests\RoleRequest;
 use App\Models\Role;
 use App\Repositories\Contracts\PermissionContract;
 use App\Repositories\Contracts\RoleContract;
+use Exception;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseWebController;
 use Illuminate\Contracts\Foundation\Application;
@@ -118,8 +119,12 @@ class RoleController extends BaseWebController
      */
     public function destroy(Role $role): RedirectResponse
     {
-       $this->contract->remove($role);
-       return $this->redirectBack()->with('success', __('messages.actions_messages.delete_success'));
+        try {
+            $this->contract->remove($role);
+            return $this->redirectBack()->with('success', __('messages.actions_messages.delete_success'));
+        } catch (Exception $e) {
+            return $this->redirectBack()->with('error', $e->getMessage());
+        }
     }
 
     /**

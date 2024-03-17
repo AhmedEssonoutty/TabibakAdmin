@@ -29,7 +29,7 @@ class RoleRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'min:2', 'max:190',
-                Rule::unique('roles')->ignore($this->role?->id),
+                Rule::unique('roles')->ignore($this->role?->id)->whereNull('deleted_at'),
             ],
             'role_permissions' => config('validations.array.req'),
             'role_permissions.*' => sprintf(config('validations.model.req'), 'permissions')

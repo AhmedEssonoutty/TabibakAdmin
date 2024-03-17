@@ -22,5 +22,6 @@ class Role extends \Spatie\Permission\Models\Role
     {
         return $this->belongsToMany(User::class, 'model_has_roles', 'role_id', 'model_id');
     }
+    //---------------------relations-------------------------------------
 
 }
