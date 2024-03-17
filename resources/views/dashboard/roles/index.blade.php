@@ -30,7 +30,9 @@
                             <a href="#" class="fw-semibold">#{{$loop->iteration}}</a>
                         </th>
                         <td>{{$resource->name}}</td>
-                        @include('dashboard.partials.__table-actions', ['resource' => $resource, 'route' => 'roles', 'showModel' => false])
+                        @include('dashboard.partials.__table-actions', ['resource' => $resource, 'route' => 'roles',
+                            'showModel' => false, 'disableEdit' => !$resource->can_be_deleted,
+                            'disableDelete' => !$resource->can_be_deleted, 'disableActive' => !$resource->can_be_deleted])
                     </tr>
                 @endforeach
                 </tbody>

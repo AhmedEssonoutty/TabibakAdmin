@@ -18,6 +18,18 @@ class RoleRepository extends BaseRepository implements RoleContract
         parent::__construct($model);
     }
 
+    public function create(array $attributes = []): mixed
+    {
+        $role = $this->searchWithTrashed(['keyword' => $attributes['name']])->first();
+        if ($role) {
+            $role->restore();
+            $this->syncRelations($role, $attributes);
+            return $role;
+        }else{
+            return parent::create($attributes);
+        }
+    }
+
     public function syncRelations($model, array $attributes): mixed
     {
         $model = $this->syncPermissions($model, $attributes);

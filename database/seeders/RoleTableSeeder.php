@@ -17,6 +17,7 @@ class RoleTableSeeder extends Seeder
         $defaultRoles = RoleNameConstants::values();
         foreach ($defaultRoles as $defaultRole){
             $role = Role::findOrCreate($defaultRole);
+            $role->update(['can_be_deleted' => true]);
             if ($role->name == RoleNameConstants::ADMIN->value){
                 $permissions = Permission::all();
                 $role->syncPermissions($permissions);
