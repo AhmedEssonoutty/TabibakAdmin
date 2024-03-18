@@ -55,7 +55,8 @@ class Consultation extends Model
 
     public function attachments(): MorphMany
     {
-        return $this->morphMany(File::class, 'fileable')->where('type', FileConstants::FILE_TYPE_CONSULTATION_ATTACHMENTS);
+        return $this->morphMany(File::class, 'fileable')
+            ->where('type', FileConstants::FILE_TYPE_CONSULTATION_ATTACHMENTS->value);
     }
 
     public function medicalSpeciality(): BelongsTo
@@ -76,6 +77,11 @@ class Consultation extends Model
     public function vendors(): BelongsToMany
     {
         return $this->belongsToMany(Vendor::class, 'consultation_vendor')->withTimestamps();
+    }
+
+    public function diseases(): BelongsToMany
+    {
+        return $this->belongsToMany(Disease::class, 'consultation_disease')->withTimestamps();
     }
     //---------------------relations-------------------------------------
 

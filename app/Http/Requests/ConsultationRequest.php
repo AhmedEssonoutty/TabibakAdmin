@@ -49,15 +49,16 @@ class ConsultationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'patient_id' => sprintf(config('validations.model.null'), 'patients', 'id'),
-            'doctor_id' => sprintf(config('validations.model.null'), 'doctors', 'id'),
-            'patient_description' => config('validations.text.null'),
+            'patient_id' => sprintf(config('validations.model.null'), 'patients'),
+            'doctor_id' => sprintf(config('validations.model.null'), 'doctors')
+                .'|required_if:type,==,'.ConsultationTypeConstants::WITH_APPOINTMENT->value,
+            'patient_description' => config('validations.text.req'),
             'other_diseases' => config('validations.text.null'),
             'latest_surgeries' => config('validations.text.null'),
-            'files' => config('validations.array.null'),
-            'files.*' => sprintf(config('validations.model.req'), 'files', 'id'),
+            'attachments' => config('validations.array.null'),
+            'attachments.*' => sprintf(config('validations.model.req'), 'files'),
             'diseases' => config('validations.array.null'),
-            'diseases.*' => sprintf(config('validations.model.req'), 'diseases', 'id'),
+            'diseases.*' => sprintf(config('validations.model.req'), 'diseases'),
             'type' => config('validations.integer.req').'|in:'.implode(',', ConsultationTypeConstants::values()),
             'doctor_schedule_day_shift_id' => 'required_if:type,==,'.ConsultationTypeConstants::WITH_APPOINTMENT->value.'|'.
                 sprintf(config('validations.model.null'), 'doctor_schedule_day_shifts', 'id'),

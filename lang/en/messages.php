@@ -234,4 +234,5 @@ return [
     '30_minutes' => '30 Minutes',
     '45_minutes' => '45 Minutes',
     '1_hour' => '1 Hour',
+    'cancelled' => 'Cancelled',
 ];

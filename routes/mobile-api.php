@@ -36,6 +36,7 @@ Route::group(['middleware' => 'auth:sanctum'], static function () {
         Route::put('update-main-info', [PatientProfileController::class, 'updateMainInfo']);
         Route::apiResource('relatives', PatientRelativeController::class);
         Route::apiResource('consultations', ConsultationController::class);
+        Route::put('consultations/{consultation}/cancel', [ConsultationController::class, 'cancel']);
         Route::apiResource('rates', RateController::class)->only('store', 'update', 'destroy');
         Route::apiResource('complaints', ComplaintController::class)->only('store', 'show', 'update', 'destroy');
         Route::apiResource('doctor-schedule-days', DoctorScheduleDayController::class)->only('index');

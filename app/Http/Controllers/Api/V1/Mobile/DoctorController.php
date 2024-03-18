@@ -21,6 +21,7 @@ class DoctorController extends BaseApiController
     {
         parent::__construct($contract, DoctorResource::class);
         $this->defaultScopes = ['requestStatus' => DoctorRequestStatusConstants::APPROVED->value];
+        $this->relations = ['rates'];
     }
 
     /**

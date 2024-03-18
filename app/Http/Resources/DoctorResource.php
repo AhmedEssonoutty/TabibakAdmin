@@ -45,6 +45,8 @@ class DoctorResource extends BaseResource
             'medical_specialities' => $this->relationLoaded('medicalSpecialities') ? MedicalSpecialityResource::collection($this->medicalSpecialities) : [],
             'academic_degree' => $this->relationLoaded('academicDegree') ? new AcademicDegreeResource($this->academicDegree) : null,
             'attachments' => $this->relationLoaded('attachments') ? FileResource::collection($this->attachments) : [],
+            'rates_count' => $this->relationLoaded('rates') ? $this->rates->count() : 0,
+            'rates_avg' => $this->relationLoaded('rates') ? $this->rates->avg('value') : 0,
         ];
         return $this->getResource();
     }

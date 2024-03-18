@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1\Mobile;
 
+use App\Constants\ConsultationStatusConstants;
 use App\Http\Controllers\Api\V1\BaseApiController;
 use App\Http\Requests\ConsultationRequest;
 use App\Http\Resources\ConsultationResource;
@@ -19,6 +20,7 @@ class ConsultationController extends BaseApiController
     public function __construct(ConsultationContract $contract)
     {
         $this->defaultScopes = ['mineAsPatient' => true];
+        $this->relations = ['patient', 'doctorScheduleDayShift', 'doctor.rates'];
         parent::__construct($contract, ConsultationResource::class);
     }
     /**
@@ -28,12 +30,13 @@ class ConsultationController extends BaseApiController
      */
     public function store(ConsultationRequest $request): JsonResponse
     {
-//        try {
+        try {
             $consultation = $this->contract->create($request->validated());
-            return $this->respondWithModel($consultation->load($this->relations));
-//        }catch (Exception $e) {
-//            return $this->respondWithError($e->getMessage());
-//        }
+            $this->relations[] = 'attachments';
+            return $this->respondWithModel($consultation);
+        }catch (Exception $e) {
+            return $this->respondWithError($e->getMessage());
+        }
     }
    /**
     * Display the specified resource.
@@ -42,11 +45,12 @@ class ConsultationController extends BaseApiController
     */
    public function show(Consultation $consultation): JsonResponse
    {
-       try {
-           return $this->respondWithModel($consultation->load($this->relations));
-       }catch (Exception $e) {
-           return $this->respondWithError($e->getMessage());
-       }
+//       try {
+           $this->relations = array_merge($this->relations, ['attachments', 'diseases', 'medicalSpeciality', 'vendors']);
+           return $this->respondWithModel($consultation);
+//       }catch (Exception $e) {
+//           return $this->respondWithError($e->getMessage());
+//       }
    }
     /**
      * Update the specified resource in storage.
@@ -59,7 +63,7 @@ class ConsultationController extends BaseApiController
     {
         try {
             $consultation = $this->contract->update($consultation, $request->validated());
-            return $this->respondWithModel($consultation->load($this->relations));
+            return $this->respondWithModel($consultation);
         }catch (Exception $e) {
             return $this->respondWithError($e->getMessage());
         }
@@ -88,7 +92,22 @@ class ConsultationController extends BaseApiController
     {
         try {
             $this->contract->toggleField($consultation, 'is_active');
-            return $this->respondWithModel($consultation->load($this->relations));
+            return $this->respondWithModel($consultation);
+        }catch (Exception $e) {
+            return $this->respondWithError($e->getMessage());
+        }
+    }
+
+    /**
+     * Cancel the specified resource from storage.
+     * @param Consultation $consultation
+     * @return JsonResponse
+     */
+    public function cancel(Consultation $consultation): JsonResponse
+    {
+        try {
+            $consultation = $this->contract->update($consultation, ['status' => ConsultationStatusConstants::CANCELLED->value]);
+            return $this->respondWithModel($consultation);
         }catch (Exception $e) {
             return $this->respondWithError($e->getMessage());
         }

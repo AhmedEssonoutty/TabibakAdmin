@@ -58,12 +58,12 @@ class ConsultationResource extends BaseResource
             'transfer_notes' => $this->transfer_notes,
         ];
         $this->relations = [
-            'attachments' => $this->relationLoaded('attachments') ? FileResource::collection($this->attachments) : '',
-            'patient' => $this->relationLoaded('patient') ? new PatientResource($this->patient) : '',
-            'doctor' => $this->relationLoaded('doctor') ? new DoctorResource($this->doctor) : '',
-            'vendors' => $this->relationLoaded('vendors') ? new VendorResource($this->vendors) : '',
-            'medicalSpeciality' => $this->relationLoaded('medicalSpeciality') ? new MedicalSpecialityResource($this->medicalSpeciality) : '',
-            'doctorScheduleDayShift' => $this->relationLoaded('doctorScheduleDayShift') ? new DoctorScheduleDayShiftResource($this->doctorScheduleDayShift) : '',
+            'attachments' => $this->relationLoaded('attachments') ? FileResource::collection($this->attachments) : [],
+            'patient' => $this->relationLoaded('patient') ? new PatientResource($this->patient) : null,
+            'doctor' => $this->relationLoaded('doctor') ? new DoctorResource($this->doctor) : null,
+            'vendors' => $this->relationLoaded('vendors') ? VendorResource::collection($this->vendors) : [],
+            'medicalSpeciality' => $this->relationLoaded('medicalSpeciality') ? new MedicalSpecialityResource($this->medicalSpeciality) : null,
+            'doctorScheduleDayShift' => $this->relationLoaded('doctorScheduleDayShift') ? new DoctorScheduleDayShiftResource($this->doctorScheduleDayShift) : null,
         ];
         return $this->getResource();
     }
