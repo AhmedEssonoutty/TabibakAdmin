@@ -4,7 +4,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="row g-3">
-                    <div class="col-lg-6">
+                    <div class="col-12">
                         {{Form::label('name', __('messages.name'), ['class' => 'form-label'])}}
                         <span class="text-danger fw-bold">*</span>
                         {!! Form::text('name' , $role->name ?? '', ['class' => 'form-control']) !!}

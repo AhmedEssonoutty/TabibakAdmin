@@ -96,7 +96,7 @@
                                  alt="" height="18">
                             <span id="lang-name">{{ $lang }}</span>
                         </button>
-                        <div class="dropdown-menu dropdown-menu-end">
+                        <div class="dropdown-menu dropdown-menu-end text-{{app()->getLocale() == 'ar' ? 'end' : 'start'}}">
                             @foreach(\Mcamara\LaravelLocalization\Facades\LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                                 <!-- item-->
                                 <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}" class="dropdown-item notify-item language py-2" title="{{ $properties['native'] }}">
@@ -181,7 +181,7 @@
                                  alt="" height="22">
                             <span id="lang-name">{{ ucfirst(auth()->user()->name) }}</span>
                         </button>
-                        <div class="dropdown-menu dropdown-menu-end">
+                        <div class="dropdown-menu dropdown-menu-end text-{{app()->getLocale() == 'ar' ? 'end' : 'start'}}">
                             {{--item--}}
                             <a class="dropdown-item" href="{{ route('profile') }}">
                                 <i class="bi bi-gear {{app()->getLocale() == 'ar' ? 'ms-2' : 'me-2'}}"></i>

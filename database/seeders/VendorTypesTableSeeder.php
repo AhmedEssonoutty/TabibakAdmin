@@ -13,7 +13,13 @@ class VendorTypesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $vendorTypes = ['Hospital', 'Clinic', 'Pharmacy', 'Lab', 'Home Care'];
+        $vendorTypes = [
+            ['en' => 'Hospital', 'ar' => 'مستشفى'],
+            ['en' => 'Clinic', 'ar' => 'عيادة'],
+            ['en' => 'Pharmacy', 'ar' => 'صيدلية'],
+            ['en' => 'Lab', 'ar' => 'معمل'],
+            ['en' => 'Home Care', 'ar' => 'رعاية منزلية']
+        ];
         foreach ($vendorTypes as $vendorType) {
             VendorType::updateOrCreate([
                 'name' => $vendorType,
