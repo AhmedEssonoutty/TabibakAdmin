@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\V1\Mobile;
 
 use App\Http\Controllers\Api\V1\BaseApiController;
-use App\Http\Requests\PatientAPIRequest;
+use App\Http\Requests\PatientProfileRequest;
 use App\Http\Resources\PatientResource;
 use App\Models\Patient;
 use App\Repositories\Contracts\PatientContract;
@@ -21,7 +21,7 @@ class PatientRelativeController extends BaseApiController
         return parent::index();
     }
 
-    public function store(PatientAPIRequest $request)
+    public function store(PatientProfileRequest $request)
     {
         $patient = $this->contract->create($request->validated());
         return $this->respondWithModel($patient->user->load('patient'));

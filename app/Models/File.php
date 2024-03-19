@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Constants\FileConstants;
 use App\Traits\ModelTrait;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -35,5 +36,12 @@ class File extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function assetUrl(): Attribute
+    {
+        return Attribute::make(function () {
+            return asset('storage/'.$this->url);
+        });
     }
 }

@@ -20,7 +20,7 @@ class Patient extends Model
     protected array $searchable = ['user.name'];
     protected array $dates = ['date_of_birth'];
     public array $filterModels = [];
-    public array $filterCustom = [];
+    public array $filterCustom = ['socialStatuses'];
     public array $translatable = [];
     protected $with = ['user'];
     protected $casts = [
@@ -51,5 +51,10 @@ class Patient extends Model
         return $query->where('parent_id', $value);
     }
     //---------------------Scopes-------------------------------------
+
+    public static function socialStatuses(): array
+    {
+        return PatientSocialStatusConstants::valuesCollection();
+    }
 
 }

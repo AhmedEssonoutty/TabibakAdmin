@@ -56,7 +56,7 @@
                     </div>
                     <div class="col-lg-6">
                         {{Form::label('images', __('messages.images'), ['class' => 'form-label'])}}
-                        {!! Form::file('images', ['class' => 'form-control', 'accept' => 'image/jpeg, image/png', 'value' => old('images'), 'multiple']) !!}
+                        {!! Form::file('images[]', ['class' => 'form-control', 'accept' => 'image/jpeg, image/png', 'value' => old('images'), 'multiple']) !!}
                         @error("images")
                         <span class="text-danger">{{$message}}</span>
                         @enderror

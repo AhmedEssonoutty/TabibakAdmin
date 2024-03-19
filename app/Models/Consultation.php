@@ -56,7 +56,7 @@ class Consultation extends Model
     public function attachments(): MorphMany
     {
         return $this->morphMany(File::class, 'fileable')
-            ->where('type', FileConstants::FILE_TYPE_CONSULTATION_ATTACHMENTS->value);
+            ->where('type', FileConstants::FILE_TYPE_CONSULTATION_ATTACHMENTS);
     }
 
     public function medicalSpeciality(): BelongsTo
