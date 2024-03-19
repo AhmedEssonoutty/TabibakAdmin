@@ -69,10 +69,15 @@ class UserRequest extends FormRequest
      * Customizing input names displayed for user
      * @return array
      */
-    public function attributes(): array
+    public function attributes() : array
     {
         return [
-
+            'name' => __('messages.name'),
+            'email' => __('messages.email'),
+            'phone' => __('messages.phone'),
+            'image' => __('messages.image'),
+            'role_id' => __('messages.role'),
+            'password' => __('messages.password'),
         ];
     }
 

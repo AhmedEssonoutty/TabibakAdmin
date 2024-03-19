@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-4">
             <div class="card">
-                <img src="{{ asset($doctor->user->avatar ? 'storage/images/users/' . $doctor->user->avatar : 'assets/images/users/user-dummy-img.jpg') }}" class="card-img-top img-fluid mx-auto d-block float-md-left mr-md-4" @style(['max-height:400px'])>
+                <img src="{{$doctor->user->avatar->asset_url ?? asset('assets/images/users/user-dummy-img.jpg')}}" class="card-img-top img-fluid mx-auto d-block float-md-left mr-md-4" @style(['max-height:400px'])>
             </div>
         </div>
         <div class="col-md-8">

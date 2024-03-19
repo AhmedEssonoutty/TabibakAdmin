@@ -56,7 +56,13 @@ class PatientRequest extends FormRequest
      */
     public function attributes() : array
     {
-        return [];
+        return [
+            'name' => __('messages.name'),
+            'date_of_birth' => __('messages.date_of_birth'),
+            'national_id' => __('messages.national_id'),
+            'phone' => __('messages.phone'),
+            'password' => __('messages.password'),
+        ];
     }
 
     /**
