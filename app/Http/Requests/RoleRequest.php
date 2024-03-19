@@ -35,4 +35,16 @@ class RoleRequest extends FormRequest
             'role_permissions.*' => sprintf(config('validations.model.req'), 'permissions')
         ];
     }
+
+    /**
+     * Customizing input names displayed for user
+     * @return array
+     */
+    public function attributes() : array
+    {
+        return [
+            'name' => __('messages.name'),
+            'role_permissions' => __('messages.permissions'),
+        ];
+    }
 }

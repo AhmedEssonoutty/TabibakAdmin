@@ -65,7 +65,19 @@ class DoctorRequest extends FormRequest
      */
     public function attributes() : array
     {
-        return [];
+        return [
+            'email' => __('messages.email'),
+            'specialities' => __('messages.specialities'),
+            'academic_degree' => __('messages.academic_degree'),
+            'university' => __('messages.university'),
+            'name' => __('messages.name'),
+            'phone' => __('messages.phone'),
+            'password' => __('messages.password'),
+            'national_id' => __('messages.national_id'),
+            'medical_id' => __('messages.medical_id'),
+            'urgent_consultation_enabled' => __('messages.urgent'),
+            'with_appointment_consultation_enabled' => __('messages.with_appointment'),
+        ];
     }
 
     /**

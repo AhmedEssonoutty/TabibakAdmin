@@ -51,7 +51,13 @@ class PatientAPIRequest extends FormRequest
      */
     public function attributes() : array
     {
-        return [];
+        return [
+            'name' => __('messages.name'),
+            'date_of_birth' => __('messages.date_of_birth'),
+            'phone' => __('messages.phone'),
+            'national_id' => __('messages.national_id'),
+            'password' => __('messages.password'),
+        ];
     }
 
     /**

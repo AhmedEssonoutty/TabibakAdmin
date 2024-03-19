@@ -60,7 +60,14 @@ class VendorRequest extends FormRequest
      */
     public function attributes() : array
     {
-        return [];
+        return [
+            'name' => __('messages.name'),
+            'email' => __('messages.email'),
+            'phone' => __('messages.phone'),
+            'vendor_type_id' => __('messages.type'),
+            'address' => __('messages.address'),
+            'services' => __('messages.services'),
+        ];
     }
 
     /**

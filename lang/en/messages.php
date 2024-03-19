@@ -83,6 +83,7 @@ return [
     'question_ar' => 'Question (Arabic)',
     'answer_en' => 'Answer (English)',
     'answer_ar' => 'Answer (Arabic)',
+    'faq_subject' => 'FAQ subject',
     'manage_faq_subjects' => 'Manage FAQ subjects',
     'faq_subjects' => 'FAQ subjects',
     'add_faq_subjects' => 'Add New FAQ subjects',

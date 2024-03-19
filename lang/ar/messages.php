@@ -84,6 +84,7 @@ return [
     'question_ar' => 'السؤال (بالإنجليزية)',
     'answer_en' => 'الإجابة (بالعربية)',
     'answer_ar' => 'الإجابة (بالإنجليزية)',
+    'faq_subject' => 'أسئلة وأجوبة',
     'manage_faq_subjects' => 'إدارة موضوعات الأسئلة',
     'faq_subjects' => 'موضوعات الأسئلة',
     'add_faq_subjects' => 'إضافة موضوع جديد',

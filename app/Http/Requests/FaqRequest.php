@@ -45,7 +45,8 @@ class FaqRequest extends FormRequest
             'question.en' => __('messages.question_en'),
             'question.ar' => __('messages.question_ar'),
             'answer.en' => __('messages.answer_en'),
-            'answer.ar' => __('messages.answer_ar')
+            'answer.ar' => __('messages.answer_ar'),
+            'faq_subject_id' => __('messages.faq_subject'),
         ];
     }
 

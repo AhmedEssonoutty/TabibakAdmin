@@ -64,7 +64,13 @@ class ComplaintRequest extends FormRequest
      */
     public function attributes() : array
     {
-        return [];
+        return [
+            'title.ar' => __('messages.title_ar'),
+            'title.en' => __('messages.title_en'),
+            'description.ar' => __('messages.description_ar'),
+            'description.en' => __('messages.description_en'),
+            'type' => __('messages.type'),
+        ];
     }
 
     /**

@@ -45,7 +45,8 @@ class MedicalSpecialityRequest extends FormRequest
             'name.ar' => __('messages.name_ar'),
             'name.en' => __('messages.name_en'),
             'description.ar' => __('messages.description_ar'),
-            'description.en' => __('messages.description_en')
+            'description.en' => __('messages.description_en'),
+            'percentage' => __('messages.percentage'),
         ];
     }
 

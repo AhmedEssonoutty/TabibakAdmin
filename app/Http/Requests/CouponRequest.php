@@ -46,7 +46,17 @@ class CouponRequest extends FormRequest
      */
     public function attributes() : array
     {
-        return [];
+        return [
+            'code' => __('messages.code'),
+            'discount_type' => __('messages.discount_type'),
+            'discount_amount' => __('messages.discount_amount'),
+            'valid_from' => __('messages.valid_from'),
+            'valid_to' => __('messages.valid_to'),
+            'description' => __('messages.description'),
+            'specialities' => __('messages.specialities'),
+            'user_limit' => __('messages.user_limit'),
+            'total_limit' => __('messages.total_limit'),
+        ];
     }
 
     /**
