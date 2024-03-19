@@ -27,7 +27,7 @@ class ArticleRepository extends BaseRepository implements ArticleContract
         }
         if (isset($attributes['images'])) {
             $images = collect($attributes['images'])->map(function ($image) {
-                return ['file' => $image, 'type' => FileConstants::FILE_TYPE_ARTICLE_IMAGE->value];
+                return ['file' => $image, 'type' => FileConstants::FILE_TYPE_ARTICLE_IMAGES->value];
             })->toArray();
             $files = resolve(FileContract::class)->createMany($images);
             foreach ($files as $file)
