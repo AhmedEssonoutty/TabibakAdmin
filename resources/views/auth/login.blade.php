@@ -28,7 +28,7 @@
 
                                         <div class="mb-3">
                                             <label for="email" class="form-label">{{__('messages.email')}}</label>
-                                            <input id="email" type="email" class="form-control text-start @error('email') is-invalid @enderror" name="email" required autocomplete="email" autofocus placeholder="{{__('auth.enter_email')}}">
+                                            <input id="email" type="email" class="form-control text-{{app()->getLocale() == 'ar' ? 'end' : 'start'}} @error('email') is-invalid @enderror" name="email" required autocomplete="email" autofocus placeholder="{{__('auth.enter_email')}}">
                                             @error('email')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -37,16 +37,16 @@
                                         </div>
 
                                         <div class="mb-3">
-                                            <div class="float-end">
+                                            <div class="float-{{app()->getLocale() == 'ar' ? 'start' : 'end'}}">
                                                 <a href="{{ route('password.request') }}" class="text-muted">{{__('auth.forget_pass')}}</a>
                                             </div>
                                             <label class="form-label" for="password-input">{{__('messages.password')}}</label>
                                             <div class="position-relative auth-pass-inputgroup mb-3">
                                                 <input id="password" type="password"
-                                                    class="form-control text-start @error('password') is-invalid @enderror"
+                                                    class="form-control text-{{app()->getLocale() == 'ar' ? 'end' : 'start'}} @error('password') is-invalid @enderror"
                                                     name="password" required autocomplete="current-password" placeholder="{{__('auth.enter_pass')}}">
                                                 <button
-                                                    class="btn btn-link position-absolute {{app()->getLocale() == 'ar' ? 'start-0' : 'end-0'}} top-0 text-decoration-none text-muted password-addon"
+                                                    class="btn btn-link position-absolute {{app()->getLocale() == 'ar' ? 'start' : 'end'}}-0 top-0 text-decoration-none text-muted password-addon"
                                                     type="button" id="password-addon" onclick="togglePasswordVisibility()"><i id="eyeIcon" class="bi bi-eye"></i></button>
                                                 @error('password')
                                                     <span class="invalid-feedback" role="alert">
@@ -56,8 +56,8 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                        <div class="pb-3 {{app()->getLocale() == 'ar' ? 'float-end' : 'float-start'}}">
+                                            <input class="form-check-input cursor-pointer mx-2" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                                             <label class="form-check-label" for="auth-remember-check">{{__('auth.remember_me')}}</label>
                                         </div>
 

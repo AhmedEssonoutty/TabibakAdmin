@@ -1,5 +1,11 @@
 <!doctype html>
-<html lang="en" data-bs-theme="light" data-footer="dark">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}"
+      dir="{{ app()->getLocale() == 'ar' ? 'rtl' : 'ltr' }}"
+      data-layout="vertical" data-topbar="brand"
+      data-sidebar="gradient"
+      data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable" data-body-image="none"
+      data-bs-theme="light">
+
 <head>
     <meta charset="utf-8">
     <title>@yield('title') | {{config('app.name')}} {{__('messages.dashboard')}}</title>
