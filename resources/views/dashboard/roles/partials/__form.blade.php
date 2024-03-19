@@ -46,6 +46,7 @@
                                                        @if(request()->routeIs('roles.edit'))
                                                            @checked(in_array($permission->id, $role->permissions->pluck('id')->toArray() ?? []))
                                                        @endif
+                                                       @checked(in_array($permission->id, old('role_permissions') ?? []))
                                                        class="form-check-input permission-checkbox" type="checkbox" id="checkbox{{$permission->id}}">
                                                 <label class="form-check-label" for="checkbox{{$permission->id}}">
                                                     {{$permission->action}}
