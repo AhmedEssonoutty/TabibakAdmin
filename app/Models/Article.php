@@ -60,7 +60,7 @@ class Article extends Model
 
     public function images(): MorphMany
     {
-        return $this->morphMany(File::class, 'fileable')->where('type', FileConstants::FILE_TYPE_ARTICLE_IMAGE);
+        return $this->morphMany(File::class, 'fileable')->where('type', FileConstants::FILE_TYPE_ARTICLE_IMAGES);
     }
 
     //---------------------relations-------------------------------------
