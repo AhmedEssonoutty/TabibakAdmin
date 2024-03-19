@@ -16,7 +16,7 @@
                         {{Form::label('type', __('messages.discount_type'), ['class' => 'form-label'])}}
                         <span class="text-danger fw-bold">*</span>
                         {!! Form::select('discount_type', $types,
-                            '',
+                            isset($coupon) ? [$coupon->discount_type->value] : [],
                             ['id' => 'discount_type', 'class' => 'form-control', 'onchange' => 'setDiscountValueAttributes()']) !!}
                         @error("discount_type")
                         <span class="text-danger">{{$message}}</span>

@@ -35,7 +35,9 @@
                             <a href="#" class="fw-semibold">#{{$loop->iteration}}</a>
                         </th>
                         <td>{{$resource->code}}</td>
-                        <td>{{$resource->discount_type}}</td>
+                        <td>
+                            {{strtolower($resource->discount_type->name)}}
+                        </td>
                         <td>{{$resource->discount_amount}}</td>
                         <td>{{date_format($resource->valid_from, 'd-m-Y')}}</td>
                         <td>{{date_format($resource->valid_to, 'd-m-Y')}}</td>
