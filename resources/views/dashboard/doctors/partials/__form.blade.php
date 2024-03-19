@@ -18,7 +18,7 @@
                         {!! Form::select('academic_degree_id', $academicDegrees->pluck('name', 'id')->prepend('' , ''),
                             $doctor->academic_degree_id ?? '',
                             ['class' => 'form-control']) !!}
-                        @error("specialities")
+                        @error("academic_degree_id")
                         <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
@@ -40,7 +40,7 @@
                                 <div class="card-body">
                                     <div class="form-check">
                                         <input name="with_appointment_consultation_enabled"
-                                               @checked($doctor->with_appointment_consultation_enabled ?? false)
+                                               @checked((isset($doctor) && $doctor->with_appointment_consultation_enabled) || old('with_appointment_consultation_enabled') ?? false)
                                                class="form-check-input" type="checkbox">
                                         <label class="form-check-label" for="with_appointment_consultation_enabled">
                                             {{__('messages.scheduled')}}
@@ -48,7 +48,7 @@
                                     </div>
                                     <div class="form-check">
                                         <input name="urgent_consultation_enabled"
-                                               @checked($doctor->urgent_consultation_enabled ?? false)
+                                               @checked((isset($doctor) && $doctor->urgent_consultation_enabled) || old('urgent_consultation_enabled') ?? false)
                                                class="form-check-input" type="checkbox">
                                         <label class="form-check-label" for="urgent_consultation_enabled">
                                             {{__('messages.urgent')}}
@@ -57,6 +57,12 @@
                                 </div>
                             </div>
                         </div>
+                        @error("with_appointment_consultation_enabled")
+                        <span class="text-danger">{{$message}}</span>
+                        @enderror
+                        @error("urgent_consultation_enabled")
+                        <span class="text-danger">{{$message}}</span>
+                        @enderror
                     </div>
                     <div class="col-lg-6">
                         {{Form::label('email', __('messages.email'), ['class' => 'form-label'])}}

@@ -174,6 +174,7 @@ return [
             'required_if' => 'The doctor schedule day shift id field is required when type is with appointment.',
         ],
     ],
+    'profile_mimes' => 'Profile image should be only one of these extensions  (PNG - JPG - JPEG)',
 
     /*
     |--------------------------------------------------------------------------

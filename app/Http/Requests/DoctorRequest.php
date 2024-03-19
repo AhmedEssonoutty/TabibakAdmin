@@ -23,6 +23,8 @@ class DoctorRequest extends FormRequest
     public function validated($key = null, $default = null)
     {
         $validated = parent::validated($key, $default);
+        $validated['urgent_consultation_enabled'] = $this->input('urgent_consultation_enabled') === 'on';
+        $validated['with_appointment_consultation_enabled'] = $this->input('with_appointment_consultation_enabled') === 'on';
         if ($this->route('doctor')) {
             $validated['user']['id'] = $this->route('doctor')->user_id;
         }
@@ -39,15 +41,15 @@ class DoctorRequest extends FormRequest
         $rules = [
             'email' => sprintf(config('validations.email.null'), 'users', 'email').','.$this->route('doctor')?->user_id,
             'specialities' => config('validations.array.req'),
-            'specialities.*' => sprintf(config('validations.model.req'), 'academic_degrees'),
+            'specialities.*' => sprintf(config('validations.model.req'), 'medical_specialities'),
             'academic_degree_id' => sprintf(config('validations.model.req'), 'academic_degrees'),
             'university' => config('validations.string.null'),
             'name' => config('validations.string.req'),
             'phone' => config('validations.phone.req').'|unique:users,phone,'.$this->route('doctor')?->user_id,
             'national_id' => config('validations.string.null').'|unique:doctors,national_id,'.$this->route('doctor')?->id,
             'medical_id' => config('validations.string.null').'|unique:doctors,medical_id,'.$this->route('doctor')?->id,
-            'urgent_consultation_enabled' => config('validations.boolean.null'),
-            'with_appointment_consultation_enabled' => config('validations.boolean.null')
+            'urgent_consultation_enabled' => 'nullable|in:on',
+            'with_appointment_consultation_enabled' => 'nullable|in:on'
         ];
         if ($this->getMethod() === 'POST') {
             $rules['password'] = config('validations.password.req');
