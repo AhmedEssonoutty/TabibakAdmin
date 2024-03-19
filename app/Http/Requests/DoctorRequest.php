@@ -44,8 +44,8 @@ class DoctorRequest extends FormRequest
             'university' => config('validations.string.null'),
             'name' => config('validations.string.req'),
             'phone' => config('validations.phone.req').'|unique:users,phone,'.$this->route('doctor')?->user_id,
-            'national_id' => config('validations.string.null').'|unique:doctors,national_id,'.$this->route('doctor')?->user_id,
-            'medical_id' => config('validations.string.null').'|unique:doctors,medical_id,'.$this->route('doctor')?->user_id,
+            'national_id' => config('validations.string.null').'|unique:doctors,national_id,'.$this->route('doctor')?->id,
+            'medical_id' => config('validations.string.null').'|unique:doctors,medical_id,'.$this->route('doctor')?->id,
             'urgent_consultation_enabled' => config('validations.boolean.null'),
             'with_appointment_consultation_enabled' => config('validations.boolean.null')
         ];
