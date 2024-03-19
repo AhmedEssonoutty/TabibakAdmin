@@ -46,6 +46,21 @@
                         <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
+                    <div class="col-lg-6">
+                        {{Form::label('main_image', __('messages.main_image'), ['class' => 'form-label'])}}
+                        <span class="text-danger fw-bold">*</span>
+                        {!! Form::file('main_image', ['class' => 'form-control', 'accept' => 'image/jpeg, image/png', 'value' => old('main_image')]) !!}
+                        @error("main_image")
+                        <span class="text-danger">{{$message}}</span>
+                        @enderror
+                    </div>
+                    <div class="col-lg-6">
+                        {{Form::label('images', __('messages.images'), ['class' => 'form-label'])}}
+                        {!! Form::file('images', ['class' => 'form-control', 'accept' => 'image/jpeg, image/png', 'value' => old('images'), 'multiple']) !!}
+                        @error("images")
+                        <span class="text-danger">{{$message}}</span>
+                        @enderror
+                    </div>
                     <div class="col-lg-12">
                         <div class="{{app()->getLocale() == 'ar' ? 'text-start' : 'text-end'}}">
                             <button type="submit" class="btn btn-primary">{{__('messages.save')}}</button>

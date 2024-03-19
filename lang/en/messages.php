@@ -183,6 +183,8 @@ return [
     'valid_to' => 'Valid to',
     'user_limit' => 'Usage Per User',
     'total_limit' => 'Usage Per Coupon',
+    'main_image' => 'Main Image',
+    'images' => 'Images',
     'tabby' => 'Tabby',
     'insurance' => 'Insurance',
     'approved' => 'Approved',

@@ -36,7 +36,7 @@ class ArticleController extends BaseWebController
      */
     public function index(Request $request): View|Factory|Application
     {
-        $resources = $this->contract->search($request->all());
+        $resources = $this->contract->search($request->all(), ['author', 'likes']);
         return $this->indexBlade(['resources' => $resources]);
     }
 

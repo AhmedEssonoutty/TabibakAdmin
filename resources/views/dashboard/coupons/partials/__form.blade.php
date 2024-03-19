@@ -25,7 +25,7 @@
                     <div class="col-lg-6">
                         {{Form::label('discount_amount', __('messages.discount_amount'), ['class' => 'form-label'])}}
                         <span class="text-danger fw-bold">*</span>
-                        {!! Form::number('discount_amount' , $coupon->discount_amount ?? '', ['class' => 'form-control', 'min' => '1', 'max' => '100', 'pattern' => '[0-9]', 'onkeypress' => 'return isNumberKey(event)']) !!}
+                        {!! Form::number('discount_amount' , $coupon->discount_amount ?? '', ['class' => 'form-control', 'min' => '1', 'pattern' => '[0-9]', 'onkeypress' => 'return isNumberKey(event)']) !!}
                         @error("discount_amount")
                         <span class="text-danger">{{$message}}</span>
                         @enderror
@@ -91,3 +91,18 @@
     <!--end col-->
 </div>
 {!! Form::close() !!}
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            const discountTypeInput = $('#discount_type');
+            const discountAmountInput = $('#discount_amount');
+
+            if (discountTypeInput.val() === '1') {
+                discountAmountInput.attr('max', '100');
+            } else {
+                discountAmountInput.removeAttr('max');
+            }
+        });
+    </script>
+@endpush

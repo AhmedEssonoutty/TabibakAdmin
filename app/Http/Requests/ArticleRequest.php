@@ -39,6 +39,8 @@ class ArticleRequest extends FormRequest
             'title.en' => config('validations.string.req'),
             'content.ar' => config('validations.long_text.req'),
             'content.en' => config('validations.long_text.req'),
+            'main_image' =>  'required|'.config('validations.file.image') . '|mimes:jpeg,jpg,png',
+            'images.*' =>  'nullable|'.config('validations.file.image') . '|mimes:jpeg,jpg,png',
         ];
     }
 

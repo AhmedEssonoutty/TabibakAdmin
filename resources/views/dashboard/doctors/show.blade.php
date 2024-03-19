@@ -54,7 +54,7 @@
                             <div class="col-6">{{__('messages.specialities')}}</div>
                             <div class="col-6">
                                 @foreach($doctor->medicalSpecialities as $speciality)
-                                    <span class="d-block">{{$speciality->name}}</span>
+                                    <span class="d-block">- {{$speciality->name}}</span>
                                 @endforeach
                             </div>
                         </div>
