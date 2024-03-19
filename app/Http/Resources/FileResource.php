@@ -29,7 +29,7 @@ class FileResource extends BaseResource
 
         $this->full = [
             'mime'   => $this->mime,
-            'url'   => url('storage/'.$this->url),
+            'url'   => $this->asset_url,
             'width'  => $this->when(Str::contains($this->mime, 'image'), $this->width),
             'height' => $this->when(Str::contains($this->mime, 'image'), $this->height),
             'created_at'   =>  $this->created_at->format(config('app.datetime_format')),

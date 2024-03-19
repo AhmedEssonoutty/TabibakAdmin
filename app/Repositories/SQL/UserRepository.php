@@ -2,7 +2,9 @@
 
 namespace App\Repositories\SQL;
 
+use App\Constants\FileConstants;
 use App\Models\User;
+use App\Repositories\Contracts\FileContract;
 use App\Repositories\Contracts\RoleContract;
 use App\Repositories\Contracts\UserContract;
 
@@ -22,6 +24,11 @@ class UserRepository extends BaseRepository implements UserContract
         if (isset($attributes['role_id'])) {
             $role = resolve(RoleContract::class)->find($attributes['role_id']);
             $model->syncRoles($role->name);
+        }
+        if (isset($attributes['image'])) {
+            $file = resolve(FileContract::class)->create(['file' => $attributes['image'],
+                'type' => FileConstants::FILE_USER_AVATAR->value]);
+            $model->avatar()->save($file);
         }
         return $model;
     }
