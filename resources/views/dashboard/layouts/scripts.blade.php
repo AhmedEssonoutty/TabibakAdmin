@@ -39,10 +39,8 @@
         const discountAmountInput = document.getElementById('discount_amount');
 
         if (discountTypeInput.value === '1') {
-            discountAmountInput.min = '1';
             discountAmountInput.max = '100';
         } else {
-            discountAmountInput.min = '';
             discountAmountInput.max = '';
         }
     }

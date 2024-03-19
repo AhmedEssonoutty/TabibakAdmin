@@ -29,7 +29,7 @@ class CouponRequest extends FormRequest
         return [
             'code' => config('validations.string.req'),
             'discount_type' => 'required|in:1,2',
-            'discount_amount' => config('validations.double.req') . '|min:1|max:100',
+            'discount_amount' => config('validations.double.req') . '|min:1' . $this['discount_type'] == 1 ? '|max:100' : '',
             'valid_from' => config('validations.date.req'),
             'valid_to' => config('validations.date.req') .'|after:valid_from',
             'description' => config('validations.string.null'),
