@@ -22,8 +22,7 @@ enum PatientSocialStatusConstants : int
             self::DIVORCED => __('messages.divorced'),
             self::WIDOWED => __('messages.widowed'),
             self::ENGAGED => __('messages.engaged'),
-            self::OTHER => __('messages.other'),
-            default => __('messages.unknown')
+            default => null
         };
     }
 
