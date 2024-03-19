@@ -2,11 +2,12 @@
 
 namespace App\Http\Requests;
 
+use App\Constants\PatientSocialStatusConstants;
 use App\Constants\RoleNameConstants;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Traits\JsonValidationTrait;
 
-class PatientAPIRequest extends FormRequest
+class PatientProfileRequest extends FormRequest
 {
     use JsonValidationTrait;
 
@@ -41,7 +42,8 @@ class PatientAPIRequest extends FormRequest
             'date_of_birth' => config('validations.date.req'),
             'phone' => config('validations.phone.req').'|unique:users,phone,'.auth()->id(),
             'national_id' => config('validations.string.null').'|unique:patients,national_id,'.auth()->user()->patient?->id,
-            'password' => config('validations.password.null')
+            'password' => config('validations.password.null'),
+            'social_status' => config('validations.integer.req').'|in:'.implode(',', PatientSocialStatusConstants::values()),
         ];
     }
 
