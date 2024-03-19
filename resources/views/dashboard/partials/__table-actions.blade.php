@@ -4,12 +4,10 @@
             <input class="form-check-input active-resource" type="checkbox" @disabled(isset($disableActive) && $disableActive)
             data-activation="{{$resource->is_active}}" data-id="{{$resource->id}}"
                 @checked($resource->is_active)>
-            @if(isset($disableActive) && $disableActive)
-                <form action="{{route("$route.active", $resource->id)}}" class="d-inline" method="POST" id="activeResourceForm-{{$resource->id}}">
-                    @csrf
-                    @method('PUT')
-                </form>
-            @endif
+            <form action="{{route("$route.active", $resource->id)}}" class="d-inline" method="POST" id="activeResourceForm-{{$resource->id}}">
+                @csrf
+                @method('PUT')
+            </form>
         </div>
     </td>
 @endif

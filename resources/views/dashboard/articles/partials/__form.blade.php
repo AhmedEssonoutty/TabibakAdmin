@@ -1,4 +1,4 @@
-{!! Form::open(['route' => $action, 'method'=> $method]) !!}
+{!! Form::open(['route' => $action, 'method'=> $method, 'enctype' => 'multipart/form-data']) !!}
 <div class="row justify-content-center">
     <div class="col-lg-10">
         <div class="card">

@@ -41,7 +41,7 @@
                         <td>{{$resource->reports}}</td>
                         <td>
                             <div class="form-check form-switch d-inline">
-                                <input class="form-check-input publish-resource" type="checkbox" data-id="{{$resource->id}}" data-publish="{{$resource->publish_date}}"
+                                <input class="form-check-input publish-resource" type="checkbox" data-id="{{$resource->id}}" data-activation="{{$resource->publish_date ? 1 : 0}}" data-publish="{{$resource->publish_date}}"
                                     @checked($resource->publish_date)>
                             </div>
                             <form action="{{route("articles.publish", $resource->id)}}" method="POST" id="publishResourceForm-{{$resource->id}}">
@@ -65,6 +65,7 @@
                 e.preventDefault();
                 let id = $(this).data('id');
                 let publish = $(this).data('publish');
+                let activation = $(this).data('activation');
                 let text = '';
                 if (publish) {
                     text = 'You want to inpublish this Article!';
@@ -82,6 +83,12 @@
                 }).then((result) => {
                     if (result.isConfirmed && result.value) {
                         $('#publishResourceForm-'+id).submit();
+                    } else {
+                        if (activation === 1) {
+                            $(this).prop('checked', true);
+                        } else {
+                            $(this).prop('checked', false);
+                        }
                     }
                 })
             })
