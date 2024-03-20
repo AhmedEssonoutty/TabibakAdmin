@@ -12,7 +12,6 @@ enum PatientSocialStatusConstants : int
     case DIVORCED = 3;
     case WIDOWED = 4;
     case ENGAGED = 5;
-    case OTHER = 6;
 
     public static function getLabels($value): string
     {
