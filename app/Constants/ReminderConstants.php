@@ -20,8 +20,7 @@ enum ReminderConstants : int
             self::FIFTEEN_MINUTES->value => __('messages.15_minutes'),
             self::THIRTY_MINUTES->value => __('messages.30_minutes'),
             self::FORTY_FIVE_MINUTES->value => __('messages.45_minutes'),
-            self::ONE_HOUR->value => __('messages.1_hour'),
-            default => null,
+            self::ONE_HOUR->value => __('messages.1_hour')
         };
     }
 

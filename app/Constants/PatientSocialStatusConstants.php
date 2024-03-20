@@ -14,19 +14,18 @@ enum PatientSocialStatusConstants : int
     case ENGAGED = 5;
     case OTHER = 6;
 
-    public static function getLabels($value): string|null
+    public static function getLabels($value): string
     {
         return match ($value) {
             self::SINGLE => __('messages.single'),
             self::MARRIED => __('messages.married'),
             self::DIVORCED => __('messages.divorced'),
             self::WIDOWED => __('messages.widowed'),
-            self::ENGAGED => __('messages.engaged'),
-            default => null
+            self::ENGAGED => __('messages.engaged')
         };
     }
 
-    public function label(): string|null
+    public function label(): string
     {
         return self::getLabels($this);
     }

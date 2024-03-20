@@ -11,17 +11,16 @@ enum ComplaintTypeConstants : int
     case WRONG_INFORMATION = 2;
     case SPAM = 3;
 
-    public static function getLabels($value): string|null
+    public static function getLabels($value): string
     {
         return match ($value) {
             self::OFFENSIVE->value => __('messages.offensive'),
             self::WRONG_INFORMATION->value => __('messages.wrong_information'),
-            self::SPAM->value => __('messages.spam'),
-            default => '',
+            self::SPAM->value => __('messages.spam')
         };
     }
 
-    public function label(): string|null
+    public function label(): string
     {
         return self::getLabels($this->value);
     }

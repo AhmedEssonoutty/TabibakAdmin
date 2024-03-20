@@ -10,16 +10,15 @@ enum ConsultationStatusConstants : int
     case PENDING = 1;
     case CANCELLED = 2;
 
-    public static function getLabels($value): string|null
+    public static function getLabels($value): string
     {
         return match ($value) {
             self::PENDING => __('messages.pending'),
-            self::CANCELLED => __('messages.cancelled'),
-            default => null
+            self::CANCELLED => __('messages.cancelled')
         };
     }
 
-    public function label(): string|null
+    public function label(): string
     {
         return self::getLabels($this);
     }
