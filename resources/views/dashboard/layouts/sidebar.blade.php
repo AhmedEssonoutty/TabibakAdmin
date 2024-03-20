@@ -183,6 +183,16 @@
                         </a>
                     </li>
                 @endif
+
+                @if(auth()->user()->can('read-consultation') || auth()->user()->can('view-all-consultation'))
+                    <li class="nav-item">
+                        <a href="{{route('consultations.index')}}" @class(['nav-link', 'menu-link',
+                    'active' => request()->routeIs('consultations.index', 'coupons.show')])>
+                            <i class="bi bi-tv"></i>
+                            <span data-key="t-dashboard">{{ __('messages.consultations') }}</span>
+                        </a>
+                    </li>
+                @endif
             </ul>
         </div>
         <!-- Sidebar -->

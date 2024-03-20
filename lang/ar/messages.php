@@ -236,4 +236,6 @@ return [
     '30_minutes' => '30 دقيقة',
     '45_minutes' => '45 دقيقة',
     '1_hour' => 'ساعة',
+    'cancelled' => 'ملغى',
+    'consultations' => 'الاستشارات',
 ];

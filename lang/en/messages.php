@@ -238,4 +238,7 @@ return [
     '45_minutes' => '45 Minutes',
     '1_hour' => '1 Hour',
     'cancelled' => 'Cancelled',
+    'consultations' => 'Consultations',
+    'manage_consultations' => 'Manage Consultations',
+
 ];
