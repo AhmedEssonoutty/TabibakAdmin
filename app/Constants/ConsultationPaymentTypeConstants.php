@@ -10,7 +10,7 @@ enum ConsultationPaymentTypeConstants : int
     case TABBY = 1;
     case INSURANCE = 2;
 
-    public static function getLabels($value): string
+    public static function getLabels($value): string|null
     {
         return match ($value) {
             self::TABBY => __('messages.tabby'),
@@ -19,7 +19,7 @@ enum ConsultationPaymentTypeConstants : int
         };
     }
 
-    public function label(): string
+    public function label(): string|null
     {
         return self::getLabels($this);
     }

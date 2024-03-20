@@ -11,7 +11,7 @@ enum DoctorRequestStatusConstants : int
     case APPROVED = 2;
     case REJECTED = 3;
 
-    public static function getLabels($value): string
+    public static function getLabels($value): string|null
     {
         return match ($value) {
             self::PENDING => __('messages.pending'),
@@ -21,7 +21,7 @@ enum DoctorRequestStatusConstants : int
         };
     }
 
-    public function label(): string
+    public function label(): string|null
     {
         return self::getLabels($this);
     }

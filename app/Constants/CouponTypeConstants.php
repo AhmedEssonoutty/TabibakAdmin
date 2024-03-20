@@ -10,7 +10,7 @@ enum CouponTypeConstants : int
     case PERCENTAGE = 1;
     case AMOUNT = 2;
 
-    public static function getLabels($value): string
+    public static function getLabels($value): string|null
     {
         return match ($value) {
             self::PERCENTAGE->value => __('messages.percentage'),
@@ -18,7 +18,7 @@ enum CouponTypeConstants : int
         };
     }
 
-    public function label(): string
+    public function label(): string|null
     {
         return self::getLabels($this->value);
     }

@@ -10,7 +10,7 @@ enum ConsultationTypeConstants : int
     case URGENT = 1;
     case WITH_APPOINTMENT = 2;
 
-    public static function getLabels($value): string
+    public static function getLabels($value): string|null
     {
         return match ($value) {
             self::URGENT => __('messages.urgent'),
@@ -18,7 +18,7 @@ enum ConsultationTypeConstants : int
         };
     }
 
-    public function label(): string
+    public function label(): string|null
     {
         return self::getLabels($this);
     }

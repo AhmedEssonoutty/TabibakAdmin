@@ -11,7 +11,7 @@ enum ConsultationContactTypeConstants : int
     case VIDEO = 2;
     case CHAT = 3;
 
-    public static function getLabels($value): string
+    public static function getLabels($value): string|null
     {
         return match ($value) {
             self::AUDIO => __('messages.audio'),
@@ -21,7 +21,7 @@ enum ConsultationContactTypeConstants : int
         };
     }
 
-    public function label(): string
+    public function label(): string|null
     {
         return self::getLabels($this);
     }

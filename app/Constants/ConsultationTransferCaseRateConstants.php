@@ -11,7 +11,7 @@ enum ConsultationTransferCaseRateConstants : int
     case NORMAL = 2;
     case URGENT = 3;
 
-    public static function getLabels($value): string
+    public static function getLabels($value): string|null
     {
         return match ($value) {
             self::NOT_URGENT => __('messages.not_urgent'),
@@ -21,7 +21,7 @@ enum ConsultationTransferCaseRateConstants : int
         };
     }
 
-    public function label(): string
+    public function label(): string|null
     {
         return self::getLabels($this->value);
     }

@@ -14,7 +14,7 @@ enum PatientSocialStatusConstants : int
     case ENGAGED = 5;
     case OTHER = 6;
 
-    public static function getLabels($value): string
+    public static function getLabels($value): string|null
     {
         return match ($value) {
             self::SINGLE => __('messages.single'),
@@ -26,7 +26,7 @@ enum PatientSocialStatusConstants : int
         };
     }
 
-    public function label(): string
+    public function label(): string|null
     {
         return self::getLabels($this);
     }
