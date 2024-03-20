@@ -33,6 +33,11 @@ class RoleTableSeeder extends Seeder
                 $permissions = Permission::whereIn('name', $patientPermissions)->get();
                 $role->syncPermissions($permissions);
             }
+            if ($role->name == RoleNameConstants::VENDOR->value){
+                $vendorPermissions = ['read-consultation'];
+                $permissions = Permission::whereIn('name', $vendorPermissions)->get();
+                $role->syncPermissions($permissions);
+            }
         }
 
     }
