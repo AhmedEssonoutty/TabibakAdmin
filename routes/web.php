@@ -86,6 +86,7 @@ Route::group([
         Route::apiResource('consultations', ConsultationController::class)->only(['index', 'show', 'destroy']);
 
         Route::get('profile', [HomeController::class, 'profile'])->name('profile');
+        Route::get('download', [HomeController::class, 'download'])->name('download');
         Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     });
 });

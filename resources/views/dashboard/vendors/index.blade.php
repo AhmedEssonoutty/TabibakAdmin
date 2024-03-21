@@ -15,16 +15,16 @@
     <x-filter>
         <div class="col-lg-4">
             {{Form::label('type', __('messages.type'), ['class' => 'form-label'])}}
-            {!! Form::select('vendorType', $types->pluck('name', 'id')->prepend('Select' , ''),
+            {!! Form::select('vendorType', $types->pluck('name', 'id')->prepend(__('messages.select'), ''),
                 request('vendorType') ?? '',
-                ['class' => 'form-control']) !!}
+                ['class' => 'form-select']) !!}
             @error("vendor_type_id")
             <span class="text-danger">{{$message}}</span>
             @enderror
         </div>
     </x-filter>
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-12">
             <table class="table table-nowrap">
                 <thead>
                 <tr>
@@ -52,6 +52,5 @@
             </table>
             @include('dashboard.layouts.paginate')
         </div>
-        <div class="col-md-4"></div>
     </div>
 @endsection

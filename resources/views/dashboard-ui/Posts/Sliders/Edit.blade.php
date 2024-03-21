@@ -113,7 +113,7 @@
 																						<div class="mb-3">
 																								<i class="display-4 text-muted ri-upload-cloud-2-fill"></i>
 																						</div>
-						
+
 																						<h5>
 																							Drop files here or click to upload if you want to change category image.
 																							<br>
@@ -181,11 +181,10 @@
 					</table>
                     {{$Slides->onEachSide(2)->withQueryString()->links()}}
 				</div>
-        <div class="col-md-4"></div>
     </div>
 
 
-		
+
     <!-- addRecordModal -->
     <div id="addRecordModal" class="modal fade zoomIn" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl">
@@ -272,7 +271,7 @@
 																					<div class="mb-3">
 																							<i class="display-4 text-muted ri-upload-cloud-2-fill"></i>
 																					</div>
-					
+
 																					<h5>
 																						Drop files here or click to upload.
 																					</h5>
@@ -362,7 +361,7 @@
 <script>
 	var Token = $("meta[name=csrf-token]").attr("content");
 	var thumbnailArray = [];
-	var myDropzone = new Dropzone("div.my-dropzone", { 
+	var myDropzone = new Dropzone("div.my-dropzone", {
     url: "{{route('ImageUpload')}}",
 		method: "POST",
 		params:{
@@ -380,7 +379,7 @@
 			file.previewElement.remove();
 			thumbnailArray = [];
     },
-		success: function(file, response) 
+		success: function(file, response)
 		{
 			$("#SliderBgImage").val(response.fileName);
 			//console.log(response);
@@ -408,7 +407,7 @@
 <script>
 	var Token = $("meta[name=csrf-token]").attr("content");
 	var thumbnailArray = [];
-	var myDropzone = new Dropzone("div.NewSlideropzone", { 
+	var myDropzone = new Dropzone("div.NewSlideropzone", {
     url: "{{route('ImageUpload')}}",
 		method: "POST",
 		params:{
@@ -426,7 +425,7 @@
 			file.previewElement.remove();
 			thumbnailArray = [];
     },
-		success: function(file, response) 
+		success: function(file, response)
 		{
 			$("#SingleSlideImage").val(response.fileName);
 			//console.log(response);

@@ -15,9 +15,9 @@
                     <div class="col-lg-6">
                         {{Form::label('type', __('messages.type'), ['class' => 'form-label'])}}
                         <span class="text-danger fw-bold">*</span>
-                        {!! Form::select('vendor_type_id', $types->pluck('name', 'id')->prepend('Select' , ''),
+                        {!! Form::select('vendor_type_id', $types->pluck('name', 'id')->prepend(__('messages.select'), ''),
                             $vendor->vendor_type_id ?? '',
-                            ['class' => 'form-control']) !!}
+                            ['class' => 'form-select']) !!}
                         @error("vendor_type_id")
                         <span class="text-danger">{{$message}}</span>
                         @enderror
@@ -27,7 +27,7 @@
                         <span class="text-danger fw-bold">*</span>
                         {!! Form::select('services[]' ,$services->pluck('name', 'id'),
                             isset($vendor) ? $vendor->vendorServices->pluck('id') : [],
-                            ['class' => 'form-control', 'multiple' => true]) !!}
+                            ['class' => 'form-select', 'multiple' => true]) !!}
                         @error("services")
                         <span class="text-danger">{{$message}}</span>
                         @enderror

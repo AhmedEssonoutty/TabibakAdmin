@@ -108,7 +108,6 @@
 					</table>
                     {{$PostTypes->onEachSide(2)->withQueryString()->links()}}
 				</div>
-        <div class="col-md-4"></div>
     </div>
 
     <!-- deleteRecordModal -->
@@ -153,7 +152,7 @@
 <script>
 	var Token = $("meta[name=csrf-token]").attr("content");
 	var thumbnailArray = [];
-	var myDropzone = new Dropzone("div.my-dropzone", { 
+	var myDropzone = new Dropzone("div.my-dropzone", {
     url: "{{route('ImageUpload')}}",
 		method: "POST",
 		params:{
@@ -171,7 +170,7 @@
 			file.previewElement.remove();
 			thumbnailArray = [];
     },
-		success: function(file, response) 
+		success: function(file, response)
 		{
 			$("#UserAvatar").val(response.fileName);
 			//console.log(response);
@@ -204,7 +203,7 @@
 		acceptedFiles: ".jpeg,.jpg,.png,.gif",
 		addRemoveLinks: true,
 		timeout: 5000,
-		success: function(file, response) 
+		success: function(file, response)
 		{
 				console.log(response);
 		},
