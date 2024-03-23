@@ -58,13 +58,14 @@
                 e.preventDefault();
                 let id = $(this).data('id');
                 Swal.fire({
-                    title: 'Are you sure?',
+                    title: '{{__('messages.confirm.are_you_sure')}}',
                     text: "{{__('messages.confirm.doctor_approve')}}",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#2a4fd7',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, change it!'
+                    confirmButtonText: '{{__('messages.confirm.yes_change')}}',
+                    cancelButtonText: '{{__('messages.confirm.cancel')}}',
                 }).then((result) => {
                     if (result.isConfirmed && result.value) {
                         $('#approveResourceForm-' + id).submit();
@@ -76,13 +77,14 @@
                 e.preventDefault();
                 let id = $(this).data('id');
                 Swal.fire({
-                    title: 'Are you sure?',
+                    title: '{{__('messages.confirm.are_you_sure')}}',
                     text: "{{__('messages.confirm.doctor_reject')}}",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#2a4fd7',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, change it!'
+                    confirmButtonText: '{{__('messages.confirm.yes_change')}}',
+                    cancelButtonText: '{{__('messages.confirm.cancel')}}',
                 }).then((result) => {
                     if (result.isConfirmed && result.value) {
                         $('#rejectResourceForm-' + id).submit();
