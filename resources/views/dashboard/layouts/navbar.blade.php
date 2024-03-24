@@ -25,64 +25,6 @@
                     <div class="dropdown topbar-head-dropdown topbar-tag-dropdown justify-content-end">
                         <button type="button" class="btn btn-icon btn-topbar text-reset rounded-circle fs-14 fw-medium"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {{--
-                            @switch(app()->getLocale())
-
-                                @case('ru')
-                                    <img src="{{ URL::asset('/assets/images/flags/russia.svg') }}" class="rounded-circle {{app()->getLocale() == 'ar' ? 'ms-2' : 'me-2'}}"
-                                        alt="" height="16">
-                                    <span id="lang-name">русский</span>
-                                @break
-
-                                @case('it')
-                                    <img src="{{ URL::asset('/assets/images/flags/italy.svg') }}" class="rounded-circle {{app()->getLocale() == 'ar' ? 'ms-2' : 'me-2'}}"
-                                        alt="" height="16">
-                                    <span id="lang-name">Italiana</span>
-                                @break
-
-                                @case('sp')
-                                    <img src="{{ URL::asset('/assets/images/flags/spain.svg') }}" class="rounded-circle {{app()->getLocale() == 'ar' ? 'ms-2' : 'me-2'}}"
-                                        alt="" height="16">
-                                    <span id="lang-name">Española</span>
-                                @break
-
-                                @case('ch')
-                                    <img src="{{ URL::asset('/assets/images/flags/china.svg') }}" class="rounded-circle {{app()->getLocale() == 'ar' ? 'ms-2' : 'me-2'}}"
-                                        alt="" height="16">
-                                    <span id="lang-name">中国人</span>
-                                @break
-
-                                @case('fr')
-                                    <img src="{{ URL::asset('/assets/images/flags/french.svg') }}" class="rounded-circle {{app()->getLocale() == 'ar' ? 'ms-2' : 'me-2'}}"
-                                        alt="" height="16">
-                                    <span id="lang-name">français</span>
-                                @break
-
-                                @case('gr')
-                                    <img src="{{ URL::asset('/assets/images/flags/germany.svg') }}" class="rounded-circle {{app()->getLocale() == 'ar' ? 'ms-2' : 'me-2'}}"
-                                        alt="" height="16">
-                                    <span id="lang-name">Deutsche</span>
-                                @break
-
-                                @case('sa')
-                                    <img src="{{ URL::asset('/assets/images/flags/sa.svg') }}" class="rounded-circle {{app()->getLocale() == 'ar' ? 'ms-2' : 'me-2'}}"
-                                        alt="" height="16">
-                                    <span id="lang-name">عربى</span>
-                                @break
-
-                                @case('sa')
-                                    <img src="{{ URL::asset('/assets/images/flags/sa.svg') }}" class="rounded-circle {{app()->getLocale() == 'ar' ? 'ms-2' : 'me-2'}}"
-                                        alt="" height="16">
-                                    <span id="lang-name">عربى</span>
-                                @break
-
-                                @default
-                                    <img src="{{ URL::asset('/assets/images/flags/us.svg') }}" class="rounded-circle {{app()->getLocale() == 'ar' ? 'ms-2' : 'me-2'}}"
-                                        alt="" height="16">
-                                    <span id="lang-name">English</span>
-                            @endswitch
-                            --}}
-
                             @switch(app()->getLocale())
                                 @case('ar')
                                     @php($lang = 'العربية')
@@ -91,7 +33,6 @@
                                     @php($lang = 'English')
                                     @break
                             @endswitch
-
                             <img src="{{ URL::asset('assets/images/flags/' . app()->getLocale() .'.svg') }}" class="rounded-circle {{app()->getLocale() == 'ar' ? 'ms-2' : 'me-2'}}"
                                  alt="" height="18">
                             <span id="lang-name">{{ $lang }}</span>
@@ -105,72 +46,6 @@
                                     <span class="align-middle">{{ $properties['native'] }}</span>
                                 </a>
                             @endforeach
-
-                            {{--
-                            <!-- item-->
-                            <a href="{{ url('index/en') }}" class="dropdown-item notify-item language py-2"
-                                data-lang="en" title="English">
-                                <img src="{{ URL::asset('assets/images/flags/us.svg') }}" alt="user-image"
-                                    class="{{app()->getLocale() == 'ar' ? 'ms-2' : 'me-2'}} rounded-circle" height="18">
-                                <span class="align-middle">English</span>
-                            </a>
-
-                            <!-- item-->
-                            <a href="{{ url('index/sa') }}" class="dropdown-item notify-item language"
-                               data-lang="ae" title="Arabic">
-                                <img src="{{ URL::asset('assets/images/flags/sa.svg') }}" alt="user-image"
-                                     class="{{app()->getLocale() == 'ar' ? 'ms-2' : 'me-2'}} rounded-circle" height="18">
-                                <span class="align-middle">عربى</span>
-                            </a>
-
-                            <!-- item-->
-                            <a href="{{ url('index/sp') }}" class="dropdown-item notify-item language" data-lang="sp"
-                                title="Spanish">
-                                <img src="{{ URL::asset('assets/images/flags/spain.svg') }}" alt="user-image"
-                                    class="{{app()->getLocale() == 'ar' ? 'ms-2' : 'me-2'}} rounded-circle" height="18">
-                                <span class="align-middle">Española</span>
-                            </a>
-
-                            <!-- item-->
-                            <a href="{{ url('index/gr') }}" class="dropdown-item notify-item language" data-lang="gr"
-                                title="German">
-                                <img src="{{ URL::asset('assets/images/flags/germany.svg') }}" alt="user-image"
-                                    class="{{app()->getLocale() == 'ar' ? 'ms-2' : 'me-2'}} rounded-circle" height="18"> <span
-                                    class="align-middle">Deutsche</span>
-                            </a>
-
-                            <!-- item-->
-                            <a href="{{ url('index/it') }}" class="dropdown-item notify-item language" data-lang="it"
-                                title="Italian">
-                                <img src="{{ URL::asset('assets/images/flags/italy.svg') }}" alt="user-image"
-                                    class="{{app()->getLocale() == 'ar' ? 'ms-2' : 'me-2'}} rounded-circle" height="18">
-                                <span class="align-middle">Italiana</span>
-                            </a>
-
-                            <!-- item-->
-                            <a href="{{ url('index/ru') }}" class="dropdown-item notify-item language"
-                                data-lang="ru" title="Russian">
-                                <img src="{{ URL::asset('assets/images/flags/russia.svg') }}" alt="user-image"
-                                    class="{{app()->getLocale() == 'ar' ? 'ms-2' : 'me-2'}} rounded-circle" height="18">
-                                <span class="align-middle">русский</span>
-                            </a>
-
-                            <!-- item-->
-                            <a href="{{ url('index/ch') }}" class="dropdown-item notify-item language"
-                                data-lang="ch" title="Chinese">
-                                <img src="{{ URL::asset('assets/images/flags/china.svg') }}" alt="user-image"
-                                    class="{{app()->getLocale() == 'ar' ? 'ms-2' : 'me-2'}} rounded-circle" height="18">
-                                <span class="align-middle">中国人</span>
-                            </a>
-
-                            <!-- item-->
-                            <a href="{{ url('index/fr') }}" class="dropdown-item notify-item language"
-                                data-lang="fr" title="French">
-                                <img src="{{ URL::asset('assets/images/flags/french.svg') }}" alt="user-image"
-                                    class="{{app()->getLocale() == 'ar' ? 'ms-2' : 'me-2'}} rounded-circle" height="18">
-                                <span class="align-middle">français</span>
-                            </a>
-                            --}}
                         </div>
                     </div>
                     <hr class="vr d-none d-lg-block">
@@ -179,7 +54,7 @@
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="{{auth()->user()->avatar->asset_url ?? asset('assets/images/users/user-dummy-img.jpg')}}" class="rounded-circle {{app()->getLocale() == 'ar' ? 'ms-2' : 'me-2'}}"
                                  alt="" width="22" height="22">
-                            <span id="lang-name">{{ ucfirst(auth()->user()->name) }}</span>
+                            <span id="lang-name">{{ ucfirst(auth()->user()->first_name) }}</span>
                         </button>
                         <div class="dropdown-menu dropdown-menu-end text-{{app()->getLocale() == 'ar' ? 'end' : 'start'}}">
                             {{--item--}}

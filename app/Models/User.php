@@ -106,4 +106,9 @@ class User extends Authenticatable
             || !is_null($this->email_verified_at));
     }
 
+    public function firstName(): Attribute
+    {
+        return Attribute::make(fn($value) => explode(' ', $this->name)[0]);
+    }
+
 }
