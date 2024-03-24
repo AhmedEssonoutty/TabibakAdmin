@@ -135,6 +135,7 @@ class RoleController extends BaseWebController
     public function changeActivation(Role $role): RedirectResponse
     {
         $this->contract->toggleField($role, 'is_active');
+        $role->users()->update(['is_active' => $role->is_active]);
         return $this->redirectBack()->with('success', __('messages.actions_messages.update_success'));
     }
 }
