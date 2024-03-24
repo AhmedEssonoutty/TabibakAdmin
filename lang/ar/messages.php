@@ -219,6 +219,7 @@ return [
         'doctor_reject' => 'هل تريد رفض طلب هذا الطبيب؟',
         'delete_resource' => 'تريد حذف هذا العنصر!',
         'change_resource_activation' => 'تريد تغيير تفعيل هذا العنصر!',
+        'logout' => 'تأكيد تسجيل الخروج!',
         'yes_delete' => 'بالتأكيد, قم بالحذف!',
         'yes_change' => 'بالتأكيد, قم بالتغيير!',
         'cancel' => 'إلغاء',

@@ -62,13 +62,32 @@
                                 <i class="bi bi-gear {{app()->getLocale() == 'ar' ? 'ms-2' : 'me-2'}}"></i>
                                 <span class="align-middle">@lang('messages.profile')</span>
                             </a>
-                            <a class="dropdown-item" href="{{ route('logout') }}">
+                            <button type="button" id="logout-btn" class="dropdown-item w-100" data-bs-toggle="modal" data-bs-target="#logoutModal">
                                 <i class="bi bi-box-arrow-right {{app()->getLocale() == 'ar' ? 'ms-2' : 'me-2'}}"></i>
                                 <span class="align-middle">@lang('messages.logout')</span>
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="logoutModalLabel">@lang('messages.logout')</h5>
+                <button type="button" class="btn btn-flat-light close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i data-feather="x"></i></span>
+                </button>
+            </div>
+            <div class="modal-body text-start">
+                @lang('messages.confirm.logout')
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@lang('messages.confirm.cancel')</button>
+                <a class="btn btn-success" href="{{ route('logout') }}">@lang('messages.logout')</a>
             </div>
         </div>
     </div>

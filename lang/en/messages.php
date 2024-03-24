@@ -220,6 +220,7 @@ return [
         'doctor_reject' => 'Do you want to reject this doctor request?',
         'delete_resource' => 'You want to delete this resource!',
         'change_resource_activation' => 'You want to change this resource activation!',
+        'logout' => 'You want to logout!',
         'yes_delete' => 'Yes, delete it!',
         'yes_change' => 'Yes, change it!',
         'cancel' => 'Cancel',
