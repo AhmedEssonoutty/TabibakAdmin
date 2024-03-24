@@ -14,7 +14,7 @@
     </div>
     <x-filter/>
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-12">
             <table class="table table-nowrap">
                 <thead>
                 <tr>
@@ -36,7 +36,7 @@
                         </th>
                         <td>{{$resource->code}}</td>
                         <td>
-                            {{strtolower($resource->discount_type->name)}}
+                            {{ucfirst(strtolower($resource->discount_type->name))}}
                         </td>
                         <td>{{$resource->discount_amount}}</td>
                         <td>{{date_format($resource->valid_from, 'd-m-Y')}}</td>
@@ -49,6 +49,5 @@
             </table>
             @include('dashboard.layouts.paginate')
         </div>
-        <div class="col-md-4"></div>
     </div>
 @endsection

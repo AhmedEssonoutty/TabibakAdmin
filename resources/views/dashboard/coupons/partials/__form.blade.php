@@ -17,7 +17,7 @@
                         <span class="text-danger fw-bold">*</span>
                         {!! Form::select('discount_type', $types,
                             isset($coupon) ? [$coupon->discount_type->value] : [],
-                            ['id' => 'discount_type', 'class' => 'form-control', 'onchange' => 'setDiscountValueAttributes()']) !!}
+                            ['id' => 'discount_type', 'class' => 'form-select', 'onchange' => 'setDiscountValueAttributes()']) !!}
                         @error("discount_type")
                         <span class="text-danger">{{$message}}</span>
                         @enderror
@@ -58,7 +58,7 @@
                         <span class="text-danger fw-bold">*</span>
                         {!! Form::select('specialities[]' ,$specialities->pluck('name', 'id'),
                             isset($coupon) ? $coupon->medicalSpecialities->pluck('id') : [],
-                            ['class' => 'form-control', 'multiple' => true]) !!}
+                            ['class' => 'form-select', 'multiple' => true]) !!}
                         @error("specialities")
                         <span class="text-danger">{{$message}}</span>
                         @enderror

@@ -202,7 +202,7 @@
 																						<div class="mb-3">
 																								<i class="display-4 text-muted ri-upload-cloud-2-fill"></i>
 																						</div>
-						
+
 																						<h5>
 																							Drop files here or click to upload if you want to change category image.
 																							<br>
@@ -274,7 +274,7 @@
 														<a href="{{route("EditPost", $Child->id)}}" class="link-success">Edit <i class="ri-arrow-right-line align-middle"></i></a> /&nbsp;
 														<a href="#" class="link-danger" onClick="addLocation('{{route("DeletePost", $Child->id)}}')" data-bs-toggle="modal" data-bs-target="#deleteRecordModal">Delete <i class="ri-delete-bin-6-line align-middle"></i></a>
 													</td>
-												</tr>		
+												</tr>
 											</table>
 										</td>
 									</tr>
@@ -285,7 +285,6 @@
 					</table>
                     {{$Posts->onEachSide(2)->withQueryString()->links()}}
 				</div>
-        <div class="col-md-4"></div>
     </div>
 
     <!-- deleteRecordModal -->
@@ -336,7 +335,7 @@
 <script>
 	var Token = $("meta[name=csrf-token]").attr("content");
 	var thumbnailArray = [];
-	var myDropzone = new Dropzone("div.my-dropzone", { 
+	var myDropzone = new Dropzone("div.my-dropzone", {
     url: "{{route('ImageUpload')}}",
 		method: "POST",
 		params:{
@@ -354,7 +353,7 @@
 			file.previewElement.remove();
 			thumbnailArray = [];
     },
-		success: function(file, response) 
+		success: function(file, response)
 		{
 			$("#PostImage").val(response.fileName);
 			//console.log(response);

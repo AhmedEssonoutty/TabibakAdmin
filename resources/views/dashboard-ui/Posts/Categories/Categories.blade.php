@@ -122,7 +122,7 @@
 																						<div class="mb-3">
 																								<i class="display-4 text-muted ri-upload-cloud-2-fill"></i>
 																						</div>
-						
+
 																						<h5>Drop files here or click to upload.</h5>
 																				</div>
 																		</div>
@@ -186,7 +186,6 @@
 					</table>
                     {{$Categories->onEachSide(2)->withQueryString()->links()}}
 				</div>
-        <div class="col-md-4"></div>
     </div>
 
     <!-- deleteRecordModal -->
@@ -232,13 +231,13 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.js" integrity="sha512-9e9rr82F9BPzG81+6UrwWLFj8ZLf59jnuIA/tIf8dEGoQVu7l5qvr02G/BiAabsFOYrIUTMslVN+iDYuszftVQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.css" integrity="sha512-7uSoC3grlnRktCWoO4LjHMjotq8gf9XDFQerPuaph+cqR7JC9XKGdvN+UwZMC14aAaBDItdRj3DcSDs4kMWUgg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-		
+
 
 
 <script>
 	var Token = $("meta[name=csrf-token]").attr("content");
 	var thumbnailArray = [];
-	var myDropzone = new Dropzone("div.my-dropzone", { 
+	var myDropzone = new Dropzone("div.my-dropzone", {
     url: "{{route('ImageUpload')}}",
 		method: "POST",
 		params:{
@@ -256,7 +255,7 @@
 			file.previewElement.remove();
 			thumbnailArray = [];
     },
-		success: function(file, response) 
+		success: function(file, response)
 		{
 			$("#CategoryImage").val(response.fileName);
 			//console.log(response);

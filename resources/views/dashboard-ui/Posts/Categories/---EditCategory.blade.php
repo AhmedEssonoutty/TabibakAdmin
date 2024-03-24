@@ -122,7 +122,7 @@
 																						<div class="mb-3">
 																								<i class="display-4 text-muted ri-upload-cloud-2-fill"></i>
 																						</div>
-						
+
 																						<h5>Drop files here or click to upload.</h5>
 																				</div>
 																		</div>
@@ -186,7 +186,6 @@
 					</table>
                     {{$Categories->onEachSide(2)->withQueryString()->links()}}
 				</div>
-        <div class="col-md-4"></div>
     </div>
 
     <!-- deleteRecordModal -->
@@ -220,7 +219,7 @@
 <!-- flatpickr.js -->
 <script type='text/javascript' src='{{ URL::asset('build/libs/flatpickr/flatpickr.min.js') }}'></script>
     <!-- ckeditor -->
-		
+
     <script src="{{ URL::asset('assets/libs/@ckeditor/ckeditor5-build-classic/ckeditor.js') }}"></script>
     <script src="{{ URL::asset('assets/libs/choices.js/choices.min.js') }}"></script>
 
@@ -228,13 +227,13 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.js" integrity="sha512-9e9rr82F9BPzG81+6UrwWLFj8ZLf59jnuIA/tIf8dEGoQVu7l5qvr02G/BiAabsFOYrIUTMslVN+iDYuszftVQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.css" integrity="sha512-7uSoC3grlnRktCWoO4LjHMjotq8gf9XDFQerPuaph+cqR7JC9XKGdvN+UwZMC14aAaBDItdRj3DcSDs4kMWUgg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-		
+
 
 
 <script>
 	var Token = $("meta[name=csrf-token]").attr("content");
 	var thumbnailArray = [];
-	var myDropzone = new Dropzone("div.my-dropzone", { 
+	var myDropzone = new Dropzone("div.my-dropzone", {
     url: "{{route('ImageUpload')}}",
 		method: "POST",
 		params:{
@@ -252,7 +251,7 @@
 			file.previewElement.remove();
 			thumbnailArray = [];
     },
-		success: function(file, response) 
+		success: function(file, response)
 		{
 			$("#CategoryImage").val(response.fileName);
 			//console.log(response);

@@ -1,6 +1,6 @@
 <x-filter/>
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-12">
         <table class="table table-nowrap">
             <thead>
             <tr>
@@ -50,7 +50,6 @@
         </table>
         @include('dashboard.layouts.paginate')
     </div>
-    <div class="col-md-4"></div>
 </div>
 @push('scripts')
     <script>
@@ -59,13 +58,14 @@
                 e.preventDefault();
                 let id = $(this).data('id');
                 Swal.fire({
-                    title: 'Are you sure?',
+                    title: '{{__('messages.confirm.are_you_sure')}}',
                     text: "{{__('messages.confirm.doctor_approve')}}",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#2a4fd7',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, change it!'
+                    confirmButtonText: '{{__('messages.confirm.yes_change')}}',
+                    cancelButtonText: '{{__('messages.confirm.cancel')}}',
                 }).then((result) => {
                     if (result.isConfirmed && result.value) {
                         $('#approveResourceForm-' + id).submit();
@@ -77,13 +77,14 @@
                 e.preventDefault();
                 let id = $(this).data('id');
                 Swal.fire({
-                    title: 'Are you sure?',
+                    title: '{{__('messages.confirm.are_you_sure')}}',
                     text: "{{__('messages.confirm.doctor_reject')}}",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#2a4fd7',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, change it!'
+                    confirmButtonText: '{{__('messages.confirm.yes_change')}}',
+                    cancelButtonText: '{{__('messages.confirm.cancel')}}',
                 }).then((result) => {
                     if (result.isConfirmed && result.value) {
                         $('#rejectResourceForm-' + id).submit();

@@ -103,7 +103,6 @@
 					</table>
                     {{$roles->onEachSide(2)->withQueryString()->links()}}
 				</div>
-        <div class="col-md-4"></div>
     </div>
 
     <!-- deleteRecordModal -->

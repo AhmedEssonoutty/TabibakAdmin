@@ -7,9 +7,9 @@
                     <div class="col-lg-12">
                         {{Form::label('speciality', __('messages.speciality'), ['class' => 'form-label'])}}
                         <span class="text-danger fw-bold">*</span>
-                        {!! Form::select('medical_speciality_id', $specialities->pluck('name', 'id')->prepend('Select' , ''),
+                        {!! Form::select('medical_speciality_id', $specialities->pluck('name', 'id')->prepend(__('messages.select'), ''),
                             $article->medical_speciality_id ?? '',
-                            ['class' => 'form-control']) !!}
+                            ['class' => 'form-select']) !!}
                         @error("medical_speciality_id")
                         <span class="text-danger">{{$message}}</span>
                         @enderror

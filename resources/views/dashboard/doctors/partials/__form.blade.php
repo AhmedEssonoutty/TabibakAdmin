@@ -15,9 +15,9 @@
                     <div class="col-lg-6">
                         {{Form::label('academic_degree', __('messages.academic_degree'), ['class' => 'form-label'])}}
                         <span class="text-danger fw-bold">*</span>
-                        {!! Form::select('academic_degree_id', $academicDegrees->pluck('name', 'id')->prepend('' , ''),
+                        {!! Form::select('academic_degree_id', $academicDegrees->pluck('name', 'id')->prepend(__('messages.select') , ''),
                             $doctor->academic_degree_id ?? '',
-                            ['class' => 'form-control']) !!}
+                            ['class' => 'form-select']) !!}
                         @error("academic_degree_id")
                         <span class="text-danger">{{$message}}</span>
                         @enderror
@@ -27,7 +27,7 @@
                         <span class="text-danger fw-bold">*</span>
                         {!! Form::select('specialities[]' ,$specialities->pluck('name', 'id'),
                             isset($doctor) ? $doctor->medicalSpecialities->pluck('id') : [],
-                            ['class' => 'form-control', 'multiple' => true]) !!}
+                            ['class' => 'form-select', 'multiple' => true]) !!}
                         @error("specialities")
                         <span class="text-danger">{{$message}}</span>
                         @enderror
