@@ -2,6 +2,7 @@
 <script src="{{ URL::asset('assets/libs/bootstrap/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ URL::asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <!-- App js -->
 <script src="{{ URL::asset('assets/js/app.js') }}"></script>
 <script>
@@ -80,6 +81,9 @@
                 selectAllCheckbox.checked = allChecked;
             });
         });
+    });
+    $(document).ready(function() {
+        $('.select2').select2();
     });
 </script>
 @stack('scripts')
