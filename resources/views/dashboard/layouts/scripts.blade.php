@@ -83,7 +83,9 @@
         });
     });
     $(document).ready(function() {
-        $('.select2').select2();
+        $('.select2').select2({
+            placeholder: "{{__('messages.select')}}"
+        });
     });
 </script>
 @stack('scripts')
