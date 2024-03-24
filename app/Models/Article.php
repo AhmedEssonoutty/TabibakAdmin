@@ -53,11 +53,6 @@ class Article extends Model
         return $this->belongsTo(MedicalSpeciality::class);
     }
 
-    public function main_image(): MorphOne
-    {
-        return $this->morphOne(File::class, 'fileable')->where('type', FileConstants::FILE_TYPE_ARTICLE_MAIN_IMAGE);
-    }
-
     public function images(): MorphMany
     {
         return $this->morphMany(File::class, 'fileable')->where('type', FileConstants::FILE_TYPE_ARTICLE_IMAGES);
