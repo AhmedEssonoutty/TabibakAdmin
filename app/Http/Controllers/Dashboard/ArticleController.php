@@ -47,7 +47,7 @@ class ArticleController extends BaseWebController
      */
     public function create(): View|Factory|Application
     {
-        $specialities = $this->medicalSpecialityContract->search([], [], ['limit' => 0, 'page' => 0]);
+        $specialities = $this->medicalSpecialityContract->search(['active' => true], [], ['limit' => 0, 'page' => 0]);
         return $this->createBlade(['specialities' => $specialities]);
     }
 
@@ -85,7 +85,7 @@ class ArticleController extends BaseWebController
      */
     public function edit(Article $article): View|Factory|Application
     {
-        $specialities = $this->medicalSpecialityContract->search([], [], ['limit' => 0, 'page' => 0]);
+        $specialities = $this->medicalSpecialityContract->search(['active' => true], [], ['limit' => 0, 'page' => 0]);
         return $this->editBlade(['article' => $article, 'specialities' => $specialities]);
     }
 

@@ -77,7 +77,6 @@ class RoleController extends BaseWebController
     {
         $permissions = $this->permissionContract->search([], [], ['limit' => 0, 'page' => 0]);
         $permissionsModules = $permissions->groupBy('model');
-        $$role = $role->load('permissions');
         return $this->showBlade(['role' => $role, 'permissionsModules' => $permissionsModules]);
     }
 
