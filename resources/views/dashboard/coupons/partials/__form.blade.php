@@ -58,7 +58,7 @@
                         <span class="text-danger fw-bold">*</span>
                         {!! Form::select('specialities[]' ,$specialities->pluck('name', 'id'),
                             isset($coupon) ? $coupon->medicalSpecialities->pluck('id') : [],
-                            ['class' => 'form-select', 'multiple' => true]) !!}
+                            ['class' => 'form-control select2', 'multiple' => true]) !!}
                         @error("specialities")
                         <span class="text-danger">{{$message}}</span>
                         @enderror
