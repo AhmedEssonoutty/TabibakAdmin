@@ -32,7 +32,7 @@
                                          aria-labelledby="collapsibleCardHeading{{$module['0']['model']}}"  @style(['min-height:143px;'])>
                                         <div class="card-body">
                                             @foreach($module as $permission)
-                                                <span class="card-text d-block">{{explode('-', $permission->name)[0]}}</span>
+                                                <span class="card-text d-block">{{__('messages.role_permissions.' . $permission->action)}}</span>
                                             @endforeach
                                         </div>
                                     </div>

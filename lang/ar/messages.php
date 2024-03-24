@@ -224,6 +224,13 @@ return [
         'yes_change' => 'بالتأكيد, قم بالتغيير!',
         'cancel' => 'إلغاء',
     ],
+    'role_permissions' => [
+        'create' => 'إنشاء',
+        'read' => 'قراءة',
+        'update' => 'تعديل',
+        'delete' => 'حذف',
+        'view-all' => 'عرض الكل',
+    ],
     'offensive' => 'عدواني',
     'wrong_information' => 'معلومات خاطئة',
     'spam' => 'رسائل مزعجة',

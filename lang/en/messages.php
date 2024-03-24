@@ -225,6 +225,13 @@ return [
         'yes_change' => 'Yes, change it!',
         'cancel' => 'Cancel',
     ],
+    'role_permissions' => [
+        'create' => 'Create',
+        'read' => 'Read',
+        'update' => 'Update',
+        'delete' => 'Delete',
+        'view-all' => 'View all'
+    ],
     'offensive' => 'Offensive',
     'wrong_information' => 'Wrong Information',
     'spam' => 'Spam',
