@@ -53,7 +53,7 @@ class VendorController extends BaseWebController
     public function create(): View|Factory|Application
     {
         $types = $this->vendorTypeContract->search([], [], ['limit' => 0, 'page' => 0]);
-        $services = $this->vendorServiceContract->search([], [], ['limit' => 0, 'page' => 0]);
+        $services = $this->vendorServiceContract->search(['active' => true], [], ['limit' => 0, 'page' => 0]);
         return $this->createBlade(['types' => $types, 'services' => $services]);
     }
 
@@ -93,7 +93,8 @@ class VendorController extends BaseWebController
     {
         $vendor->load('vendorServices');
         $types = $this->vendorTypeContract->search([], [], ['limit' => 0, 'page' => 0]);
-        $services = $this->vendorServiceContract->search([], [], ['limit' => 0, 'page' => 0]);
+        $filters = $vendor->is_active ? ['active' => true] : [];
+        $services = $this->vendorServiceContract->search($filters, [], ['limit' => 0, 'page' => 0]);
         return $this->editBlade(['vendor' => $vendor, 'types' => $types, 'services' => $services]);
     }
 

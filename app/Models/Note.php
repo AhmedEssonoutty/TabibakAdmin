@@ -16,7 +16,7 @@ class Note extends Model
     use SoftDeletes, ModelTrait, SearchTrait, SoftDeletes, HasTranslations;
     public const ADDITIONAL_PERMISSIONS = [];
     protected $fillable = ['text', 'notable_id', 'notable_type', 'user_id', 'created_at', 'updated_at'];
-    protected array $filters = ['keyword'];
+    protected array $filters = ['keyword', 'active'];
     protected array $searchable = ['text'];
     protected array $dates = [];
     public array $filterModels = [];

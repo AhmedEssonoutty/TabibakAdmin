@@ -17,7 +17,7 @@ class Complaint extends Model
     public const ADDITIONAL_PERMISSIONS = [];
     protected $fillable = ['user_id', 'type', 'complaintable_id', 'complaintable_type',
         'title', 'description', 'status', 'is_active'];
-    protected array $filters = ['keyword'];
+    protected array $filters = ['keyword', 'active'];
     protected array $searchable = [];
     protected array $dates = [];
     public array $filterModels = [];

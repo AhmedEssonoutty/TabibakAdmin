@@ -15,7 +15,7 @@ class Vendor extends Model
     use SoftDeletes, ModelTrait, SearchTrait, SoftDeletes, HasTranslations;
     public const ADDITIONAL_PERMISSIONS = [];
     protected $fillable = ['user_id', 'vendor_type_id', 'address', 'is_active'];
-    protected array $filters = ['keyword', 'vendorType'];
+    protected array $filters = ['keyword', 'vendorType', 'active', 'active'];
     protected array $searchable = ['user.name'];
     protected array $dates = [];
     public array $filterModels = [];

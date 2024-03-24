@@ -24,7 +24,7 @@ class Doctor extends Model
         'urgent_consultation_enabled', 'with_appointment_consultation_enabled', 'experience_years', 'consultation_period',
         'reminder_before_consultation'. 'urgent_consultation_price', 'with_appointment_consultation_price',
         'request_status', 'medical_id', 'is_active'];
-    protected array $filters = ['keyword', 'requestStatus', 'medicalSpeciality', 'academicDegree', 'city'];
+    protected array $filters = ['keyword', 'requestStatus', 'medicalSpeciality', 'academicDegree', 'city', 'active'];
     protected array $searchable = ['user.name'];
     protected array $dates = [];
     public array $filterModels = ['City', 'MedicalSpeciality', 'AcademicDegree'];

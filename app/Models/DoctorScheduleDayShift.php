@@ -17,7 +17,7 @@ class DoctorScheduleDayShift extends Model
     use SoftDeletes, ModelTrait, SearchTrait, SoftDeletes, HasTranslations;
     public const ADDITIONAL_PERMISSIONS = [];
     protected $fillable = ['doctor_schedule_day_id', 'parent_id', 'from_time', 'to_time', 'notes', 'is_active'];
-    protected array $filters = ['keyword'];
+    protected array $filters = ['keyword', 'active'];
     protected array $searchable = [];
     protected array $dates = ['from_time', 'to_time'];
     public array $filterModels = [];

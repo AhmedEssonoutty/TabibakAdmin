@@ -26,7 +26,7 @@ class User extends Authenticatable
 
 	protected $fillable = ['name', 'username', 'email', 'password', 'phone',
         'verification_code', 'phone_verified_at', 'is_active'];
-    protected array $filters = ['keyword', 'role', 'roleName', 'email'];
+    protected array $filters = ['keyword', 'role', 'roleName', 'email', 'active'];
     public array $filterModels = ['Role'];
     public array $filterCustom = [];
     protected array $searchable = ['name', 'email'];

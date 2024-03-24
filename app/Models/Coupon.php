@@ -16,7 +16,7 @@ class Coupon extends Model
     use SoftDeletes, ModelTrait, SearchTrait, SoftDeletes, HasTranslations;
     public const ADDITIONAL_PERMISSIONS = [];
     protected $fillable = ['code', 'description', 'discount_type', 'discount_amount', 'valid_from', 'valid_to', 'user_limit', 'total_limit', 'is_active'];
-    protected array $filters = ['keyword'];
+    protected array $filters = ['keyword', 'active'];
     protected array $searchable = [];
     protected array $dates = ['valid_from', 'valid_to'];
     public array $filterModels = [];

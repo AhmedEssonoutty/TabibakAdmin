@@ -16,7 +16,7 @@ class Like extends Model
     public const ADDITIONAL_PERMISSIONS = [];
     // status -> 0 -> like, 1 -> dislike
     protected $fillable = ['user_id', 'likeable_id', 'likeable_type', 'status'];
-    protected array $filters = ['keyword'];
+    protected array $filters = ['keyword', 'active'];
     protected array $searchable = [];
     protected array $dates = [];
     public array $filterModels = [];

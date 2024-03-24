@@ -16,7 +16,7 @@ class Patient extends Model
     use SoftDeletes, ModelTrait, SearchTrait, SoftDeletes, HasTranslations;
     public const ADDITIONAL_PERMISSIONS = [];
     protected $fillable = ['user_id', 'parent_id', 'date_of_birth', 'national_id', 'social_status', 'is_active'];
-    protected array $filters = ['keyword','parent'];
+    protected array $filters = ['keyword','parent', 'active'];
     protected array $searchable = ['user.name'];
     protected array $dates = ['date_of_birth'];
     public array $filterModels = [];

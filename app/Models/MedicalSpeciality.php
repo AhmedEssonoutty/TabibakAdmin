@@ -13,7 +13,7 @@ class MedicalSpeciality extends Model
     use SoftDeletes, ModelTrait, SearchTrait, SoftDeletes, HasTranslations;
     public const ADDITIONAL_PERMISSIONS = [];
     protected $fillable = ['name', 'description', 'percentage', 'is_active'];
-    protected array $filters = ['keyword'];
+    protected array $filters = ['keyword', 'active'];
     protected array $searchable = ['name', 'description'];
     protected array $dates = [];
     public array $filterModels = [];

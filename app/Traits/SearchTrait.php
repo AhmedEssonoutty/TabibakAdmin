@@ -32,4 +32,9 @@ trait SearchTrait
         return $query;
     }
 
+    public function scopeOfActive($query, $active = true)
+    {
+        return $query->where('is_active', $active);
+    }
+
 }

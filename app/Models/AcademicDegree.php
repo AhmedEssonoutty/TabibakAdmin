@@ -13,7 +13,7 @@ class AcademicDegree extends Model
     use SoftDeletes, ModelTrait, SearchTrait, SoftDeletes, HasTranslations;
     public const ADDITIONAL_PERMISSIONS = [];
     protected $fillable = ['name', 'description', 'is_active'];
-    protected array $filters = ['keyword'];
+    protected array $filters = ['keyword', 'active'];
     protected array $searchable = ['name'];
     protected array $dates = [];
     public array $filterModels = [];
