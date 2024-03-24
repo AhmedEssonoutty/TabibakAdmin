@@ -67,7 +67,7 @@ class User extends Authenticatable
     public function avatar(): MorphOne
     {
         return $this->morphOne(File::class, 'fileable')
-            ->where('type', FileConstants::FILE_USER_AVATAR);
+            ->where('type', FileConstants::FILE_USER_AVATAR)->latest();
     }
     //---------------------relations-------------------------------------
     // ----------------------- Scopes -----------------------
