@@ -20,6 +20,7 @@ class FaqSubject extends Model
     public array $filterModels = [];
     public array $filterCustom = [];
     public array $translatable = ['name'];
+    protected array $definedRelations = ['faqs'];
 
     //---------------------relations-------------------------------------
 

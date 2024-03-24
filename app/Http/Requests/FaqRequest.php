@@ -31,7 +31,7 @@ class FaqRequest extends FormRequest
             'question.ar' => config('validations.string.req'),
             'answer.en' => config('validations.string.req'),
             'answer.ar' => config('validations.string.req'),
-            'faq_subject_id' => 'required|integer',
+            'faq_subject_id' => sprintf(config('validations.model.active_req'), 'faq_subjects')
         ];
     }
 
