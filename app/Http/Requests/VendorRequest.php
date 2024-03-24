@@ -38,13 +38,13 @@ class VendorRequest extends FormRequest
     public function rules(): array
     {
         $rules =  [
-            'vendor_type_id' => sprintf(config('validations.model.req'), 'vendor_types'),
+            'vendor_type_id' => sprintf(config('validations.model.active_req'), 'vendor_types'),
             'name' => config('validations.string.req'),
             'email' => sprintf(config('validations.email.req'), 'users', 'email').','.$this->route('vendor')?->user_id,
             'phone' => config('validations.phone.req').'|unique:users,phone,'.$this->route('vendor')?->user_id,
             'address' => config('validations.string.null'),
             'services' => config('validations.array.req'),
-            'services.*' => sprintf(config('validations.model.req'), 'vendor_services'),
+            'services.*' => sprintf(config('validations.model.active_req'), 'vendor_services'),
         ];
         if($this->method() === 'POST'){
             $rules['password'] = config('validations.password.req');

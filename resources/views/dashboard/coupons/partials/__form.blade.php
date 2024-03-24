@@ -62,6 +62,9 @@
                         @error("specialities")
                         <span class="text-danger">{{$message}}</span>
                         @enderror
+                        @error("specialities.*")
+                        <span class="text-danger">{{$message}}</span>
+                        @enderror
                     </div>
                     <div class="col-lg-6">
                         {{Form::label('user_limit', __('messages.user_limit'), ['class' => 'form-label'])}}

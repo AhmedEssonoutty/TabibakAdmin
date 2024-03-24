@@ -48,7 +48,7 @@ class CouponController extends BaseWebController
     public function create(): View|Factory|Application
     {
         $types = [1 => 'percentage', 2 => 'amount'];
-        $specialities = $this->medicalSpecialityContract->search([], [], ['limit' => 0, 'page' => 0]);
+        $specialities = $this->medicalSpecialityContract->search(['active' => true], [], ['limit' => 0, 'page' => 0]);
         return $this->createBlade(['types' => $types, 'specialities' => $specialities]);
     }
 
@@ -87,7 +87,7 @@ class CouponController extends BaseWebController
     public function edit(Coupon $coupon): View|Factory|Application
     {
         $types = [1 => 'percentage', 2 => 'amount'];
-        $specialities = $this->medicalSpecialityContract->search([], [], ['limit' => 0, 'page' => 0]);
+        $specialities = $this->medicalSpecialityContract->search(['active' => true], [], ['limit' => 0, 'page' => 0]);
         return $this->editBlade(['coupon' => $coupon, 'types' => $types, 'specialities' => $specialities]);
     }
 

@@ -48,6 +48,8 @@ return [
     'model' => [
         'req' => 'required|integer|exists:%s,id',
         'null' => 'nullable|integer|exists:%s,id',
+        'active_req' => 'required|integer|exists:%s,id,is_active,1',
+        'active_null' => 'nullable|integer|exists:%s,id,is_active,1',
     ],
     'soft_deleted_model' => [
         'req' => 'required|integer|exists_with_soft_deleted:%s',

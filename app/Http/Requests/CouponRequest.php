@@ -34,7 +34,7 @@ class CouponRequest extends FormRequest
             'valid_to' => config('validations.date.req') .'|after:valid_from',
             'description' => config('validations.string.null'),
             'specialities' => config('validations.array.req'),
-            'specialities.*' => sprintf(config('validations.model.req'), 'academic_degrees'),
+            'specialities.*' => sprintf(config('validations.model.active_req'), 'medical_specialities'),
             'user_limit' => config('validations.integer.req'),
             'total_limit' => config('validations.integer.req'),
         ];
@@ -56,6 +56,7 @@ class CouponRequest extends FormRequest
             'specialities' => __('messages.specialities'),
             'user_limit' => __('messages.user_limit'),
             'total_limit' => __('messages.total_limit'),
+            'specialities.*' => __('messages.speciality'),
         ];
     }
 
