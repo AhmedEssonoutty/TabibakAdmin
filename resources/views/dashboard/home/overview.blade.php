@@ -76,7 +76,7 @@
                             <div class="d-flex justify-content-between">
                                 <div class="vr rounded bg-{{$ele['color']}} opacity-50" style="width: 4px;"></div>
                                 <div class="flex-grow-1 {{ app()->getLocale() == 'ar' ? 'me-3' : 'ms-3' }}">
-                                    <p class="text-uppercase fw-medium text-muted fs-14 text-truncate">{{$ele['title']}}</p>
+                                    <p class="text-uppercase fw-medium text-{{$ele['color']}} fs-14 text-truncate">{{$ele['title']}}</p>
                                     <h4 class="fs-22 fw-semibold mb-3">{{$ele['count']}}</h4>
                                 </div>
                                 <div class="avatar-sm flex-shrink-0">
