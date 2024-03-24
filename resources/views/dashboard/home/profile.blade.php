@@ -26,7 +26,7 @@
                 </div>
                 <div class="card-footer">
                     <div class="col-md-2 pt-3">
-                        <a class="w-100 btn btn-primary" href="{{route('users.edit', $user->id)}}">
+                        <a class="w-100 btn btn-primary" href="{{route('users.edit', $user->id)}}?profile=true">
                             <i data-feather="x"></i>
                             @lang('messages.edit')
                         </a>

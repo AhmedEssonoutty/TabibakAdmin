@@ -96,6 +96,9 @@ class UserController extends BaseWebController
     public function update(UserRequest $request, User $user): RedirectResponse
     {
         $this->contract->update($user, $request->validated());
+        if (request()->has('profile')) {
+            return redirect()->route('profile');
+        }
         return $this->redirectToIndex()->with('success', __('messages.actions_messages.update_success'));
     }
 

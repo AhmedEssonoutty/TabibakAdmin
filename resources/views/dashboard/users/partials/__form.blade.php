@@ -1,4 +1,7 @@
 {!! Form::open(['route' => $action, 'method' => $method, 'enctype' => 'multipart/form-data']) !!}
+@if(request('profile'))
+    <input type="hidden" name="profile" value="true">
+@endif
 <div class="row justify-content-center">
     <div class="col-lg-10">
         <div class="card">
