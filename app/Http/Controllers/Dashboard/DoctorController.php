@@ -53,8 +53,8 @@ class DoctorController extends BaseWebController
      */
     public function create(): View|Factory|Application
     {
-        $specialities = $this->medicalSpecialityContract->search([], [], ['limit' => 0, 'page' => 0]);
-        $academicDegrees = $this->academicDegreeContract->search([], [], ['limit' => 0, 'page' => 0]);
+        $specialities = $this->medicalSpecialityContract->search(['active' => true], [], ['limit' => 0, 'page' => 0]);
+        $academicDegrees = $this->academicDegreeContract->search(['active' => true], [], ['limit' => 0, 'page' => 0]);
         return $this->createBlade(['specialities' => $specialities, 'academicDegrees' => $academicDegrees]);
     }
 
@@ -92,8 +92,8 @@ class DoctorController extends BaseWebController
      */
     public function edit(Doctor $doctor): View|Factory|Application
     {
-        $specialities = $this->medicalSpecialityContract->search([], [], ['limit' => 0, 'page' => 0]);
-        $academicDegrees = $this->academicDegreeContract->search([], [], ['limit' => 0, 'page' => 0]);
+        $specialities = $this->medicalSpecialityContract->search(['active' => true], [], ['limit' => 0, 'page' => 0]);
+        $academicDegrees = $this->academicDegreeContract->search(['active' => true], [], ['limit' => 0, 'page' => 0]);
         return $this->editBlade(['doctor' => $doctor, 'specialities' => $specialities, 'academicDegrees' => $academicDegrees]);
     }
 

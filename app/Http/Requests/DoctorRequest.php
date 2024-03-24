@@ -41,8 +41,8 @@ class DoctorRequest extends FormRequest
         $rules = [
             'email' => sprintf(config('validations.email.null'), 'users', 'email').','.$this->route('doctor')?->user_id,
             'specialities' => config('validations.array.req'),
-            'specialities.*' => sprintf(config('validations.model.req'), 'medical_specialities'),
-            'academic_degree_id' => sprintf(config('validations.model.req'), 'academic_degrees'),
+            'specialities.*' => sprintf(config('validations.model.active_req'), 'medical_specialities'),
+            'academic_degree_id' => sprintf(config('validations.model.active_req'), 'academic_degrees'),
             'university' => config('validations.string.null'),
             'name' => config('validations.string.req'),
             'phone' => config('validations.phone.req').'|unique:users,phone,'.$this->route('doctor')?->user_id,
@@ -68,6 +68,7 @@ class DoctorRequest extends FormRequest
         return [
             'email' => __('messages.email'),
             'specialities' => __('messages.specialities'),
+            'specialities.*' => __('messages.speciality'),
             'academic_degree' => __('messages.academic_degree'),
             'university' => __('messages.university'),
             'name' => __('messages.name'),
