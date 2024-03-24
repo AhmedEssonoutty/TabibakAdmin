@@ -33,15 +33,21 @@ class ArticleRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        $rules =  [
             'medical_speciality_id' => 'required|exists:medical_specialities,id',
             'title.ar' => config('validations.string.req'),
             'title.en' => config('validations.string.req'),
             'content.ar' => config('validations.long_text.req'),
             'content.en' => config('validations.long_text.req'),
-            'main_image' =>  'required|'.config('validations.file.image').'|required|max:2048',
-            'images.*' =>  'nullable|'.config('validations.file.image').'|required|max:2048',
+            'images' => 'nullable|array',
+            'images.*' => 'nullable|'.config('validations.file.image').'|max:2048',
         ];
+        if ($this->isMethod('post')) {
+            $rules['main_image'] = 'required|'.config('validations.file.image').'|required|max:2048';
+        }else{
+            $rules['main_image'] = 'nullable|'.config('validations.file.image').'|max:2048';
+        }
+        return $rules;
     }
 
     /**
