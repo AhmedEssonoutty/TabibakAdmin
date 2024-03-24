@@ -53,7 +53,7 @@ class UserRequest extends FormRequest
             'name' => config('validations.string.req'),
             'email' => sprintf(config('validations.email.req'), 'users', 'email').','.$this->route('user')?->id,
             'phone' => config('validations.phone.req').'|unique:users,phone,'.$this->route('user')?->id,
-            'image' =>  'nullable|'.config('validations.file.image') . '|mimes:jpeg,jpg,png',
+            'image' =>  'nullable|'.config('validations.file.image') . '|mimes:jpeg,jpg,png|max:2048',
             'role_id' =>  sprintf(config('validations.model.req'), 'roles')
         ];
 
