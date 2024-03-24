@@ -6,6 +6,7 @@ use App\Http\Requests\FaqRequest;
 use App\Models\Faq;
 use App\Repositories\Contracts\FaqContract;
 use App\Repositories\Contracts\FaqSubjectContract;
+use Exception;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseWebController;
 use Illuminate\Contracts\Foundation\Application;
@@ -45,7 +46,7 @@ class FaqController extends BaseWebController
      */
     public function create(): View|Factory|Application
     {
-        $subjects = $this->faqSubjectContract->search([], [], ['limit' => 0, 'page' => 0]);
+        $subjects = $this->faqSubjectContract->search(['active' => true], [], ['limit' => 0, 'page' => 0]);
         return $this->createBlade(['subjects' => $subjects]);
     }
 
@@ -83,7 +84,7 @@ class FaqController extends BaseWebController
      */
     public function edit(Faq $faq): View|Factory|Application
     {
-        $subjects = $this->faqSubjectContract->search([], [], ['limit' => 0, 'page' => 0]);
+        $subjects = $this->faqSubjectContract->search(['active' => true], [], ['limit' => 0, 'page' => 0]);
         return $this->editBlade(['faq' => $faq, 'subjects' => $subjects]);
     }
 
@@ -110,8 +111,12 @@ class FaqController extends BaseWebController
      */
     public function destroy(Faq $faq): RedirectResponse
     {
-       $this->contract->remove($faq);
-       return $this->redirectBack()->with('success', __('messages.actions_messages.delete_success'));
+        try {
+            $this->contract->remove($faq);
+            return $this->redirectBack()->with('success', __('messages.actions_messages.delete_success'));
+        }catch (Exception $e){
+            return $this->redirectBack()->with('error', $e->getMessage());
+        }
     }
 
     /**

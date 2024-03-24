@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Requests\FaqSubjectRequest;
 use App\Models\FaqSubject;
 use App\Repositories\Contracts\FaqSubjectContract;
+use Exception;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseWebController;
 use Illuminate\Contracts\Foundation\Application;
@@ -105,8 +106,12 @@ class FaqSubjectController extends BaseWebController
      */
     public function destroy(FaqSubject $faqSubject): RedirectResponse
     {
-       $this->contract->remove($faqSubject);
-       return $this->redirectBack()->with('success', __('messages.actions_messages.delete_success'));
+        try {
+            $this->contract->remove($faqSubject);
+            return $this->redirectBack()->with('success', __('messages.actions_messages.delete_success'));
+        }catch (Exception $e){
+            return $this->redirectBack()->with('error', $e->getMessage());
+        }
     }
 
     /**
