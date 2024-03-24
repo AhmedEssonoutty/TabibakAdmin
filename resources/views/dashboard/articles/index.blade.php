@@ -33,7 +33,7 @@
                         <th scope="row">
                             <a href="#" class="fw-semibold">#{{$loop->iteration}}</a>
                         </th>
-                        <td>{{$resource->name}}</td>
+                        <td>{{$resource->title}}</td>
                         <td>{{$resource->author->name}}</td>
                         <td>{{$resource->publish_date ? date_format($resource->publish_date, 'd/m/Y') : __('messages.not_published')}}</td>
                         <td>{{count($resource->likes)}}</td>
