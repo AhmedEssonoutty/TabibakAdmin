@@ -114,7 +114,7 @@
                         <a href="{{route('patients.index')}}" @class(['nav-link', 'menu-link',
                     'active' => request()->routeIs('patients.index', 'patients.show', 'patients.create',
                      'patients.edit')])>
-                            <i class="bi bi-person-circle"></i>
+                            <i class="bi bi-person-badge"></i>
                             <span data-key="t-dashboard">{{ __('messages.patients') }}</span>
                         </a>
                     </li>
@@ -136,7 +136,7 @@
                         <a href="{{route('vendors.index')}}" @class(['nav-link', 'menu-link',
                     'active' => request()->routeIs('vendors.index', 'vendors.show', 'vendors.create',
                      'vendors.edit')])>
-                            <i class="bi bi-shop"></i>
+                            <i class="bi bi-houses"></i>
                             <span data-key="t-dashboard">{{ __('messages.vendors') }}</span>
                         </a>
                     </li>

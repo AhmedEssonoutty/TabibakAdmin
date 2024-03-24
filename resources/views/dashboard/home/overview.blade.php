@@ -3,48 +3,92 @@
     {{__('messages.overview')}}
 @endsection
 @section('content')
-    <x-breadcrumb title="{{__('messages.overview')}}"
-                  pagetitle="{{config('app.name')}}" route="{{route('overview')}}"/>
-    <div class="row justify-content-between py-2">
-        <div class="py-4 px-5 mb-3 mt-2 mx-lg-3 text-center rounded bg-light col-md-5 col-lg-3">
-            <h3 class="rounded text-center fs-6">{{__('messages.patients')}}</h3>
-            <span class="rounded fs-5">{{ $patientsCount }}</span>
-        </div>
-        <div class="py-4 px-5 mb-3 mt-2 mx-lg-3 text-center rounded bg-light col-md-5 col-lg-3">
-            <h3 class="rounded text-center fs-6">{{__('messages.doctors')}}</h3>
-            <span class="rounded fs-5">{{ $doctorsCount }}</span>
-        </div>
-        <div class="py-4 px-5 mb-3 mt-2 mx-lg-3 text-center rounded bg-light col-md-5 col-lg-3">
-            <h3 class="rounded text-center fs-6">{{__('messages.vendors')}}</h3>
-            <span class="rounded fs-5">{{ $vendorsCount }}</span>
-        </div>
-        <div class="py-4 px-5 mb-3 mt-2 mx-lg-3 text-center rounded bg-light col-md-5 col-lg-3">
-            <h3 class="rounded text-center fs-6">{{__('messages.hospitals')}}</h3>
-            <span class="rounded fs-5">{{ $hospitalsCount }}</span>
-        </div>
-        <div class="py-4 px-5 mb-3 mt-2 mx-lg-3 text-center rounded bg-light col-md-5 col-lg-3">
-            <h3 class="rounded text-center fs-6">{{__('messages.clinics')}}</h3>
-            <span class="rounded fs-5">{{ $clinicsCount }}</span>
-        </div>
-        <div class="py-4 px-5 mb-3 mt-2 mx-lg-3 text-center rounded bg-light col-md-5 col-lg-3">
-            <h3 class="rounded text-center fs-6">{{__('messages.pharmacies')}}</h3>
-            <span class="rounded fs-5">{{ $pharmaciesCount }}</span>
-        </div>
-        <div class="py-4 px-5 mb-3 mt-2 mx-lg-3 text-center rounded bg-light col-md-5 col-lg-3">
-            <h3 class="rounded text-center fs-6">{{__('messages.Home_cares')}}</h3>
-            <span class="rounded fs-5">{{ $homeCaresCount }}</span>
-        </div>
-        <div class="py-4 px-5 mb-3 mt-2 mx-lg-3 text-center rounded bg-light col-md-5 col-lg-3">
-            <h3 class="rounded text-center fs-6">{{__('messages.labs')}}</h3>
-            <span class="rounded fs-5">{{ $labsCount }}</span>
-        </div>
-        <div class="py-4 px-5 mb-3 mt-2 mx-lg-3 text-center rounded bg-light col-md-5 col-lg-3">
-            <h3 class="rounded text-center fs-6">{{__('messages.total_transactions')}}</h3>
-            <span class="rounded fs-5">{{ $totalTransactions }}</span>
-        </div>
-        <div class="py-4 px-5 mb-3 mt-2 mx-lg-3 text-center rounded bg-light col-md-5 col-lg-3">
-            <h3 class="rounded text-center fs-6">{{__('messages.total_revenues')}}</h3>
-            <span class="rounded fs-5">{{ $totalRevenues }}</span>
+    <x-breadcrumb title="{{__('messages.overview')}}" pagetitle="{{config('app.name')}}" route="{{route('overview')}}"/>
+    <div class="col-xxl-12 col-lg-6 order-first">
+        <div class="row row-cols-xxl-4 row-cols-1">
+            @php($components = [
+                'patients' => [
+                    'title' => __('messages.patients'),
+                    'count' => $patientsCount,
+                    'icon' => 'bi bi-person-badge',
+                    'color' => 'warning'
+                ],
+                'doctors' => [
+                    'title' => __('messages.doctors'),
+                    'count' => $doctorsCount,
+                    'icon' => 'bi bi-journal-plus',
+                    'color' => 'info'
+                ],
+                'vendors' => [
+                    'title' => __('messages.vendors'),
+                    'count' => $vendorsCount,
+                    'icon' => 'bi bi-houses',
+                    'color' => 'success'
+                ],
+                'hospitals' => [
+                    'title' => __('messages.hospitals'),
+                    'count' => $hospitalsCount,
+                    'icon' => 'bi bi-hospital',
+                    'color' => 'dark'
+                ],
+                'clinics' => [
+                    'title' => __('messages.clinics'),
+                    'count' => $clinicsCount,
+                    'icon' => 'bi bi-clipboard-pulse',
+                    'color' => 'primary'
+                ],
+                'pharmacies' => [
+                    'title' => __('messages.pharmacies'),
+                    'count' => $pharmaciesCount,
+                    'icon' => 'bi bi-prescription2',
+                    'color' => 'secondary'
+                ],
+                'home_cares' => [
+                    'title' => __('messages.Home_cares'),
+                    'count' => $homeCaresCount,
+                    'icon' => 'bi bi-chat-heart',
+                    'color' => 'danger'
+                ],
+                'labs' => [
+                    'title' => __('messages.labs'),
+                    'count' => $labsCount,
+                    'icon' => 'bi bi-stack',
+                    'color' => 'warning'
+                ],
+                'transactions' => [
+                    'title' => __('messages.total_transactions'),
+                    'count' => $totalTransactions,
+                    'icon' => 'bi bi-currency-exchange',
+                    'color' => 'secondary'
+                ],
+                'revenues' => [
+                    'title' => __('messages.total_revenues'),
+                    'count' => $totalRevenues,
+                    'icon' => 'bi bi-wallet',
+                    'color' => 'success'
+                ],
+            ])
+            @foreach($components as $ele)
+                <!-- card -->
+                <div class="col my-2">
+                    <div class="card card-animate">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div class="vr rounded bg-{{$ele['color']}} opacity-50" style="width: 4px;"></div>
+                                <div class="flex-grow-1 {{ app()->getLocale() == 'ar' ? 'me-3' : 'ms-3' }}">
+                                    <p class="text-uppercase fw-medium text-muted fs-14 text-truncate">{{$ele['title']}}</p>
+                                    <h4 class="fs-22 fw-semibold mb-3">{{$ele['count']}}</h4>
+                                </div>
+                                <div class="avatar-sm flex-shrink-0">
+                                <span class="avatar-title bg-secondary-subtle text-{{$ele['color']}} rounded fs-3">
+                                    <i class="{{$ele['icon']}}"></i>
+                                </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
         </div>
     </div>
 @endsection
