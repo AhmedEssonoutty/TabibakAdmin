@@ -22,7 +22,11 @@
                         <a href="#" class="fw-semibold">#{{$loop->iteration}}</a>
                     </th>
                     <td>{{$resource->user->name}}</td>
-                    <td>{{$resource->speciality}}</td>
+                    <td>
+                        @foreach($resource->medicalSpecialities as $speciality)
+                            - {{$speciality->name}} <br>
+                        @endforeach
+                    </td>
                     <td>{{$resource->medical_id}}</td>
                     <td>{{$resource->national_id}}</td>
                     <td>{{$resource->user->phone}}</td>
