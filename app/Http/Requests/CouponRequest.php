@@ -27,7 +27,7 @@ class CouponRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'code' => config('validations.string.req'),
+            'code' => config('validations.string.req').'|unique:coupons,code,id,'.$this->route('coupon')?->id,
             'discount_type' => 'required|in:1,2',
             'discount_amount' => config('validations.double.req') . '|min:1' . $this['discount_type'] == 1 ? '|max:100' : '',
             'valid_from' => config('validations.date.req'),
