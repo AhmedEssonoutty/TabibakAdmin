@@ -19,6 +19,10 @@ tr td {
     height: 42px !important;
     padding: 6px;
     border-color: #EAEAEA !important;
+    cursor: pointer !important;
+}
+.select2-container--default textarea {
+    cursor: pointer !important;
 }
 .select2-selection__arrow {
     margin-top: 6px;
