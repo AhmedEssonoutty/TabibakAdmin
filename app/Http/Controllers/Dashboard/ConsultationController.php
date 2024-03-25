@@ -31,7 +31,7 @@ class ConsultationController extends BaseWebController
      */
     public function index(Request $request): View|Factory|Application
     {
-        $resources = $this->contract->search($request->all());
+        $resources = $this->contract->search($request->all(), ['doctor', 'patient', 'medicalSpeciality']);
         return $this->indexBlade(['resources' => $resources]);
     }
 
