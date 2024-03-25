@@ -47,8 +47,10 @@ trait ActivityLogTrait{
         if ((!defined(get_class($model)."::DISABLE_LOG") || !get_class($model)::DISABLE_LOG) && count($changes)) {
             $changes = collect($changes)->map(function ($item, $key) use ($old, $filtered, $model, $newModel) {
                 if (array_key_exists($key, $model->getCasts()) && preg_match("/\bConstants\b/i", $model->getCasts()[$key])) {
-                    $oldCase = $model->getCasts()[$key]::tryFrom($old[$key]);
-                    $old[$key] = $model->getCasts()[$key]::getLabels($oldCase);
+                    if (!is_null($old[$key])){
+                        $oldCase = $model->getCasts()[$key]::tryFrom($old[$key]);
+                        $old[$key] = $model->getCasts()[$key]::getLabels($oldCase);
+                    }
                     $filteredCase = $model->getCasts()[$key]::tryFrom($filtered[$key]);
                     $filtered[$key] = $model->getCasts()[$key]::getLabels($filteredCase);
                 }
