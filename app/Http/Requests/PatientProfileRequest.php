@@ -43,7 +43,7 @@ class PatientProfileRequest extends FormRequest
             'phone' => config('validations.phone.req').'|unique:users,phone,'.auth()->id(),
             'national_id' => config('validations.string.null').'|unique:patients,national_id,'.auth()->user()->patient?->id,
             'password' => config('validations.password.null'),
-            'social_status' => config('validations.integer.req').'|in:'.implode(',', PatientSocialStatusConstants::values()),
+            'social_status' => config('validations.integer.null').'|in:'.implode(',', PatientSocialStatusConstants::values()),
         ];
     }
 
