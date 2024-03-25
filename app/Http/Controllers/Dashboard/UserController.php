@@ -6,6 +6,7 @@ use App\Http\Controllers\BaseWebController;
 use App\Http\Requests\UserRequest;
 use App\Models\Role;
 use App\Models\User;
+use App\Repositories\Contracts\RoleContract;
 use App\Repositories\Contracts\UserContract;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -15,13 +16,16 @@ use Illuminate\Http\Request;
 
 class UserController extends BaseWebController
 {
+    protected RoleContract $roleContract;
+
     /**
      * UserController constructor.
      * @param UserContract $contract
      */
-    public function __construct(UserContract $contract)
+    public function __construct(UserContract $contract, RoleContract $roleContract)
     {
         parent::__construct($contract, 'dashboard');
+        $this->roleContract = $roleContract;
     }
 
     /**
@@ -43,7 +47,7 @@ class UserController extends BaseWebController
      */
     public function create(): View|Factory|Application
     {
-        $roles = Role::query()->get();
+        $roles = $this->roleContract->search(['active' => true], [], ['limit' => 0, 'page' => 0]);
         return $this->createBlade(['roles' => $roles]);
     }
 
@@ -81,7 +85,7 @@ class UserController extends BaseWebController
      */
     public function edit(User $user): View|Factory|Application
     {
-        $roles = Role::query()->get();
+        $roles = $this->roleContract->search(['active' => true], [], ['limit' => 0, 'page' => 0]);
         return $this->editBlade(['user' => $user, 'roles' => $roles]);
     }
 
