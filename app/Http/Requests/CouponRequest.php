@@ -36,7 +36,7 @@ class CouponRequest extends FormRequest
             'specialities' => config('validations.array.req'),
             'specialities.*' => sprintf(config('validations.model.active_req'), 'medical_specialities'),
             'user_limit' => config('validations.integer.req'),
-            'total_limit' => config('validations.integer.req'),
+            'total_limit' => config('validations.integer.req').'|gte:user_limit',
         ];
     }
 
