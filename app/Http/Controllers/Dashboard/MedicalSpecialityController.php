@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Requests\MedicalSpecialityRequest;
 use App\Models\MedicalSpeciality;
 use App\Repositories\Contracts\MedicalSpecialityContract;
+use Exception;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseWebController;
 use Illuminate\Contracts\Foundation\Application;
@@ -105,8 +106,12 @@ class MedicalSpecialityController extends BaseWebController
      */
     public function destroy(MedicalSpeciality $medicalSpeciality): RedirectResponse
     {
-       $this->contract->remove($medicalSpeciality);
-       return $this->redirectBack()->with('success', __('messages.actions_messages.delete_success'));
+        try {
+            $this->contract->remove($medicalSpeciality);
+            return $this->redirectBack()->with('success', __('messages.actions_messages.delete_success'));
+        }catch (Exception $e){
+            return $this->redirectBack()->with('error', $e->getMessage());
+        }
     }
 
     /**

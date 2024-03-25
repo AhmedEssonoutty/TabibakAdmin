@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Traits\ModelTrait;
 use App\Traits\SearchTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Translatable\HasTranslations;
 
@@ -19,8 +21,29 @@ class MedicalSpeciality extends Model
     public array $filterModels = [];
     public array $filterCustom = [];
     public array $translatable = ['name', 'description'];
+    protected array $definedRelations = ['doctors', 'coupons', 'articles', 'consultations'];
 
     //---------------------relations-------------------------------------
+
+    public function doctors(): BelongsToMany
+    {
+        return $this->belongsToMany(Doctor::class, 'doctor_medical_speciality')->withPivot('price')->withTimestamps();
+    }
+
+    public function coupons(): BelongsToMany
+    {
+        return $this->belongsToMany(Coupon::class, 'coupon_medical_speciality');
+    }
+
+    public function articles(): HasMany
+    {
+        return $this->hasMany(Article::class);
+    }
+
+    public function consultations(): HasMany
+    {
+        return $this->hasMany(Consultation::class);
+    }
 
     //---------------------relations-------------------------------------
 

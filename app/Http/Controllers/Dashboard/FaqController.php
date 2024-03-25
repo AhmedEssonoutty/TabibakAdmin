@@ -35,7 +35,7 @@ class FaqController extends BaseWebController
      */
     public function index(Request $request): View|Factory|Application
     {
-        $resources = $this->contract->search($request->all());
+        $resources = $this->contract->search($request->all(), ['faqSubject']);
         return $this->indexBlade(['resources' => $resources]);
     }
 

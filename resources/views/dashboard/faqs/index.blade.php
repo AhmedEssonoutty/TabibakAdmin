@@ -17,6 +17,7 @@
                 <thead>
                 <tr>
                     <th scope="col">#</th>
+                    <th scope="col">{{__('messages.subject')}}</th>
                     <th scope="col">{{__('messages.question')}}</th>
                     <th scope="col">{{__('messages.creation_date')}}</th>
                     <th scope="col">{{__('messages.activation')}}</th>
@@ -29,6 +30,7 @@
                         <th scope="row">
                             <a href="#" class="fw-semibold">#{{$loop->iteration}}</a>
                         </th>
+                        <td>{{$resource->faqSubject->name}}</td>
                         <td>{{$resource->question}}</td>
                         <td>{{date_format($resource->created_at, 'd/m/Y')}}</td>
                         @include('dashboard.partials.__table-actions', ['resource' => $resource, 'route' => 'faqs', 'showModel' => true])
