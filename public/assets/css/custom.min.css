@@ -5,3 +5,12 @@ tr td {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+.select2-container--default .select2-selection--multiple,
+.select2-container--default .select2-selection--single {
+    height: 42px !important;
+    padding: 6px;
+    border-color: #EAEAEA !important;
+}
+.select2-selection__arrow {
+    margin-top: 6px;
+}

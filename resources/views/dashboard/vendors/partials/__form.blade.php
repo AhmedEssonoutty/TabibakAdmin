@@ -27,7 +27,7 @@
                         <span class="text-danger fw-bold">*</span>
                         {!! Form::select('services[]' ,$services->pluck('name', 'id'),
                             isset($vendor) ? $vendor->vendorServices->pluck('id') : [],
-                            ['class' => 'form-control select2', 'multiple' => true]) !!}
+                            ['class' => 'form-select', 'multiple' => true]) !!}
                         @error("services")
                         <span class="text-danger">{{$message}}</span>
                         @enderror

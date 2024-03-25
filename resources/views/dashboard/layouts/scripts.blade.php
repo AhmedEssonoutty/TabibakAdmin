@@ -83,7 +83,7 @@
         });
     });
     $(document).ready(function() {
-        $('.select2').select2({
+        $('.form-select').select2({
             placeholder: "{{__('messages.select')}}"
         });
     });
