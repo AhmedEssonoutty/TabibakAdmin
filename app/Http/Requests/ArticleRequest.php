@@ -34,7 +34,7 @@ class ArticleRequest extends FormRequest
     public function rules(): array
     {
         $rules =  [
-            'medical_speciality_id' => 'required|exists:medical_specialities,id',
+            'medical_speciality_id' => sprintf(config('validations.model.active_req'), 'medical_specialities'),
             'title.ar' => config('validations.string.req'),
             'title.en' => config('validations.string.req'),
             'content.ar' => config('validations.long_text.req'),

@@ -37,7 +37,7 @@ class RateRequest extends FormRequest
             'value' => 'required|numeric|min:1|max:5',
             'comment' => config('validations.text.null'),
             'rateable_type' => config('validations.string.req').'|in:Doctor',
-            'rateable_id' => sprintf(config('validations.model.req'), 'doctors'),
+            'rateable_id' => sprintf(config('validations.model.active_req'), 'doctors'),
         ];
     }
 

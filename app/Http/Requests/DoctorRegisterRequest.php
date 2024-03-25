@@ -45,11 +45,11 @@ class DoctorRegisterRequest extends FormRequest
     {
         return [
             'specialities' => config('validations.array.req'),
-            'specialities.*' => sprintf(config('validations.model.req'), 'academic_degrees'),
-            'academic_degree_id' => sprintf(config('validations.model.req'), 'academic_degrees'),
+            'specialities.*' => sprintf(config('validations.model.active_req'), 'medical_specialities'),
+            'academic_degree_id' => sprintf(config('validations.model.active_req'), 'academic_degrees'),
             'national_id' => config('validations.string.req'),
             'medical_id' => config('validations.string.req'),
-            'city_id' => sprintf(config('validations.model.req'), 'cities'),
+            'city_id' => sprintf(config('validations.model.active_req'), 'cities'),
             'experience_years' => config('validations.integer.req'),
             'bio' => config('validations.string.req'),
             'files' => config('validations.array.null'),
