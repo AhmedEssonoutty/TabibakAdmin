@@ -1,0 +1,7 @@
+tr td {
+    max-width: 150px;
+    max-height: 1.1em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
