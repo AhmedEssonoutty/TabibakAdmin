@@ -58,7 +58,7 @@
                 @if(auth()->user()->can('read-user') || auth()->user()->can('view-all-user'))
                 <li class="nav-item">
                     <a href="{{route('users.index')}}" @class(['nav-link', 'menu-link',
-                    'active' => request()->routeIs('users.index', 'users.show', 'users.create', 'users.edit', 'profile')])>
+                    'active' => request()->routeIs('users.index', 'users.show', 'users.create', 'users.edit')])>
                         <i class="bi bi-person"></i>
                         <span data-key="t-dashboard">{{ __('messages.users') }}</span>
                     </a>
