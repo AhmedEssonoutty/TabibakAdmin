@@ -26,8 +26,12 @@ class UserRepository extends BaseRepository implements UserContract
             $model->syncRoles($role->name);
         }
         if (isset($attributes['image'])) {
-            $file = resolve(FileContract::class)->create(['file' => $attributes['image'],
-                'type' => FileConstants::FILE_USER_AVATAR->value]);
+            if (is_numeric($attributes['image'])) {
+                $file = resolve(FileContract::class)->find($attributes['image']);
+            }else{
+                $file = resolve(FileContract::class)->create(['file' => $attributes['image'],
+                    'type' => FileConstants::FILE_USER_AVATAR->value]);
+            }
             $model->avatar()->save($file);
         }
         return $model;

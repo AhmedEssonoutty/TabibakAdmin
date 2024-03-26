@@ -22,13 +22,12 @@ Route::apiResource('articles', ArticleController::class)->only('index', 'show');
 Route::group(['prefix' => 'patient'], static function () {
     Route::apiResource('doctors', DoctorController::class)->only('index', 'show');
 });
+Route::apiResource('files', FileController::class)->only('store', 'destroy');
 
 Route::group(['middleware' => 'auth:sanctum'], static function () {
 
     Route::post('logout', [AuthController::class, 'logout']);
     Route::get('profile', [AuthController::class, 'profile']);
-
-    Route::apiResource('files', FileController::class)->only('store', 'destroy');
 
     Route::post('articles/{article}/toggle-like', [ArticleController::class, 'toggleLike']);
 
