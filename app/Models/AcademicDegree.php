@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\ModelTrait;
 use App\Traits\SearchTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Translatable\HasTranslations;
 
@@ -19,9 +20,13 @@ class AcademicDegree extends Model
     public array $filterModels = [];
     public array $filterCustom = [];
     public array $translatable = ['name', 'description'];
+    protected array $definedRelations = ['doctors'];
 
     //---------------------relations-------------------------------------
-
+    public function doctors(): HasMany
+    {
+        return $this->hasMany(Doctor::class);
+    }
     //---------------------relations-------------------------------------
 
     //---------------------Scopes-------------------------------------

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Requests\AcademicDegreeRequest;
 use App\Models\AcademicDegree;
 use App\Repositories\Contracts\AcademicDegreeContract;
+use Exception;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseWebController;
 use Illuminate\Contracts\Foundation\Application;
@@ -35,7 +36,7 @@ class AcademicDegreeController extends BaseWebController
         return $this->indexBlade(['resources' => $resources]);
     }
 
-     /**
+    /**
      * Show the form for creating a new resource.
      *
      * @return Application|Factory|View
@@ -105,8 +106,12 @@ class AcademicDegreeController extends BaseWebController
      */
     public function destroy(AcademicDegree $academicDegree): RedirectResponse
     {
-       $this->contract->remove($academicDegree);
-        return $this->redirectBack()->with('success', __('messages.actions_messages.delete_success'));
+        try {
+            $this->contract->remove($academicDegree);
+            return $this->redirectBack()->with('success', __('messages.actions_messages.delete_success'));
+        }catch (Exception $e){
+            return $this->redirectBack()->with('error', $e->getMessage());
+        }
     }
 
     /**
