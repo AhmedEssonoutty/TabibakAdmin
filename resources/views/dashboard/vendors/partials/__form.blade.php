@@ -31,6 +31,9 @@
                         @error("services")
                         <span class="text-danger">{{$message}}</span>
                         @enderror
+                        @error("services.*")
+                        <span class="text-danger">{{$message}}</span>
+                        @enderror
                     </div>
                     <div class="col-lg-6">
                         {{Form::label('address', __('messages.address'), ['class' => 'form-label'])}}

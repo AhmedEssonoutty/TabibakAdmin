@@ -67,6 +67,7 @@ class VendorRequest extends FormRequest
             'vendor_type_id' => __('messages.type'),
             'address' => __('messages.address'),
             'services' => __('messages.services'),
+            'services.*' => __('messages.services'),
         ];
     }
 
