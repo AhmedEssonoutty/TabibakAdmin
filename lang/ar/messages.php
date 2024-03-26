@@ -291,4 +291,6 @@ return [
     'doctor_description' => 'وصف الطبيب',
     'medical_review' => 'التقرير الطبى',
     'prescription' => 'الروشتة',
+    'images' => 'الصور',
+    'image' => 'صورة',
 ];

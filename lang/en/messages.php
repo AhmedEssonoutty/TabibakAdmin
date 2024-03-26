@@ -292,4 +292,5 @@ return [
     'doctor_description' => 'Doctor Description',
     'medical_review' => 'Medical Review',
     'prescription' => 'Prescription',
+    'image' => 'Image',
 ];
