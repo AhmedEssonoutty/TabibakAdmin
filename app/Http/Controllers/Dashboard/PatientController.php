@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Requests\PatientRequest;
 use App\Models\Patient;
 use App\Repositories\Contracts\PatientContract;
+use Exception;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseWebController;
 use Illuminate\Contracts\Foundation\Application;
@@ -105,8 +106,12 @@ class PatientController extends BaseWebController
      */
     public function destroy(Patient $patient): RedirectResponse
     {
-       $this->contract->remove($patient);
-       return $this->redirectBack()->with('success', __('messages.actions_messages.delete_success'));
+        try {
+            $this->contract->remove($patient);
+            return $this->redirectBack()->with('success', __('messages.actions_messages.delete_success'));
+        }catch (Exception $e){
+            return $this->redirectBack()->with('error', $e->getMessage());
+        }
     }
 
     /**

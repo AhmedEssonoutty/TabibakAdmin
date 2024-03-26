@@ -26,7 +26,7 @@ class Patient extends Model
     protected $casts = [
         'social_status' => PatientSocialStatusConstants::class
     ];
-
+    protected array $definedRelations = ['consultations'];
     //---------------------relations-------------------------------------
     public function user(): BelongsTo
     {
@@ -41,6 +41,11 @@ class Patient extends Model
     public function parent(): BelongsTo
     {
         return $this->belongsTo(self::class, 'parent_id');
+    }
+
+    public function consultations(): HasMany
+    {
+        return $this->hasMany(Consultation::class);
     }
     //---------------------relations-------------------------------------
 
