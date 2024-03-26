@@ -27,8 +27,8 @@ class VendorServiceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name.ar' => config('validations.string.req'),
-            'name.en' => config('validations.string.req'),
+            'name.ar' => config('validations.string.req') . '|unique:vendor_services,name->ar,' .$this->route('vendor_service')?->id,
+            'name.en' => config('validations.string.req') . '|unique:vendor_services,name->en,' .$this->route('vendor_service')?->id,
             'description.ar' => config('validations.string.null'),
             'description.en' => config('validations.string.null'),
         ];

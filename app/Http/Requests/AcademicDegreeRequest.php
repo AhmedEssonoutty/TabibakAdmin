@@ -27,8 +27,8 @@ class AcademicDegreeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name.ar' => config('validations.string.req'),
-            'name.en' => config('validations.string.req')
+            'name.ar' => config('validations.string.req') . '|unique:academic_degrees,name->ar,' .$this->route('academic_degree')?->id,
+            'name.en' => config('validations.string.req') . '|unique:academic_degrees,name->en,' .$this->route('academic_degree')?->id
         ];
     }
 

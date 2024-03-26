@@ -27,8 +27,8 @@ class MedicalSpecialityRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name.ar' => config('validations.string.req'),
-            'name.en' => config('validations.string.req'),
+            'name.ar' => config('validations.string.req') . '|unique:medical_specialities,name->ar,' .$this->route('medical_speciality')?->id,
+            'name.en' => config('validations.string.req') . '|unique:medical_specialities,name->en,' .$this->route('medical_speciality')?->id,
             'description.ar' => config('validations.string.null'),
             'description.en' => config('validations.string.null'),
             'percentage' => config('validations.double.req') . '|min:1|max:100',
