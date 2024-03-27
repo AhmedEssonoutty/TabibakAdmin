@@ -29,7 +29,7 @@ trait FileUploadTrait
         $type = $data['type'];
         $folder = $data['folder'] ?? null;
         $fileName = $data['file_name'] ?? null;
-        $data["user_id"] = auth()->id();
+        $data["user_id"] = $data['user_id'] ?? auth()->id();
         // Get extension
         $data['ext'] = $file->extension();
         // Get mime type

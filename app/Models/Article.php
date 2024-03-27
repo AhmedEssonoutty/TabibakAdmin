@@ -76,7 +76,7 @@ class Article extends Model
     public function authLikeStatus(): Attribute
     {
         return Attribute::get(function () {
-            return $this->likes->contains('user_id', auth()->id());
+            return $this->likes->contains('user_id', auth()->id() ?? auth('sanctum')->id());
         });
     }
     //---------------------Attributes-------------------------------------

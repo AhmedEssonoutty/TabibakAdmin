@@ -20,6 +20,7 @@ class FileRequest extends FormRequest
     public function validated($key = null, $default = null)
     {
         $validated = parent::validated();
+        $validated['user_id'] = auth('sanctum')->id();
         $validated['fileable_type'] = isset($validated['fileable_id']) ? match ($validated['type']){
             FileConstants::FILE_USER_AVATAR->value => 'User',
             FileConstants::FILE_TYPE_ARTICLE_MAIN_IMAGE->value => 'Article',
