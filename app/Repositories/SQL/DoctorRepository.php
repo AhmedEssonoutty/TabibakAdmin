@@ -41,6 +41,9 @@ class DoctorRepository extends BaseRepository implements DoctorContract
                 resolve(DoctorScheduleDayRepository::class)->create($day);
             }
         }
+        if (isset($attributes['role'])) {
+            $model->user->assignRole($attributes['role']);
+        }
         return $model;
     }
 }

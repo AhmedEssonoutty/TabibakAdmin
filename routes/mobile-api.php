@@ -4,7 +4,8 @@ use App\Http\Controllers\Api\V1\FilterController;
 use App\Http\Controllers\Api\V1\Mobile\ArticleController;
 use App\Http\Controllers\Api\V1\Mobile\AuthController;
 use App\Http\Controllers\Api\V1\Mobile\ComplaintController;
-use App\Http\Controllers\Api\V1\Mobile\ConsultationController;
+use App\Http\Controllers\Api\V1\Mobile\DoctorConsultationController;
+use App\Http\Controllers\Api\V1\Mobile\PatientConsultationController;
 use App\Http\Controllers\Api\V1\Mobile\DoctorController;
 use App\Http\Controllers\Api\V1\Mobile\DoctorScheduleDayController;
 use App\Http\Controllers\Api\V1\Mobile\FileController;
@@ -34,8 +35,8 @@ Route::group(['middleware' => 'auth:sanctum'], static function () {
     Route::group(['prefix' => 'patient'], static function () {
         Route::put('update-main-info', [PatientProfileController::class, 'updateMainInfo']);
         Route::apiResource('relatives', PatientRelativeController::class);
-        Route::apiResource('consultations', ConsultationController::class);
-        Route::put('consultations/{consultation}/cancel', [ConsultationController::class, 'cancel']);
+        Route::apiResource('consultations', PatientConsultationController::class);
+        Route::put('consultations/{consultation}/cancel', [PatientConsultationController::class, 'cancel']);
         Route::apiResource('rates', RateController::class)->only('store', 'update', 'destroy');
         Route::apiResource('complaints', ComplaintController::class)->only('store', 'show', 'update', 'destroy');
         Route::apiResource('doctor-schedule-days', DoctorScheduleDayController::class)->only('index');
@@ -45,6 +46,7 @@ Route::group(['middleware' => 'auth:sanctum'], static function () {
     Route::group(['prefix' => 'doctor'], static function () {
         Route::apiResource('articles', ArticleController::class)->only('store', 'update', 'destroy');
         Route::put('articles/{article}/change-activation', [ArticleController::class, 'changeActivation'])->name('articles.active');
+        Route::apiResource('consultations', DoctorConsultationController::class)->only('index');
     });
 
 });

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Constants\RoleNameConstants;
+use App\Repositories\Contracts\RoleContract;
 use App\Traits\JsonValidationTrait;
 use Carbon\CarbonPeriod;
 use Illuminate\Foundation\Http\FormRequest;
@@ -35,6 +36,7 @@ class DoctorRegisterRequest extends FormRequest
             return null;
         })->whereNotNull()->values()->toArray();
         $validated['user_id'] = auth()->id();
+        $validated['role'] = resolve(RoleContract::class)->findBy('name', RoleNameConstants::DOCTOR->value);
         $validated['urgent_consultation_price'] = $validated['price'];
         $validated['with_appointment_consultation_price'] = $validated['price'];
         unset($validated['price']);

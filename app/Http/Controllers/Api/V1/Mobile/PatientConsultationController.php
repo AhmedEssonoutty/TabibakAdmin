@@ -11,10 +11,10 @@ use App\Repositories\Contracts\ConsultationContract;
 use Exception;
 use Illuminate\Http\JsonResponse;
 
-class ConsultationController extends BaseApiController
+class PatientConsultationController extends BaseApiController
 {
     /**
-     * ConsultationController constructor.
+     * PatientConsultationController constructor.
      * @param ConsultationContract $contract
      */
     public function __construct(ConsultationContract $contract)
@@ -45,12 +45,14 @@ class ConsultationController extends BaseApiController
     */
    public function show(Consultation $consultation): JsonResponse
    {
-//       try {
+       try {
+           if (!$consultation->isMineAsPatient())
+               abort(403, __('messages.not_allowed'));
            $this->relations = array_merge($this->relations, ['attachments', 'diseases', 'medicalSpeciality', 'vendors']);
            return $this->respondWithModel($consultation);
-//       }catch (Exception $e) {
-//           return $this->respondWithError($e->getMessage());
-//       }
+       }catch (Exception $e) {
+           return $this->respondWithError($e->getMessage());
+       }
    }
     /**
      * Update the specified resource in storage.

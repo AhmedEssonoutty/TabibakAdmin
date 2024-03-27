@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 class ConsultationController extends BaseWebController
 {
     /**
-     * ConsultationController constructor.
+     * PatientConsultationController constructor.
      * @param ConsultationContract $contract
      */
     public function __construct(ConsultationContract $contract)

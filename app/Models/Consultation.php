@@ -28,7 +28,7 @@ class Consultation extends Model
         'other_diseases' , 'latest_surgeries', 'doctor_schedule_day_shift_id', 'contact_type',
         'reminder_at', 'transfer_reason', 'transfer_notes', 'transfer_case_rate',
         'payment_type', 'amount', 'coupon_id', 'is_active'];
-    protected array $filters = ['keyword', 'mineAsPatient', 'active'];
+    protected array $filters = ['keyword', 'mineAsPatient', 'active', 'mineAsDoctor'];
     protected array $searchable = [];
     protected array $dates = ['reminder_at'];
     public array $filterModels = [];
@@ -89,10 +89,16 @@ class Consultation extends Model
 
     public function scopeOfMineAsPatient($query)
     {
-        return $query->where('patient_id', auth()->user()->patient?->id);
+        return $query->where('patient_id', auth()->user()->patient?->id)->whereNotNull('patient_id');
+    }
+
+    public function scopeOfMineAsDoctor($query)
+    {
+        return $query->where('doctor_id', auth()->user()->doctor?->id)->whereNotNull('doctor_id');
     }
     //---------------------Scopes-------------------------------------
 
+    //---------------------constants-------------------------------------
     public static function types(): array
     {
         return ConsultationTypeConstants::valuesCollection();
@@ -107,4 +113,18 @@ class Consultation extends Model
     {
         return ReminderConstants::valuesCollection();
     }
+    //---------------------constants-------------------------------------
+
+    //---------------------methods-------------------------------------
+    public function isMineAsPatient(): bool
+    {
+        return $this->patient_id == auth()->user()->patient?->id;
+    }
+
+    public function isMineAsDoctor(): bool
+    {
+        return $this->doctor_id == auth()->user()->doctor?->id;
+    }
+    //---------------------methods-------------------------------------
+
 }
