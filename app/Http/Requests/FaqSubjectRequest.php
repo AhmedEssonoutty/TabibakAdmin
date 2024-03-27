@@ -27,8 +27,8 @@ class FaqSubjectRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name.ar' => config('validations.string.req'),
-            'name.en' => config('validations.string.req'),
+            'name.ar' => config('validations.string.req') . '|unique:faq_subjects,name->ar,' .$this->route('faq_subject')?->id,
+            'name.en' => config('validations.string.req') . '|unique:faq_subjects,name->en,' .$this->route('faq_subject')?->id,
         ];
     }
 

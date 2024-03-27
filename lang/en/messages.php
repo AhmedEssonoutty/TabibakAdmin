@@ -1,5 +1,6 @@
 <?php
 return [
+    'tabibak' => 'Tabibak',
     'dashboard' => 'Dashboard',
     'overview' => 'Overview',
     'roles' => 'Roles',

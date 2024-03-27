@@ -9,7 +9,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <img src="" alt="" id="modalImage" class="img-fluid rounded gallery-image w-auto" >
+                <img src="" alt="" id="modalImage" class="img-fluid rounded g-modal-image w-auto" >
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" id="prevButton">&laquo;</button>
@@ -34,11 +34,17 @@
                 $('#modalImage').attr('src', images[index]);
             }
             $('#prevButton').click(function () {
-                currentIndex = (currentIndex - 1 + images.length) % images.length;
+                currentIndex = currentIndex - 1;
+                if(currentIndex < 0) {
+                    currentIndex = 0;
+                }
                 showImage(currentIndex);
             });
             $('#nextButton').click(function () {
-                currentIndex = (currentIndex + 1) % images.length;
+                currentIndex = currentIndex + 1;
+                if(currentIndex >= images.length) {
+                    currentIndex = images.length - 1;
+                }
                 showImage(currentIndex);
             });
             if (currentIndex !== null) {

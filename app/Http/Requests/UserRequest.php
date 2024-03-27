@@ -21,18 +21,23 @@ class UserRequest extends FormRequest
         return true;
     }
 
+    public function validated($key = null, $default = null): array
+    {
+        $validated = parent::validated();
+        $validated['name.ar'] = $this['name'];
+        $validated['name.en'] = $this['name'];
+        return $validated;
+    }
+
+
     public static function prepareUserForRoles($validated, $role): array
     {
-        if (isset($validated['name']))
-            $validated['user']['name'] = $validated['name'];
-        if (isset($validated['email']))
-            $validated['user']['email'] = $validated['email'];
-        if (isset($validated['phone']))
-            $validated['user']['phone'] = $validated['phone'];
-        if (isset($validated['image']))
-            $validated['user']['image'] = $validated['image'];
-        if (isset($validated['password']))
-            $validated['user']['password'] = $validated['password'];
+        $validated['user']['name.ar'] = $validated['name'] ?? null;
+        $validated['user']['name.en'] = $validated['name'] ?? null;
+        $validated['user']['email'] = $validated['email'] ?? null;
+        $validated['user']['phone'] = $validated['phone'] ?? null;
+        $validated['user']['image'] = $validated['image'] ?? null;
+        $validated['user']['password'] = $validated['password'] ?? null;
         $validated['user']['role_id'] = resolve(RoleContract::class)->findBy('name', $role)?->id;
         unset($validated['name'], $validated['email'], $validated['phone'], $validated['password']);
         return $validated;

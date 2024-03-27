@@ -2,7 +2,7 @@
 <div class="app-menu navbar-menu">
     <!-- LOGO -->
     <div class="navbar-brand-box">
-        <a href="#" class="logo logo-dark">
+        <a href="{{route('dashboard')}}" class="logo logo-dark">
             <span class="logo-sm">
                 <img src="{{ URL::asset('assets/images/logo-sm.png') }}" alt="" height="26">
             </span>
@@ -10,7 +10,7 @@
                 <img src="{{ URL::asset('assets/images/logo-dark.png') }}" alt="" height="26">
             </span>
         </a>
-        <a href="#" class="logo logo-light">
+        <a href="{{route('dashboard')}}" class="logo logo-light">
             <span class="logo-sm">
                 <img src="{{ URL::asset('assets/images/logo-sm.png') }}" alt="" height="24">
             </span>
@@ -58,7 +58,7 @@
                 @if(auth()->user()->can('read-user') || auth()->user()->can('view-all-user'))
                 <li class="nav-item">
                     <a href="{{route('users.index')}}" @class(['nav-link', 'menu-link',
-                    'active' => request()->routeIs('users.index', 'users.show', 'users.create', 'users.edit', 'profile')])>
+                    'active' => request()->routeIs('users.index', 'users.show', 'users.create', 'users.edit')])>
                         <i class="bi bi-person"></i>
                         <span data-key="t-dashboard">{{ __('messages.users') }}</span>
                     </a>

@@ -27,3 +27,7 @@ tr td {
 .select2-selection__arrow {
     margin-top: 6px;
 }
+.g-modal-image {
+    height: 400px !important;
+    object-fit: cover;
+}

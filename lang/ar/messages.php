@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'tabibak' => 'طبيبك',
     'dashboard' => 'لوحة القيادة',
     'overview' => 'ملخص',
     'roles' => 'الأدوار',

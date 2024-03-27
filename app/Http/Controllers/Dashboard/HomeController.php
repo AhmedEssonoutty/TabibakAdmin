@@ -22,11 +22,11 @@ class HomeController extends Controller
         $patientsCount = User::query()->whereHas('patient')->count();
         $doctorsCount = User::query()->whereHas('doctor')->count();
         $vendorsCount = Vendor::query()->count();
-        $hospitalsCount = $this->getVendorCount(1);
-        $clinicsCount = $this->getVendorCount(2);
-        $pharmaciesCount = $this->getVendorCount(3);
-        $homeCaresCount = $this->getVendorCount(4);
-        $labsCount = $this->getVendorCount(5);
+        $hospitalsCount = $this->getVendorCount('Hospital');
+        $clinicsCount = $this->getVendorCount('Clinic');
+        $pharmaciesCount = $this->getVendorCount('Pharmacy');
+        $homeCaresCount = $this->getVendorCount('Home Care');
+        $labsCount = $this->getVendorCount('Lab');
         $totalTransactions = 0;
         $totalRevenues = 0;
         return view('dashboard.home.overview', compact([
@@ -56,10 +56,10 @@ class HomeController extends Controller
         return response()->download($file, $request['file_name'], ['Content-Type' => 'text/plain']);
     }
 
-    private function getVendorCount ($typeId)
+    private function getVendorCount ($typename)
     {
-        return Vendor::query()->whereHas('vendorType', function ($query) use ($typeId) {
-            $query->where('id', $typeId);
+        return Vendor::query()->whereHas('vendorType', function ($query) use ($typename) {
+            $query->where('name->en', $typename);
         })->count();
     }
 }
