@@ -39,7 +39,7 @@
                                                    class="form-control @error('email') is-invalid @enderror"
                                                    name="email"
                                                    value="{{ old('email') }}" autocomplete="email" autofocus
-                                                   placeholder="{{__('auth.forget_pass')}}">
+                                                   placeholder="{{__('auth.enter_email')}}">
                                             @error('email')
                                             <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
