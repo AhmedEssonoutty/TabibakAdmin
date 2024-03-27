@@ -21,9 +21,19 @@ class UserRequest extends FormRequest
         return true;
     }
 
+    public function validated($key = null, $default = null): array
+    {
+        $validated = parent::validated();
+        $validated['name.ar'] = $this['name'];
+        $validated['name.en'] = $this['name'];
+        return $validated;
+    }
+
+
     public static function prepareUserForRoles($validated, $role): array
     {
-        $validated['user']['name'] = $validated['name'] ?? null;
+        $validated['user']['name.ar'] = $validated['name'] ?? null;
+        $validated['user']['name.en'] = $validated['name'] ?? null;
         $validated['user']['email'] = $validated['email'] ?? null;
         $validated['user']['phone'] = $validated['phone'] ?? null;
         $validated['user']['image'] = $validated['image'] ?? null;
