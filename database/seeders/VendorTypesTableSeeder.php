@@ -20,11 +20,8 @@ class VendorTypesTableSeeder extends Seeder
             ['en' => 'Lab', 'ar' => 'معمل'],
             ['en' => 'Home Care', 'ar' => 'رعاية منزلية']
         ];
-        $model = VendorType::query();
-        $model->truncate();
-        foreach ($vendorTypes as $index => $vendorType) {
-            $model->create([
-                'id' => $index + 1,
+        foreach ($vendorTypes as $vendorType) {
+            VendorType::updateOrCreate([
                 'name' => $vendorType,
             ]);
         }
