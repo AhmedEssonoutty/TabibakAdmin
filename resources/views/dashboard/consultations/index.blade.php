@@ -20,12 +20,12 @@
                     <th scope="col">{{__('messages.contact_type')}}</th>
                     <th scope="col">{{__('messages.payment_type')}}</th>
                     <th scope="col">{{__('messages.status')}}</th>
-                    @if(auth()->user()->vendor)
-                        <th scope="col">{{__('messages.vendor_status')}}</th>
-                    @endif
                     <th scope="col">{{__('messages.amount')}}</th>
                     <th scope="col">{{__('messages.actions')}}</th>
-                    <th scope="col">{{__('messages.request_actions')}}</th>
+                    @if(auth()->user()?->vendor)
+                        <th scope="col">{{__('messages.vendor_status')}}</th>
+                        <th scope="col">{{__('messages.request_actions')}}</th>
+                    @endif
                 </tr>
                 </thead>
                 <tbody>
@@ -41,35 +41,37 @@
                         <td>{{ucfirst(strtolower($resource->contact_type->name))}}</td>
                         <td>{{ucfirst(strtolower($resource->payment_type->name))}}</td>
                         <td>{{ucfirst(strtolower($resource->status->name))}}</td>
-                        @if(auth()->user()->vendor)
-                            <td><span class="text-{{$resource->getVendorStatusColor(auth()->user()->vendor->id)}}">{{$resource->getVendorStatusTxt(auth()->user()->vendor->id)}}</td>
-                            @endif
                         <td>{{$resource->amount}}</td>
                         @include('dashboard.partials.__table-actions', ['resource' => $resource, 'disableEdit' => true,
                         'disableDelete' => !auth()->user()->can('delete-consultation'),
                         'route' => 'consultations', 'hideActive' => true, 'showModel' => false])
-                        <td>
-                            @if(auth()->user()?->vendor && $resource->isPendingVendor(auth()->user()?->vendor->id))
-                                <a class="link-success accept-vendor-consultation cursor-pointer px-2"
-                                   data-id="{{$resource->id}}">
-                                    {{__('messages.accept')}} <i class="bi bi-check"></i>
-                                </a>
-                                <form action="{{route("consultations.vendor-accept", $resource->id)}}" class="d-inline"
-                                      method="POST" id="acceptResourceForm-{{$resource->id}}">
-                                    @csrf
-                                    @method('PUT')
-                                </form>
-                                <a class="link-warning reject-vendor-consultation cursor-pointer px-2"
-                                   data-id="{{$resource->id}}">
-                                    {{__('messages.reject')}} <i class="bi bi-sign-stop"></i>
-                                </a>
-                                <form action="{{route("consultations.vendor-reject", $resource->id)}}" class="d-inline"
-                                      method="POST" id="rejectResourceForm-{{$resource->id}}">
-                                    @csrf
-                                    @method('PUT')
-                                </form>
-                            @endif
-                        </td>
+                        @if(auth()->user()?->vendor)
+                            <td><span class="text-{{$resource->getVendorStatusColor(auth()->user()->vendor->id)}}">{{$resource->getVendorStatusTxt(auth()->user()->vendor->id)}}</td>
+                            <td>
+                                @if($resource->isPendingVendor(auth()->user()?->vendor->id))
+                                    <a class="link-success accept-vendor-consultation cursor-pointer px-2"
+                                       data-id="{{$resource->id}}">
+                                        {{__('messages.accept')}} <i class="bi bi-check"></i>
+                                    </a>
+                                    <form action="{{route("consultations.vendor-accept", $resource->id)}}"
+                                          class="d-inline"
+                                          method="POST" id="acceptResourceForm-{{$resource->id}}">
+                                        @csrf
+                                        @method('PUT')
+                                    </form>
+                                    <a class="link-warning reject-vendor-consultation cursor-pointer px-2"
+                                       data-id="{{$resource->id}}">
+                                        {{__('messages.reject')}} <i class="bi bi-sign-stop"></i>
+                                    </a>
+                                    <form action="{{route("consultations.vendor-reject", $resource->id)}}"
+                                          class="d-inline"
+                                          method="POST" id="rejectResourceForm-{{$resource->id}}">
+                                        @csrf
+                                        @method('PUT')
+                                    </form>
+                                @endif
+                            </td>
+                        @endif
                     </tr>
                 @endforeach
                 </tbody>
