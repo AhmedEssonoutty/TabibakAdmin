@@ -49,7 +49,7 @@
                         'disableDelete' => !auth()->user()->can('delete-consultation'),
                         'route' => 'consultations', 'hideActive' => true, 'showModel' => false])
                         <td>
-                            @if($resource->isPendingVendor(auth()->user()?->vendor->id))
+                            @if(auth()->user()?->vendor && $resource->isPendingVendor(auth()->user()?->vendor->id))
                                 <a class="link-success accept-vendor-consultation cursor-pointer px-2"
                                    data-id="{{$resource->id}}">
                                     {{__('messages.accept')}} <i class="bi bi-check"></i>
