@@ -50,7 +50,7 @@ class ComplaintRequest extends FormRequest
     {
         return [
             'title' => config('validations.string.null'),
-            'description' => config('validations.text.req'),
+            'description' => config('validations.text.null'),
             'complaintable_type' => config('validations.string.req').'|in:Doctor,Article',
             'complaintable_id' => sprintf(config('validations.model.req'), $this->table),
             'type' => config('validations.integer.null'). '|required_if:complaintable_type,==,Article'
