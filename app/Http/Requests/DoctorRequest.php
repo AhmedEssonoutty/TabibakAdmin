@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Constants\DoctorRequestStatusConstants;
 use App\Constants\RoleNameConstants;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Traits\JsonValidationTrait;
@@ -28,6 +29,7 @@ class DoctorRequest extends FormRequest
         if ($this->route('doctor')) {
             $validated['user']['id'] = $this->route('doctor')->user_id;
         }
+        $validated['request_status'] = DoctorRequestStatusConstants::APPROVED->value;
         return UserRequest::prepareUserForRoles($validated, RoleNameConstants::DOCTOR->value);
     }
 

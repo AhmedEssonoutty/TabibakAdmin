@@ -84,6 +84,10 @@ Route::group([
         Route::resource('coupons', CouponController::class);
         Route::put('coupons/{coupon}/change-activation', [CouponController::class, 'changeActivation'])->name('coupons.active');
         Route::apiResource('consultations', ConsultationController::class)->only(['index', 'show', 'destroy']);
+        Route::put('consultations/{consultation}/vendor-accept', [ConsultationController::class, 'vendorAccept'])
+            ->name('consultations.vendor-accept');
+        Route::put('consultations/{consultation}/vendor-reject', [ConsultationController::class, 'vendorReject'])
+            ->name('consultations.vendor-reject');
 
         Route::get('profile', [HomeController::class, 'profile'])->name('profile');
         Route::get('download', [HomeController::class, 'download'])->name('download');

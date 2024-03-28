@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Constants\ConsultationVendorStatusConstants;
 use App\Http\Controllers\BaseWebController;
-use App\Http\Requests\ConsultationRequest;
 use App\Models\Consultation;
 use App\Repositories\Contracts\ConsultationContract;
+use App\Services\Repositories\ConsultationVendorService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -14,13 +15,18 @@ use Illuminate\Http\Request;
 
 class ConsultationController extends BaseWebController
 {
+
+    private ConsultationVendorService $consultationVendorService;
+
     /**
      * PatientConsultationController constructor.
      * @param ConsultationContract $contract
+     * @param ConsultationVendorService $consultationVendorService
      */
-    public function __construct(ConsultationContract $contract)
+    public function __construct(ConsultationContract $contract, ConsultationVendorService $consultationVendorService)
     {
         parent::__construct($contract, 'dashboard');
+        $this->consultationVendorService = $consultationVendorService;
     }
 
     /**
@@ -31,31 +37,11 @@ class ConsultationController extends BaseWebController
      */
     public function index(Request $request): View|Factory|Application
     {
-        $resources = $this->contract->search($request->all(), ['doctor', 'patient', 'medicalSpeciality']);
+        $filters = $request->all();
+        if (!auth()->user()->can('view-all-consultation'))
+            $filters['mineAsVendor'] = true;
+        $resources = $this->contract->search($filters, ['doctor', 'patient', 'medicalSpeciality']);
         return $this->indexBlade(['resources' => $resources]);
-    }
-
-     /**
-     * Show the form for creating a new resource.
-     *
-     * @return Application|Factory|View
-     */
-    public function create(): View|Factory|Application
-    {
-        return $this->createBlade();
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param ConsultationRequest $request
-     *
-     * @return RedirectResponse
-     */
-    public function store(ConsultationRequest $request): RedirectResponse
-    {
-        $this->contract->create($request->validated());
-        return $this->redirectBack()->with('success', __('messages.actions_messages.create_success'));
     }
 
     /**
@@ -71,32 +57,6 @@ class ConsultationController extends BaseWebController
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param Consultation $consultation
-     *
-     * @return View|Factory|Application
-     */
-    public function edit(Consultation $consultation): View|Factory|Application
-    {
-        return $this->editBlade(['consultation' => $consultation]);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param ConsultationRequest $request
-     * @param Consultation $consultation
-     *
-     * @return RedirectResponse
-     */
-    public function update(ConsultationRequest $request, Consultation $consultation): RedirectResponse
-    {
-        $this->contract->update($consultation, $request->validated());
-        return $this->redirectBack()->with('success', __('messages.actions_messages.update_success'));
-    }
-
-    /**
      * Remove the specified resource from storage.
      *
      * @param Consultation $consultation
@@ -109,14 +69,20 @@ class ConsultationController extends BaseWebController
        return $this->redirectBack()->with('success', __('messages.actions_messages.delete_success'));
     }
 
-    /**
-     * active & inactive the specified resource from storage.
-     * @param Consultation $consultation
-     * @return RedirectResponse
-     */
-    public function changeActivation(Consultation $consultation): RedirectResponse
+    public function vendorAccept(Consultation $consultation)
     {
-        $this->contract->toggleField($consultation, 'is_active');
+        $updateStatus = $this->consultationVendorService->accept($consultation, auth()->user()->vendor);
+        if (!$updateStatus)
+            return $this->redirectBack()->with('error', __('messages.not_allowed'));
         return $this->redirectBack()->with('success', __('messages.actions_messages.update_success'));
     }
+
+    public function vendorReject(Consultation $consultation)
+    {
+        $updateStatus = $this->consultationVendorService->reject($consultation, auth()->user()->vendor);
+        if (!$updateStatus)
+            return $this->redirectBack()->with('error', __('messages.not_allowed'));
+        return $this->redirectBack()->with('success', __('messages.actions_messages.update_success'));
+    }
+
 }

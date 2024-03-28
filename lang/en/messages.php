@@ -193,6 +193,7 @@ return [
     'insurance' => 'Insurance',
     'approved' => 'Approved',
     'rejected' => 'Rejected',
+    'accepted' => 'Accepted',
     'approve' => 'Approve',
     'reject' => 'Reject',
     'no_description' => 'No Description',
@@ -225,6 +226,8 @@ return [
         'yes_delete' => 'Yes, delete it!',
         'yes_change' => 'Yes, change it!',
         'cancel' => 'Cancel',
+        'vendor_approve_case' => 'Do you want to approve this consultation?',
+        'vendor_reject_case' => 'Do you want to reject this consultation?',
     ],
     'role_models' => [
         'city' => 'Cities',
@@ -294,4 +297,7 @@ return [
     'medical_review' => 'Medical Review',
     'prescription' => 'Prescription',
     'image' => 'Image',
+    'not_allowed' => 'Not Allowed',
+    'accept' => 'Accept',
+    'vendor_status' => 'Vendor Status',
 ];

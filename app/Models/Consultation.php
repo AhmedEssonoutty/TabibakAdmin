@@ -7,6 +7,7 @@ use App\Constants\ConsultationPaymentTypeConstants;
 use App\Constants\ConsultationStatusConstants;
 use App\Constants\ConsultationTransferCaseRateConstants;
 use App\Constants\ConsultationTypeConstants;
+use App\Constants\ConsultationVendorStatusConstants;
 use App\Constants\FileConstants;
 use App\Constants\ReminderConstants;
 use App\Traits\ModelTrait;
@@ -28,7 +29,7 @@ class Consultation extends Model
         'other_diseases' , 'latest_surgeries', 'doctor_schedule_day_shift_id', 'contact_type',
         'reminder_at', 'transfer_reason', 'transfer_notes', 'transfer_case_rate',
         'payment_type', 'amount', 'coupon_id', 'is_active'];
-    protected array $filters = ['keyword', 'mineAsPatient', 'active', 'mineAsDoctor'];
+    protected array $filters = ['keyword', 'mineAsPatient', 'active', 'mineAsDoctor', 'mineAsVendor'];
     protected array $searchable = [];
     protected array $dates = ['reminder_at'];
     public array $filterModels = [];
@@ -76,7 +77,8 @@ class Consultation extends Model
 
     public function vendors(): BelongsToMany
     {
-        return $this->belongsToMany(Vendor::class, 'consultation_vendor')->withTimestamps();
+        return $this->belongsToMany(Vendor::class, 'consultation_vendor')
+            ->withPivot('status')->withTimestamps();
     }
 
     public function diseases(): BelongsToMany
@@ -95,6 +97,13 @@ class Consultation extends Model
     public function scopeOfMineAsDoctor($query)
     {
         return $query->where('doctor_id', auth()->user()->doctor?->id)->whereNotNull('doctor_id');
+    }
+
+    public function scopeOfMineAsVendor($query)
+    {
+        return $query->whereHas('vendors', function ($q) {
+            $q->where('vendor_id', auth()->user()->vendor?->id);
+        });
     }
     //---------------------Scopes-------------------------------------
 
@@ -125,6 +134,43 @@ class Consultation extends Model
     {
         return $this->doctor_id == auth()->user()->doctor?->id;
     }
+
+    public function isMineAsVendor()
+    {
+        return $this->vendors->contains('id', auth()->user()->vendor?->id);
+    }
+
+    public function isPendingVendor($vendorId)
+    {
+        return $this->vendors->where('id', $vendorId)
+            ->where('pivot.status', ConsultationVendorStatusConstants::PENDING->value)->isNotEmpty();
+    }
+
+    public function getVendorStatusColor($vendorId): string
+    {
+        $vendor = $this->vendors->where('id', $vendorId)->first();
+        if ($vendor) {
+            $case =  ConsultationVendorStatusConstants::tryFrom($vendor->pivot->status);
+            if ($case) {
+                return $case->color();
+            }
+        }
+        return '';
+    }
+
+    public function getVendorStatusTxt($vendorId): string
+    {
+        $vendor = $this->vendors->where('id', $vendorId)->first();
+        if ($vendor) {
+            $case =  ConsultationVendorStatusConstants::tryFrom($vendor->pivot->status);
+            if ($case) {
+                return $case->label();
+            }
+        }
+        return '';
+    }
     //---------------------methods-------------------------------------
 
+    //---------------------attributes-------------------------------------
+    //---------------------attributes-------------------------------------
 }

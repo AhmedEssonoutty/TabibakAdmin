@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\Repositories\ConsultationVendorService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Schema;
@@ -38,5 +39,8 @@ class AppServiceProvider extends ServiceProvider
             ]);
         }
         Model::preventLazyLoading(!$this->app->isProduction());
+        $this->app->bind(ConsultationVendorService::class, function ($app) {
+            return new ConsultationVendorService();
+        });
     }
 }

@@ -11,7 +11,7 @@
                     <div class="py-2">
                         <div class="row py-2">
                             <div class="col-6 col-md-4">{{__('messages.doctor')}}</div>
-                            <div class="col-6 col-md-8">{{$consultation->doctor->user->name}}</div>
+                            <div class="col-6 col-md-8">{{$consultation->doctor?->user->name}}</div>
                         </div>
                         <div class="row py-2">
                             <div class="col-6 col-md-4">{{__('messages.patient')}}</div>

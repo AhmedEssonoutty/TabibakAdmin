@@ -192,6 +192,7 @@ return [
     'insurance' => 'تأمين',
     'approved' => 'موافق عليه',
     'rejected' => 'مرفوض',
+    'accepted' => 'مقبول',
     'approve' => 'قبول',
     'reject' => 'رفض',
     'no_description' => 'لا يوجد وصف',
@@ -294,4 +295,7 @@ return [
     'prescription' => 'الروشتة',
     'images' => 'الصور',
     'image' => 'صورة',
+    'not_allowed' => 'غير مسموح',
+    'accept' => 'قبول',
+    'vendor_status' => 'حالة القسم',
 ];

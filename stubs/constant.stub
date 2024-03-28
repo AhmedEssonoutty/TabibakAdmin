@@ -6,4 +6,16 @@ use App\Traits\ConstantsTrait;
 enum {{constantName}} : {{type}}
 {
     use ConstantsTrait;
+
+    public function getLabels($value):string
+    {
+        return match ($value) {
+
+        };
+    }
+
+    public function label(): string
+    {
+        return self::getLabels($this->value);
+    }
 }
